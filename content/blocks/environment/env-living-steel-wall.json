@@ -1,5 +1,5 @@
 {
   "type": "StaticWall",
   "name": "Living Steel Wall",
-  "attributes": ["spores"]
+  "attributes": [{"spores": true}]
 }
