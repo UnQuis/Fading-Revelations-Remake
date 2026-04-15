@@ -1,5 +1,5 @@
 {
   "type": "StaticWall",
   "name": "Petrified Steel Wall",
-  "attributes": [{"spores": true}]
+  "attributes": {"spores": 0.3}
 }
