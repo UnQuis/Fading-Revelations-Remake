@@ -1,7 +1,7 @@
 {
-    displayName: Fading Revelations
-    repo: Catana791/Fading-Revelations
-    name: me
+    displayName: Fading Revelations Patched
+    repo: UnQuis/Fading-Revelations
+    name: fading-revelations-patched
 
     author:
         '''
@@ -64,7 +64,7 @@
         for more information!
         '''
 
-    subtitle: "No longer in development!"
+    subtitle: "Bug fixes fork"
     minGameVersion: 144.3
-    version: "2.3"
+    version: "2.3.1"
 }
