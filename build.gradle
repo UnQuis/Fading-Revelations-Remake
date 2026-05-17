@@ -1,0 +1,28 @@
+plugins {
+    id "java"
+}
+
+version = "2.3.1"
+sourceSets.main.java.srcDirs = ["src"]
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://raw.githubusercontent.com/Anuken/MavenRepositories/master/repository" }
+    maven { url "https://jitpack.io" }
+}
+
+ext {
+    mindustryVersion = "v157.4"
+}
+
+dependencies {
+    compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
+}
+
+jar {
+    archiveFileName = "${project.name}.jar"
+    from sourceSets.main.output
+    from files("mod.hjson")
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
