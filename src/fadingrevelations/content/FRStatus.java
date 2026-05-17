@@ -7,7 +7,7 @@ import arc.graphics.Color;
 public class FRStatus {
     public static StatusEffect acidicBurn, constructionShock, emp, hastened, highEnergyBurn,
             japonicaWeakened, mediumDowndraft, minimalDowndraft, neutronFrozen,
-            polymorphousBuilding, powerfulDowndraft, radiated, shockslowed, slightDowndraft, superHastened;
+            polymorphousBuilding, powerfulDowndraft, radiated, sapped, shockslowed, slightDowndraft, superHastened;
 
     public static void load() {
         acidicBurn = new StatusEffect("me-acidic-burn") {{
@@ -74,6 +74,12 @@ public class FRStatus {
             color = Color.valueOf("8f8f8f");
             localizedName = "Powerful Downdraft";
             description = "Pulled down by a powerful downdraft.";
+        }};
+
+        sapped = new StatusEffect("me-sapped") {{
+            color = Color.valueOf("7f42b5");
+            localizedName = "Sapped";
+            description = "Health sapped by living steel.";
         }};
 
         radiated = new StatusEffect("me-radiated") {{

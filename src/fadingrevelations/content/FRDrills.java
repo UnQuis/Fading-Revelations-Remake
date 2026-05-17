@@ -14,7 +14,7 @@ import mindustry.gen.Sounds;
 public class FRDrills {
     public static Block tinyMechanicalDrill, tinyPneumaticDrill, tinyPlasmaBore, titaniumDrill,
             compactLaserDrill, hyperDrill,
-            mechanicalSieve, pneumaticSieve, titaniumSieve, steelSieve,
+
             groundGrinder, groundMiller, groundCrusher,
             cliffGrinder, cliffMiller, ventConcentrator, oilBore, tungstenBore;
 
@@ -71,54 +71,6 @@ public class FRDrills {
             consumePower(4f);
             consumeLiquid(Liquids.cryofluid, 0.09f);
             requirements(Category.production, ItemStack.with(Items.copper, 130, Items.silicon, 120, Items.titanium, 100, FRItems.livingSteel, 100, FRItems.livingSteelHard, 150, Items.plastanium, 75));
-        }};
-
-        mechanicalSieve = new GenericCrafter("mechanical-sieve") {{
-            localizedName = "Mechanical Sieve";
-            description = "Slowly filters gold out of water.";
-            health = 160; size = 2; hasLiquids = true; liquidCapacity = 100;
-            hasItems = true; hasPower = false; itemCapacity = 20;
-            consumeLiquid(Liquids.water, 0.3f);
-            craftTime = 1920;
-            outputItem = new ItemStack(Items.beryllium, 1);
-            craftEffect = new WaveEffect() {{ colorFrom = Color.valueOf("3b85d3"); colorTo = Color.valueOf("2c5682"); interp = arc.math.Interp.pow2Out; }};
-            requirements(Category.production, ItemStack.with(Items.copper, 120, Items.lead, 80));
-        }};
-
-        pneumaticSieve = new GenericCrafter("pneumatic-sieve") {{
-            localizedName = "Pneumatic Sieve";
-            description = "Filters gold out of water.";
-            health = 220; size = 2; hasLiquids = true; liquidCapacity = 100;
-            hasItems = true; hasPower = false; itemCapacity = 30;
-            consumeLiquid(Liquids.water, 0.3f);
-            craftTime = 960;
-            outputItem = new ItemStack(Items.beryllium, 1);
-            craftEffect = new WaveEffect() {{ colorFrom = Color.valueOf("3b85d3"); colorTo = Color.valueOf("2c5682"); interp = arc.math.Interp.pow2Out; }};
-            requirements(Category.production, ItemStack.with(Items.copper, 240, Items.lead, 160, Items.graphite, 45));
-        }};
-
-        titaniumSieve = new GenericCrafter("titanium-sieve") {{
-            localizedName = "Titanium Sieve";
-            description = "Swiftly filters gold out of water.";
-            health = 280; size = 3; hasLiquids = true; hasItems = true; hasPower = true;
-            itemCapacity = 40; liquidCapacity = 160; updateEffectChance = 0.03f;
-            consumePower(2f); consumeLiquid(Liquids.water, 0.45f);
-            craftTime = 480;
-            outputItem = new ItemStack(Items.beryllium, 1);
-            craftEffect = new WaveEffect() {{ colorFrom = Color.valueOf("3b85d3"); colorTo = Color.valueOf("2c5682"); interp = arc.math.Interp.pow2Out; }};
-            requirements(Category.production, ItemStack.with(Items.copper, 380, Items.lead, 260, Items.graphite, 120, Items.titanium, 60));
-        }};
-
-        steelSieve = new GenericCrafter("steel-sieve") {{
-            localizedName = "Steel Sieve";
-            description = "The largest sieve. Rapidly filters gold out of water.";
-            health = 465; size = 4; hasLiquids = true; hasItems = true; hasPower = true;
-            itemCapacity = 40; liquidCapacity = 220;
-            consumePower(4f); consumeLiquid(Liquids.water, 0.6f);
-            craftTime = 240;
-            outputItem = new ItemStack(Items.beryllium, 1);
-            craftEffect = new WaveEffect() {{ colorFrom = Color.valueOf("3b85d3"); colorTo = Color.valueOf("2c5682"); interp = arc.math.Interp.pow2Out; }};
-            requirements(Category.production, ItemStack.with(Items.copper, 460, Items.lead, 320, Items.graphite, 210, Items.titanium, 120, FRItems.livingSteel, 60));
         }};
 
         groundGrinder = new GenericCrafter("ground-grinder") {{
