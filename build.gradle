@@ -21,8 +21,9 @@ dependencies {
 }
 
 jar {
-    archiveFileName = "${project.name}.jar"
+    archiveFileName = "FadingRevelations.jar"
     from sourceSets.main.output
     from files("mod.hjson")
+    from fileTree("assets")
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
