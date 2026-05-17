@@ -1,0 +1,11 @@
+build/
+.gradle/
+*.jar
+!gradle-wrapper.jar
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+.DS_Store
+Thumbs.db
