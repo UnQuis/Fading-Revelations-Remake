@@ -78,7 +78,7 @@ public class FRT2Units {
             faceTarget = false; range = 200;
             trailLength = 20; trailColor = Color.valueOf("ffffff");
             weapons.add(
-                new RepairBeamWeapon("repair-beam-weapon") {{
+                new RepairBeamWeapon("fading-revelations-patched-repair-beam-weapon") {{
                     repairSpeed = 1; targetUnits = true; targetBuildings = true;
                     x = 0; y = -10; mirror = false;
                     rotate = true; rotateSpeed = 3;
@@ -121,7 +121,7 @@ public class FRT2Units {
                 new ShieldRegenFieldAbility(25f, 42f, 300f, 64f)
             );
             weapons.addAll(
-                new Weapon("missiles-mount") {{
+                new Weapon("fading-revelations-patched-missiles-mount") {{
                     x = 0; y = 7; mirror = false; rotate = true; reload = 40;
                     shootSound = Sounds.shootMissile; shake = 1;
                     shoot = new ShootPattern() {{ shots = 3; shotDelay = 8; }};
@@ -132,7 +132,7 @@ public class FRT2Units {
                         pierce = true; pierceCap = 1;
                     }};
                 }},
-                new Weapon("king-heal") {{
+                new Weapon("fading-revelations-patched-king-heal") {{
                     x = 0; y = -9; mirror = false; rotate = true;
                     reload = 240; shootSound = Sounds.shootLaser;
                     shoot = new ShootPattern() {{ firstShotDelay = 45; }};
@@ -167,7 +167,7 @@ public class FRT2Units {
                 new HoverPart() {{ x = 11; y = 6; mirror = true; radius = 6; phase = 240; stroke = 2; layerOffset = -0.001f; color = Color.valueOf("ffd59e"); }}
             );
             weapons.addAll(
-                new Weapon("dark-missiles-mount") {{
+                new Weapon("fading-revelations-patched-dark-missiles-mount") {{
                     x = -9; y = -8; mirror = true; rotate = true;
                     reload = 20; alternate = true; shootSound = Sounds.shootMissile;
                     shoot = new ShootPattern() {{ shots = 2; shotDelay = 2; }};
@@ -177,7 +177,7 @@ public class FRT2Units {
                         speed = 4; lifetime = 60; pierce = true; pierceCap = 3; damage = 10;
                     }};
                 }},
-                new Weapon("dark-missiles-mount") {{
+                new Weapon("fading-revelations-patched-dark-missiles-mount") {{
                     x = 0; y = 0; mirror = false; rotate = false;
                     reload = 120; inaccuracy = 4; shootSound = Sounds.shootLaser;
                     bullet = new LaserBulletType() {{
@@ -212,7 +212,7 @@ public class FRT2Units {
                 }}
             );
             weapons.addAll(
-                new Weapon("building-weapon") {{
+                new Weapon("fading-revelations-patched-building-weapon") {{
                     x = 0; y = -8; reload = 30; rotate = true;
                     noAttack = true; mirror = false; shootSound = Sounds.shootLaser;
                     bullet = new LaserBulletType() {{
@@ -238,7 +238,7 @@ public class FRT2Units {
             legCount = 6; legLength = 14; legForwardScl = 0.8f; legMoveSpace = 1.5f; legBaseOffset = 2;
             armor = 5; shadowElevation = 0.3f; groundLayer = 75;
             weapons.addAll(
-                new Weapon("missiles-mount") {{
+                new Weapon("fading-revelations-patched-missiles-mount") {{
                     x = 0; y = -6; mirror = false; rotate = true;
                     reload = 6; shootSound = Sounds.shootSap; recoil = 1; shootY = 4;
                     bullet = new LiquidBulletType(Liquids.oil) {{
@@ -247,7 +247,7 @@ public class FRT2Units {
                         shootEffect = shootSmall; hitEffect = hitBulletColor; smokeEffect = shootSmallSmoke;
                     }};
                 }},
-                new Weapon("atrax-weapon") {{
+                new Weapon("fading-revelations-patched-atrax-weapon") {{
                     x = 10; y = -2; mirror = true; rotate = true;
                     reload = 3;
                     shoot = new ShootPattern() {{ shots = 6; }};
@@ -276,7 +276,7 @@ public class FRT2Units {
             treadRects = new Rect[]{new Rect(13, -38, 17, 76)};
             singleTarget = false; omniMovement = false; faceTarget = false;
             weapons.add(
-                new Weapon("scorpio-weapon") {{
+                new Weapon("fading-revelations-patched-scorpio-weapon") {{
                     x = 0; y = 0; shootY = 10; mirror = false; rotate = true;
                     shootSound = Sounds.shootSpectre;
                     reload = 18; recoil = 2; shootCone = 4; rotateSpeed = 1.5f;

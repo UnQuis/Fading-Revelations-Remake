@@ -38,7 +38,7 @@ public class FRCoreUnits {
             mineHardnessScaling = true; mineSpeed = 20; mineTier = 10;
             physics = false; playerControllable = true; useUnitCap = false; bounded = true;
             weapons.addAll(
-                new Weapon("main-core-hail") {{
+                new Weapon("fading-revelations-patched-main-core-hail") {{
                     x = 23; y = 20; mirror = false; reload = 60; alternate = true;
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
@@ -48,7 +48,7 @@ public class FRCoreUnits {
                         frontColor = Color.valueOf("f8ad42"); backColor = Color.valueOf("f68021");
                     }};
                 }},
-                new Weapon("main-core-hail") {{
+                new Weapon("fading-revelations-patched-main-core-hail") {{
                     x = -23; y = 20; mirror = false; reload = 60; alternate = true;
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
@@ -58,7 +58,7 @@ public class FRCoreUnits {
                         frontColor = Color.valueOf("f8ad42"); backColor = Color.valueOf("f68021");
                     }};
                 }},
-                new Weapon("main-core-hail") {{
+                new Weapon("fading-revelations-patched-main-core-hail") {{
                     x = 23; y = -27; mirror = false; reload = 60; alternate = true;
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
@@ -68,7 +68,7 @@ public class FRCoreUnits {
                         frontColor = Color.valueOf("f8ad42"); backColor = Color.valueOf("f68021");
                     }};
                 }},
-                new Weapon("main-core-hail") {{
+                new Weapon("fading-revelations-patched-main-core-hail") {{
                     x = -23; y = -27; mirror = false; reload = 60; alternate = true;
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
@@ -150,7 +150,7 @@ public class FRCoreUnits {
             coreUnitDock = true; mineTier = 3; armor = 10; health = 310;
             flying = true; itemCapacity = 100; hitSize = 10;
             weapons.add(
-                new Weapon("nothing") {{
+                new Weapon("fading-revelations-patched-nothing") {{
                     x = 3; y = 2; reload = 5; mirror = true; alternate = true;
                     shootSound = shootLaser;
                     bullet = new LaserBoltBulletType(6f, 11f) {{
@@ -175,7 +175,7 @@ public class FRCoreUnits {
             armor = 10; coreUnitDock = true; health = 260;
             flying = true; itemCapacity = 80; hitSize = 7;
             weapons.add(
-                new Weapon("nothing") {{
+                new Weapon("fading-revelations-patched-nothing") {{
                     x = 0; y = 2; reload = 7; shootSound = shootLaser;
                     bullet = new LaserBoltBulletType(6f, 11f) {{
                         buildingDamageMultiplier = 0.01f; pierce = true; pierceCap = 10;
