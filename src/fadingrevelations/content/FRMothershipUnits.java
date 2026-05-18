@@ -29,7 +29,7 @@ public class FRMothershipUnits {
             legCount = 6; legLength = 10; legForwardScl = 0.7f; legMoveSpace = 1.2f;
             allowLegStep = true; mechSideSway = 0.25f;
             weapons.add(
-                new Weapon("nothing") {{
+                new Weapon("fading-revelations-patched-nothing") {{
                     x = 0; y = 0; mirror = false; rotate = true; reload = 60;
                     shake = 2; rotateSpeed = 3; recoil = 1;
                     shootSound = Sounds.shoot; ejectEffect = casing1;
@@ -51,7 +51,7 @@ public class FRMothershipUnits {
             legCount = 6; legLength = 10; legForwardScl = 0.7f; legMoveSpace = 1.2f;
             allowLegStep = true; mechSideSway = 0.25f;
             weapons.add(
-                new Weapon("nothing") {{
+                new Weapon("fading-revelations-patched-nothing") {{
                     x = 0; y = 0; mirror = false; rotate = true; reload = 60;
                     shake = 2; rotateSpeed = 3; recoil = 1;
                     shootSound = Sounds.shoot; ejectEffect = casing1;
@@ -72,7 +72,7 @@ public class FRMothershipUnits {
             speed = 2; health = 1070; outlineColor = Color.valueOf("191919");
             baseRotateSpeed = 0.05f;
             weapons.add(
-                new Weapon("nothing") {{
+                new Weapon("fading-revelations-patched-nothing") {{
                     x = 0; y = -2; reload = 50; shootCone = 360;
                     shootSound = shootLaser;
                     bullet = new MissileBulletType() {{
@@ -95,7 +95,7 @@ public class FRMothershipUnits {
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
             outlines = false;
             weapons.addAll(
-                new Weapon("reclusa-laser") {{
+                new Weapon("fading-revelations-patched-reclusa-laser") {{
                     x = -28; y = 25; mirror = false; rotate = true;
                     reload = 30; shake = 2; rotateSpeed = 3; recoil = 4;
                     shootSound = Sounds.shootArtillery; ejectEffect = casing1;
@@ -108,7 +108,7 @@ public class FRMothershipUnits {
                         status = StatusEffects.freezing; statusDuration = 30;
                     }};
                 }},
-                new Weapon("reclusa-laser") {{
+                new Weapon("fading-revelations-patched-reclusa-laser") {{
                     x = 28; y = 25; mirror = false; rotate = true;
                     reload = 30; shake = 2; rotateSpeed = 3; recoil = 4;
                     shootSound = Sounds.shootArtillery; ejectEffect = casing1;
@@ -121,7 +121,7 @@ public class FRMothershipUnits {
                         status = StatusEffects.melting; statusDuration = 30;
                     }};
                 }},
-                new Weapon("reclusa-main") {{
+                new Weapon("fading-revelations-patched-reclusa-main") {{
                     x = 0; y = -10; mirror = false; rotate = true;
                     reload = 300; shake = 8; recoil = 12; rotateSpeed = 2; rotationLimit = 90;
                     shootSound = shootArtillery; ejectEffect = casing3;
@@ -175,7 +175,7 @@ public class FRMothershipUnits {
             baseRotateSpeed = 0.06f; outlineColor = Color.valueOf("2a2a2a");
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
             weapons.addAll(
-                new Weapon("sps-air-fr") {{
+                new Weapon("fading-revelations-patched-sps-air-fr") {{
                     x = -56; y = 16; mirror = false; rotate = true; reload = 30;
                     shootSound = shootLaser;
                     bullet = new LaserBulletType() {{
@@ -183,7 +183,7 @@ public class FRMothershipUnits {
                         colors = new Color[]{Color.valueOf("6586b0"), Color.valueOf("87ceeb"), Color.valueOf("c0ecff")};
                     }};
                 }},
-                new Weapon("sps-air-fr") {{
+                new Weapon("fading-revelations-patched-sps-air-fr") {{
                     x = 56; y = 16; mirror = false; rotate = true; reload = 30;
                     shootSound = shootLaser;
                     bullet = new LaserBulletType() {{
@@ -191,7 +191,7 @@ public class FRMothershipUnits {
                         colors = new Color[]{Color.valueOf("6586b0"), Color.valueOf("87ceeb"), Color.valueOf("c0ecff")};
                     }};
                 }},
-                new Weapon("sps-lancer-left") {{
+                new Weapon("fading-revelations-patched-sps-lancer-left") {{
                     x = -32; y = -12; rotate = true; continuous = true;
                     reload = 200; shootSound = shootLaser;
                     bullet = new ContinuousLaserBulletType(25f) {{
@@ -200,7 +200,7 @@ public class FRMothershipUnits {
                         status = StatusEffects.freezing; statusDuration = 30;
                     }};
                 }},
-                new Weapon("sps-lancer-left") {{
+                new Weapon("fading-revelations-patched-sps-lancer-left") {{
                     x = 32; y = -12; rotate = true; continuous = true;
                     reload = 240; recoil = 4; recoilTime = 180; shootSound = shootLaser;
                     bullet = new ContinuousLaserBulletType(25f) {{
@@ -209,7 +209,7 @@ public class FRMothershipUnits {
                         status = StatusEffects.freezing; statusDuration = 30;
                     }};
                 }},
-                new Weapon("sps-rail") {{
+                new Weapon("fading-revelations-patched-sps-rail") {{
                     x = 0; y = -2; mirror = false; continuous = true;
                     recoil = 8; recoilTime = 180; reload = 500;
                     shootSound = shootLaser;
@@ -233,7 +233,7 @@ public class FRMothershipUnits {
             treadRects = new Rect[]{new Rect(60, -200, 128, 420)};
             omniMovement = false; singleTarget = false; faceTarget = false;
             weapons.addAll(
-                new Weapon("onager-weapon") {{
+                new Weapon("fading-revelations-patched-onager-weapon") {{
                     x = 0; y = -4; mirror = false; rotate = true;
                     shootY = 64; reload = 300; shake = 6; recoil = 6;
                     rotateSpeed = 0.72f; layerOffset = 0.1f; shadow = 50;
@@ -280,7 +280,7 @@ public class FRMothershipUnits {
                         }};
                     }};
                 }},
-                new Weapon("springald-side-arm") {{
+                new Weapon("fading-revelations-patched-springald-side-arm") {{
                     x = 35; y = 25; mirror = true; alternate = true;
                     reload = 60; rotate = true; rotateSpeed = 2.2f;
                     shootSound = Sounds.shoot;
@@ -293,7 +293,7 @@ public class FRMothershipUnits {
                         shootEffect = shootSmall; smokeEffect = shootSmallSmoke;
                     }};
                 }},
-                new Weapon("springald-side-arm") {{
+                new Weapon("fading-revelations-patched-springald-side-arm") {{
                     x = 35; y = -35; mirror = true; alternate = true;
                     reload = 72; rotate = true; rotateSpeed = 2.2f;
                     shootSound = Sounds.shoot;
@@ -306,7 +306,7 @@ public class FRMothershipUnits {
                         shootEffect = shootSmall; smokeEffect = shootSmallSmoke;
                     }};
                 }},
-                new Weapon("scorpio-weapon") {{
+                new Weapon("fading-revelations-patched-scorpio-weapon") {{
                     x = 35; y = -1; mirror = true; alternate = true;
                     reload = 134; rotate = true; rotateSpeed = 1.4f; inaccuracy = 7;
                     shootSound = shootArtillery;
@@ -381,7 +381,7 @@ public class FRMothershipUnits {
             trailLength = 320; waveTrailX = 26; waveTrailY = -35; trailScl = 3.7f;
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
             weapons.addAll(
-                new Weapon("japonica-main") {{
+                new Weapon("fading-revelations-patched-japonica-main") {{
                     x = 0; y = -40; mirror = false; rotate = true;
                     shootY = 23; reload = 440; shake = 6; recoil = 0.5f;
                     rotateSpeed = 0.9f; shootCone = 1; minWarmup = 0.94f;
@@ -393,7 +393,7 @@ public class FRMothershipUnits {
                         spawnUnit = null;
                     }};
                 }},
-                new Weapon("japonica-lancer") {{
+                new Weapon("fading-revelations-patched-japonica-lancer") {{
                     x = 0; y = 72; mirror = false; rotate = true;
                     shootY = 8; reload = 220; rotateSpeed = 2;
                     continuous = true;
@@ -402,7 +402,7 @@ public class FRMothershipUnits {
                         length = 400; width = 4; lifetime = 90; fadeTime = 30;
                     }};
                 }},
-                new Weapon("japonica-lancer") {{
+                new Weapon("fading-revelations-patched-japonica-lancer") {{
                     x = 0; y = 10; mirror = false; rotate = true;
                     shootY = 8; reload = 220; rotateSpeed = 2;
                     continuous = true;
@@ -411,7 +411,7 @@ public class FRMothershipUnits {
                         length = 450; width = 4; lifetime = 90; fadeTime = 30;
                     }};
                 }},
-                new Weapon("japonica-air") {{
+                new Weapon("fading-revelations-patched-japonica-air") {{
                     x = -42; y = -20; mirror = true; rotate = true;
                     reload = 60; rotateSpeed = 3;
                     shootSound = shootArtillery;
@@ -428,7 +428,7 @@ public class FRMothershipUnits {
                         shootEffect = shootBig; smokeEffect = shootSmallSmoke;
                     }};
                 }},
-                new Weapon("japonica-air") {{
+                new Weapon("fading-revelations-patched-japonica-air") {{
                     x = 42; y = 48; mirror = true; rotate = true;
                     reload = 60; rotateSpeed = 3;
                     shootSound = shootArtillery;
@@ -482,7 +482,7 @@ public class FRMothershipUnits {
                 }}
             );
             weapons.addAll(
-                new Weapon("hive-nuke") {{
+                new Weapon("fading-revelations-patched-hive-nuke") {{
                     x = 0; y = 0; mirror = false; alternate = false;
                     shootY = 50; reload = 600; cooldownTime = 400;
                     shake = 7; recoil = 0; rotate = false;
@@ -501,7 +501,7 @@ public class FRMothershipUnits {
                         );
                     }};
                 }},
-                new Weapon("hive-mg") {{
+                new Weapon("fading-revelations-patched-hive-mg") {{
                     x = 20; y = -20; mirror = false; rotate = true;
                     reload = 36; shake = 1; rotateSpeed = 20;
                     shootSound = shootLaser;
@@ -511,7 +511,7 @@ public class FRMothershipUnits {
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
                     }};
                 }},
-                new Weapon("hive-mg") {{
+                new Weapon("fading-revelations-patched-hive-mg") {{
                     x = -20; y = -20; mirror = false; rotate = true;
                     reload = 26; shake = 1; rotateSpeed = 20;
                     shootSound = shootLaser;
@@ -521,7 +521,7 @@ public class FRMothershipUnits {
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
                     }};
                 }},
-                new Weapon("hive-laser") {{
+                new Weapon("fading-revelations-patched-hive-laser") {{
                     x = -40; y = 0; mirror = false; rotate = true;
                     shootY = 23; reload = 257; shake = 4; recoil = 3;
                     rotateSpeed = 20; continuous = true;
@@ -534,7 +534,7 @@ public class FRMothershipUnits {
                         pierce = true; pierceBuilding = true;
                     }};
                 }},
-                new Weapon("hive-laser") {{
+                new Weapon("fading-revelations-patched-hive-laser") {{
                     x = 40; y = 0; mirror = false; rotate = true;
                     shootY = 23; reload = 221; shake = 4; recoil = 3;
                     rotateSpeed = 20; continuous = true;
@@ -749,7 +749,7 @@ public class FRMothershipUnits {
             drawShields = false;
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
             weapons.addAll(
-                new Weapon("heal-laser-mount") {{
+                new Weapon("fading-revelations-patched-heal-laser-mount") {{
                     x = -25; y = 8; mirror = false;
                     reload = 180; recoil = 2; shake = 2;
                     top = false; predictTarget = true;
@@ -764,7 +764,7 @@ public class FRMothershipUnits {
                         colors = new Color[]{Color.valueOf("6fa629"), Color.valueOf("92e02f"), Color.valueOf("ffffff")};
                     }};
                 }},
-                new Weapon("heal-laser-mount") {{
+                new Weapon("fading-revelations-patched-heal-laser-mount") {{
                     x = 25; y = 8; mirror = false;
                     reload = 240; recoil = 2; shake = 2;
                     top = false; predictTarget = true;
@@ -779,7 +779,7 @@ public class FRMothershipUnits {
                         colors = new Color[]{Color.valueOf("6fa629"), Color.valueOf("92e02f"), Color.valueOf("ffffff")};
                     }};
                 }},
-                new Weapon("nothing") {{
+                new Weapon("fading-revelations-patched-nothing") {{
                     x = 0; y = 20; mirror = false;
                     predictTarget = true; top = false;
                     reload = 480; recoil = 0; shake = 16;
@@ -811,7 +811,7 @@ public class FRMothershipUnits {
             faceTarget = false; buildSpeed = 3.8f;
             trailLength = 85; trailScl = 5; waveTrailX = 28; waveTrailY = -39;
             weapons.addAll(
-                new PointDefenseWeapon("point-defense-mount") {{
+                new PointDefenseWeapon("fading-revelations-patched-point-defense-mount") {{
                     x = -25; y = 20; mirror = true;
                     reload = 5; targetInterval = 5; targetSwitchInterval = 8;
                     bullet = new BulletType() {{
@@ -819,7 +819,7 @@ public class FRMothershipUnits {
                         maxRange = 240; damage = 30;
                     }};
                 }},
-                new PointDefenseWeapon("point-defense-mount") {{
+                new PointDefenseWeapon("fading-revelations-patched-point-defense-mount") {{
                     x = -25; y = -30; mirror = true;
                     reload = 7; targetInterval = 7; targetSwitchInterval = 10;
                     bullet = new BulletType() {{
@@ -827,7 +827,7 @@ public class FRMothershipUnits {
                         maxRange = 240; damage = 35;
                     }};
                 }},
-                new Weapon("nothing") {{
+                new Weapon("fading-revelations-patched-nothing") {{
                     x = 0; y = 40; mirror = false;
                     reload = 170; recoil = 2; shake = 3;
                     rotate = false; controllable = true; autoTarget = true;
@@ -843,7 +843,7 @@ public class FRMothershipUnits {
                         colors = new Color[]{Color.valueOf("62ae7f"), Color.valueOf("84f491"), Color.valueOf("ffffff")};
                     }};
                 }},
-                new Weapon("plasma-laser-mount") {{
+                new Weapon("fading-revelations-patched-plasma-laser-mount") {{
                     x = 12; y = -38; mirror = true;
                     reload = 6; inaccuracy = 5; shootCone = 90;
                     rotate = true; rotateSpeed = 2;

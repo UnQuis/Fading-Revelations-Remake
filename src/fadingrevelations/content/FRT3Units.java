@@ -32,7 +32,7 @@ public class FRT3Units {
                 new UnitSpawnAbility(FRT1Units.alba, 600f, 0f, 0f)
             );
             weapons.add(
-                new Weapon("heal-shotgun-weapon") {{
+                new Weapon("fading-revelations-patched-heal-shotgun-weapon") {{
                     x = 0; y = -15; mirror = false; rotate = true;
                     reload = 180; inaccuracy = 10; rotateSpeed = 3;
                     shootSound = shootLaser;
@@ -54,7 +54,7 @@ public class FRT3Units {
             faceTarget = false;
             trailLength = 60; trailColor = Color.valueOf("ffffff");
             weapons.addAll(
-                new Weapon("large-bullet-mount") {{
+                new Weapon("fading-revelations-patched-large-bullet-mount") {{
                     x = 17.5f; y = -16.5f; mirror = true; alternate = true;
                     rotate = true; shootY = 7;
                     reload = 480; inaccuracy = 6; cooldownTime = 90;
@@ -74,7 +74,7 @@ public class FRT3Units {
                         ) {{ followParent = true; lifetime = 45; }};
                     }};
                 }},
-                new Weapon("king-heal") {{
+                new Weapon("fading-revelations-patched-king-heal") {{
                     x = 0; y = 8; mirror = false; rotate = true;
                     reload = 120; shake = 7; rotateSpeed = 4;
                     shootSound = shootArtillery;
@@ -118,7 +118,7 @@ public class FRT3Units {
             drownTimeMultiplier = 2.2f;
             shadowElevation = 0.65f; groundLayer = 75;
             weapons.addAll(
-                new Weapon("large-purple-mount") {{
+                new Weapon("fading-revelations-patched-large-purple-mount") {{
                     x = 18; y = -3; mirror = false; rotate = true;
                     reload = 6; shootSound = shootSap;
                     bullet = new LiquidBulletType(Liquids.water) {{
@@ -126,7 +126,7 @@ public class FRT3Units {
                         pierce = true; status = StatusEffects.wet;
                     }};
                 }},
-                new Weapon("large-purple-mount") {{
+                new Weapon("fading-revelations-patched-large-purple-mount") {{
                     x = -18; y = -3; mirror = false; rotate = true;
                     reload = 10; shootSound = shootSap;
                     bullet = new LiquidBulletType(Liquids.slag) {{
@@ -134,7 +134,7 @@ public class FRT3Units {
                         status = StatusEffects.burning;
                     }};
                 }},
-                new Weapon("reclusa-laser") {{
+                new Weapon("fading-revelations-patched-reclusa-laser") {{
                     x = 0; y = -15; mirror = false; rotate = false;
                     reload = 32; shootSound = shootArtillery;
                     bullet = new MissileBulletType() {{
@@ -159,7 +159,7 @@ public class FRT3Units {
                 new HoverPart() {{ x = 9; y = -22; mirror = true; radius = 7; phase = 175; color = Color.valueOf("ffd59e"); stroke = 3; layerOffset = -0.001f; rotation = 90; }}
             );
             weapons.addAll(
-                new Weapon("dark-large-bullet-mount") {{
+                new Weapon("fading-revelations-patched-dark-large-bullet-mount") {{
                     x = 14; y = -14; mirror = true; rotate = true;
                     reload = 40; alternate = true; shake = 3;
                     shootSound = shootLaser;
@@ -170,7 +170,7 @@ public class FRT3Units {
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                     }};
                 }},
-                new Weapon("dark-large-bullet-mount") {{
+                new Weapon("fading-revelations-patched-dark-large-bullet-mount") {{
                     x = 0; y = 11; mirror = false; rotate = true;
                     reload = 50; shake = 3;
                     shootSound = shootLaser;
@@ -181,7 +181,7 @@ public class FRT3Units {
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                     }};
                 }},
-                new Weapon("dark-large-laser-mount") {{
+                new Weapon("fading-revelations-patched-dark-large-laser-mount") {{
                     x = 0; y = -15; mirror = false; rotate = false;
                     reload = 320; shake = 5;
                     shootSound = shootArtillery;
@@ -211,7 +211,7 @@ public class FRT3Units {
             speed = 3; itemCapacity = 200;
             engineSize = 9; engineOffset = 27;
             weapons.addAll(
-                new Weapon("kestrel-main") {{
+                new Weapon("fading-revelations-patched-kestrel-main") {{
                     x = 0; y = -15; mirror = false; rotate = false;
                     reload = 240; shootY = 10; recoilTime = 200;
                     shootSound = shootLaser; rotateSpeed = 0;
@@ -223,7 +223,7 @@ public class FRT3Units {
                         colors = new Color[]{Color.valueOf("d06b53"), Color.valueOf("d18877"), Color.valueOf("ffa665")};
                     }};
                 }},
-                new Weapon("arc-weapon") {{
+                new Weapon("fading-revelations-patched-arc-weapon") {{
                     x = -15; y = 5; mirror = false; rotate = true;
                     reload = 1; rotateSpeed = 6; top = true; recoil = 0;
                     shootSound = shockBullet;
@@ -231,7 +231,7 @@ public class FRT3Units {
                         lightningLength = 35; damage = 5;
                     }};
                 }},
-                new Weapon("arc-weapon") {{
+                new Weapon("fading-revelations-patched-arc-weapon") {{
                     x = 15; y = 5; mirror = false; rotate = true;
                     reload = 1; rotateSpeed = 6; top = true; recoil = 0;
                     shootSound = shockBullet;
@@ -239,7 +239,7 @@ public class FRT3Units {
                         lightningLength = 35; damage = 5;
                     }};
                 }},
-                new Weapon("kestrel-secondary") {{
+                new Weapon("fading-revelations-patched-kestrel-secondary") {{
                     x = 0; y = 15; mirror = false; rotate = true;
                     reload = 120; shootY = 3; rotateSpeed = 4;
                     shootSound = shootLaser;
@@ -378,7 +378,7 @@ public class FRT3Units {
                 }}
             );
             weapons.addAll(
-                new Weapon("repair-laser-weapon") {{
+                new Weapon("fading-revelations-patched-repair-laser-weapon") {{
                     x = 18; y = -10; reload = 30; rotate = true;
                     noAttack = true; shootSound = shootLaser;
                     bullet = new LaserBulletType() {{
@@ -387,7 +387,7 @@ public class FRT3Units {
                         collidesTeam = true; collidesTiles = true; collidesAir = true;
                     }};
                 }},
-                new Weapon("heal-laser-mount") {{
+                new Weapon("fading-revelations-patched-heal-laser-mount") {{
                     x = 0; y = 5; mirror = false; rotate = false;
                     reload = 240; continuous = true;
                     shootSound = shootLaser;
@@ -400,8 +400,8 @@ public class FRT3Units {
                         colors = new Color[]{Color.valueOf("84f491"), Color.white, Color.valueOf("62ae7f")};
                     }};
                 }},
-                new BuildWeapon("building-weapon") {{ x = -20; y = -20; }},
-                new BuildWeapon("building-weapon") {{ x = 20; y = -20; }}
+                new BuildWeapon("fading-revelations-patched-building-weapon") {{ x = -20; y = -20; }},
+                new BuildWeapon("fading-revelations-patched-building-weapon") {{ x = 20; y = -20; }}
             );
         }};
 
@@ -413,7 +413,7 @@ public class FRT3Units {
             singleTarget = false; omniMovement = false; faceTarget = false;
             rotateSpeed = 1.5f;
             weapons.addAll(
-                new Weapon("springald-weapon") {{
+                new Weapon("fading-revelations-patched-springald-weapon") {{
                     x = 0; y = 0; mirror = false; rotate = true;
                     reload = 90; shootY = 18; shake = 5; recoil = 4;
                     rotateSpeed = 1.1f; layerOffset = 0.0001f;
@@ -457,7 +457,7 @@ public class FRT3Units {
                         }};
                     }};
                 }},
-                new Weapon("springald-side-arm") {{
+                new Weapon("fading-revelations-patched-springald-side-arm") {{
                     x = 10; y = 8; alternate = true; shootY = 5.5f;
                     reload = 35; recoil = 2; rotate = true; rotateSpeed = 2;
                     shootSound = shootLaser;
@@ -468,7 +468,7 @@ public class FRT3Units {
                         hitEffect = hitBulletColor; despawnEffect = hitBulletColor;
                     }};
                 }},
-                new Weapon("springald-side-arm") {{
+                new Weapon("fading-revelations-patched-springald-side-arm") {{
                     x = 11; y = -9; alternate = true; shootY = 5.5f;
                     reload = 42; recoil = 2; rotate = true; rotateSpeed = 2;
                     shootSound = shootLaser;

@@ -83,7 +83,7 @@ public class FRT1Units {
             constructor = MechUnit::create; localizedName = "Annax";
             speed = 1; hitSize = 8; health = 300; mechSideSway = 0.25f;
             weapons.add(
-                new Weapon("atrax-weapon") {{
+                new Weapon("fading-revelations-patched-atrax-weapon") {{
                     x = 6; y = -1; reload = 180;
                     shootSound = Sounds.shootFlame; rotate = false; mirror = true;
                     shoot = new ShootPattern() {{
@@ -129,7 +129,7 @@ public class FRT1Units {
             health = 150; armor = 1; engineOffset = 5.5f; hitSize = 6;
             speed = 3;
             weapons.add(
-                new Weapon("chrome-blaster") {{
+                new Weapon("fading-revelations-patched-chrome-blaster") {{
                     reload = 90; shootSound = Sounds.shootLaser; alternate = true;
                     bullet = new LaserBulletType() {{
                         damage = 30; width = 15; length = 180;
