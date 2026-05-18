@@ -363,7 +363,7 @@ public class FRTurrets {
             }};
             ammoTypes = ObjectMap.of(
                 FRItems.livingSteel, new MissileBulletType() {{
-                    sprite = "fading-revelations-patched-aa-missile"; width = 20f; height = 40f;
+                    sprite = "aa-missile"; width = 20f; height = 40f;
                     speed = 6f; lifetime = 90f; damage = 1500f;
                     splashDamage = 800f; splashDamageRadius = 80f;
                     homingPower = 0.9f;
@@ -601,7 +601,7 @@ public class FRTurrets {
                         fragBullet = new BasicBulletType() {{
                             damage = 75f; speed = 0f; lifetime = 720f;
                             splashDamage = 75f; splashDamageRadius = 45f;
-                            sprite = "fading-revelations-patched-lml-mine";
+                            sprite = "lml-mine";
                             status = StatusEffects.melting; statusDuration = 240f;
                             shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
                         }};
@@ -616,7 +616,7 @@ public class FRTurrets {
                         fragBullet = new BasicBulletType() {{
                             damage = 90f; speed = 0f; lifetime = 720f;
                             splashDamage = 75f; splashDamageRadius = 45f;
-                            sprite = "fading-revelations-patched-lml-mine";
+                            sprite = "lml-mine";
                             status = StatusEffects.melting; statusDuration = 300f;
                             shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
                         }};
@@ -700,7 +700,7 @@ public class FRTurrets {
             shootEffect = bezierBurstOrange; smokeEffect = Fx.shootSmokeMissile;
             ammoTypes = ObjectMap.of(
                 Items.sporePod, new ArtilleryBulletType() {{
-                    sprite = "fading-revelations-patched-mortar-shell";
+                    sprite = "mortar-shell";
                     speed = 1.6f; lifetime = 130f;
                     splashDamage = 160f; splashDamageRadius = 64f;
                     status = StatusEffects.burning; statusDuration = 780f;
@@ -728,7 +728,7 @@ public class FRTurrets {
             targetAir = true;
             ammoTypes = ObjectMap.of(
                 Items.coal, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-coal-bullet"; speed = 3f; lifetime = 60f;
+                    sprite = "coal-bullet"; speed = 3f; lifetime = 60f;
                     damage = 20f; splashDamage = 25f; splashDamageRadius = 16f;
                     pierceCap = 4; status = StatusEffects.burning; makeFire = true;
                     despawnHit = true;
@@ -736,7 +736,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstOrange; hitEffect = hitBezierOrange;
                 }},
                 Items.graphite, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-graphite-bullet"; speed = 3f; lifetime = 60f;
+                    sprite = "graphite-bullet"; speed = 3f; lifetime = 60f;
                     damage = 30f; splashDamage = 35f; splashDamageRadius = 24f;
                     pierceCap = 6; ammoMultiplier = 3f;
                     despawnHit = true;
@@ -744,7 +744,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
                 }},
                 Items.sand, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-sand-bullet"; speed = 3f; lifetime = 60f;
+                    sprite = "sand-bullet"; speed = 3f; lifetime = 60f;
                     damage = 10f; splashDamage = 15f; splashDamageRadius = 8f;
                     pierceCap = 3; status = StatusEffects.muddy;
                     despawnHit = true;
@@ -752,7 +752,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
                 }},
                 Items.thorium, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-thorium-bullet"; speed = 3f; lifetime = 60f;
+                    sprite = "thorium-bullet"; speed = 3f; lifetime = 60f;
                     damage = 50f; splashDamage = 55f; splashDamageRadius = 32f;
                     pierceCap = 8; ammoMultiplier = 4f; homingPower = 0.2f;
                     despawnHit = true;
@@ -760,7 +760,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
                 }},
                 Items.blastCompound, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-blast-bullet"; speed = 3f; lifetime = 60f;
+                    sprite = "blast-bullet"; speed = 3f; lifetime = 60f;
                     damage = 35f; splashDamage = 40f; splashDamageRadius = 24f;
                     pierceCap = 7; status = StatusEffects.blasted; makeFire = true;
                     despawnHit = true;
@@ -768,7 +768,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstOrange; hitEffect = hitBezierOrange;
                 }},
                 Items.pyratite, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-blast-bullet"; speed = 3f; lifetime = 60f;
+                    sprite = "blast-bullet"; speed = 3f; lifetime = 60f;
                     damage = 30f; splashDamage = 35f; splashDamageRadius = 24f;
                     pierceCap = 6; status = StatusEffects.melting; makeFire = true;
                     despawnHit = true;
@@ -776,7 +776,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
                 }},
                 FRItems.fuelRod, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-rod-bullet"; speed = 3f; lifetime = 60f;
+                    sprite = "rod-bullet"; speed = 3f; lifetime = 60f;
                     damage = 75f; splashDamage = 80f; splashDamageRadius = 24f;
                     pierceCap = 9; spin = 1f; ammoMultiplier = 4f;
                     despawnHit = true;
@@ -1410,7 +1410,7 @@ public class FRTurrets {
             targetAir = true;
             ammoTypes = ObjectMap.of(
                 FRLiquids.steam, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-wind-blade"; lifetime = 72f; speed = 3f;
+                    sprite = "wind-blade"; lifetime = 72f; speed = 3f;
                     damage = 0f; knockback = 15f; buildingDamageMultiplier = 0f;
                     status = StatusEffects.wet;
                     width = 26f; height = 10f;
@@ -1487,7 +1487,7 @@ public class FRTurrets {
             targetAir = false;
             ammoTypes = ObjectMap.of(
                 Liquids.water, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
+                    sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
                     damage = 20f; knockback = 30f; pierceCap = 10;
                     width = 20f; height = 20f; shrinkX = 0f; shrinkY = 0f;
                     status = StatusEffects.wet;
@@ -1495,7 +1495,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
                 }},
                 Liquids.cryofluid, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
+                    sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
                     damage = 40f; knockback = 50f; pierceCap = 15;
                     width = 20f; height = 20f; shrinkX = 0f; shrinkY = 0f;
                     status = StatusEffects.freezing;
@@ -1503,7 +1503,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstCyan; hitEffect = hitBezierCyan;
                 }},
                 Liquids.slag, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
+                    sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
                     damage = 30f; knockback = 40f; pierceCap = 25;
                     width = 20f; height = 20f; shrinkX = 0f; shrinkY = 0f;
                     status = StatusEffects.melting;
@@ -1511,7 +1511,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstOrange; hitEffect = hitBezierOrange;
                 }},
                 Liquids.oil, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
+                    sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
                     damage = 35f; knockback = 40f; pierceCap = 15;
                     width = 20f; height = 20f; shrinkX = 0f; shrinkY = 0f;
                     status = StatusEffects.tarred;
@@ -1519,7 +1519,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
                 }},
                 FRLiquids.livingSteelLiquid, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
+                    sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
                     damage = 40f; knockback = 45f; pierceCap = 25;
                     width = 20f; height = 20f; shrinkX = 0f; shrinkY = 0f;
                     status = FRStatus.sapped; statusDuration = 120f;
@@ -1527,7 +1527,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
                 }},
                 FRLiquids.neutronFluid, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
+                    sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
                     damage = 65f; knockback = 60f; pierceCap = 40;
                     width = 20f; height = 20f; shrinkX = 0f; shrinkY = 0f;
                     status = FRStatus.neutronFrozen; statusDuration = 180f;
@@ -1535,7 +1535,7 @@ public class FRTurrets {
                     shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
                 }},
                 FRLiquids.acid, new BasicBulletType() {{
-                    sprite = "fading-revelations-patched-liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
+                    sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;
                     damage = 40f; knockback = 45f; pierceCap = 25;
                     width = 20f; height = 20f; shrinkX = 0f; shrinkY = 0f;
                     status = FRStatus.acidicBurn; statusDuration = 120f;

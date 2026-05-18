@@ -37,7 +37,7 @@ public class FRT1Units {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "fading-revelations-patched-aedes-rotor";
+                            region = "aedes-rotor";
                             sizeFrom = 10; sizeTo = 10; spin = 10; layer = 95.1f;
                         }};
                         pierceBuilding = true; knockback = 0.1f;
@@ -163,7 +163,7 @@ public class FRT1Units {
                         fragBullets = 1; fragVelocityMin = 0; fragVelocityMax = 0; fragRandomSpread = 0;
                         shootEffect = Fx.none; smokeEffect = Fx.none; hitEffect = Fx.none; despawnHit = false;
                         fragBullet = new BasicBulletType() {{
-                            sprite = "fading-revelations-patched-lml-mine";
+                            sprite = "lml-mine";
                             height = 12; width = 12; collidesAir = false; hitSize = 12;
                             damage = 5; frontColor = Color.valueOf("d99f6b"); shrinkX = 0; shrinkY = 0;
                             despawnEffect = Fx.none; backColor = Color.valueOf("f3e979");

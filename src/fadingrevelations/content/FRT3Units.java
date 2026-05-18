@@ -86,7 +86,7 @@ public class FRT3Units {
                         frontColor = Color.valueOf("ec7458aa"); backColor = Color.valueOf("ff9c5a");
                         trailChance = -1; trailColor = Color.valueOf("d99f6b");
                         trailLength = 12; trailWidth = 3;
-                        sprite = "fading-revelations-patched-emp-bullet";
+                        sprite = "emp-bullet";
                         lightColor = Color.valueOf("ff9c5a"); lightOpacity = 0.7f; lightRadius = 40;
                         trailEffect = new MultiEffect(
                             new ParticleEffect() {{
@@ -338,7 +338,7 @@ public class FRT3Units {
                     activeEffect = new ParticleEffect() {{
                         followParent = true; rotWithParent = true;
                         particles = 1; lifetime = 20; length = 0;
-                        region = "fading-revelations-patched-onirion-rotor";
+                        region = "onirion-rotor";
                         sizeFrom = 24; sizeTo = 24; spin = 16; layer = 95.1f;
                     }};
                 }},
@@ -347,7 +347,7 @@ public class FRT3Units {
                     activeEffect = new ParticleEffect() {{
                         followParent = true; rotWithParent = true;
                         particles = 1; lifetime = 20; length = 0;
-                        region = "fading-revelations-patched-onirion-rotor";
+                        region = "onirion-rotor";
                         sizeFrom = 18; sizeTo = 18; spin = 16; layer = 95.1f;
                     }};
                 }}

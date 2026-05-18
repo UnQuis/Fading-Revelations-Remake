@@ -244,7 +244,7 @@ public class FRCerberianUnits {
                     alternate = true; shootSound = shootArtillery; mirror = true;
                     rotate = false; top = false;
                     bullet = new BasicBulletType() {{
-                        sprite = "fading-revelations-patched-lycosid-bullet"; frontColor = Color.valueOf("a93e3e");
+                        sprite = "lycosid-bullet"; frontColor = Color.valueOf("a93e3e");
                         hitSound = Sounds.shoot; hitShake = 9; hitEffect = instHit;
                         backColor = Color.valueOf("6f2626"); width = 42; height = 42;
                         speed = 1.2f; lifetime = 360; scaleLife = true; damage = 60;
@@ -254,14 +254,14 @@ public class FRCerberianUnits {
                         lightningLength = 12; lightningDamage = 15; fragBullets = 6;
                         fragBullet = new ArtilleryBulletType(1f, 35f) {{
                             hitShake = 6; hitEffect = hitMeltdown;
-                            hitSound = Sounds.explosion; sprite = "fading-revelations-patched-lycosid-bullet";
+                            hitSound = Sounds.explosion; sprite = "lycosid-bullet";
                             frontColor = Color.valueOf("a93e3e"); backColor = Color.valueOf("6f2626");
                             width = 38; height = 38; speed = 1; lifetime = 60;
                             lightning = 3; lightningLength = 9; lightningDamage = 12;
                             fragBullets = 12;
                             fragBullet = new BombBulletType() {{
                                 hitShake = 3; splashDamageRadius = 70;
-                                sprite = "fading-revelations-patched-lml-mine"; hitSound = Sounds.explosion;
+                                sprite = "lml-mine"; hitSound = Sounds.explosion;
                                 width = 12; height = 12;
                                 hitEffect = new WaveEffect() {{ sizeFrom = 0; sizeTo = 18; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }};
                                 splashDamage = 30; speed = 0.5f; lifetime = 60;
