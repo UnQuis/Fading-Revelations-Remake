@@ -26,7 +26,7 @@ public class FRCerberianUnits {
             localizedName = "Penumbra";
             description = "A unit with technology similar to that of the Serpulo Antumbra but the main cannons shoot a laser instead of regular bullets.";
             weapons.addAll(
-                new Weapon("fading-revelations-patched-cerberian-missile-mount") {{
+                new Weapon("cerberian-missile-mount") {{
                     y = 8; x = 17; reload = 20; ejectEffect = casing1;
                     rotateSpeed = 8; shootSound = shootMissile; rotate = true;
                     shoot = new ShootPattern() {{ shots = 2; shotDelay = 7; }};
@@ -39,7 +39,7 @@ public class FRCerberianUnits {
                         status = StatusEffects.blasted; statusDuration = 60;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-missile-mount") {{
+                new Weapon("cerberian-missile-mount") {{
                     y = -8; x = 17; reload = 35; ejectEffect = casing1;
                     rotateSpeed = 8; shootSound = shootMissile; rotate = true;
                     shoot = new ShootPattern() {{ shots = 2; shotDelay = 7; }};
@@ -52,7 +52,7 @@ public class FRCerberianUnits {
                         status = StatusEffects.blasted; statusDuration = 60;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-large-bullet-mount") {{
+                new Weapon("cerberian-large-bullet-mount") {{
                     x = 10; y = 2; shootY = 10; reload = 48; shake = 1;
                     rotateSpeed = 2; ejectEffect = Fx.none; shootSound = shootLaser; rotate = true;
                     bullet = new LaserBulletType() {{
@@ -74,7 +74,7 @@ public class FRCerberianUnits {
             legCount = 4; legLength = 9; legForwardScl = 0.6f;
             legMoveSpace = 1.4f; shadowElevation = 0.2f; groundLayer = 74;
             weapons.add(
-                new Weapon("fading-revelations-patched-cerberian-atrax-weapon") {{
+                new Weapon("cerberian-atrax-weapon") {{
                     top = false; shootY = 3; reload = 9;
                     ejectEffect = Fx.none; x = 7; shootSound = shootFlame;
                     bullet = new LiquidBulletType(Liquids.slag) {{
@@ -103,7 +103,7 @@ public class FRCerberianUnits {
             legSpeed = 2; legSplashDamage = 32; legSplashRange = 30;
             drownTimeMultiplier = 2.2f; shadowElevation = 0.65f; groundLayer = 75;
             weapons.addAll(
-                new Weapon("fading-revelations-patched-cerberian-spiroct-weapon") {{
+                new Weapon("cerberian-spiroct-weapon") {{
                     reload = 9; x = 4; y = 8; rotate = true;
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
@@ -113,7 +113,7 @@ public class FRCerberianUnits {
                         lifetime = 30; knockback = -1;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-spiroct-weapon") {{
+                new Weapon("cerberian-spiroct-weapon") {{
                     reload = 14; x = 9; y = 6; rotate = true;
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
@@ -123,7 +123,7 @@ public class FRCerberianUnits {
                         lifetime = 30; knockback = -1;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-spiroct-weapon") {{
+                new Weapon("cerberian-spiroct-weapon") {{
                     reload = 22; x = 14; y = 0; rotate = true;
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
@@ -133,7 +133,7 @@ public class FRCerberianUnits {
                         lifetime = 30; knockback = -1;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-large-green-mount") {{
+                new Weapon("cerberian-large-green-mount") {{
                     y = -7; x = 9; shootY = 7; reload = 45; shake = 3;
                     rotateSpeed = 2; ejectEffect = casing1; shootSound = shootLaser;
                     rotate = true; recoil = 3;
@@ -176,7 +176,7 @@ public class FRCerberianUnits {
             legLengthScl = 0.93f; rippleScale = 8; legSpeed = 0.2f;
             legSplashDamage = 120; legSplashRange = 72; legCount = 8;
             weapons.addAll(
-                new Weapon("fading-revelations-patched-cerberian-flak-mount") {{
+                new Weapon("cerberian-flak-mount") {{
                     x = 3; y = 46; rotate = true; rotateSpeed = 4;
                     shake = 1; reload = 50; mirror = true; shootSound = shootArtillery;
                     bullet = new FlakBulletType(4f, 10f) {{
@@ -187,7 +187,7 @@ public class FRCerberianUnits {
                         collidesAir = true; collidesGround = false; collidesTiles = false;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-flak-mount") {{
+                new Weapon("cerberian-flak-mount") {{
                     x = 11; y = 40; rotate = true; shake = 1;
                     rotateSpeed = 4; reload = 30; mirror = true; shootSound = shootArtillery;
                     bullet = new FlakBulletType(4f, 8f) {{
@@ -198,7 +198,7 @@ public class FRCerberianUnits {
                         collidesAir = true; collidesGround = false; collidesTiles = false;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-laser-annihilator") {{
+                new Weapon("cerberian-laser-annihilator") {{
                     shootStatus = StatusEffects.unmoving; shootStatusDuration = 700;
                     x = 0; y = -40; shake = 11; reload = 720;
                     shoot = new ShootPattern() {{ firstShotDelay = 420; }};
@@ -239,7 +239,7 @@ public class FRCerberianUnits {
                         );
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-behemoth-weapon") {{
+                new Weapon("cerberian-behemoth-weapon") {{
                     x = 36; y = 0; shake = 5; recoil = 6; reload = 180;
                     alternate = true; shootSound = shootArtillery; mirror = true;
                     rotate = false; top = false;
@@ -277,7 +277,7 @@ public class FRCerberianUnits {
                         }};
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-laser-sweeper") {{
+                new Weapon("cerberian-laser-sweeper") {{
                     x = 18; y = 26; reload = 240; rotate = false;
                     shake = 1; shootCone = 180; alternate = true;
                     shootSound = shockBullet; ignoreRotation = true;
@@ -326,7 +326,7 @@ public class FRCerberianUnits {
             localizedName = "Bayonet";
             description = "A stronger version of the Dagger unit typically found on Serpulo.";
             weapons.add(
-                new Weapon("fading-revelations-patched-large-cerberian-weapon") {{
+                new Weapon("large-cerberian-weapon") {{
                     reload = 9; x = 4; y = 2; top = false;
                     shootSound = shootLaser; ejectEffect = casing1;
                     bullet = new MissileBulletType() {{
@@ -356,7 +356,7 @@ public class FRCerberianUnits {
             localizedName = "Veil";
             description = "Like the Eclipse unit but instead of shooting flak bullets, it shoots energy missiles. Also shoots stronger lasers. Sacrifices some of it's armor for more health and damage.";
             weapons.addAll(
-                new Weapon("fading-revelations-patched-cerberian-large-laser-mount") {{
+                new Weapon("cerberian-large-laser-mount") {{
                     shake = 4; shootY = 9; x = 18; y = 5;
                     rotateSpeed = 2; reload = 45; recoil = 4;
                     shootSound = shootLaser; rotate = true;
@@ -367,7 +367,7 @@ public class FRCerberianUnits {
                         colors = new Color[]{Color.valueOf("5461c5"), Color.valueOf("99a4ff"), Color.white};
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-large-artillery") {{
+                new Weapon("cerberian-large-artillery") {{
                     x = 11; y = 27; rotateSpeed = 2; reload = 9;
                     shootSound = shockBullet; rotate = true; recoil = 0.5f; shootY = 7.25f;
                     bullet = new MissileBulletType() {{
@@ -389,7 +389,7 @@ public class FRCerberianUnits {
                         }};
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-large-artillery") {{
+                new Weapon("cerberian-large-artillery") {{
                     y = -13; x = 20; rotateSpeed = 2; reload = 9;
                     shootSound = shockBullet; rotate = true; recoil = 0.5f; shootY = 7.25f;
                     bullet = new MissileBulletType() {{
@@ -438,7 +438,7 @@ public class FRCerberianUnits {
             localizedName = "Citadel";
             description = "An upgraded version of the Fortress that hails from Cerbero.";
             weapons.add(
-                new Weapon("fading-revelations-patched-cerberian-artillery") {{
+                new Weapon("cerberian-artillery") {{
                     top = false; y = 1; x = 9; reload = 40;
                     recoil = 3; shake = 2; ejectEffect = casing2;
                     shootSound = shootArtillery;
@@ -482,7 +482,7 @@ public class FRCerberianUnits {
             localizedName = "Cudgel";
             description = "A unit similar to a Mace from Serpulo but stronger. Shoots with a different type of Flamethrower.";
             weapons.add(
-                new Weapon("fading-revelations-patched-cerberian-flamethrower") {{
+                new Weapon("cerberian-flamethrower") {{
                     top = false; shootY = 2; reload = 180; mirror = true;
                     alternate = false; recoil = 1; ejectEffect = Fx.none;
                     shootSound = shootFlame; continuous = true;
@@ -505,7 +505,7 @@ public class FRCerberianUnits {
             localizedName = "Kaiser";
             description = "A unit inspired by the Reign from Serpulo but with upgraded technology. Hass massively increased health and armor at the cost of sacrificing some agility.";
             weapons.add(
-                new Weapon("fading-revelations-patched-cerberian-reign-weapon") {{
+                new Weapon("cerberian-reign-weapon") {{
                     top = false; y = 1; x = 21.5f; reload = 9;
                     shootY = 11; recoil = 5; shake = 2; ejectEffect = casing4;
                     shootSound = Sounds.shoot;
@@ -528,7 +528,7 @@ public class FRCerberianUnits {
             localizedName = "Summit";
             description = "A unit similar to a Zenith but the missile launchers fire barrages of missiles instead of single ones.";
             weapons.add(
-                new Weapon("fading-revelations-patched-cerberian-zenith-missiles") {{
+                new Weapon("cerberian-zenith-missiles") {{
                     reload = 40; x = 7; rotate = true; shake = 1;
                     shoot = new ShootPattern() {{ shots = 4; shotDelay = 7; }};
                     velocityRnd = 0.2f; shootSound = shootMissile; inaccuracy = 5;
@@ -555,7 +555,7 @@ public class FRCerberianUnits {
             legCount = 6; legForwardScl = 0.8f; legMoveSpace = 1.4f;
             legBaseOffset = 2; shadowElevation = 0.3f; groundLayer = 75;
             weapons.addAll(
-                new Weapon("fading-revelations-patched-cerberian-spiroct-weapon") {{
+                new Weapon("cerberian-spiroct-weapon") {{
                     shootY = 4; reload = 14; ejectEffect = Fx.none;
                     recoil = 2; rotate = true; shootSound = shootSap;
                     x = 8.5f; y = -1.5f;
@@ -566,7 +566,7 @@ public class FRCerberianUnits {
                         lifetime = 35; knockback = -1.24f;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-mount-green-weapon") {{
+                new Weapon("cerberian-mount-green-weapon") {{
                     reload = 18; rotate = true; x = 4; y = 3;
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
@@ -591,7 +591,7 @@ public class FRCerberianUnits {
             stepShake = 1; legLengthScl = 0.93f; rippleScale = 3;
             legSpeed = 0.19f; legSplashDamage = 80; legSplashRange = 60;
             weapons.addAll(
-                new Weapon("fading-revelations-patched-cerberian-large-green-mount") {{
+                new Weapon("cerberian-large-green-mount") {{
                     y = -5; x = 11; shootY = 7; reload = 17;
                     rotateSpeed = 2; ejectEffect = Fx.none;
                     shootSound = shootSap; rotate = true; recoil = 1;
@@ -602,7 +602,7 @@ public class FRCerberianUnits {
                         knockback = -1.4f; lifetime = 45;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-toxopid-cannon") {{
+                new Weapon("cerberian-toxopid-cannon") {{
                     y = -14; x = 0; shootY = 22; mirror = false;
                     reload = 210; shake = 10; recoil = 10;
                     rotateSpeed = 1; rotate = true;
@@ -639,7 +639,7 @@ public class FRCerberianUnits {
             localizedName = "Baton";
             description = "A re-manufactured version of the Scepter unit.";
             weapons.addAll(
-                new Weapon("fading-revelations-patched-cerberian-scepter-weapon") {{
+                new Weapon("cerberian-scepter-weapon") {{
                     top = false; y = 1; x = 16; shootY = 8;
                     reload = 45; recoil = 5; shake = 2; ejectEffect = casing3;
                     shootSound = Sounds.shoot; inaccuracy = 3;
@@ -651,14 +651,14 @@ public class FRCerberianUnits {
                         lightningColor = Color.valueOf("6d7dff"); lightningDamage = 22;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-mount-weapon") {{
+                new Weapon("cerberian-mount-weapon") {{
                     reload = 13; x = 8.5f; y = 6; rotate = true;
                     ejectEffect = casing1;
                     bullet = new LightningBulletType() {{
                         lightningLength = 35; lightningDamage = 14; pierce = false;
                     }};
                 }},
-                new Weapon("fading-revelations-patched-cerberian-mount-weapon") {{
+                new Weapon("cerberian-mount-weapon") {{
                     reload = 16; x = 8.5f; y = -7; rotate = true;
                     ejectEffect = casing1;
                     bullet = new BasicBulletType(3f, 14f) {{ lifetime = 50; width = 7; height = 9; }};
