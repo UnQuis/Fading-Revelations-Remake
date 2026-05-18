@@ -17,7 +17,7 @@ public class FRCoreUnits {
 
     public static void load() {
         mainCoreUnit = new UnitType("main-core-unit") {{
-            hidden = true; flying = true; hittable = false; hitSize = 1;
+            constructor = UnitEntity::create; localizedName = "Main Core Unit"; hidden = true; flying = true; hittable = false; hitSize = 1;
             killable = false; targetable = false;
             immunities.addAll(
                 StatusEffects.burning, StatusEffects.freezing, StatusEffects.unmoving,
@@ -144,7 +144,7 @@ public class FRCoreUnits {
         }};
 
         epsilon = new UnitType("epsilon") {{
-            localizedName = "[yellow]Epsilon";
+            constructor = UnitEntity::create; localizedName = "[yellow]Epsilon";
             description = "Defends the Element core from enemies. Rapidly builds a variety of structures, and is equipped with multiple healing beams.";
             drag = 0.15f; speed = 4.25f; buildSpeed = 3; mineSpeed = 16;
             coreUnitDock = true; mineTier = 3; armor = 10; health = 310;
@@ -169,7 +169,7 @@ public class FRCoreUnits {
         }};
 
         delta = new UnitType("delta") {{
-            localizedName = "[yellow]Delta";
+            constructor = UnitEntity::create; localizedName = "[yellow]Delta";
             description = "Defends the Atom core from enemies. Swiftly builds structures, and is equipped with healing beams.";
             drag = 0.15f; speed = 4; buildSpeed = 2.5f; mineSpeed = 14; mineTier = 3;
             armor = 10; coreUnitDock = true; health = 260;

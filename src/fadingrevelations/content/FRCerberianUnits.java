@@ -20,7 +20,7 @@ public class FRCerberianUnits {
 
     public static void load() {
         penumbra = new UnitType("cerberian-penumbra") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; flying = true; lowAltitude = true;
             speed = 0.93333f; accel = 0.04f; drag = 0.04f; rotateSpeed = 1.9f;
             health = 10000; armor = 10; engineOffset = 21; engineSize = 5.3f; hitSize = 46;
             localizedName = "Penumbra";
@@ -156,6 +156,7 @@ public class FRCerberianUnits {
         }};
 
         auctus = new UnitType("cerberian-auctus") {{
+            constructor = CrawlUnit::create;
             health = 12000; armor = 12; drawCell = false; outlines = false;
             hitSize = 120; squareShape = false; segments = 8;
             omniMovement = false; rotateSpeed = 0.78f; drownTimeMultiplier = 8;
@@ -243,7 +244,7 @@ public class FRCerberianUnits {
                     alternate = true; shootSound = shootArtillery; mirror = true;
                     rotate = false; top = false;
                     bullet = new BasicBulletType() {{
-                        sprite = "me-lycosid-bullet"; frontColor = Color.valueOf("a93e3e");
+                        sprite = "fading-revelations-patched-lycosid-bullet"; frontColor = Color.valueOf("a93e3e");
                         hitSound = Sounds.shoot; hitShake = 9; hitEffect = instHit;
                         backColor = Color.valueOf("6f2626"); width = 42; height = 42;
                         speed = 1.2f; lifetime = 360; scaleLife = true; damage = 60;
@@ -253,14 +254,14 @@ public class FRCerberianUnits {
                         lightningLength = 12; lightningDamage = 15; fragBullets = 6;
                         fragBullet = new ArtilleryBulletType(1f, 35f) {{
                             hitShake = 6; hitEffect = hitMeltdown;
-                            hitSound = Sounds.explosion; sprite = "me-lycosid-bullet";
+                            hitSound = Sounds.explosion; sprite = "fading-revelations-patched-lycosid-bullet";
                             frontColor = Color.valueOf("a93e3e"); backColor = Color.valueOf("6f2626");
                             width = 38; height = 38; speed = 1; lifetime = 60;
                             lightning = 3; lightningLength = 9; lightningDamage = 12;
                             fragBullets = 12;
                             fragBullet = new BombBulletType() {{
                                 hitShake = 3; splashDamageRadius = 70;
-                                sprite = "me-lml-mine"; hitSound = Sounds.explosion;
+                                sprite = "fading-revelations-patched-lml-mine"; hitSound = Sounds.explosion;
                                 width = 12; height = 12;
                                 hitEffect = new WaveEffect() {{ sizeFrom = 0; sizeTo = 18; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }};
                                 splashDamage = 30; speed = 0.5f; lifetime = 60;
@@ -299,7 +300,7 @@ public class FRCerberianUnits {
         }};
 
         straggle = new UnitType("cerberian-straggle") {{
-            health = 200; hitSize = 8; speed = 1; range = 40;
+            constructor = MechUnit::create; health = 200; hitSize = 8; speed = 1; range = 40;
             localizedName = "Straggle";
             description = "A cerberian version of the Crawler unit.";
             controller = u -> new SuicideAI();
@@ -321,7 +322,7 @@ public class FRCerberianUnits {
         }};
 
         bayonet = new UnitType("cerberian-bayonet") {{
-            health = 150; speed = 0.5f;
+            constructor = MechUnit::create; health = 150; speed = 0.5f;
             localizedName = "Bayonet";
             description = "A stronger version of the Dagger unit typically found on Serpulo.";
             weapons.add(
@@ -349,7 +350,7 @@ public class FRCerberianUnits {
         }};
 
         veil = new UnitType("cerberian-veil") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; flying = true; lowAltitude = true;
             speed = 0.73333f; accel = 0.04f; drag = 0.04f; rotateSpeed = 1;
             health = 40000; armor = 6; engineOffset = 38; engineSize = 7.3f; hitSize = 58;
             localizedName = "Veil";
@@ -414,7 +415,7 @@ public class FRCerberianUnits {
         }};
 
         spark = new UnitType("cerberian-spark") {{
-            flying = true; speed = 2.7f; accel = 0.08f; drag = 0.04f;
+            constructor = UnitEntity::create; flying = true; speed = 2.7f; accel = 0.08f; drag = 0.04f;
             health = 70; engineOffset = 5.75f; hitSize = 9; itemCapacity = 10;
             localizedName = "Spark";
             description = "A unit similar to a Flare from Serpulo but with upgraded weaponry.";
@@ -432,7 +433,7 @@ public class FRCerberianUnits {
         }};
 
         citadel = new UnitType("cerberian-citadel") {{
-            health = 900; armor = 9; speed = 0.43f; hitSize = 13;
+            constructor = MechUnit::create; health = 900; armor = 9; speed = 0.43f; hitSize = 13;
             rotateSpeed = 3; targetAir = false;
             localizedName = "Citadel";
             description = "An upgraded version of the Fortress that hails from Cerbero.";
@@ -453,7 +454,7 @@ public class FRCerberianUnits {
         }};
 
         vista = new UnitType("cerberian-vista") {{
-            flying = true; health = 340; speed = 1.65f; accel = 0.08f;
+            constructor = UnitEntity::create; flying = true; health = 340; speed = 1.65f; accel = 0.08f;
             drag = 0.016f; hitSize = 10; targetAir = false; engineOffset = 7.8f;
             range = 140; faceTarget = false; armor = 3; itemCapacity = 0;
             localizedName = "Vista";
@@ -476,7 +477,7 @@ public class FRCerberianUnits {
         }};
 
         cudgel = new UnitType("cerberian-cudgel") {{
-            health = 550; armor = 4; speed = 0.5f; hitSize = 10;
+            constructor = MechUnit::create; health = 550; armor = 4; speed = 0.5f; hitSize = 10;
             immunities.add(StatusEffects.burning);
             localizedName = "Cudgel";
             description = "A unit similar to a Mace from Serpulo but stronger. Shoots with a different type of Flamethrower.";
@@ -499,7 +500,7 @@ public class FRCerberianUnits {
         }};
 
         kaiser = new UnitType("cerberian-kaiser") {{
-            health = 48000; armor = 20; speed = 0.24f; hitSize = 26;
+            constructor = MechUnit::create; health = 48000; armor = 20; speed = 0.24f; hitSize = 26;
             rotateSpeed = 1.65f; drownTimeMultiplier = 6;
             localizedName = "Kaiser";
             description = "A unit inspired by the Reign from Serpulo but with upgraded technology. Hass massively increased health and armor at the cost of sacrificing some agility.";
@@ -521,7 +522,7 @@ public class FRCerberianUnits {
         }};
 
         summit = new UnitType("cerberian-summit") {{
-            flying = true; lowAltitude = true; health = 700; speed = 1.7f;
+            constructor = UnitEntity::create; flying = true; lowAltitude = true; health = 700; speed = 1.7f;
             accel = 0.04f; drag = 0.016f; range = 140; hitSize = 20;
             forceMultiTarget = true; armor = 5; engineOffset = 12; engineSize = 3;
             localizedName = "Summit";
@@ -633,7 +634,7 @@ public class FRCerberianUnits {
         }};
 
         baton = new UnitType("cerberian-baton") {{
-            health = 9000; armor = 10; speed = 0.36f; hitSize = 22;
+            constructor = MechUnit::create; health = 9000; armor = 10; speed = 0.36f; hitSize = 22;
             rotateSpeed = 2.1f; drownTimeMultiplier = 4; singleTarget = true;
             localizedName = "Baton";
             description = "A re-manufactured version of the Scepter unit.";

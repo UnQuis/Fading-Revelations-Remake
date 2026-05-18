@@ -20,7 +20,7 @@ public class FRT1Units {
 
     public static void load() {
         aedes = new UnitType("aedes") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Aedes"; flying = true; lowAltitude = true;
             engineSize = 0;
             health = 55; hitSize = 9;
             range = 135; speed = 1; strafePenalty = 1;
@@ -37,7 +37,7 @@ public class FRT1Units {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "aedes-rotor";
+                            region = "fading-revelations-patched-aedes-rotor";
                             sizeFrom = 10; sizeTo = 10; spin = 10; layer = 95.1f;
                         }};
                         pierceBuilding = true; knockback = 0.1f;
@@ -61,7 +61,7 @@ public class FRT1Units {
         }};
 
         alba = new UnitType("alba") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Alba";
             health = 310; armor = 3; speed = 1.2f; drag = 0.14f; hitSize = 9;
             accel = 0.5f; rotateSpeed = 5.5f;
             trailLength = 16; trailColor = Color.valueOf("ffffff");
@@ -80,7 +80,7 @@ public class FRT1Units {
         }};
 
         annax = new UnitType("annax") {{
-            constructor = MechUnit::create;
+            constructor = MechUnit::create; localizedName = "Annax";
             speed = 1; hitSize = 8; health = 300; mechSideSway = 0.25f;
             weapons.add(
                 new Weapon("atrax-weapon") {{
@@ -101,7 +101,7 @@ public class FRT1Units {
         }};
 
         apis = new UnitType("apis") {{
-            flying = true;
+            constructor = UnitEntity::create; localizedName = "Apis"; flying = true;
             health = 180; armor = 0; hitSize = 8; itemCapacity = 20;
             outlineColor = Color.valueOf("191919"); speed = 1.3f;
             weapons.add(
@@ -120,12 +120,12 @@ public class FRT1Units {
         }};
 
         heliaca = new UnitType("heliaca") {{
-            flying = true;
+            constructor = UnitEntity::create; localizedName = "Heliaca"; flying = true;
             health = 75; circleTarget = true; speed = 1.7f;
         }};
 
         lancerDrone = new UnitType("lancer-drone") {{
-            flying = true;
+            constructor = UnitEntity::create; localizedName = "Lancer Drone"; flying = true;
             health = 150; armor = 1; engineOffset = 5.5f; hitSize = 6;
             speed = 3;
             weapons.add(
@@ -141,7 +141,7 @@ public class FRT1Units {
         }};
 
         mela = new UnitType("mela") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Mela";
             health = 320; armor = 2; hitSize = 14; speed = 1.3f;
             canBoost = false; faceTarget = false;
             drag = 0.13f; accel = 0.5f; rotateSpeed = 3.8f; range = 160;
@@ -163,7 +163,7 @@ public class FRT1Units {
                         fragBullets = 1; fragVelocityMin = 0; fragVelocityMax = 0; fragRandomSpread = 0;
                         shootEffect = Fx.none; smokeEffect = Fx.none; hitEffect = Fx.none; despawnHit = false;
                         fragBullet = new BasicBulletType() {{
-                            sprite = "lml-mine";
+                            sprite = "fading-revelations-patched-lml-mine";
                             height = 12; width = 12; collidesAir = false; hitSize = 12;
                             damage = 5; frontColor = Color.valueOf("d99f6b"); shrinkX = 0; shrinkY = 0;
                             despawnEffect = Fx.none; backColor = Color.valueOf("f3e979");
@@ -176,7 +176,7 @@ public class FRT1Units {
         }};
 
         sambuca = new UnitType("sambuca") {{
-            constructor = TankUnit::create;
+            constructor = TankUnit::create; localizedName = "Sambuca";
             health = 500; armor = 3;
             squareShape = true; treadPullOffset = 8;
             treadRects = new Rect[]{new Rect(7, -26, 14, 51)};
@@ -195,7 +195,7 @@ public class FRT1Units {
         }};
 
         seed = new UnitType("seed") {{
-            flying = true;
+            constructor = UnitEntity::create; localizedName = "Seed"; flying = true;
             health = 250; armor = 0; itemCapacity = 25; speed = 1.6f;
             canHeal = true; drawBuildBeam = true; mineHardnessScaling = true;
             mineSpeed = 2; mineTier = 1; canAttack = false; buildSpeed = 0.2f;
