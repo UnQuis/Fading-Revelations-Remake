@@ -38,7 +38,7 @@ public class FRT2Units {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "fading-revelations-patched-armiger-rotor";
+                            region = "armiger-rotor";
                             sizeFrom = 13; sizeTo = 13; spin = 12; layer = 95.1f;
                         }};
                         smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;

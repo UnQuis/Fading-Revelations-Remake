@@ -128,7 +128,7 @@ public class FRMothershipUnits {
                     bullet = new ArtilleryBulletType() {{
                         spin = 2; damage = 50; lifetime = 240; width = 50; height = 50;
                         splashDamage = 65; splashDamageRadius = 80; knockback = 1;
-                        sprite = "fading-revelations-patched-lycosid-bullet";
+                        sprite = "lycosid-bullet";
                         backColor = Color.valueOf("665c9f"); frontColor = Color.valueOf("bf92f9");
                         lightning = 6; lightningLength = 25; lightningDamage = 35;
                         lightningColor = Color.valueOf("bf92f9");
@@ -151,7 +151,7 @@ public class FRMothershipUnits {
                             damage = 40; lifetime = 140; width = 25; height = 25;
                             knockback = 1; collidesTiles = false;
                             splashDamage = 80; splashDamageRadius = 90;
-                            sprite = "fading-revelations-patched-lycosid-bullet";
+                            sprite = "lycosid-bullet";
                             backColor = Color.valueOf("665c9f"); frontColor = Color.valueOf("bf92f9");
                             lightning = 4; lightningLength = 7;
                             lightningColor = Color.valueOf("bf92f9");
@@ -573,7 +573,7 @@ public class FRMothershipUnits {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "fading-revelations-patched-culiseta-rotor";
+                            region = "culiseta-rotor";
                             sizeFrom = 120; sizeTo = 120; spin = 16; layer = 95.1f;
                         }};
                         smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;
