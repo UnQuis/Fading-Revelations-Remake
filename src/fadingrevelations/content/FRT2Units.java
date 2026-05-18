@@ -22,7 +22,7 @@ public class FRT2Units {
 
     public static void load() {
         armiger = new UnitType("armiger") {{
-            flying = true; lowAltitude = true; engineSize = 0;
+            constructor = UnitEntity::create; localizedName = "Armiger"; flying = true; lowAltitude = true; engineSize = 0;
             health = 525; armor = 6; speed = 1; range = 180; hitSize = 12; strafePenalty = 1;
             weapons.addAll(
                 new Weapon() {{
@@ -38,7 +38,7 @@ public class FRT2Units {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "armiger-rotor";
+                            region = "fading-revelations-patched-armiger-rotor";
                             sizeFrom = 13; sizeTo = 13; spin = 12; layer = 95.1f;
                         }};
                         smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;
@@ -72,7 +72,7 @@ public class FRT2Units {
         }};
 
         arvens = new UnitType("arvens") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Arvens";
             health = 920; armor = 6; hitSize = 17;
             speed = 0.96f; accel = 0.27f; rotateSpeed = 3; drag = 0.16f;
             faceTarget = false; range = 200;
@@ -92,7 +92,7 @@ public class FRT2Units {
         }};
 
         alopex = new UnitType("close-range") {{
-            flying = true;
+            constructor = UnitEntity::create; localizedName = "Alopex"; flying = true;
             health = 320; armor = 2; hitSize = 17;
             speed = 5; drag = 0.055f; accel = 0.075f;
             aimDst = 15;
@@ -112,7 +112,7 @@ public class FRT2Units {
         }};
 
         cromis = new UnitType("cromis") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Cromis";
             health = 1180; armor = 7; hitSize = 15;
             speed = 0.92f; accel = 0.25f; drag = 0.17f;
             faceTarget = false; rotateSpeed = 2;
@@ -156,7 +156,7 @@ public class FRT2Units {
         }};
 
         procer = new UnitType("procer") {{
-            flying = true; hovering = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Procer"; flying = true; hovering = true; lowAltitude = true;
             health = 1100; armor = 9; hitSize = 17.5f;
             speed = 1.2f; itemCapacity = 25;
             outlineColor = Color.valueOf("191919");
@@ -189,7 +189,7 @@ public class FRT2Units {
         }};
 
         sapling = new UnitType("sapling") {{
-            constructor = PayloadUnit::create;
+            constructor = PayloadUnit::create; localizedName = "Sapling";
             flying = true; lowAltitude = true;
             health = 680; armor = 3; itemCapacity = 75; speed = 2.7f;
             canHeal = true; drawBuildBeam = true; mineHardnessScaling = true;
@@ -232,7 +232,7 @@ public class FRT2Units {
         }};
 
         scofra = new UnitType("scofra") {{
-            constructor = LegsUnit::create;
+            constructor = LegsUnit::create; localizedName = "Scofra";
             hovering = true;
             speed = 0.54f; drag = 0.4f; hitSize = 15; rotateSpeed = 3; health = 1150;
             legCount = 6; legLength = 14; legForwardScl = 0.8f; legMoveSpace = 1.5f; legBaseOffset = 2;
@@ -270,7 +270,7 @@ public class FRT2Units {
         }};
 
         scorpio = new UnitType("scorpio") {{
-            constructor = TankUnit::create;
+            constructor = TankUnit::create; localizedName = "Scorpio";
             hitSize = 18; treadPullOffset = 5;
             speed = 0.85f; rotateSpeed = 3; health = 2300; armor = 8;
             treadRects = new Rect[]{new Rect(13, -38, 17, 76)};

@@ -24,7 +24,7 @@ public class FRMothershipUnits {
 
     public static void load() {
         toruct = new UnitType("toruct") {{
-            constructor = LegsUnit::create; hovering = true;
+            constructor = LegsUnit::create; localizedName = "Toruct"; hovering = true;
             speed = 1.5f; rotateSpeed = 4; health = 660; armor = 3; hitSize = 10; range = 80;
             legCount = 6; legLength = 10; legForwardScl = 0.7f; legMoveSpace = 1.2f;
             allowLegStep = true; mechSideSway = 0.25f;
@@ -46,7 +46,7 @@ public class FRMothershipUnits {
         }};
 
         reduct = new UnitType("reduct") {{
-            constructor = LegsUnit::create; hovering = true;
+            constructor = LegsUnit::create; localizedName = "Reduct"; hovering = true;
             speed = 1.5f; rotateSpeed = 4; health = 660; armor = 3; hitSize = 10; range = 80;
             legCount = 6; legLength = 10; legForwardScl = 0.7f; legMoveSpace = 1.2f;
             allowLegStep = true; mechSideSway = 0.25f;
@@ -68,7 +68,7 @@ public class FRMothershipUnits {
         }};
 
         hiveAttack = new UnitType("hive-attack") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Hive Attack"; flying = true; lowAltitude = true;
             speed = 2; health = 1070; outlineColor = Color.valueOf("191919");
             baseRotateSpeed = 0.05f;
             weapons.add(
@@ -85,7 +85,7 @@ public class FRMothershipUnits {
         }};
 
         lycosid = new UnitType("lycosid") {{
-            constructor = LegsUnit::create; hovering = true;
+            constructor = LegsUnit::create; localizedName = "Lycosid"; hovering = true;
             speed = 0.96f; health = 22000; armor = 26; baseRotateSpeed = 3; hitSize = 56;
             legCount = 8; legMoveSpace = 0.8f; legPairOffset = 3; legLength = 120;
             legExtension = -20; legBaseOffset = 8; stepShake = 8; legLengthScl = 0.93f;
@@ -128,7 +128,7 @@ public class FRMothershipUnits {
                     bullet = new ArtilleryBulletType() {{
                         spin = 2; damage = 50; lifetime = 240; width = 50; height = 50;
                         splashDamage = 65; splashDamageRadius = 80; knockback = 1;
-                        sprite = "me-lycosid-bullet";
+                        sprite = "fading-revelations-patched-lycosid-bullet";
                         backColor = Color.valueOf("665c9f"); frontColor = Color.valueOf("bf92f9");
                         lightning = 6; lightningLength = 25; lightningDamage = 35;
                         lightningColor = Color.valueOf("bf92f9");
@@ -151,7 +151,7 @@ public class FRMothershipUnits {
                             damage = 40; lifetime = 140; width = 25; height = 25;
                             knockback = 1; collidesTiles = false;
                             splashDamage = 80; splashDamageRadius = 90;
-                            sprite = "me-lycosid-bullet";
+                            sprite = "fading-revelations-patched-lycosid-bullet";
                             backColor = Color.valueOf("665c9f"); frontColor = Color.valueOf("bf92f9");
                             lightning = 4; lightningLength = 7;
                             lightningColor = Color.valueOf("bf92f9");
@@ -170,7 +170,7 @@ public class FRMothershipUnits {
         }};
 
         strahl = new UnitType("sps-strahl") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Strahl"; flying = true; lowAltitude = true;
             speed = 0.96f; drag = 0.15f; health = 11000; armor = 24; hitSize = 90;
             baseRotateSpeed = 0.06f; outlineColor = Color.valueOf("2a2a2a");
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
@@ -227,7 +227,7 @@ public class FRMothershipUnits {
         }};
 
         onager = new UnitType("onager") {{
-            constructor = TankUnit::create;
+            constructor = TankUnit::create; localizedName = "Onager";
             speed = 0.36f; health = 23000; armor = 26; hitSize = 92;
             rotateSpeed = 0.9f; crushDamage = 5;
             treadRects = new Rect[]{new Rect(60, -200, 128, 420)};
@@ -374,7 +374,7 @@ public class FRMothershipUnits {
         }};
 
         japonica = new UnitType("japonica") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Japonica";
             health = 20000; armor = 10; speed = 0.96f; hitSize = 93;
             drag = 0.2f; rotateSpeed = 1.2f; accel = 0.18f;
             faceTarget = false;
@@ -462,7 +462,7 @@ public class FRMothershipUnits {
         }};
 
         hive = new UnitType("hive") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Hive"; flying = true; lowAltitude = true;
             speed = 0.96f; drag = 0.15f; health = 9100; armor = 20; hitSize = 85;
             baseRotateSpeed = 0.06f; aimDst = 600;
             createWreck = true; outlineColor = Color.valueOf("191919");
@@ -555,7 +555,7 @@ public class FRMothershipUnits {
         }};
 
         culiseta = new UnitType("culiseta") {{
-            constructor = PayloadUnit::create; flying = true; lowAltitude = true;
+            constructor = PayloadUnit::create; localizedName = "Culiseta"; flying = true; lowAltitude = true;
             health = 16500; armor = 3; speed = 1; hitSize = 64;
             range = 270; strafePenalty = 1; payloadCapacity = 256; engineSize = 0;
             weapons.addAll(
@@ -573,7 +573,7 @@ public class FRMothershipUnits {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "me-culiseta-rotor";
+                            region = "fading-revelations-patched-culiseta-rotor";
                             sizeFrom = 120; sizeTo = 120; spin = 16; layer = 95.1f;
                         }};
                         smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;
@@ -738,7 +738,7 @@ public class FRMothershipUnits {
         }};
 
         corax = new UnitType("corax") {{
-            constructor = LegsUnit::create; hovering = true;
+            constructor = LegsUnit::create; localizedName = "Corax"; hovering = true;
             speed = 0.45f; health = 18000; armor = 14; hitSize = 52;
             rotateSpeed = 0.48f;
             legCount = 6; legMoveSpace = 0.8f; legPairOffset = 2; legLength = 80;
@@ -805,7 +805,7 @@ public class FRMothershipUnits {
         }};
 
         altaic = new UnitType("altaic") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Altaic";
             health = 21000; armor = 16; speed = 0.75f; hitSize = 61;
             drag = 0.17f; accel = 0.25f; rotateSpeed = 1.6f;
             faceTarget = false; buildSpeed = 3.8f;

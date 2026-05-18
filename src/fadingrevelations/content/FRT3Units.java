@@ -23,7 +23,7 @@ public class FRT3Units {
 
     public static void load() {
         aestiva = new UnitType("aestiva") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Aestiva";
             health = 9000; armor = 12; hitSize = 28;
             speed = 0.8f; drag = 0.17f; accel = 0.3f; rotateSpeed = 1.8f;
             faceTarget = false;
@@ -48,7 +48,7 @@ public class FRT3Units {
         }};
 
         arnux = new UnitType("arnux") {{
-            constructor = UnitWaterMove::create;
+            constructor = UnitWaterMove::create; localizedName = "Arnux";
             health = 12100; armor = 12; hitSize = 32.5f;
             speed = 0.82f; drag = 0.17f; accel = 0.22f; rotateSpeed = 1.5f;
             faceTarget = false;
@@ -86,7 +86,7 @@ public class FRT3Units {
                         frontColor = Color.valueOf("ec7458aa"); backColor = Color.valueOf("ff9c5a");
                         trailChance = -1; trailColor = Color.valueOf("d99f6b");
                         trailLength = 12; trailWidth = 3;
-                        sprite = "emp-bullet";
+                        sprite = "fading-revelations-patched-emp-bullet";
                         lightColor = Color.valueOf("ff9c5a"); lightOpacity = 0.7f; lightRadius = 40;
                         trailEffect = new MultiEffect(
                             new ParticleEffect() {{
@@ -108,7 +108,7 @@ public class FRT3Units {
         }};
 
         auratus = new UnitType("auratus") {{
-            constructor = LegsUnit::create;
+            constructor = LegsUnit::create; localizedName = "Auratus";
             hovering = true;
             speed = 0.62f; drag = 0.1f; hitSize = 23; health = 9100; armor = 6; rotateSpeed = 2.7f;
             legCount = 6; legMoveSpace = 1; legPairOffset = 3; legLength = 35;
@@ -149,7 +149,7 @@ public class FRT3Units {
         }};
 
         ducalis = new UnitType("ducalis") {{
-            flying = true; hovering = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Ducalis"; flying = true; hovering = true; lowAltitude = true;
             health = 10000; armor = 10; hitSize = 27.5f;
             outlineColor = Color.valueOf("191919");
             itemCapacity = 60; speed = 1.8f;
@@ -206,7 +206,7 @@ public class FRT3Units {
         }};
 
         kestrel = new UnitType("kestrel") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Kestrel"; flying = true; lowAltitude = true;
             health = 8600; armor = 10; hitSize = 27;
             speed = 3; itemCapacity = 200;
             engineSize = 9; engineOffset = 27;
@@ -253,7 +253,7 @@ public class FRT3Units {
         }};
 
         onirion = new UnitType("onirion") {{
-            flying = true; lowAltitude = true;
+            constructor = UnitEntity::create; localizedName = "Onirion"; flying = true; lowAltitude = true;
             engineSize = 0; payloadCapacity = 64;
             health = 5400; armor = 6; hitSize = 23;
             range = 240; speed = 1; strafePenalty = 1;
@@ -338,7 +338,7 @@ public class FRT3Units {
                     activeEffect = new ParticleEffect() {{
                         followParent = true; rotWithParent = true;
                         particles = 1; lifetime = 20; length = 0;
-                        region = "onirion-rotor";
+                        region = "fading-revelations-patched-onirion-rotor";
                         sizeFrom = 24; sizeTo = 24; spin = 16; layer = 95.1f;
                     }};
                 }},
@@ -347,7 +347,7 @@ public class FRT3Units {
                     activeEffect = new ParticleEffect() {{
                         followParent = true; rotWithParent = true;
                         particles = 1; lifetime = 20; length = 0;
-                        region = "onirion-rotor";
+                        region = "fading-revelations-patched-onirion-rotor";
                         sizeFrom = 18; sizeTo = 18; spin = 16; layer = 95.1f;
                     }};
                 }}
@@ -355,7 +355,7 @@ public class FRT3Units {
         }};
 
         plant = new UnitType("plant") {{
-            constructor = PayloadUnit::create;
+            constructor = PayloadUnit::create; localizedName = "Plant";
             flying = true; lowAltitude = true;
             health = 7100; armor = 8; itemCapacity = 160; speed = 1.9f;
             canHeal = true; drawBuildBeam = true; mineHardnessScaling = true;
@@ -406,7 +406,7 @@ public class FRT3Units {
         }};
 
         springald = new UnitType("springald") {{
-            constructor = TankUnit::create;
+            constructor = TankUnit::create; localizedName = "Springald";
             hitSize = 28; treadPullOffset = 4;
             health = 12000; armor = 20; crushDamage = 3;
             treadRects = new Rect[]{new Rect(27, -67, 26, 134)};
