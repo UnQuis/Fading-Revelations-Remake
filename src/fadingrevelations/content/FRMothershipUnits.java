@@ -573,7 +573,7 @@ public class FRMothershipUnits {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "culiseta-rotor";
+                            region = "fading-revelations-patched-culiseta-rotor";
                             sizeFrom = 120; sizeTo = 120; spin = 16; layer = 95.1f;
                         }};
                         smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;

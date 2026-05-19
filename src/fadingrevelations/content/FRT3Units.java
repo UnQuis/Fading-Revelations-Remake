@@ -338,7 +338,7 @@ public class FRT3Units {
                     activeEffect = new ParticleEffect() {{
                         followParent = true; rotWithParent = true;
                         particles = 1; lifetime = 20; length = 0;
-                        region = "onirion-rotor";
+                        region = "fading-revelations-patched-onirion-rotor";
                         sizeFrom = 24; sizeTo = 24; spin = 16; layer = 95.1f;
                     }};
                 }},
@@ -347,7 +347,7 @@ public class FRT3Units {
                     activeEffect = new ParticleEffect() {{
                         followParent = true; rotWithParent = true;
                         particles = 1; lifetime = 20; length = 0;
-                        region = "onirion-rotor";
+                        region = "fading-revelations-patched-onirion-rotor";
                         sizeFrom = 18; sizeTo = 18; spin = 16; layer = 95.1f;
                     }};
                 }}
