@@ -72,7 +72,7 @@ public class FRPlanetGenerators extends PlanetGenerator {
 
         @Override
         public float getSizeScl() {
-            return 2200;
+            return 300;
         }
 
         @Override
@@ -125,7 +125,7 @@ public class FRPlanetGenerators extends PlanetGenerator {
 
         @Override
         public float getSizeScl() {
-            return 2200;
+            return 300;
         }
 
         @Override
@@ -207,7 +207,7 @@ public class FRPlanetGenerators extends PlanetGenerator {
 
         @Override
         public float getSizeScl() {
-            return 2200;
+            return 300;
         }
 
         @Override

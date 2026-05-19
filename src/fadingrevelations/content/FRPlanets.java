@@ -4,8 +4,9 @@ import arc.graphics.Color;
 import mindustry.content.Blocks;
 import mindustry.content.Planets;
 import mindustry.type.Planet;
-import mindustry.graphics.g3d.NoiseMesh;
+import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
+import static fadingrevelations.content.FRPlanetGenerators.*;
 
 public class FRPlanets {
     public static Planet cerbero, cangirus, hathor;
@@ -18,7 +19,8 @@ public class FRPlanets {
             visible = true;
             accessible = true;
             
-            mesh = new NoiseMesh(this, 69, 6, Color.valueOf("2b2930"), 1.2f, 3, 0.8f, 1f, 1.5f);
+            meshLoader = () -> new HexMesh(this, 6);
+            generator = new CerberoGenerator() {{ seed = 69; }};
             
             radius = 1f;
             minZoom = 1.8f;
@@ -31,8 +33,6 @@ public class FRPlanets {
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
             solarSystem = Planets.sun;
-            allowLaunchSchematics = false;
-            allowLaunchLoadout = false;
         }};
 
         hathor = new Planet("hathor", cerbero, 0.4f, 1) {{
@@ -42,7 +42,8 @@ public class FRPlanets {
             visible = true;
             accessible = false;
             
-            mesh = new NoiseMesh(this, 69420, 4, Color.valueOf("29302b"), 0.1f, 3, 0.8f, 1f, 1.5f);
+            meshLoader = () -> new HexMesh(this, 4);
+            generator = new HathorGenerator() {{ seed = 69420; }};
             
             orbitSpacing = 12;
             radius = 0.4f;
@@ -65,8 +66,9 @@ public class FRPlanets {
             visible = true;
             accessible = false;
             
-            mesh = new NoiseMesh(this, 69, 5, Color.valueOf("4b64a9"), 1.2f, 4, 1f, 0.75f, 1f);
-            cloudMesh = new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
+            meshLoader = () -> new HexMesh(this, 5);
+            cloudMeshLoader = () -> new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
+            generator = new CangirusGenerator() {{ seed = 69; }};
             
             radius = 1f;
             minZoom = 1.5f;
@@ -79,8 +81,6 @@ public class FRPlanets {
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
             solarSystem = Planets.sun;
-            allowLaunchSchematics = false;
-            allowLaunchLoadout = false;
             allowSectorInvasion = true;
         }};
     }
