@@ -272,45 +272,45 @@ public class FRFullTechTree {
         addBlock(modGateUnits, modGateNaval);
         addBlock(modGateUnits, modGateCoreUnits);
 
-        // === FLYING UNITS ===
-        // Branch A: light fighters
+        // === FLYING UNITS (JSON research parents) ===
+        // Branch A: aedes → armiger → onirion
         addBlock(modGateFlying, FRT1Units.aedes);
         addBlock(FRT1Units.aedes, FRT2Units.armiger);
-        addBlock(FRT2Units.armiger, FRT3Units.kestrel);
-        addBlock(FRT3Units.kestrel, FRT3Units.onirion);
-        // Branch B: scouts
+        addBlock(FRT2Units.armiger, FRT3Units.onirion);
         addBlock(FRT1Units.aedes, FRT1Units.heliaca);
-        addBlock(FRT1Units.heliaca, FRT2Units.alopex);
-        addBlock(FRT2Units.alopex, FRT3Units.ducalis);
-        // Branch C: bomber/support
+        // Branch B: apis → procer → ducalis
         addBlock(modGateFlying, FRT1Units.apis);
         addBlock(FRT1Units.apis, FRT2Units.procer);
-        addBlock(FRT2Units.procer, FRT3Units.plant);
-        // Branch D: builder chain
+        addBlock(FRT2Units.procer, FRT3Units.ducalis);
+        // Branch C: seed → sapling → plant
         addBlock(modGateFlying, FRT1Units.seed);
-        addBlock(FRT1Units.seed, FRT1Units.lancerDrone);
-        addBlock(FRT1Units.lancerDrone, FRT2Units.sapling);
-        // Cerberian flying
+        addBlock(FRT1Units.seed, FRT2Units.sapling);
+        addBlock(FRT2Units.sapling, FRT3Units.plant);
+        // Branch D: lancerDrone → alopex → kestrel
+        addBlock(modGateFlying, FRT1Units.lancerDrone);
+        addBlock(FRT1Units.lancerDrone, FRT2Units.alopex);
+        addBlock(FRT2Units.alopex, FRT3Units.kestrel);
+        // Cerberian flying (no research — flat chain)
         addBlock(modGateFlying, FRCerberianUnits.spark);
         addBlock(FRCerberianUnits.spark, FRCerberianUnits.vista);
         addBlock(FRCerberianUnits.vista, FRCerberianUnits.summit);
         addBlock(FRCerberianUnits.summit, FRCerberianUnits.penumbra);
         addBlock(FRCerberianUnits.penumbra, FRCerberianUnits.veil);
-        // Mothership flying
-        addBlock(modGateFlying, FRMothershipUnits.hiveAttack);
-        addBlock(FRMothershipUnits.hiveAttack, FRMothershipUnits.strahl);
-        addBlock(FRMothershipUnits.strahl, FRMothershipUnits.hive);
-        addBlock(FRMothershipUnits.hive, FRMothershipUnits.culiseta);
+        // Mothership flying (research from t3 parents)
+        addBlock(FRT3Units.kestrel, FRMothershipUnits.strahl);
+        addBlock(FRT3Units.ducalis, FRMothershipUnits.hive);
+        addBlock(FRT3Units.onirion, FRMothershipUnits.culiseta);
 
-        // === GROUND UNITS ===
-        // Main progression: mech → tank → legs
+        // === GROUND UNITS (JSON research parents) ===
+        // Branch A: annax → scofra → auratus
         addBlock(modGateLegs, FRT1Units.annax);
-        addBlock(FRT1Units.annax, FRT1Units.sambuca);
-        addBlock(FRT1Units.sambuca, FRT2Units.scofra);
-        addBlock(FRT2Units.scofra, FRT2Units.scorpio);
-        addBlock(FRT2Units.scorpio, FRT3Units.auratus);
-        addBlock(FRT3Units.auratus, FRT3Units.springald);
-        // Cerberian ground: from weakest to strongest
+        addBlock(FRT1Units.annax, FRT2Units.scofra);
+        addBlock(FRT2Units.scofra, FRT3Units.auratus);
+        // Branch B: sambuca → scorpio → springald
+        addBlock(modGateLegs, FRT1Units.sambuca);
+        addBlock(FRT1Units.sambuca, FRT2Units.scorpio);
+        addBlock(FRT2Units.scorpio, FRT3Units.springald);
+        // Cerberian ground (no research — flat chain)
         addBlock(modGateLegs, FRCerberianUnits.straggle);
         addBlock(FRCerberianUnits.straggle, FRCerberianUnits.bayonet);
         addBlock(FRCerberianUnits.bayonet, FRCerberianUnits.hexathelid);
@@ -323,22 +323,23 @@ public class FRFullTechTree {
         addBlock(FRCerberianUnits.baton, FRCerberianUnits.kaiser);
         addBlock(FRCerberianUnits.kaiser, FRCerberianUnits.setosus);
         addBlock(FRCerberianUnits.setosus, FRCerberianUnits.behemoth);
-        // Mothership ground
-        addBlock(modGateLegs, FRMothershipUnits.toruct);
-        addBlock(FRMothershipUnits.toruct, FRMothershipUnits.reduct);
-        addBlock(FRMothershipUnits.reduct, FRMothershipUnits.corax);
-        addBlock(FRMothershipUnits.corax, FRMothershipUnits.lycosid);
-        addBlock(FRMothershipUnits.lycosid, FRMothershipUnits.onager);
+        // Mothership ground (research from t3 parents)
+        addBlock(FRT3Units.auratus, FRMothershipUnits.lycosid);
+        addBlock(FRT3Units.springald, FRMothershipUnits.onager);
+        addBlock(FRT3Units.plant, FRMothershipUnits.corax);
 
-        // === NAVAL UNITS ===
+        // === NAVAL UNITS (JSON research parents) ===
+        // Branch A: alba → arvens → aestiva
         addBlock(modGateNaval, FRT1Units.alba);
-        addBlock(FRT1Units.alba, FRT1Units.mela);
-        addBlock(FRT1Units.mela, FRT2Units.arvens);
-        addBlock(FRT2Units.arvens, FRT2Units.cromis);
-        addBlock(FRT2Units.cromis, FRT3Units.aestiva);
-        addBlock(FRT3Units.aestiva, FRT3Units.arnux);
+        addBlock(FRT1Units.alba, FRT2Units.arvens);
+        addBlock(FRT2Units.arvens, FRT3Units.aestiva);
+        // Branch B: mela → cromis → arnux
+        addBlock(modGateNaval, FRT1Units.mela);
+        addBlock(FRT1Units.mela, FRT2Units.cromis);
+        addBlock(FRT2Units.cromis, FRT3Units.arnux);
+        // Mothership naval (research from t3 parents)
         addBlock(FRT3Units.arnux, FRMothershipUnits.japonica);
-        addBlock(FRMothershipUnits.japonica, FRMothershipUnits.altaic);
+        addBlock(FRT3Units.aestiva, FRMothershipUnits.altaic);
 
         // === CORE UNITS ===
         addBlock(modGateCoreUnits, FRCoreUnits.delta);
