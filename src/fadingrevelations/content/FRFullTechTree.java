@@ -372,6 +372,7 @@ public class FRFullTechTree {
             }
         }
         if (parentNode == null) return;
+
         TechTree.TechNode node = new TechTree.TechNode(parentNode, child, child.researchRequirements());
         nodes.put(child, node);
         node.objectives.add(new Research(parent));
