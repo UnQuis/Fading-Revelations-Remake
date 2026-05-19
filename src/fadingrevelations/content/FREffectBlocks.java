@@ -34,7 +34,7 @@ public class FREffectBlocks {
         overdriveRelay = new OverdriveProjector("overdrive-relay") {{
             localizedName = "Overdrive Relay";
             description = "A powerful overdrive relay that drastically increases the speed of nearby buildings. Boost with Phase Fabric for even greater effect.";
-            size = 2; range = 60; speedBoost = 6f; hasBoost = true; speedBoostPhase = 5f; phaseRangeBoost = 20;
+            size = 2; range = 60; speedBoost = 6f; hasBoost = true; speedBoostPhase = 5f; phaseRangeBoost = 60;
             consumePower(12f);
             consumeItem(Items.phaseFabric, 1).boost();
             requirements(Category.effect, ItemStack.with(Items.lead, 150, Items.silicon, 120, Items.titanium, 100, Items.phaseFabric, 40));
@@ -43,7 +43,7 @@ public class FREffectBlocks {
         overdriveBeacon = new OverdriveProjector("overdrive-beacon") {{
             localizedName = "Overdrive Beacon";
             description = "An advanced overdrive beacon that supercharges nearby buildings to extreme speeds. Phase Fabric boost provides an extraordinary effect.";
-            size = 3; range = 90; speedBoost = 13f; hasBoost = true; speedBoostPhase = 38f; phaseRangeBoost = 30;
+            size = 3; range = 90; speedBoost = 13f; hasBoost = true; speedBoostPhase = 38f; phaseRangeBoost = 100;
             consumePower(45f);
             consumeItem(Items.phaseFabric, 2).boost();
             requirements(Category.effect, ItemStack.with(Items.silicon, 350, Items.thorium, 250, Items.surgeAlloy, 150, Items.phaseFabric, 120, FRItems.steelAlloy, 80));
