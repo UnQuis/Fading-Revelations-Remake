@@ -1,0 +1,44 @@
+{
+  "type": "GenericCrafter",
+  "name": "Ground Miller",
+  "description": "Grinds up the ground it sits on to produce sand. Requires a hefty amount of power.",
+  "size": 2,
+  "hasPower": true,
+  "hasItems": true,
+  "hasLiquids": false,
+  "craftTime": 60,
+  "loopSound": "crush",
+  "loopSoundVolume": 1.1,
+  "itemCapacity": 30,
+  "craftEffect": {
+    "type": "WaveEffect",
+    "colorFrom": "f7cba4",
+    "colorTo": "d3ae8d",
+    "lifetime": 45,
+    "sizeFrom": 8,
+    "sizeTo": 0
+  },
+  "consumes": {
+    "power": 2,
+  },
+  "requirements": [
+    {
+      "item": "copper",
+      "amount": 100
+    },
+    {
+      "item": "lead",
+      "amount": 60
+    },
+    {
+      "item": "graphite",
+      "amount": 40
+    },
+  ],
+  "category": "production",
+  "research": "ground-grinder",
+  "outputItem": {
+    "item": "sand",
+    "amount": 4
+  }
+}
