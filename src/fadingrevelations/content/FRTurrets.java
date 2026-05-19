@@ -35,7 +35,7 @@ public class FRTurrets {
         sear, shotgun, sniper, sunflare, trio, upgradeTurret,
     // === POWER TURRETS ===
         uhlan, megaMeltdown, lightningChaingun, kugelblitz, diffract, cavalry,
-        bigSegment, bigScatter, bigParallax, bigArc, airArc, absole,
+        bigSegment, bigScatter, bigParallax, bigArc, airArc, absole, statusWave,
     // === LIQUID TURRETS ===
         zephyr, weave, sprunkler, batter,
     // === OTHER ===
@@ -1354,6 +1354,33 @@ public class FRTurrets {
             consumePower(4f); consumeCoolant(0.1f);
             shootType = new LightningBulletType() {{ lightningLength = 18; damage = 4f; }};
             shootEffect = bezierBurstGold;
+        }};
+
+        statusWave = new PowerTurret("status-wave") {{
+            localizedName = "Stasis Field";
+            description = "Shoots out shockwaves that deal damage and shock enemies, slowing them down strongly.";
+            size = 3;
+            range = 640f;
+            canOverdrive = false;
+            shootY = 0f;
+            reload = 60f;
+            consumePower(7f);
+            rotate = false;
+            rotateSpeed = 0f;
+            shootCone = 360f;
+            recoil = 0f;
+            shootEffect = new WaveEffect() {{
+                sizeFrom = 0f; sizeTo = 900f;
+                strokeFrom = 1f; strokeTo = 1.4f;
+                colorFrom = Color.valueOf("e5ed2c"); colorTo = Color.valueOf("cfd712");
+                lifetime = 45f;
+            }};
+            shootType = new BulletType() {{
+                instantDisappear = true; damage = 0f;
+                splashDamage = 1f; splashDamageRadius = 640f;
+                status = FRStatus.shockslowed; statusDuration = 60f;
+            }};
+            requirements(Category.turret, ItemStack.with(Items.copper, 300, Items.lead, 250, Items.graphite, 200, Items.silicon, 150, FRItems.livingSteelHard, 100));
         }};
 
         airArc = new PowerTurret("air-arc") {{

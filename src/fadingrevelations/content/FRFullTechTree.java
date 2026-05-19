@@ -64,6 +64,7 @@ public class FRFullTechTree {
         addBlock(modGateTurrets, uhlan);
         addBlock(uhlan, megaMeltdown);
         addBlock(megaMeltdown, kugelblitz);
+        addBlock(kugelblitz, statusWave);
         addBlock(kugelblitz, diffract);
         addBlock(diffract, cavalry);
         addBlock(cavalry, bigSegment);
