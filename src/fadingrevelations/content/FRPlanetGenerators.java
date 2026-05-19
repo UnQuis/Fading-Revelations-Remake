@@ -1,7 +1,6 @@
 package fadingrevelations.content;
 
 import arc.math.Mathf;
-import arc.util.noise.Ridged;
 import arc.util.noise.Simplex;
 import mindustry.content.Blocks;
 import mindustry.maps.generators.PlanetGenerator;
@@ -34,32 +33,17 @@ public class FRPlanetGenerators {
         @Override
         public void getColor(Vec3 position, Color out) {
             float h = getNoise(position);
-            
-            if (h < -0.2f) {
-                out.set(60, 50, 45, 255);
-            } else if (h < 0.1f) {
-                out.set(90, 75, 65, 255);
-            } else if (h < 0.4f) {
-                out.set(120, 100, 85, 255);
-            } else {
-                out.set(70, 60, 55, 255);
-            }
+            if (h < -0.1f) out.set(Blocks.basalt.mapColor);
+            else if (h < 0.2f) out.set(Blocks.yellowStone.mapColor);
+            else out.set(Blocks.stone.mapColor);
         }
 
         @Override
         protected void genTile(Vec3 position, TileGen tile) {
             float h = getNoise(position);
-            
-            if (h < -0.2f) {
-                tile.floor = Blocks.basalt;
-            } else if (h < 0.1f) {
-                tile.floor = Blocks.yellowStone;
-            } else if (h < 0.4f) {
-                tile.floor = Blocks.stone;
-            } else {
-                tile.floor = Blocks.craters;
-            }
-            
+            if (h < -0.1f) tile.floor = Blocks.basalt;
+            else if (h < 0.2f) tile.floor = Blocks.yellowStone;
+            else tile.floor = Blocks.stone;
             tile.block = tile.floor.asFloor().wall;
         }
 
@@ -67,8 +51,6 @@ public class FRPlanetGenerators {
         protected void generate() {
             distort(6, 10);
             median(3);
-            scatter(Blocks.basalt, Blocks.yellowStone, 0.3f);
-            decoration(0.02f);
         }
     }
 
@@ -91,12 +73,7 @@ public class FRPlanetGenerators {
         @Override
         public void getColor(Vec3 position, Color out) {
             float h = Simplex.noise3d(seed, 4, 0.5f, 10f, position.x, position.y, position.z);
-            
-            if (h > 0.1f) {
-                out.set(100, 95, 90, 255);
-            } else {
-                out.set(50, 45, 42, 255);
-            }
+            out.set(h > 0.1f ? Blocks.stone.mapColor : Blocks.basalt.mapColor);
         }
 
         @Override
@@ -136,40 +113,21 @@ public class FRPlanetGenerators {
         @Override
         public void getColor(Vec3 position, Color out) {
             float h = getNoise(position);
-            
-            if (h < -0.4f) {
-                out.set(20, 60, 120, 255);
-            } else if (h < -0.1f) {
-                out.set(30, 100, 160, 255);
-            } else if (h < 0.1f) {
-                out.set(230, 210, 150, 255);
-            } else if (h < 0.3f) {
-                out.set(80, 140, 60, 255);
-            } else if (h < 0.5f) {
-                out.set(80, 75, 70, 255);
-            } else {
-                out.set(90, 85, 80, 255);
-            }
+            if (h < -0.3f) out.set(Blocks.darksand.mapColor);
+            else if (h < 0f) out.set(Blocks.water.mapColor);
+            else if (h < 0.2f) out.set(Blocks.sand.mapColor);
+            else if (h < 0.4f) out.set(Blocks.grass.mapColor);
+            else out.set(Blocks.stone.mapColor);
         }
 
         @Override
         protected void genTile(Vec3 position, TileGen tile) {
             float h = getNoise(position);
-            
-            if (h < -0.4f) {
-                tile.floor = Blocks.darksand;
-            } else if (h < -0.1f) {
-                tile.floor = Blocks.water;
-            } else if (h < 0.1f) {
-                tile.floor = Blocks.sand;
-            } else if (h < 0.3f) {
-                tile.floor = Blocks.grass;
-            } else if (h < 0.5f) {
-                tile.floor = Blocks.craters;
-            } else {
-                tile.floor = Blocks.stone;
-            }
-            
+            if (h < -0.3f) tile.floor = Blocks.darksand;
+            else if (h < 0f) tile.floor = Blocks.water;
+            else if (h < 0.2f) tile.floor = Blocks.sand;
+            else if (h < 0.4f) tile.floor = Blocks.grass;
+            else tile.floor = Blocks.stone;
             tile.block = tile.floor.asFloor().wall;
         }
 
@@ -177,8 +135,6 @@ public class FRPlanetGenerators {
         protected void generate() {
             distort(8, 12);
             median(4);
-            scatter(Blocks.sand, Blocks.grass, 0.3f);
-            decoration(0.03f);
         }
     }
 }
