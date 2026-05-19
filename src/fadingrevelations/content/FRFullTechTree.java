@@ -13,52 +13,87 @@ import static fadingrevelations.content.FRDrills.*;
 import static fadingrevelations.content.FRWalls.*;
 import static fadingrevelations.content.FRPowerNodes.*;
 import static fadingrevelations.content.FRLiquidsBlocks.*;
+import static fadingrevelations.content.FRGates.*;
 
 public class FRFullTechTree {
     private static final ObjectMap<UnlockableContent, TechTree.TechNode> nodes = new ObjectMap<>();
 
     public static void load() {
-        // Root - Mini OD
+        // Root - Mini OD (starting point)
         TechTree.TechNode root = TechTree.nodeRoot("fading-revelations", miniOd, false, () -> {});
         nodes.put(miniOd, root);
 
-        // === OVERDRIVE PROGRESSION (MAIN) ===
+        // === OVERDRIVE PROGRESSION (MAIN CHAIN) ===
         addBlock(miniOd, overdriveRelay);
         addBlock(overdriveRelay, overdriveBeacon);
-
-        // === EFFECT BLOCKS ===
+        addBlock(overdriveBeacon, forceDome);
+        
+        // === EFFECT BLOCKS BRANCH ===
         addBlock(overdriveRelay, enhancedMendProjector);
         addBlock(overdriveRelay, darkMender);
         addBlock(overdriveRelay, fastUnloader);
-        addBlock(overdriveBeacon, forceDome);
         addBlock(overdriveBeacon, bigLaunchPad);
         addBlock(bigLaunchPad, outpost);
-        
-        // === SOME TURRETS (examples) ===
+
+        // === TURRETS - Item Turrets ===
         addBlock(miniOd, accel);
         addBlock(accel, bigSwarmer);
         addBlock(bigSwarmer, caats);
+        addBlock(caats, corruptedCyclone);
+        addBlock(corruptedCyclone, gattling);
+        addBlock(gattling, ignitor);
+        addBlock(ignitor, interitus);
         
+        // Turrets - Power Turrets
+        addBlock(interitus, uhlan);
+        addBlock(uhlan, megaMeltdown);
+        addBlock(megaMeltdown, kugelblitz);
+        addBlock(kugelblitz, diffract);
+        addBlock(diffract, cavalry);
+        addBlock(cavalry, bigSegment);
+        addBlock(bigSegment, bigScatter);
+        addBlock(bigScatter, bigArc);
+        
+        // Turrets - Liquid Turrets
+        addBlock(bigArc, zephyr);
+        addBlock(zephyr, weave);
+        addBlock(weave, sprunkler);
+
         // === DISTRIBUTION ===
         addBlock(miniOd, titaniumRouter);
         addBlock(titaniumRouter, titaniumJunction);
         addBlock(titaniumJunction, titaniumDistributor);
         addBlock(titaniumDistributor, titaniumBridgeConveyor);
+        addBlock(titaniumBridgeConveyor, modGateMain);
         
+        // Gates
+        addBlock(modGateMain, modGateBlocks);
+        addBlock(modGateBlocks, modGateItems);
+        addBlock(modGateItems, modGateResources);
+        addBlock(modGateResources, modGateAmmo);
+
         // === DRILLS ===
         addBlock(miniOd, tinyMechanicalDrill);
         addBlock(tinyMechanicalDrill, tinyPneumaticDrill);
         addBlock(tinyPneumaticDrill, tinyPlasmaBore);
-        
+        addBlock(tinyPlasmaBore, titaniumDrill);
+
         // === WALLS ===
         addBlock(miniOd, steelAlloyWallSmall);
         addBlock(steelAlloyWallSmall, steelAlloyWallLarge);
-        
+        addBlock(steelAlloyWallLarge, livingSteelWall);
+        addBlock(livingSteelWall, livingSteelWallLarge);
+
         // === POWER ===
         addBlock(miniOd, reinforcedPowerNode);
-        
+        addBlock(reinforcedPowerNode, reinforcedLargePowerNode);
+        addBlock(reinforcedLargePowerNode, powerReserve);
+        addBlock(powerReserve, advancedSurgeTower);
+
         // === LIQUIDS ===
         addBlock(miniOd, steelTank);
+        addBlock(steelTank, steelPump);
+        addBlock(steelPump, plastaniumConduit);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child) {
