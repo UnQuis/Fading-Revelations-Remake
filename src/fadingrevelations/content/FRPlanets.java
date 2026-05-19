@@ -7,6 +7,7 @@ import mindustry.type.Planet;
 import mindustry.graphics.g3d.NoiseMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.maps.generators.PlanetGenerator;
+import static fadingrevelations.content.FRPlanetGenerators.*;
 
 public class FRPlanets {
     public static Planet cerbero, cangirus, hathor;
@@ -21,8 +22,7 @@ public class FRPlanets {
             // Mesh
             mesh = new NoiseMesh(this, 69, 6, Color.valueOf("2b2930"), 1.2f, 3, 0.8f, 1f, 1.5f);
             
-            // Generator - simple seed
-            generator = new PlanetGenerator() {{
+            generator = new CerberoGenerator() {{
                 seed = 69;
             }};
             
@@ -60,7 +60,7 @@ public class FRPlanets {
             
             mesh = new NoiseMesh(this, 69, 4, Color.valueOf("29302b"), 0.1f, 3, 0.8f, 1f, 1.5f);
             
-            generator = new PlanetGenerator() {{
+            generator = new HathorGenerator() {{
                 seed = 69420;
             }};
             
@@ -97,7 +97,7 @@ public class FRPlanets {
             // Cloud mesh for Cangirus
             cloudMesh = new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
             
-            generator = new PlanetGenerator() {{
+            generator = new CangirusGenerator() {{
                 seed = 69;
             }};
             
