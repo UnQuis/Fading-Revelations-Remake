@@ -71,6 +71,11 @@ public class FRPlanetGenerators extends PlanetGenerator {
         }
 
         @Override
+        public float getSizeScl() {
+            return 2200;
+        }
+
+        @Override
         public void getColor(Vec3 position, Color out) {
             float height = getRawHeight(position);
             out.set(getFloor(position).mapColor);
@@ -116,6 +121,11 @@ public class FRPlanetGenerators extends PlanetGenerator {
         @Override
         public float getHeight(Vec3 position) {
             return 420f + Simplex.noise3d(seed, octaves, persistence, scale, position.x, position.y, position.z) * 50f;
+        }
+
+        @Override
+        public float getSizeScl() {
+            return 2200;
         }
 
         @Override
@@ -193,6 +203,11 @@ public class FRPlanetGenerators extends PlanetGenerator {
             float height = getRawHeight(position);
             float clamped = Math.max(height, waterOffset);
             return Math.max(radMin, Math.min(radMax, min + clamped));
+        }
+
+        @Override
+        public float getSizeScl() {
+            return 2200;
         }
 
         @Override
