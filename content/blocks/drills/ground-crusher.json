@@ -1,0 +1,48 @@
+{
+  "type": "GenericCrafter",
+  "name": "Ground Crusher",
+  "description": "Quickly grinds up the ground it sits on to produce sand. Requires large quantities of power.",
+  "size": 3,
+  "hasPower": true,
+  "hasItems": true,
+  "hasLiquids": false,
+  "loopSound": "crush",
+  "craftTime": 60,
+  "loopSoundVolume": 1.3,
+  "itemCapacity": 50,
+  "craftEffect": {
+    "type": "WaveEffect",
+    "colorFrom": "f7cba4",
+    "colorTo": "d3ae8d",
+    "lifetime": 45,
+    "sizeFrom": 12,
+    "sizeTo": 0,
+  },
+  "consumes": {
+    "power": 6,
+  },
+  "requirements": [
+    {
+      "item": "copper",
+      "amount": 160
+    },
+    {
+      "item": "lead",
+      "amount": 100
+    },
+    {
+      "item": "graphite",
+      "amount": 60
+    },
+    {
+      "item": "silicon",
+      "amount": 40
+    }
+  ],
+  "category": "production",
+  "research": "ground-miller",
+  "outputItem": {
+    "item": "sand",
+    "amount": 12
+  }
+}

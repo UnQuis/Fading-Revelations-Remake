@@ -15,6 +15,8 @@ import static fadingrevelations.content.FRPowerNodes.*;
 import static fadingrevelations.content.FRLiquidsBlocks.*;
 import static fadingrevelations.content.FRGates.*;
 import static fadingrevelations.content.FRProduction.*;
+import fadingrevelations.content.FRItems;
+import fadingrevelations.content.FREnvironment;
 
 public class FRFullTechTree {
     private static final ObjectMap<UnlockableContent, TechTree.TechNode> nodes = new ObjectMap<>();
@@ -23,104 +25,135 @@ public class FRFullTechTree {
         TechTree.TechNode root = TechTree.nodeRoot("fading-revelations", modGateMain, false, () -> {});
         nodes.put(modGateMain, root);
 
-        // === BLOCKS GATE → overdrive/force/launch ===
+        // === BLOCKS GATE → container for all block sub-gates ===
         addBlock(modGateMain, modGateBlocks);
-        addBlock(modGateBlocks, overdriveRelay);
-        addBlock(overdriveRelay, overdriveBeacon);
-        addBlock(overdriveBeacon, forceDome);
-        addBlock(forceDome, forceField);
-        addBlock(overdriveBeacon, bigLaunchPad);
-        addBlock(bigLaunchPad, outpost);
 
-        // === ITEMS GATE ===
-        addBlock(modGateMain, modGateItems);
-        addBlock(modGateItems, FRItems.livingSteel);
-        addBlock(FRItems.livingSteel, FRItems.steelAlloy);
-        addBlock(FRItems.steelAlloy, FRItems.fuelRod);
-        addBlock(FRItems.fuelRod, FRItems.cryogenicGel);
-        addBlock(FRItems.cryogenicGel, FRItems.igneousAlloy);
-        addBlock(FRItems.igneousAlloy, FRItems.cryogenicAlloy);
-
-        // === RESOURCES GATE → environment/ore blocks ===
-        addBlock(modGateMain, modGateResources);
-        addBlock(modGateResources, FREnvironment.steelSedimentation);
-        addBlock(FREnvironment.steelSedimentation, FREnvironment.oreGraphite);
-
-        // === LIQUIDS GATE → liquid handling ===
-        addBlock(modGateMain, modGateLiquids);
+        // --- LIQUIDS GATE → liquid handling ---
+        addBlock(modGateBlocks, modGateLiquids);
         addBlock(modGateLiquids, steelTank);
         addBlock(steelTank, steelPump);
         addBlock(steelPump, plastaniumConduit);
 
-        // === TURRETS GATE → item branch + power branch ===
-        addBlock(modGateMain, modGateTurrets);
+        // --- DISTRIBUTION GATE ---
+        addBlock(modGateBlocks, modGateDistribution);
+        addBlock(modGateDistribution, titaniumRouter);
+        addBlock(titaniumRouter, titaniumBridgeConveyor);
+        addBlock(titaniumBridgeConveyor, surgeAlloyConveyor);
+        addBlock(surgeAlloyConveyor, surgeBridgeConveyor);
+        addBlock(surgeAlloyConveyor, amalgamConveyor);
+        addBlock(modGateDistribution, depository);
+        addBlock(modGateDistribution, massAccelerator);
+
+        // --- DRILLS GATE ---
+        addBlock(modGateBlocks, modGateDrills);
+        addBlock(modGateDrills, tinyMechanicalDrill);
+        addBlock(tinyMechanicalDrill, tinyPneumaticDrill);
+        addBlock(modGateDrills, titaniumDrill);
+        addBlock(titaniumDrill, compactLaserDrill);
+        addBlock(modGateDrills, groundGrinder);
+        addBlock(modGateDrills, groundMiller);
+        addBlock(modGateDrills, groundCrusher);
+        addBlock(modGateDrills, cliffGrinder);
+        addBlock(modGateDrills, cliffMiller);
+        addBlock(modGateDrills, oilBore);
+        addBlock(modGateDrills, hyperDrill);
+
+        // --- WALLS GATE ---
+        // JSON: living-steel-wall → living-steel-wall-2 → steel-alloy-wall-small → steel-alloy-wall-large
+        addBlock(modGateBlocks, modGateWalls);
+        addBlock(modGateWalls, livingSteelWall);
+        addBlock(livingSteelWall, livingSteelWallLarge);
+        addBlock(livingSteelWallLarge, steelAlloyWallSmall);
+        addBlock(steelAlloyWallSmall, steelAlloyWallLarge);
+
+        // --- POWER GATE ---
+        addBlock(modGateBlocks, modGatePower);
+
+        // Power nodes
+        addBlock(modGatePower, reinforcedPowerNode);
+        addBlock(reinforcedPowerNode, reinforcedLargePowerNode);
+        addBlock(reinforcedLargePowerNode, powerReserve);
+        addBlock(reinforcedLargePowerNode, advancedSurgeTower);
+
+        // Generators
+        addBlock(modGatePower, tinyThermalGen);
+        addBlock(tinyThermalGen, titaniumPanel);
+        addBlock(titaniumPanel, advancedSolarPanel);
+        addBlock(advancedSolarPanel, solarArray);
+        addBlock(tinyThermalGen, steamTurbine);
+        addBlock(modGatePower, slagGenerator);
+        addBlock(slagGenerator, pyratiteGenerator);
+        addBlock(advancedSolarPanel, uraniumReactor);
+        addBlock(uraniumReactor, steelReactor);
+        addBlock(modGatePower, slagReactor);
+        addBlock(modGatePower, lsGen);
+
+        // --- EFFECT GATE ---
+        // JSON: mini-od → enhanced-mend-projector → dark-mender → force-dome
+        addBlock(modGateBlocks, modGateEffect);
+        addBlock(modGateEffect, miniOd);
+        addBlock(miniOd, enhancedMendProjector);
+        addBlock(enhancedMendProjector, darkMender);
+        addBlock(darkMender, forceDome);
+        addBlock(forceDome, forceField);
+        addBlock(modGateEffect, overdriveRelay);
+        addBlock(overdriveRelay, overdriveBeacon);
+        addBlock(modGateEffect, fastUnloader);
+        addBlock(modGateEffect, constructionPylon);
+
+        // --- TURRETS GATE ---
+        addBlock(modGateBlocks, modGateTurrets);
+
+        // Item branch
+        addBlock(modGateTurrets, trio);
+        addBlock(trio, sear);
+        addBlock(sear, sunflare);
         addBlock(modGateTurrets, accel);
-        addBlock(accel, bigSwarmer);
-        addBlock(bigSwarmer, caats);
-        addBlock(caats, corruptedCyclone);
-        addBlock(corruptedCyclone, gattling);
-        addBlock(gattling, ignitor);
-        addBlock(ignitor, interitus);
-        addBlock(modGateTurrets, uhlan);
-        addBlock(uhlan, megaMeltdown);
+        addBlock(modGateTurrets, bigSwarmer);
+        addBlock(modGateTurrets, caats);
+        addBlock(modGateTurrets, corruptedCyclone);
+        addBlock(modGateTurrets, gattling);
+        addBlock(gattling, lightningChaingun);
+        addBlock(modGateTurrets, ignitor);
+        addBlock(modGateTurrets, interitus);
+        addBlock(modGateTurrets, mineLauncher);
+        addBlock(mineLauncher, missileBattery);
+        addBlock(missileBattery, interitus);
+        addBlock(modGateTurrets, mortar);
+        addBlock(modGateTurrets, oreTurret);
+        addBlock(modGateTurrets, ringTurret);
+        addBlock(modGateTurrets, shotgun);
+        addBlock(shotgun, upgradeTurret);
+        addBlock(modGateTurrets, sniper);
+        addBlock(modGateTurrets, missileSilo);
+
+        // Power branch
+        addBlock(modGateTurrets, airArc);
+        addBlock(airArc, uhlan);
+        addBlock(airArc, bigArc);
+        addBlock(bigArc, bigParallax);
+        addBlock(bigArc, bigSegment);
+        addBlock(bigArc, bigScatter);
+        addBlock(modGateTurrets, absole);
+        addBlock(absole, megaMeltdown);
         addBlock(megaMeltdown, kugelblitz);
         addBlock(kugelblitz, statusWave);
         addBlock(kugelblitz, diffract);
         addBlock(diffract, cavalry);
-        addBlock(cavalry, bigSegment);
-        addBlock(bigSegment, bigScatter);
-        addBlock(bigScatter, bigArc);
-        addBlock(bigArc, zephyr);
+        addBlock(cavalry, zephyr);
         addBlock(zephyr, weave);
         addBlock(weave, sprunkler);
+        addBlock(modGateTurrets, batter);
 
-        // === DISTRIBUTION GATE ===
-        addBlock(modGateMain, modGateDistribution);
-        addBlock(modGateDistribution, titaniumRouter);
-        addBlock(titaniumRouter, titaniumJunction);
-        addBlock(titaniumJunction, titaniumDistributor);
-        addBlock(titaniumDistributor, titaniumBridgeConveyor);
+        // --- CORES GATE ---
+        addBlock(modGateBlocks, modGateCores);
+        addBlock(modGateCores, coreLevel4);
+        addBlock(coreLevel4, coreLevel5);
+        addBlock(coreLevel5, mainCore);
 
-        // === AMMO GATE → ammo items ===
-        addBlock(modGateMain, modGateAmmo);
-        addBlock(modGateAmmo, FRItems.ammoLevel1);
-        addBlock(FRItems.ammoLevel1, FRItems.ammoLevel2);
-        addBlock(FRItems.ammoLevel2, FRItems.ammoLevel3);
-        addBlock(FRItems.ammoLevel1, FRItems.healAmmo);
-        addBlock(FRItems.ammoLevel2, FRItems.homingAmmo);
-        addBlock(FRItems.ammoLevel3, FRItems.nanoAmmo);
-        addBlock(FRItems.nanoAmmo, FRItems.nuke);
-
-        // === DRILLS GATE ===
-        addBlock(modGateMain, modGateDrills);
-        addBlock(modGateDrills, tinyMechanicalDrill);
-        addBlock(tinyMechanicalDrill, tinyPneumaticDrill);
-        addBlock(tinyPneumaticDrill, tinyPlasmaBore);
-        addBlock(tinyPlasmaBore, titaniumDrill);
-
-        // === WALLS GATE ===
-        addBlock(modGateMain, modGateWalls);
-        addBlock(modGateWalls, steelAlloyWallSmall);
-        addBlock(steelAlloyWallSmall, steelAlloyWallLarge);
-        addBlock(steelAlloyWallLarge, livingSteelWall);
-        addBlock(livingSteelWall, livingSteelWallLarge);
-
-        // === POWER GATE ===
-        addBlock(modGateMain, modGatePower);
-        addBlock(modGatePower, reinforcedPowerNode);
-        addBlock(reinforcedPowerNode, reinforcedLargePowerNode);
-        addBlock(reinforcedLargePowerNode, powerReserve);
-        addBlock(powerReserve, advancedSurgeTower);
-
-        // === EFFECT GATE ===
-        addBlock(modGateMain, modGateEffect);
-        addBlock(modGateEffect, enhancedMendProjector);
-        addBlock(enhancedMendProjector, darkMender);
-        addBlock(darkMender, fastUnloader);
-        addBlock(fastUnloader, miniOd);
-
-        // === CRAFTERS GATE → all production blocks ===
-        addBlock(modGateMain, modGateCrafters);
+        // --- CRAFTERS GATE → all production blocks ---
+        // JSON: research → mod-gate-blocks
+        addBlock(modGateBlocks, modGateCrafters);
 
         // === Chain 1: Steam → Liquid Processing → Water ===
         // steam-condenser → dissolver → acid-vat → acid-emulsifier
@@ -202,23 +235,29 @@ public class FRFullTechTree {
         addBlock(modGateCrafters, corrosionChamber);
         addBlock(modGateCrafters, carbideBasin);
 
-        // === Power Generators (Category.power, no JSON) ===
-        addBlock(modGateCrafters, steamTurbine);
-        addBlock(steamTurbine, lsGen);
-        addBlock(lsGen, slagGenerator);
-        addBlock(slagGenerator, pyratiteGenerator);
-        addBlock(pyratiteGenerator, slagReactor);
-        addBlock(slagReactor, steelReactor);
-        addBlock(steelReactor, uraniumReactor);
+        // === ITEMS GATE → main items branch ===
+        addBlock(modGateMain, modGateItems);
+        addBlock(modGateItems, FRItems.livingSteel);
+        addBlock(FRItems.livingSteel, FRItems.steelAlloy);
+        addBlock(FRItems.steelAlloy, FRItems.fuelRod);
+        addBlock(FRItems.fuelRod, FRItems.cryogenicGel);
+        addBlock(FRItems.cryogenicGel, FRItems.igneousAlloy);
+        addBlock(FRItems.igneousAlloy, FRItems.cryogenicAlloy);
 
-        // === Solar (Category.power, no JSON) ===
-        addBlock(modGateCrafters, solarArray);
-        addBlock(solarArray, advancedSolarPanel);
-        addBlock(advancedSolarPanel, tinyThermalGen);
+        // --- AMMO GATE → ammo items (research: mod-gate-items) ---
+        addBlock(modGateItems, modGateAmmo);
+        addBlock(modGateAmmo, FRItems.ammoLevel1);
+        addBlock(FRItems.ammoLevel1, FRItems.ammoLevel2);
+        addBlock(FRItems.ammoLevel2, FRItems.ammoLevel3);
+        addBlock(FRItems.ammoLevel1, FRItems.healAmmo);
+        addBlock(FRItems.ammoLevel2, FRItems.homingAmmo);
+        addBlock(FRItems.ammoLevel3, FRItems.nanoAmmo);
+        addBlock(FRItems.nanoAmmo, FRItems.nuke);
 
-        // === Utilities (no JSON) ===
-        addBlock(modGateCrafters, titaniumPanel);
-        addBlock(titaniumPanel, turbineConcentrator);
+        // --- RESOURCES GATE → environment/ore blocks (research: mod-gate-items) ---
+        addBlock(modGateItems, modGateResources);
+        addBlock(modGateResources, FREnvironment.steelSedimentation);
+        addBlock(FREnvironment.steelSedimentation, FREnvironment.oreGraphite);
 
         // === UNITS GATE → sub-gates for unit types ===
         addBlock(modGateMain, modGateUnits);
@@ -306,7 +345,6 @@ public class FRFullTechTree {
         addBlock(FRCoreUnits.delta, FRCoreUnits.epsilon);
 
         // === FUTURE GATES (empty, for later use) ===
-        addBlock(modGateMain, modGateCores);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child) {
