@@ -14,7 +14,7 @@ import static fadingrevelations.content.FRWalls.*;
 import static fadingrevelations.content.FRPowerNodes.*;
 import static fadingrevelations.content.FRLiquidsBlocks.*;
 import static fadingrevelations.content.FRGates.*;
-import fadingrevelations.content.production.*;
+import static fadingrevelations.content.FRProduction.*;
 
 public class FRFullTechTree {
     private static final ObjectMap<UnlockableContent, TechTree.TechNode> nodes = new ObjectMap<>();
@@ -123,105 +123,105 @@ public class FRFullTechTree {
         addBlock(modGateMain, modGateCrafters);
 
         // Basic Smelting
-        addBlock(modGateCrafters, BasicMultismelter.block);
-        addBlock(BasicMultismelter.block, SiliconForge.block);
-        addBlock(SiliconForge.block, GraphiteForge.block);
-        addBlock(GraphiteForge.block, BigPlastaniumPress.block);
-        addBlock(BigPlastaniumPress.block, SurgeOvenBig.block);
+        addBlock(modGateCrafters, basicMultismelter);
+        addBlock(basicMultismelter, siliconForge);
+        addBlock(siliconForge, graphiteForge);
+        addBlock(graphiteForge, bigPlastaniumPress);
+        addBlock(bigPlastaniumPress, surgeOvenBig);
 
         // Living Steel
-        addBlock(modGateCrafters, LivingSteelForge.block);
-        addBlock(LivingSteelForge.block, LivingSteelInfuser.block);
-        addBlock(LivingSteelInfuser.block, LivingSteelHardener.block);
-        addBlock(LivingSteelHardener.block, LivingSteelHardeningForge.block);
+        addBlock(modGateCrafters, livingSteelForge);
+        addBlock(livingSteelForge, livingSteelInfuser);
+        addBlock(livingSteelInfuser, livingSteelHardener);
+        addBlock(livingSteelHardener, livingSteelHardeningForge);
 
         // Alloys
-        addBlock(SurgeOvenBig.block, AlloyCrafter.block);
-        addBlock(AlloyCrafter.block, AmalgamSmelter.block);
-        addBlock(AmalgamSmelter.block, AmalgamForge.block);
-        addBlock(AmalgamForge.block, CryogenicGelMixer.block);
-        addBlock(CryogenicGelMixer.block, CryogenicAlloyAssembler.block);
+        addBlock(surgeOvenBig, alloyCrafter);
+        addBlock(alloyCrafter, amalgamSmelter);
+        addBlock(amalgamSmelter, amalgamForge);
+        addBlock(amalgamForge, cryogenicGelMixer);
+        addBlock(cryogenicGelMixer, cryogenicAlloyAssembler);
 
         // Advanced Crafting
-        addBlock(AmalgamForge.block, SiliconArcForge.block);
-        addBlock(SiliconArcForge.block, BigPhaseWeaver.block);
-        addBlock(BigPhaseWeaver.block, PhaseManufacturer.block);
-        addBlock(PhaseManufacturer.block, InducedKiln.block);
-        addBlock(InducedKiln.block, SurgeMelter.block);
-        addBlock(SurgeMelter.block, InvertedPulverizer.block);
-        addBlock(InvertedPulverizer.block, Powderizer.block);
+        addBlock(amalgamForge, siliconArcForge);
+        addBlock(siliconArcForge, bigPhaseWeaver);
+        addBlock(bigPhaseWeaver, phaseManufacturer);
+        addBlock(phaseManufacturer, inducedKiln);
+        addBlock(inducedKiln, surgeMelter);
+        addBlock(surgeMelter, invertedPulverizer);
+        addBlock(invertedPulverizer, powderizer);
 
         // Ammo Crafters
-        addBlock(modGateCrafters, AmmoCrafter1.block);
-        addBlock(AmmoCrafter1.block, AmmoCrafter2.block);
-        addBlock(AmmoCrafter2.block, AmmoCrafter3.block);
-        addBlock(AmmoCrafter1.block, HealAmmoCrafter.block);
-        addBlock(AmmoCrafter2.block, HomingAmmoCrafter.block);
-        addBlock(AmmoCrafter3.block, NanoAmmoCrafter.block);
-        addBlock(NanoAmmoCrafter.block, UraniumrodCrafter.block);
-        addBlock(UraniumrodCrafter.block, NukeCrafter.block);
+        addBlock(modGateCrafters, ammoCrafter1);
+        addBlock(ammoCrafter1, ammoCrafter2);
+        addBlock(ammoCrafter2, ammoCrafter3);
+        addBlock(ammoCrafter1, healAmmoCrafter);
+        addBlock(ammoCrafter2, homingAmmoCrafter);
+        addBlock(ammoCrafter3, nanoAmmoCrafter);
+        addBlock(nanoAmmoCrafter, uraniumrodCrafter);
+        addBlock(uraniumrodCrafter, nukeCrafter);
 
         // Liquid Processing
-        addBlock(modGateCrafters, AcidVat.block);
-        addBlock(AcidVat.block, AcidEmulsifier.block);
-        addBlock(AcidEmulsifier.block, Dissolver.block);
-        addBlock(Dissolver.block, AdvancedSeparator.block);
-        addBlock(AdvancedSeparator.block, AdvancedCoalCentrifuge.block);
-        addBlock(AdvancedCoalCentrifuge.block, EnhancedPyratiteMixer.block);
-        addBlock(EnhancedPyratiteMixer.block, EnhancedBlastMixer.block);
+        addBlock(modGateCrafters, acidVat);
+        addBlock(acidVat, acidEmulsifier);
+        addBlock(acidEmulsifier, dissolver);
+        addBlock(dissolver, advancedSeparator);
+        addBlock(advancedSeparator, advancedCoalCentrifuge);
+        addBlock(advancedCoalCentrifuge, enhancedPyratiteMixer);
+        addBlock(enhancedPyratiteMixer, enhancedBlastMixer);
 
         // Atmospheric
-        addBlock(modGateCrafters, AtmosphericExtractor.block);
-        addBlock(AtmosphericExtractor.block, AtmosphericHeatConcentrator.block);
-        addBlock(AtmosphericHeatConcentrator.block, AdvancedCryofluidMixer.block);
-        addBlock(AdvancedCryofluidMixer.block, NeutronBlender.block);
+        addBlock(modGateCrafters, atmosphericExtractor);
+        addBlock(atmosphericExtractor, atmosphericHeatConcentrator);
+        addBlock(atmosphericHeatConcentrator, advancedCryofluidMixer);
+        addBlock(advancedCryofluidMixer, neutronBlender);
 
         // Chemical
-        addBlock(CryogenicAlloyAssembler.block, EsterificationChamber.block);
-        addBlock(EsterificationChamber.block, CyanogenFuser.block);
-        addBlock(CyanogenFuser.block, CorrosionChamber.block);
-        addBlock(CorrosionChamber.block, CarbideBasin.block);
+        addBlock(cryogenicAlloyAssembler, esterificationChamber);
+        addBlock(esterificationChamber, cyanogenFuser);
+        addBlock(cyanogenFuser, corrosionChamber);
+        addBlock(corrosionChamber, carbideBasin);
 
         // Spores
-        addBlock(modGateCrafters, SporeCrusher.block);
-        addBlock(SporeCrusher.block, Greenhouse.block);
+        addBlock(modGateCrafters, sporeCrusher);
+        addBlock(sporeCrusher, greenhouse);
 
         // Heat
-        addBlock(modGateCrafters, HeatDiverter.block);
-        addBlock(HeatDiverter.block, SmallHeatRouter.block);
+        addBlock(modGateCrafters, heatDiverter);
+        addBlock(heatDiverter, smallHeatRouter);
 
         // Liquid Steel
-        addBlock(LivingSteelHardeningForge.block, LivingSteelLiquifier.block);
-        addBlock(LivingSteelLiquifier.block, LivingSteelLiquifyingForge.block);
+        addBlock(livingSteelHardeningForge, livingSteelLiquifier);
+        addBlock(livingSteelLiquifier, livingSteelLiquifyingForge);
 
         // Power Generation
-        addBlock(modGateCrafters, SteamCondenser.block);
-        addBlock(SteamCondenser.block, SteamTurbine.block);
-        addBlock(SteamTurbine.block, LsGen.block);
-        addBlock(LsGen.block, SlagGenerator.block);
-        addBlock(SlagGenerator.block, PyratiteGenerator.block);
-        addBlock(PyratiteGenerator.block, SlagReactor.block);
-        addBlock(SlagReactor.block, SteelReactor.block);
-        addBlock(SteelReactor.block, UraniumReactor.block);
+        addBlock(modGateCrafters, steamCondenser);
+        addBlock(steamCondenser, steamTurbine);
+        addBlock(steamTurbine, lsGen);
+        addBlock(lsGen, slagGenerator);
+        addBlock(slagGenerator, pyratiteGenerator);
+        addBlock(pyratiteGenerator, slagReactor);
+        addBlock(slagReactor, steelReactor);
+        addBlock(steelReactor, uraniumReactor);
 
         // Solar
-        addBlock(modGateCrafters, SolarArray.block);
-        addBlock(SolarArray.block, AdvancedSolarPanel.block);
-        addBlock(AdvancedSolarPanel.block, TinyThermalGen.block);
+        addBlock(modGateCrafters, solarArray);
+        addBlock(solarArray, advancedSolarPanel);
+        addBlock(advancedSolarPanel, tinyThermalGen);
 
         // Utilities
-        addBlock(modGateCrafters, TitaniumPanel.block);
-        addBlock(TitaniumPanel.block, TurbineConcentrator.block);
-        addBlock(TurbineConcentrator.block, AdvancedWaterExtractor.block);
+        addBlock(modGateCrafters, titaniumPanel);
+        addBlock(titaniumPanel, turbineConcentrator);
+        addBlock(turbineConcentrator, advancedWaterExtractor);
 
         // === UNITS GATE → sub-gates for unit types ===
         addBlock(modGateMain, modGateUnits);
         addBlock(modGateUnits, modGateFactories);
-        addBlock(modGateFactories, FRUnitFactories.primaryFactory);
-        addBlock(FRUnitFactories.primaryFactory, FRUnitFactories.basicReassembly);
-        addBlock(FRUnitFactories.basicReassembly, FRUnitFactories.advancedReassembly);
-        addBlock(FRUnitFactories.advancedReassembly, FRUnitFactories.progressiveAssembly);
-        addBlock(modGateFactories, FRUnitFactories.regenerator);
+        addBlock(modGateFactories, primaryFactory);
+        addBlock(primaryFactory, basicReassembly);
+        addBlock(basicReassembly, advancedReassembly);
+        addBlock(advancedReassembly, progressiveAssembly);
+        addBlock(modGateFactories, regenerator);
         addBlock(modGateUnits, modGateFlying);
         addBlock(modGateUnits, modGateLegs);
         addBlock(modGateUnits, modGateNaval);
