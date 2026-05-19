@@ -32,18 +32,28 @@ public class FRFullTechTree {
         addBlock(overdriveBeacon, forceDome);
         addBlock(forceDome, forceField);
         
-        // Effect blocks
-        addBlock(overdriveRelay, modGateEffect);
+        // Effect branch after overdriveBeacon
+        addBlock(overdriveBeacon, modGateEffect);
         addBlock(modGateEffect, enhancedMendProjector);
         addBlock(modGateEffect, darkMender);
         addBlock(modGateEffect, fastUnloader);
         addBlock(overdriveBeacon, bigLaunchPad);
         addBlock(bigLaunchPad, outpost);
+        
+        // Mini OD after modGateEffect
+        addBlock(modGateEffect, miniOd);
 
-        // === MINI OD (separate branch) ===
-        addBlock(modGateMain, miniOd);
+        // === ITEMS (after modGateItems) ===
+        addBlock(modGateMain, modGateItems);
+        addBlock(modGateItems, modGateResources);
+        
+        // === LIQUIDS (after modGateResources) ===
+        addBlock(modGateResources, modGateLiquids);
+        addBlock(modGateLiquids, steelTank);
+        addBlock(steelTank, steelPump);
+        addBlock(steelPump, plastaniumConduit);
 
-        // === TURRETS ===
+        // === TURRETS (from miniOd) ===
         addBlock(miniOd, modGateTurrets);
         
         // Item Turrets
@@ -76,11 +86,8 @@ public class FRFullTechTree {
         addBlock(titaniumRouter, titaniumJunction);
         addBlock(titaniumJunction, titaniumDistributor);
         addBlock(titaniumDistributor, titaniumBridgeConveyor);
-        addBlock(titaniumBridgeConveyor, modGateItems);
-        
-        // Gates chain
-        addBlock(modGateItems, modGateResources);
-        addBlock(modGateResources, modGateAmmo);
+        addBlock(titaniumBridgeConveyor, modGateAmmo);
+        addBlock(modGateAmmo, modGateCrafters);
 
         // === DRILLS ===
         addBlock(miniOd, modGateDrills);
@@ -102,15 +109,6 @@ public class FRFullTechTree {
         addBlock(reinforcedPowerNode, reinforcedLargePowerNode);
         addBlock(reinforcedLargePowerNode, powerReserve);
         addBlock(powerReserve, advancedSurgeTower);
-
-        // === LIQUIDS ===
-        addBlock(miniOd, modGateLiquids);
-        addBlock(modGateLiquids, steelTank);
-        addBlock(steelTank, steelPump);
-        addBlock(steelPump, plastaniumConduit);
-        
-        // === PRODUCTION ===
-        addBlock(miniOd, modGateCrafters);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child) {
