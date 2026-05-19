@@ -4,7 +4,7 @@
   "type": "Wall",
   "flashHit": true,
   "health": 5400,
-  "chanceDeflect": 15
+  "chanceDeflect": 15,
   "size": 3,
   "requirements": [
     {
