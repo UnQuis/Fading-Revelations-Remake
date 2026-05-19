@@ -37,13 +37,13 @@ public class FRFullTechTree {
 
         // --- DISTRIBUTION GATE ---
         addBlock(modGateBlocks, modGateDistribution);
-        addBlock(modGateDistribution, titaniumRouter);
+        addBlock(modGateDistribution, titaniumJunction);
+        addBlock(titaniumJunction, titaniumRouter);
         addBlock(titaniumRouter, titaniumBridgeConveyor);
+        addBlock(titaniumRouter, titaniumDistributor);
         addBlock(titaniumBridgeConveyor, surgeAlloyConveyor);
         addBlock(surgeAlloyConveyor, surgeBridgeConveyor);
         addBlock(surgeAlloyConveyor, amalgamConveyor);
-        addBlock(modGateDistribution, depository);
-        addBlock(modGateDistribution, massAccelerator);
 
         // --- DRILLS GATE ---
         // Main drill chain (mod-gate-drills root)
@@ -104,6 +104,9 @@ public class FRFullTechTree {
         addBlock(modGateEffect, overdriveRelay);
         addBlock(overdriveRelay, overdriveBeacon);
         addBlock(modGateEffect, fastUnloader);
+        addBlock(fastUnloader, tinyMd);
+        addBlock(tinyMd, massAccelerator);
+        addBlock(modGateEffect, depository);
         addBlock(miniOd, constructionPylon);
 
         // --- TURRETS GATE ---
