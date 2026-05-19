@@ -8,6 +8,9 @@ import mindustry.world.Block;
 import mindustry.world.TileGen;
 import arc.math.geom.Vec3;
 import arc.graphics.Color;
+import mindustry.game.Schematics;
+
+import static mindustry.Vars.*;
 
 public class FRPlanetGenerators {
     public static class CerberoGenerator extends PlanetGenerator {
@@ -51,6 +54,12 @@ public class FRPlanetGenerators {
         protected void generate() {
             distort(6, 10);
             median(3);
+            pass((x, y) -> {
+                if (noise(x, y, 20f, 0.6f) > 0.85f && floor.asFloor().hasSurface()) {
+                    block = floor.asFloor().wall;
+                }
+            });
+            Schematics.placeLaunchLoadout(width / 2, height / 2);
         }
     }
 
@@ -87,6 +96,7 @@ public class FRPlanetGenerators {
         protected void generate() {
             distort(4, 6);
             median(2);
+            Schematics.placeLaunchLoadout(width / 2, height / 2);
         }
     }
 
@@ -135,6 +145,12 @@ public class FRPlanetGenerators {
         protected void generate() {
             distort(8, 12);
             median(4);
+            pass((x, y) -> {
+                if (noise(x, y, 25f, 0.5f) > 0.87f && floor.asFloor().hasSurface()) {
+                    block = floor.asFloor().wall;
+                }
+            });
+            Schematics.placeLaunchLoadout(width / 2, height / 2);
         }
     }
 }
