@@ -226,19 +226,19 @@ public class FRFullTechTree {
         addBlock(alloyCrafter, cryogenicAlloyAssembler);
 
         // === Vanilla parent blocks (attached to vanilla tech tree nodes) ===
-        addToVanilla(siliconArcFurnace, siliconArcForge);
-        addToVanilla(surgeCrucible, surgeMelter);
-        addToVanilla(phaseSynthesizer, phaseManufacturer);
-        addToVanilla(atmosphericConcentrator, atmosphericExtractor);
-        addToVanilla(electricHeater, atmosphericHeatConcentrator);
-        addToVanilla(electricHeater, heatDiverter);
-        addToVanilla(heatRouter, smallHeatRouter);
-        addToVanilla(electrolyzer, esterificationChamber);
-        addToVanilla(cyanogenSynthesizer, cyanogenFuser);
-        addToVanilla(oxidationChamber, corrosionChamber);
-        addToVanilla(carbideCrucible, carbideBasin);
-        addToVanilla(ventCondenser, slagReactor);
-        addToVanilla(turbineCondenser, turbineConcentrator);
+        addToNode(siliconArcFurnace, () -> node(siliconArcForge));
+        addToNode(surgeCrucible, () -> node(surgeMelter));
+        addToNode(phaseSynthesizer, () -> node(phaseManufacturer));
+        addToNode(atmosphericConcentrator, () -> node(atmosphericExtractor));
+        addToNode(electricHeater, () -> node(atmosphericHeatConcentrator));
+        addToNode(electricHeater, () -> node(heatDiverter));
+        addToNode(heatRouter, () -> node(smallHeatRouter));
+        addToNode(electrolyzer, () -> node(esterificationChamber));
+        addToNode(cyanogenSynthesizer, () -> node(cyanogenFuser));
+        addToNode(oxidationChamber, () -> node(corrosionChamber));
+        addToNode(carbideCrucible, () -> node(carbideBasin));
+        addToNode(ventCondenser, () -> node(slagReactor));
+        addToNode(turbineCondenser, () -> node(turbineConcentrator));
 
         // === ITEMS GATE → main items branch ===
         addBlock(modGateMain, modGateItems);
@@ -363,17 +363,34 @@ public class FRFullTechTree {
         node.objectives.add(new Research(parent));
     }
 
-    private static void addToVanilla(UnlockableContent parent, UnlockableContent child) {
-        TechTree.TechNode parentNode = TechTree.all.find(t -> t.content == parent);
-        if (parentNode == null) {
+    // EUTechTree-compatible helpers for attaching to vanilla nodes
+    private static TechTree.TechNode context;
+
+    private static void addToNode(UnlockableContent parent, Runnable children) {
+        context = TechTree.all.find(t -> t.content == parent);
+        if (context == null) {
             for (TechTree.TechNode root : TechTree.roots) {
-                parentNode = findInTree(root, parent);
-                if (parentNode != null) break;
+                context = findInTree(root, parent);
+                if (context != null) break;
             }
         }
-        if (parentNode == null) return;
+        children.run();
+    }
 
-        new TechTree.TechNode(parentNode, child, child.researchRequirements());
+    private static void node(UnlockableContent content, Runnable children) {
+        node(content, content.researchRequirements(), children);
+    }
+
+    private static void node(UnlockableContent content, ItemStack[] requirements, Runnable children) {
+        TechTree.TechNode node = new TechTree.TechNode(context, content, requirements);
+        TechTree.TechNode prev = context;
+        context = node;
+        children.run();
+        context = prev;
+    }
+
+    private static void node(UnlockableContent content) {
+        node(content, () -> {});
     }
 
     private static TechTree.TechNode findInTree(TechTree.TechNode node, UnlockableContent target) {
