@@ -63,12 +63,35 @@ public class FRFullTechTree {
         addToNode(plasmaBore, () -> { node(tinyPlasmaBore); node(tungstenBore); });
         addToNode(ventCondenser, () -> node(ventConcentrator));
 
-        // --- WALLS GATE (mod walls in Java; advanced-vanilla-walls attach via JSON research) ---
+        // --- WALLS GATE ---
         addBlock(modGateBlocks, modGateWalls);
+        // Mod walls chain
         addBlock(modGateWalls, livingSteelWall);
         addBlock(livingSteelWall, livingSteelWallLarge);
         addBlock(livingSteelWallLarge, steelAlloyWallSmall);
         addBlock(steelAlloyWallSmall, steelAlloyWallLarge);
+        // Serpulo huge/gigantic wall chain
+        addBlock(modGateWalls, copperWall2);
+        addBlock(copperWall2, copperWall3);
+        addBlock(copperWall3, titaniumWall2);
+        addBlock(titaniumWall2, titaniumWall3);
+        addBlock(titaniumWall2, thoriumWall2);
+        addBlock(thoriumWall2, thoriumWall3);
+        addBlock(titaniumWall2, plastaniumWall2);
+        addBlock(plastaniumWall2, plastaniumWall3);
+        addBlock(thoriumWall2, surgeAlloyWall2);
+        addBlock(surgeAlloyWall2, surgeAlloyWall3);
+        addBlock(surgeAlloyWall2, phaseFabricWall2);
+        addBlock(phaseFabricWall2, phaseFabricWall3);
+        addBlock(titaniumWall2, armoredDoor);
+        addBlock(armoredDoor, doorHuge);
+        addBlock(doorHuge, doorGigantic);
+        // Attached to vanilla
+        addToNode(shieldedWall, () -> node(armoredWall));
+        addToNode(berylliumWallLarge, () -> node(berylliumWallHuge, () -> node(berylliumWallGigantic)));
+        addToNode(tungstenWallLarge, () -> node(tungstenWallHuge, () -> node(tungstenWallGigantic)));
+        addToNode(carbideWallLarge, () -> node(carbideWallHuge, () -> node(carbideWallGigantic)));
+        addToNode(reinforcedSurgeWallLarge, () -> node(reinforcedSurgeWallHuge, () -> node(reinforcedSurgeWallGigantic)));
 
         // --- POWER GATE ---
         addBlock(modGateBlocks, modGatePower);
