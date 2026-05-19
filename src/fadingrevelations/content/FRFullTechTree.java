@@ -17,6 +17,7 @@ import static fadingrevelations.content.FRGates.*;
 import static fadingrevelations.content.FRProduction.*;
 import fadingrevelations.content.FRItems;
 import fadingrevelations.content.FREnvironment;
+import static mindustry.content.Blocks.*;
 
 public class FRFullTechTree {
     private static final ObjectMap<UnlockableContent, TechTree.TechNode> nodes = new ObjectMap<>();
@@ -81,11 +82,11 @@ public class FRFullTechTree {
         addBlock(titaniumPanel, advancedSolarPanel);
         addBlock(advancedSolarPanel, solarArray);
         addBlock(tinyThermalGen, steamTurbine);
+        addAdditionalObjectives(steamTurbine, steamGenerator, FRItems.livingSteel);
         addBlock(modGatePower, slagGenerator);
         addBlock(slagGenerator, pyratiteGenerator);
         addBlock(advancedSolarPanel, uraniumReactor);
         addBlock(uraniumReactor, steelReactor);
-        addBlock(modGatePower, slagReactor);
         addBlock(modGatePower, lsGen);
 
         // --- EFFECT GATE ---
@@ -222,18 +223,20 @@ public class FRFullTechTree {
         addBlock(cryogenicGelMixer, alloyCrafter);
         addBlock(alloyCrafter, cryogenicAlloyAssembler);
 
-        // === Standalone from modGateCrafters (vanilla parent blocks) ===
-        addBlock(modGateCrafters, siliconArcForge);
-        addBlock(modGateCrafters, surgeMelter);
-        addBlock(modGateCrafters, phaseManufacturer);
-        addBlock(modGateCrafters, atmosphericExtractor);
-        addBlock(modGateCrafters, atmosphericHeatConcentrator);
-        addBlock(modGateCrafters, heatDiverter);
-        addBlock(modGateCrafters, smallHeatRouter);
-        addBlock(modGateCrafters, esterificationChamber);
-        addBlock(modGateCrafters, cyanogenFuser);
-        addBlock(modGateCrafters, corrosionChamber);
-        addBlock(modGateCrafters, carbideBasin);
+        // === Vanilla parent blocks (attached to vanilla tech tree nodes) ===
+        addToVanilla(siliconArcFurnace, siliconArcForge);
+        addToVanilla(surgeCrucible, surgeMelter);
+        addToVanilla(phaseSynthesizer, phaseManufacturer);
+        addToVanilla(atmosphericConcentrator, atmosphericExtractor);
+        addToVanilla(electricHeater, atmosphericHeatConcentrator);
+        addToVanilla(electricHeater, heatDiverter);
+        addToVanilla(heatRouter, smallHeatRouter);
+        addToVanilla(electrolyzer, esterificationChamber);
+        addToVanilla(cyanogenSynthesizer, cyanogenFuser);
+        addToVanilla(oxidationChamber, corrosionChamber);
+        addToVanilla(carbideCrucible, carbideBasin);
+        addToVanilla(ventCondenser, slagReactor);
+        addToVanilla(turbineCondenser, turbineConcentrator);
 
         // === ITEMS GATE → main items branch ===
         addBlock(modGateMain, modGateItems);
@@ -356,5 +359,20 @@ public class FRFullTechTree {
         nodes.put(child, node);
 
         node.objectives.add(new Research(parent));
+    }
+
+    private static void addToVanilla(UnlockableContent parent, UnlockableContent child) {
+        TechTree.node(parent, () -> {
+            TechTree.TechNode node = new TechTree.TechNode(TechTree.context(), child, child.researchRequirements());
+            node.objectives.add(new Research(parent));
+        });
+    }
+
+    private static void addAdditionalObjectives(UnlockableContent target, UnlockableContent... objectives) {
+        TechTree.TechNode node = nodes.get(target);
+        if (node == null) return;
+        for (UnlockableContent obj : objectives) {
+            node.objectives.add(new Research(obj));
+        }
     }
 }
