@@ -754,11 +754,11 @@ liquid.fading-revelations-patched-acid.description = Eine gefährliche Flüssigk
 
 #summoned units
 
-unit.fading-revelations-patched-toruct.name = [purple]Reduct
-unit.fading-revelations-patched-toruct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Frostlasers.
+unit.fading-revelations-patched-toruct.name = [purple]Toruct
+unit.fading-revelations-patched-toruct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Feuerlasers.
 
-unit.fading-revelations-patched-reduct.name = [purple]Toruct
-unit.fading-revelations-patched-reduct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Feuerlasers.
+unit.fading-revelations-patched-reduct.name = [purple]Reduct
+unit.fading-revelations-patched-reduct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Frostlasers.
 
 unit.fading-revelations-patched-hive-attack.name = [purple]HIVE Schwere Angriffseinheit (HSAE)
 unit.fading-revelations-patched-hive-attack.description = Erschaffen vom HIVE Mutterschiff und ausgerüstet mit speziellen Sensoren, die es der Einheit erlauben, immer den perfekten Abstand zu Gegnern einzuhalten. Diese Drohne ist dafür gemacht, deine Gegner optimal anzugreifen.
@@ -886,7 +886,7 @@ unit.fading-revelations-patched-cerberian-vista.description = Eine Einheit wie d
 
 unit.fading-revelations-patched-cerberian-cudgel.description = Eine Einheit änhlich der Mace Einehit von Serpulo aber stärker. Shießt mit einer anderen Art Flammenwerfer.
 
-unit.me-cerberian-reign-description = Eine Einheit inspiriert von der Reign Einehit von Serpulo aber mit verbesserter Technologie.
+unit.fading-revelations-patched-cerberian-kaiser.description = Eine Einheit inspiriert von der Reign Einehit von Serpulo aber mit verbesserter Technologie.
 
 unit.fading-revelations-patched-cerberian-baton.description = Eine neu hergestellte Version der Scepter Einheit.
 
