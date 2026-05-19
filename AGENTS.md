@@ -22,6 +22,7 @@ You are an AI coding assistant. You have full autonomy to read, write, edit, del
 ## Project Structure
 - **Source**: `src/fadingrevelations/`
 - **Content JSON** (auto-loaded by game): `content/blocks/`, `content/items/`, `content/liquids/`, `content/units/`, `content/status/`, `content/weathers/`
+- **Folders at project root are EXAMPLES, NOT mod content**. Never use root-level folders like `walls/` as game content. Only `content/` subdirectory is auto-loaded.
 - **Maps**: `assets/maps/*.msav` (pre-built sector maps)
 - **Sprites/Assets**: `assets/sprites/`, `assets/sprites-override/`
 - **Sector presets**: Defined in `src/fadingrevelations/content/FRSectorPresets.java` (Java, NOT JSON — JSON was deleted to avoid duplicate planet issues)
