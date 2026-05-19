@@ -19,22 +19,29 @@ public class FRFullTechTree {
     private static final ObjectMap<UnlockableContent, TechTree.TechNode> nodes = new ObjectMap<>();
 
     public static void load() {
-        // Root - Mini OD
-        TechTree.TechNode root = TechTree.nodeRoot("fading-revelations", miniOd, false, () -> {});
-        nodes.put(miniOd, root);
+        // Root - Main Gate
+        TechTree.TechNode root = TechTree.nodeRoot("fading-revelations", modGateMain, false, () -> {});
+        nodes.put(modGateMain, root);
 
-        // === OVERDRIVE PROGRESSION (MAIN CHAIN) ===
-        addBlock(miniOd, overdriveRelay);
+        // === OVERDRIVE CHAIN FROM GATES ===
+        addBlock(modGateMain, modGateBlocks);
+        addBlock(modGateBlocks, overdriveRelay);
+        
+        // Overdrive progression
         addBlock(overdriveRelay, overdriveBeacon);
         addBlock(overdriveBeacon, forceDome);
+        addBlock(forceDome, forceField);
         
-        // === EFFECT BLOCKS BRANCH ===
+        // Effect blocks
         addBlock(overdriveRelay, modGateEffect);
         addBlock(modGateEffect, enhancedMendProjector);
         addBlock(modGateEffect, darkMender);
         addBlock(modGateEffect, fastUnloader);
         addBlock(overdriveBeacon, bigLaunchPad);
         addBlock(bigLaunchPad, outpost);
+
+        // === MINI OD (separate branch) ===
+        addBlock(modGateMain, miniOd);
 
         // === TURRETS ===
         addBlock(miniOd, modGateTurrets);
@@ -69,11 +76,9 @@ public class FRFullTechTree {
         addBlock(titaniumRouter, titaniumJunction);
         addBlock(titaniumJunction, titaniumDistributor);
         addBlock(titaniumDistributor, titaniumBridgeConveyor);
-        addBlock(titaniumBridgeConveyor, modGateMain);
+        addBlock(titaniumBridgeConveyor, modGateItems);
         
         // Gates chain
-        addBlock(modGateMain, modGateBlocks);
-        addBlock(modGateBlocks, modGateItems);
         addBlock(modGateItems, modGateResources);
         addBlock(modGateResources, modGateAmmo);
 
