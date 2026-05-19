@@ -12,7 +12,7 @@ import mindustry.content.UnitTypes;
 import mindustry.gen.Sounds;
 
 public class FREffectBlocks {
-    public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, forceDome, fastUnloader, enhancedMendProjector, darkMender, bigLaunchPad,
+    public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, forceDome, forceField, fastUnloader, enhancedMendProjector, darkMender, bigLaunchPad,
             mainCore, coreLevel4, coreLevel5;
 
     public static void load() {
@@ -56,6 +56,15 @@ public class FREffectBlocks {
             cooldownNormal = 1.1f; cooldownBrokenBase = 0.9f;
             consumePower(5f);
             requirements(Category.effect, ItemStack.with(Items.lead, 300, Items.silicon, 265, Items.titanium, 150, Items.thorium, 200, Items.plastanium, 100));
+        }};
+
+        forceField = new ForceProjector("force-field") {{
+            localizedName = "Force Field";
+            description = "An extremely powerful shield projector capable of protecting massive areas. Cannot be boosted with Phase Fabric.";
+            size = 6; health = 1200; radius = 350; shieldHealth = 4500;
+            cooldownNormal = 1.3f; cooldownBrokenBase = 0.7f;
+            consumePower(18f);
+            requirements(Category.effect, ItemStack.with(Items.lead, 800, Items.silicon, 650, Items.titanium, 500, Items.thorium, 400, Items.surgeAlloy, 300, FRItems.steelAlloy, 200));
         }};
 
         fastUnloader = new Unloader("fast-unloader") {{
