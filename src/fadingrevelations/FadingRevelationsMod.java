@@ -30,7 +30,8 @@ public class FadingRevelationsMod extends Mod {
         FRCoreUnits.load();
         FRCerberianUnits.load();
         FRMothershipUnits.load();
-
+        FRUnitFactories.load();
+        
         // Power generators
         TinyThermalGen.load();
         TitaniumPanel.load();
