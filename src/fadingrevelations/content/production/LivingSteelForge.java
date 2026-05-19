@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class LivingSteelForge {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("living-steel-forge") {{
+        block = new GenericCrafter("living-steel-forge") {{
             localizedName = "Living Steel Forge";
             description = "Fuses titanium with spore pods, creating living steel in large quantities. More efficient than the infuser.";
             size = 3; health = 285; hasPower = true; hasItems = true; hasLiquids = false;
@@ -18,5 +19,6 @@ public class LivingSteelForge {
             outputItem = new ItemStack(FRItems.livingSteel, 3);
             requirements(Category.crafting, ItemStack.with(Items.copper, 460, Items.lead, 320, Items.titanium, 145));
         }};
+        return block;
     }
 }

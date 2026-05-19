@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class AtmosphericHeatConcentrator {
+    public static Block block;
     public static Block load() {
-        return new HeatProducer("atmospheric-heat-concentrator") {{
+        block = new HeatProducer("atmospheric-heat-concentrator") {{
             localizedName = "Advanced Heating Element";
             description = "An improved version of the Electric Heater. Creates more heat.";
             size = 2; rotateDraw = false; researchCostMultiplier = 4;
@@ -19,5 +20,6 @@ public class AtmosphericHeatConcentrator {
             ambientSound = Sounds.loopExtract; ambientSoundVolume = 0.09f;
             requirements(Category.crafting, ItemStack.with(Items.beryllium, 70, Items.tungsten, 50, Items.oxide, 40));
         }};
+        return block;
     }
 }

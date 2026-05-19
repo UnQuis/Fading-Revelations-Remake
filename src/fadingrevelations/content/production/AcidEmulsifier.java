@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class AcidEmulsifier {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("acid-emulsifier") {{
+        block = new GenericCrafter("acid-emulsifier") {{
             localizedName = "Acid Emulsifier";
             description = "Emulsifies acid into oil.";
             size = 2; liquidCapacity = 60; craftTime = 20;
@@ -18,5 +19,6 @@ public class AcidEmulsifier {
             outputLiquid = new LiquidStack(Liquids.oil, 0.4f);
             requirements(Category.crafting, ItemStack.with(Items.copper, 80, Items.graphite, 40, Items.titanium, 60));
         }};
+        return block;
     }
 }

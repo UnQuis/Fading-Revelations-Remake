@@ -10,8 +10,9 @@ import mindustry.world.meta.Attribute;
 
 import mindustry.world.Block;
 public class TurbineConcentrator {
+    public static Block block;
     public static Block load() {
-        return new ThermalGenerator("turbine-concentrator") {{
+        block = new ThermalGenerator("turbine-concentrator") {{
             localizedName = "Turbine Concentrator";
             description = "Similar to a Turbine Condenser but creates larger amounts of power and more water.";
             size = 3; attribute = Attribute.steam; minEfficiency = 0.0001f;
@@ -21,5 +22,6 @@ public class TurbineConcentrator {
             ambientSound = Sounds.loopHum; ambientSoundVolume = 0.08f;
             requirements(Category.power, ItemStack.with(Items.beryllium, 90, Items.graphite, 75));
         }};
+        return block;
     }
 }

@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class BigPhaseWeaver {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("big-phase-weaver") {{
+        block = new GenericCrafter("big-phase-weaver") {{
             localizedName = "Fabric Forge";
             description = "A better phase fabric forge that is more cost-efficient.";
             size = 3; hasPower = true; hasItems = true; itemCapacity = 60; hasLiquids = false;
@@ -18,5 +19,6 @@ public class BigPhaseWeaver {
             outputItem = new ItemStack(Items.phaseFabric, 4);
             requirements(Category.crafting, ItemStack.with(Items.lead, 320, Items.silicon, 320, Items.titanium, 140, Items.phaseFabric, 25));
         }};
+        return block;
     }
 }

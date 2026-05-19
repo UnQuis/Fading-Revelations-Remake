@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class EsterificationChamber {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("esterification-chamber") {{
+        block = new GenericCrafter("esterification-chamber") {{
             localizedName = "Esterification Chamber";
             description = "A better Electrolyzer that works more efficiently.";
             size = 4; researchCostMultiplier = 1.2f; craftTime = 5;
@@ -22,5 +23,6 @@ public class EsterificationChamber {
             regionRotated1 = 3;
             requirements(Category.crafting, ItemStack.with(Items.silicon, 90, Items.graphite, 70, Items.beryllium, 165, Items.tungsten, 110));
         }};
+        return block;
     }
 }

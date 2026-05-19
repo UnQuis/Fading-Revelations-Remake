@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class AmalgamSmelter {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("amalgam-smelter") {{
+        block = new GenericCrafter("amalgam-smelter") {{
             localizedName = "Amalgam Smelter";
             description = "Using slag as a heat source, smelts copper, living steel, and surge alloy into steel amalgam.";
             size = 3; health = 240; itemCapacity = 30; hasPower = true; hasLiquids = true; hasItems = true;
@@ -19,5 +20,6 @@ public class AmalgamSmelter {
             outputItem = new ItemStack(FRItems.steelAlloy, 2);
             requirements(Category.crafting, ItemStack.with(Items.copper, 250, Items.lead, 200, FRItems.livingSteel, 100, Items.surgeAlloy, 50));
         }};
+        return block;
     }
 }

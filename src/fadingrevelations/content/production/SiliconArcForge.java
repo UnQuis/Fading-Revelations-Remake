@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class SiliconArcForge {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("silicon-arc-forge") {{
+        block = new GenericCrafter("silicon-arc-forge") {{
             localizedName = "Silicon Arc Forge";
             description = "A better version of the silicon arc furnace that creates silicon more efficiently.";
             size = 4; hasPower = true; hasLiquids = false; itemCapacity = 40;
@@ -20,5 +21,6 @@ public class SiliconArcForge {
             ambientSound = Sounds.loopSmelter; ambientSoundVolume = 0.14f;
             requirements(Category.crafting, ItemStack.with(Items.beryllium, 140, Items.graphite, 150));
         }};
+        return block;
     }
 }

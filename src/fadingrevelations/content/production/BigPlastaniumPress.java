@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class BigPlastaniumPress {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("big-plastanium-press") {{
+        block = new GenericCrafter("big-plastanium-press") {{
             localizedName = "Plastanium Forge";
             description = "A better plastanium forge that is more cost-efficient.";
             size = 3; hasPower = true; hasItems = true; hasLiquids = true; health = 600;
@@ -19,5 +20,6 @@ public class BigPlastaniumPress {
             outputItem = new ItemStack(Items.plastanium, 4);
             requirements(Category.crafting, ItemStack.with(Items.lead, 160, Items.silicon, 160, Items.titanium, 140, Items.plastanium, 25));
         }};
+        return block;
     }
 }

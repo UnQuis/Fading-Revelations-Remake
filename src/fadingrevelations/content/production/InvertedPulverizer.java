@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class InvertedPulverizer {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("inverted-pulverizer") {{
+        block = new GenericCrafter("inverted-pulverizer") {{
             localizedName = "Inverted Pulverizer";
             description = "Pulverizes sand to scrap. Don't ask how but you will be wondering how useful that is!";
             size = 1; hasPower = true; hasLiquids = false; hasItems = true;
@@ -20,5 +21,6 @@ public class InvertedPulverizer {
             ambientSound = Sounds.loopGrind; ambientSoundVolume = 0.2f;
             requirements(Category.crafting, ItemStack.with(Items.copper, 30, Items.lead, 25));
         }};
+        return block;
     }
 }

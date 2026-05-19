@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class SurgeMelter {
+    public static Block block;
     public static Block load() {
-        return new HeatCrafter("surge-melter") {{
+        block = new HeatCrafter("surge-melter") {{
             localizedName = "Surge Melter";
             description = "A better version of the surge crucible that creates surge alloy more efficiently.";
             size = 4; itemCapacity = 30; heatRequirement = 11; hasLiquids = true; hasPower = true; hasItems = true;
@@ -20,5 +21,6 @@ public class SurgeMelter {
             ambientSound = Sounds.loopSmelter; ambientSoundVolume = 1f;
             requirements(Category.crafting, ItemStack.with(Items.silicon, 160, Items.graphite, 160, Items.tungsten, 110, Items.oxide, 100));
         }};
+        return block;
     }
 }

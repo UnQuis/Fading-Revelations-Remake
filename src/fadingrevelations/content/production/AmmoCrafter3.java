@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class AmmoCrafter3 {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("ammo-crafter-3") {{
+        block = new GenericCrafter("ammo-crafter-3") {{
             localizedName = "Level 3 Ammocrafter";
             description = "Crafts explosive ammo out of blast compound and coal.";
             size = 2; hasPower = true; hasItems = true; hasLiquids = false;
@@ -18,5 +19,6 @@ public class AmmoCrafter3 {
             outputItem = new ItemStack(FRItems.ammoLevel3, 2);
             requirements(Category.crafting, ItemStack.with(Items.copper, 150, Items.lead, 120, Items.titanium, 55));
         }};
+        return block;
     }
 }

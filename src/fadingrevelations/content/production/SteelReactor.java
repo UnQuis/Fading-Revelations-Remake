@@ -8,8 +8,9 @@ import mindustry.world.blocks.power.ImpactReactor;
 
 import mindustry.world.Block;
 public class SteelReactor {
+    public static Block block;
     public static Block load() {
-        return new ImpactReactor("steel-reactor") {{
+        block = new ImpactReactor("steel-reactor") {{
             localizedName = "Amalgam Generator";
             description = "Uses the high flammability of Steel Amalgam to create large amounts of power from it.";
             health = 1100; size = 4; hasPower = true; hasLiquids = true; hasItems = true;
@@ -19,5 +20,6 @@ public class SteelReactor {
             consumePower(20f); consumeLiquid(Liquids.cryofluid, 0.1f); consumeItem(FRItems.steelAlloy, 1);
             requirements(Category.power, ItemStack.with(Items.copper, 750, Items.lead, 700, Items.graphite, 400, Items.metaglass, 350, Items.silicon, 350, Items.thorium, 150, FRItems.steelAlloy, 50));
         }};
+        return block;
     }
 }

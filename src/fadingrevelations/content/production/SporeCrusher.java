@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class SporeCrusher {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("spore-crusher") {{
+        block = new GenericCrafter("spore-crusher") {{
             localizedName = "Spore Crusher";
             description = "Creates oil by crushing spore pods.";
             size = 3; hasPower = true; hasItems = true; hasLiquids = true;
@@ -19,5 +20,6 @@ public class SporeCrusher {
             outputLiquid = new LiquidStack(Liquids.oil, 0.6f);
             requirements(Category.crafting, ItemStack.with(Items.lead, 80, Items.silicon, 70));
         }};
+        return block;
     }
 }
