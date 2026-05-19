@@ -37,7 +37,7 @@ public class FRT1Units {
                         shootEffect = new ParticleEffect() {{
                             followParent = true; rotWithParent = true;
                             particles = 1; lifetime = 20; length = 0;
-                            region = "aedes-rotor";
+                            region = "fading-revelations-patched-aedes-rotor";
                             sizeFrom = 10; sizeTo = 10; spin = 10; layer = 95.1f;
                         }};
                         pierceBuilding = true; knockback = 0.1f;
