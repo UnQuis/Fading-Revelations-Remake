@@ -10,34 +10,14 @@ import mindustry.world.TileGen;
 import arc.math.geom.Vec3;
 import arc.graphics.Color;
 
-public class FRPlanetGenerators extends PlanetGenerator {
+public class FRPlanetGenerators {
     public static class CerberoGenerator extends PlanetGenerator {
         {
             seed = 69;
         }
 
-        Block st = Blocks.stone;
-        Block bs = Blocks.basalt;
-        Block ys = Blocks.yellowStone;
-        Block cr = Blocks.craters;
-
-        Block[][] terrains = {
-            {bs, bs, ys, ys, st},
-            {bs, ys, ys, st, st},
-            {ys, ys, st, st, cr},
-            {ys, st, st, cr, cr},
-            {st, st, cr, cr, cr}
-        };
-
         public float getNoise(Vec3 position) {
             return Simplex.noise3d(seed, 4, 0.5f, 10f, position.x, position.y, position.z);
-        }
-
-        public Block getFloor(Vec3 position) {
-            float terr = Math.abs(getNoise(position));
-            int size = terrains.length;
-            int y = Mathf.clamp(Mathf.round(terr * size * 0.8f), 0, size - 1);
-            return terrains[0][y];
         }
 
         @Override
@@ -53,12 +33,33 @@ public class FRPlanetGenerators extends PlanetGenerator {
 
         @Override
         public void getColor(Vec3 position, Color out) {
-            out.set(getFloor(position).mapColor);
+            float h = getNoise(position);
+            
+            if (h < -0.2f) {
+                out.set(60, 50, 45, 255);
+            } else if (h < 0.1f) {
+                out.set(90, 75, 65, 255);
+            } else if (h < 0.4f) {
+                out.set(120, 100, 85, 255);
+            } else {
+                out.set(70, 60, 55, 255);
+            }
         }
 
         @Override
         protected void genTile(Vec3 position, TileGen tile) {
-            tile.floor = getFloor(position);
+            float h = getNoise(position);
+            
+            if (h < -0.2f) {
+                tile.floor = Blocks.basalt;
+            } else if (h < 0.1f) {
+                tile.floor = Blocks.yellowStone;
+            } else if (h < 0.4f) {
+                tile.floor = Blocks.stone;
+            } else {
+                tile.floor = Blocks.craters;
+            }
+            
             tile.block = tile.floor.asFloor().wall;
         }
 
@@ -89,13 +90,19 @@ public class FRPlanetGenerators extends PlanetGenerator {
 
         @Override
         public void getColor(Vec3 position, Color out) {
-            out.set(Blocks.stone.mapColor);
+            float h = Simplex.noise3d(seed, 4, 0.5f, 10f, position.x, position.y, position.z);
+            
+            if (h > 0.1f) {
+                out.set(100, 95, 90, 255);
+            } else {
+                out.set(50, 45, 42, 255);
+            }
         }
 
         @Override
         protected void genTile(Vec3 position, TileGen tile) {
-            float noise = Simplex.noise3d(seed, 4, 0.5f, 10f, position.x, position.y, position.z);
-            tile.floor = noise > 0.1f ? Blocks.stone : Blocks.basalt;
+            float h = Simplex.noise3d(seed, 4, 0.5f, 10f, position.x, position.y, position.z);
+            tile.floor = h > 0.1f ? Blocks.stone : Blocks.basalt;
             tile.block = tile.floor.asFloor().wall;
         }
 
@@ -111,36 +118,8 @@ public class FRPlanetGenerators extends PlanetGenerator {
             seed = 69;
         }
 
-        Block dw = Blocks.darksand;
-        Block w = Blocks.water;
-        Block sd = Blocks.sand;
-        Block gr = Blocks.grass;
-        Block cr = Blocks.craters;
-        Block st = Blocks.stone;
-
-        Block[][] terrains = {
-            {dw, dw, w, w, sd},
-            {dw, w, w, sd, sd},
-            {w, sd, sd, gr, gr},
-            {sd, gr, gr, cr, cr},
-            {gr, cr, cr, st, st},
-            {cr, cr, st, st, st}
-        };
-
         public float getNoise(Vec3 position) {
             return Simplex.noise3d(seed, 4, 0.5f, 10f, position.x, position.y, position.z);
-        }
-
-        public Block getFloor(Vec3 position) {
-            float raw = Math.abs(getNoise(position));
-            float terr = Math.abs(Simplex.noise3d(seed + 3, 5, 0.8f, 5f, position.x, position.y, position.z));
-
-            int size = terrains.length;
-            int x = Mathf.clamp(Mathf.round(raw * size * 0.6f), 0, size - 1);
-            int tSize = terrains[x].length;
-            int y = Mathf.clamp(Mathf.round(terr * tSize), 0, tSize - 1);
-
-            return terrains[x][y];
         }
 
         @Override
@@ -156,12 +135,41 @@ public class FRPlanetGenerators extends PlanetGenerator {
 
         @Override
         public void getColor(Vec3 position, Color out) {
-            out.set(getFloor(position).mapColor);
+            float h = getNoise(position);
+            
+            if (h < -0.4f) {
+                out.set(20, 60, 120, 255);
+            } else if (h < -0.1f) {
+                out.set(30, 100, 160, 255);
+            } else if (h < 0.1f) {
+                out.set(230, 210, 150, 255);
+            } else if (h < 0.3f) {
+                out.set(80, 140, 60, 255);
+            } else if (h < 0.5f) {
+                out.set(80, 75, 70, 255);
+            } else {
+                out.set(90, 85, 80, 255);
+            }
         }
 
         @Override
         protected void genTile(Vec3 position, TileGen tile) {
-            tile.floor = getFloor(position);
+            float h = getNoise(position);
+            
+            if (h < -0.4f) {
+                tile.floor = Blocks.darksand;
+            } else if (h < -0.1f) {
+                tile.floor = Blocks.water;
+            } else if (h < 0.1f) {
+                tile.floor = Blocks.sand;
+            } else if (h < 0.3f) {
+                tile.floor = Blocks.grass;
+            } else if (h < 0.5f) {
+                tile.floor = Blocks.craters;
+            } else {
+                tile.floor = Blocks.stone;
+            }
+            
             tile.block = tile.floor.asFloor().wall;
         }
 
