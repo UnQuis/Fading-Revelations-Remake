@@ -56,7 +56,7 @@ public class FRFullTechTree {
         // === TURRETS (from miniOd) ===
         addBlock(miniOd, modGateTurrets);
         
-        // Item Turrets
+        // = ITEM TURRETS (left branch) =
         addBlock(modGateTurrets, accel);
         addBlock(accel, bigSwarmer);
         addBlock(bigSwarmer, caats);
@@ -65,8 +65,8 @@ public class FRFullTechTree {
         addBlock(gattling, ignitor);
         addBlock(ignitor, interitus);
         
-        // Power Turrets
-        addBlock(interitus, uhlan);
+        // = POWER TURRETS (right branch) =
+        addBlock(modGateTurrets, uhlan);
         addBlock(uhlan, megaMeltdown);
         addBlock(megaMeltdown, kugelblitz);
         addBlock(kugelblitz, diffract);
@@ -75,7 +75,7 @@ public class FRFullTechTree {
         addBlock(bigSegment, bigScatter);
         addBlock(bigScatter, bigArc);
         
-        // Liquid Turrets
+        // = LIQUID TURRETS (from power branch) =
         addBlock(bigArc, zephyr);
         addBlock(zephyr, weave);
         addBlock(weave, sprunkler);
