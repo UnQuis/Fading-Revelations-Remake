@@ -63,8 +63,7 @@ public class FRFullTechTree {
         addToNode(plasmaBore, () -> { node(tinyPlasmaBore); node(tungstenBore); });
         addToNode(ventCondenser, () -> node(ventConcentrator));
 
-        // --- WALLS GATE ---
-        // JSON: living-steel-wall → living-steel-wall-2 → steel-alloy-wall-small → steel-alloy-wall-large
+        // --- WALLS GATE (mod walls in Java; advanced-vanilla-walls attach via JSON research) ---
         addBlock(modGateBlocks, modGateWalls);
         addBlock(modGateWalls, livingSteelWall);
         addBlock(livingSteelWall, livingSteelWallLarge);
