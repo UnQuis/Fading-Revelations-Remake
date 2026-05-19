@@ -365,10 +365,25 @@ public class FRFullTechTree {
 
     private static void addToVanilla(UnlockableContent parent, UnlockableContent child) {
         TechTree.TechNode parentNode = TechTree.all.find(t -> t.content == parent);
+        if (parentNode == null) {
+            for (TechTree.TechNode root : TechTree.roots) {
+                parentNode = findInTree(root, parent);
+                if (parentNode != null) break;
+            }
+        }
         if (parentNode == null) return;
         TechTree.TechNode node = new TechTree.TechNode(parentNode, child, child.researchRequirements());
         nodes.put(child, node);
         node.objectives.add(new Research(parent));
+    }
+
+    private static TechTree.TechNode findInTree(TechTree.TechNode node, UnlockableContent target) {
+        if (node.content == target) return node;
+        for (TechTree.TechNode child : node.children) {
+            TechTree.TechNode found = findInTree(child, target);
+            if (found != null) return found;
+        }
+        return null;
     }
 
     private static void addAdditionalObjectives(UnlockableContent target, UnlockableContent... objectives) {
