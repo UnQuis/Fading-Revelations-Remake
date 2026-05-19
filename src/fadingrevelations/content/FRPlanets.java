@@ -1,6 +1,7 @@
 package fadingrevelations.content;
 
 import arc.graphics.Color;
+import arc.math.geom.Vec3;
 import mindustry.content.Blocks;
 import mindustry.content.Planets;
 import mindustry.type.Planet;
@@ -25,6 +26,8 @@ public class FRPlanets {
             radius = 1f;
             minZoom = 1.8f;
             drawOrbit = true;
+            orbitRadius = 8f;
+            position = new Vec3(8f, 0f, 0f);
             atmosphereColor = Color.valueOf("1a1518");
             iconColor = Color.valueOf("29302b");
             hasAtmosphere = true;
@@ -49,6 +52,8 @@ public class FRPlanets {
             radius = 0.4f;
             minZoom = 1.8f;
             drawOrbit = true;
+            orbitRadius = 2f;
+            position = new Vec3(2f, 0f, 0f);
             atmosphereColor = Color.valueOf("0f0d0e");
             iconColor = Color.valueOf("222020");
             hasAtmosphere = false;
@@ -73,6 +78,8 @@ public class FRPlanets {
             radius = 1f;
             minZoom = 1.5f;
             drawOrbit = true;
+            orbitRadius = 12f;
+            position = new Vec3(12f, 0f, 0f);
             atmosphereColor = Color.valueOf("5992af");
             iconColor = Color.valueOf("4b64a9");
             hasAtmosphere = true;
