@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class BasicMultismelter {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("basic-multismelter") {{
+        block = new GenericCrafter("basic-multismelter") {{
             localizedName = "Basic Multismelter";
             description = "Uses a combination of smelting and compression procedures to mass produce basic resources.";
             size = 3;
@@ -18,5 +19,6 @@ public class BasicMultismelter {
             outputItems = ItemStack.with(Items.graphite, 1, Items.silicon, 1, Items.metaglass, 1);
             requirements(Category.crafting, ItemStack.with(Items.copper, 100, Items.lead, 80, Items.graphite, 50));
         }};
+        return block;
     }
 }

@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class CryogenicAlloyAssembler {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("cryogenic-alloy-assembler") {{
+        block = new GenericCrafter("cryogenic-alloy-assembler") {{
             localizedName = "Cryogenic Alloy Fusing Basin";
             description = "Amalgamates Igneous Alloy and Cryogenic Gel by shock-cooling it using Neutron Fluid. This basin is a part of the [cyan]Cryogenic Alloy assembly line.";
             size = 4; rotate = false;
@@ -19,5 +20,6 @@ public class CryogenicAlloyAssembler {
             outputItem = new ItemStack(FRItems.cryogenicAlloy, 4);
             requirements(Category.crafting, ItemStack.with(Items.lead, 700, Items.graphite, 600, Items.metaglass, 500, Items.silicon, 500, Items.surgeAlloy, 260, FRItems.steelAlloy, 200));
         }};
+        return block;
     }
 }

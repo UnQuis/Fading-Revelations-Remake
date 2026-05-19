@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class CyanogenFuser {
+    public static Block block;
     public static Block load() {
-        return new HeatCrafter("cyanogen-fuser") {{
+        block = new HeatCrafter("cyanogen-fuser") {{
             localizedName = "Cyanogen Fuser";
             description = "Joins Arkycite and Graphite to make larger amounts of Cyanogen than a normal Cyanogen Synthesizer.";
             size = 4; heatRequirement = 7; liquidCapacity = 100;
@@ -20,5 +21,6 @@ public class CyanogenFuser {
             ambientSound = Sounds.loopExtract; ambientSoundVolume = 0.1f;
             requirements(Category.crafting, ItemStack.with(Items.carbide, 90, Items.silicon, 140, Items.beryllium, 160));
         }};
+        return block;
     }
 }

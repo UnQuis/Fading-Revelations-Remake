@@ -9,12 +9,14 @@ import mindustry.world.meta.Attribute;
 
 import mindustry.world.Block;
 public class TinyThermalGen {
+    public static Block block;
     public static Block load() {
-        return new ThermalGenerator("tiny-thermal-gen") {{
+        block = new ThermalGenerator("tiny-thermal-gen") {{
             localizedName = "Tiny Thermal Generator";
             description = "Produces power in hot locations.";
             attribute = Attribute.heat; powerProduction = 1.6f;
             requirements(Category.power, ItemStack.with(Items.copper, 10, Items.lead, 15, Items.metaglass, 10, Items.graphite, 8, Items.silicon, 8));
         }};
+        return block;
     }
 }

@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class PhaseManufacturer {
+    public static Block block;
     public static Block load() {
-        return new HeatCrafter("phase-manufacturer") {{
+        block = new HeatCrafter("phase-manufacturer") {{
             localizedName = "Phase Manufacturer";
             description = "A better phase synthesizer that works more efficiently";
             size = 4; itemCapacity = 50; heatRequirement = 10; craftTime = 90; liquidCapacity = 50;
@@ -20,5 +21,6 @@ public class PhaseManufacturer {
             ambientSound = Sounds.loopTech; ambientSoundVolume = 0.05f;
             requirements(Category.crafting, ItemStack.with(Items.carbide, 120, Items.silicon, 160, Items.thorium, 120, Items.tungsten, 280));
         }};
+        return block;
     }
 }

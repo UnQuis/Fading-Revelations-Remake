@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class SteamCondenser {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("steam-condenser") {{
+        block = new GenericCrafter("steam-condenser") {{
             localizedName = "Steam Condenser";
             description = "Pulls water vapor from the atmosphere, condensing it into steam.";
             size = 2; scaledHealth = 60;
@@ -17,5 +18,6 @@ public class SteamCondenser {
             outputLiquid = new LiquidStack(FRLiquids.steam, 0.0125f);
             requirements(Category.crafting, ItemStack.with(Items.copper, 60, Items.lead, 35));
         }};
+        return block;
     }
 }

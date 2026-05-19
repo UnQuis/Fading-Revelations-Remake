@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class SurgeOvenBig {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("surge-oven-big") {{
+        block = new GenericCrafter("surge-oven-big") {{
             localizedName = "Alloy Forge";
             description = "A better surge alloy forge that is more cost-efficient.";
             size = 4; hasPower = true; hasItems = true; hasLiquids = false; craftTime = 90;
@@ -18,5 +19,6 @@ public class SurgeOvenBig {
             outputItem = new ItemStack(Items.surgeAlloy, 2);
             requirements(Category.crafting, ItemStack.with(Items.lead, 160, Items.silicon, 160, Items.thorium, 140, Items.surgeAlloy, 25));
         }};
+        return block;
     }
 }

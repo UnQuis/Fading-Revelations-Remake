@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class InducedKiln {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("induced-kiln") {{
+        block = new GenericCrafter("induced-kiln") {{
             localizedName = "Induced Kiln";
             description = "A better kiln that is a lot more efficient.";
             size = 3; hasPower = true; hasItems = true; health = 320; hasLiquids = false;
@@ -20,5 +21,6 @@ public class InducedKiln {
             ambientSound = Sounds.loopSmelter; ambientSoundVolume = 0.35f;
             requirements(Category.crafting, ItemStack.with(Items.copper, 70, Items.lead, 60, Items.graphite, 20, Items.metaglass, 15));
         }};
+        return block;
     }
 }

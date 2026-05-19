@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class EnhancedBlastMixer {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("enhanced-blast-mixer") {{
+        block = new GenericCrafter("enhanced-blast-mixer") {{
             localizedName = "Blast Forge";
             description = "A better blast mixer. Gets very hot so it uses graphite for isolation.";
             size = 3; hasPower = true; hasItems = true; health = 240; hasLiquids = false;
@@ -18,5 +19,6 @@ public class EnhancedBlastMixer {
             outputItem = new ItemStack(Items.blastCompound, 2);
             requirements(Category.crafting, ItemStack.with(Items.copper, 300, Items.lead, 240, Items.graphite, 120, Items.titanium, 60));
         }};
+        return block;
     }
 }

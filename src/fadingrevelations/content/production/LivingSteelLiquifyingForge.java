@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class LivingSteelLiquifyingForge {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("living-steel-liquifying-forge") {{
+        block = new GenericCrafter("living-steel-liquifying-forge") {{
             localizedName = "Living Steel Liquefaction Forge";
             description = "Melts down living steel into a versatile fluid utilizing oil. More efficient than the liquefaction chamber.";
             size = 3; health = 285; hasPower = true; hasItems = true;
@@ -19,5 +20,6 @@ public class LivingSteelLiquifyingForge {
             outputLiquid = new LiquidStack(FRLiquids.livingSteelLiquid, 0.4f);
             requirements(Category.crafting, ItemStack.with(Items.copper, 460, Items.lead, 320, Items.titanium, 145, FRItems.livingSteel, 100));
         }};
+        return block;
     }
 }

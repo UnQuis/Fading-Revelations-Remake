@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class Powderizer {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("powderizer") {{
+        block = new GenericCrafter("powderizer") {{
             localizedName = "Powderizer";
             description = "A better and bigger version of the pulverizer.";
             size = 2; craftTime = 30; craftEffect = Fx.pulverize;
@@ -19,5 +20,6 @@ public class Powderizer {
             ambientSound = Sounds.loopGrind; ambientSoundVolume = 0.4f;
             requirements(Category.crafting, ItemStack.with(Items.copper, 70, Items.lead, 60));
         }};
+        return block;
     }
 }

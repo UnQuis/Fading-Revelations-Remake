@@ -9,8 +9,9 @@ import mindustry.gen.Sounds;
 
 import mindustry.world.Block;
 public class AtmosphericExtractor {
+    public static Block block;
     public static Block load() {
-        return new HeatCrafter("atmospheric-extractor") {{
+        block = new HeatCrafter("atmospheric-extractor") {{
             localizedName = "Atmospheric Extractor";
             description = "Extracts and concentrates Nitrogen out of the atmosphere. Works more efficiently than an Atmospheric Concentrator.";
             size = 4; hasLiquids = true; researchCostMultiplier = 1.1f; liquidCapacity = 50;
@@ -20,5 +21,6 @@ public class AtmosphericExtractor {
             ambientSound = Sounds.loopExtract; ambientSoundVolume = 0.09f;
             requirements(Category.crafting, ItemStack.with(Items.oxide, 100, Items.beryllium, 260, Items.silicon, 200));
         }};
+        return block;
     }
 }

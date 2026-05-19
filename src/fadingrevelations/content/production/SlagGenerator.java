@@ -8,8 +8,9 @@ import mindustry.world.blocks.power.ConsumeGenerator;
 
 import mindustry.world.Block;
 public class SlagGenerator {
+    public static Block block;
     public static Block load() {
-        return new ConsumeGenerator("slag-generator") {{
+        block = new ConsumeGenerator("slag-generator") {{
             localizedName = "Slag Generator";
             description = "A generator that uses the heat of Slag to make power.";
             size = 3; health = 785; itemDuration = 60;
@@ -17,5 +18,6 @@ public class SlagGenerator {
             consumeLiquid(Liquids.slag, 0.33333f);
             requirements(Category.power, ItemStack.with(Items.copper, 120, Items.lead, 100, Items.graphite, 60, Items.metaglass, 50, Items.titanium, 40));
         }};
+        return block;
     }
 }

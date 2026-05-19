@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class AcidVat {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("acid-vat") {{
+        block = new GenericCrafter("acid-vat") {{
             localizedName = "Acid Vat";
             description = "Acidifies lead via chemical reaction.";
             size = 2; liquidCapacity = 40;
@@ -18,5 +19,6 @@ public class AcidVat {
             outputLiquid = new LiquidStack(FRLiquids.acid, 0.2f);
             requirements(Category.crafting, ItemStack.with(Items.copper, 60, Items.metaglass, 40, Items.titanium, 30));
         }};
+        return block;
     }
 }

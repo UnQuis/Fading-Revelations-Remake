@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class SiliconForge {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("silicon-forge") {{
+        block = new GenericCrafter("silicon-forge") {{
             localizedName = "Silicon Forge";
             description = "A better silicon smelter that is more cost-efficient.";
             size = 3; hasPower = true; hasItems = true; hasLiquids = false;
@@ -18,5 +19,6 @@ public class SiliconForge {
             outputItem = new ItemStack(Items.silicon, 3);
             requirements(Category.crafting, ItemStack.with(Items.copper, 90, Items.lead, 75, Items.graphite, 25, Items.silicon, 15));
         }};
+        return block;
     }
 }

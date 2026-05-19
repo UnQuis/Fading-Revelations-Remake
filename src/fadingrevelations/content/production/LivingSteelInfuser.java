@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class LivingSteelInfuser {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("living-steel-infuser") {{
+        block = new GenericCrafter("living-steel-infuser") {{
             localizedName = "Living Steel Infusion Chamber";
             description = "Infuses titanium with spore pods, creating living steel.";
             size = 2; health = 140; hasPower = true; hasItems = true; hasLiquids = false;
@@ -18,5 +19,6 @@ public class LivingSteelInfuser {
             outputItem = new ItemStack(FRItems.livingSteel, 2);
             requirements(Category.crafting, ItemStack.with(Items.copper, 150, Items.lead, 120, Items.titanium, 50));
         }};
+        return block;
     }
 }

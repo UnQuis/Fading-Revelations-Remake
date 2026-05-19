@@ -8,12 +8,14 @@ import mindustry.world.blocks.heat.HeatConductor;
 
 import mindustry.world.Block;
 public class HeatDiverter {
+    public static Block block;
     public static Block load() {
-        return new HeatConductor("heat-diverter") {{
+        block = new HeatConductor("heat-diverter") {{
             localizedName = "Heat Diverter";
             description = "A small block that is used to redirect heat to other blocks.";
             size = 1; researchCostMultiplier = 10; regionRotated1 = 1;
             requirements(Category.crafting, ItemStack.with(Items.tungsten, 5));
         }};
+        return block;
     }
 }

@@ -9,8 +9,9 @@ import mindustry.world.meta.Attribute;
 
 import mindustry.world.Block;
 public class Greenhouse {
+    public static Block block;
     public static Block load() {
-        return new AttributeCrafter("greenhouse") {{
+        block = new AttributeCrafter("greenhouse") {{
             localizedName = "Greenhouse";
             description = "A better cultivator that creates a lot more spore pods.";
             size = 3; hasPower = true; hasItems = true; hasLiquids = false;
@@ -21,5 +22,6 @@ public class Greenhouse {
             outputItem = new ItemStack(Items.sporePod, 2);
             requirements(Category.production, ItemStack.with(Items.copper, 75, Items.lead, 75, Items.silicon, 30));
         }};
+        return block;
     }
 }

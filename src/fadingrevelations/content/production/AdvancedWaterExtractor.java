@@ -9,8 +9,9 @@ import mindustry.world.meta.Attribute;
 
 import mindustry.world.Block;
 public class AdvancedWaterExtractor {
+    public static Block block;
     public static Block load() {
-        return new SolidPump("advanced-water-extractor") {{
+        block = new SolidPump("advanced-water-extractor") {{
             localizedName = "Advanced Water Extractor";
             description = "Extracts large quantities of groundwater. Used in locations with no surface water available.";
             health = 320; result = Liquids.water; hasPower = true; attribute = Attribute.water;
@@ -18,5 +19,6 @@ public class AdvancedWaterExtractor {
             consumePower(3.5f);
             requirements(Category.production, ItemStack.with(Items.copper, 175, Items.lead, 140, Items.graphite, 150, Items.metaglass, 65));
         }};
+        return block;
     }
 }

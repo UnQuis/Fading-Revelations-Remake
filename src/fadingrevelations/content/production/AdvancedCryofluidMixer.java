@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class AdvancedCryofluidMixer {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("advanced-cryofluid-mixer") {{
+        block = new GenericCrafter("advanced-cryofluid-mixer") {{
             localizedName = "Advanced Cryofluid-Mixer";
             description = "Mixes large quantities of water with fine titanium powder to produce cryofluid.";
             size = 2; health = 240; itemCapacity = 30; liquidCapacity = 70;
@@ -19,5 +20,6 @@ public class AdvancedCryofluidMixer {
             outputLiquid = new LiquidStack(Liquids.cryofluid, 0.4f);
             requirements(Category.crafting, ItemStack.with(Items.graphite, 100, Items.silicon, 75, Items.titanium, 100, Items.thorium, 200));
         }};
+        return block;
     }
 }

@@ -8,8 +8,9 @@ import mindustry.world.blocks.production.GenericCrafter;
 
 import mindustry.world.Block;
 public class Dissolver {
+    public static Block block;
     public static Block load() {
-        return new GenericCrafter("dissolver") {{
+        block = new GenericCrafter("dissolver") {{
             localizedName = "Dissolver";
             description = "A larger and more powerful Melter.";
             size = 2; itemCapacity = 20; liquidCapacity = 25;
@@ -18,5 +19,6 @@ public class Dissolver {
             outputLiquid = new LiquidStack(Liquids.slag, 0.25f);
             requirements(Category.crafting, ItemStack.with(Items.copper, 60, Items.lead, 70, Items.graphite, 50));
         }};
+        return block;
     }
 }
