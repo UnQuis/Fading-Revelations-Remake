@@ -1,0 +1,75 @@
+localizedName: Cangirus
+description: A lush planet that has land and water.
+alwaysUnlocked: true
+mesh: {
+  type: NoiseMesh
+  planet: cangirus
+  seed: 69
+  divisions: 5
+  color1: 4b64a9
+  color2: 59b36a
+  radius: 1.2
+  octaves: 4
+  persistence: 1
+  scale: 0.75
+  mag: 1
+}
+cloudMesh: {
+  type: HexSkyMesh
+  planet: cangirus
+  seed: 15
+  speed: 0.32
+  radius: 0.08
+  divisions: 6
+  color: eafffd7e
+  octaves: 3
+  persistence: 0.7
+  scl: 1
+  thresh: 0.6
+}
+generator: {
+  type: PlanetGenerator
+  octaves: 3
+  persistence: 0.52
+  scale: 22
+  mag: 0.721
+  thresh: 1.152
+  min: 100
+  max: 100
+  radMin: 220
+  radMax: 600
+  iceChance: 0.51
+  carbonChance: 0.32
+  berylChance: 0
+  ferricChance: 0.26
+}
+sectorSize: 1
+allowLaunchSchematics: false
+allowLaunchLoadout: false
+allowSectorInvasion: true
+startSector: 0
+orbitSpacing: 4
+radius: 1.2
+minZoom: 1.5
+drawOrbit: true
+atmosphereRadIn: 0
+atmosphereRadOut: 0.3
+accessible: false
+orbitRadius: 24
+updateLighting: false
+sectorSeed: 69420
+bloom: false
+visible: true
+atmosphereColor: 5992af
+iconColor: 4b64a9
+hasAtmosphere: true
+allowWaveSimulation: true
+clearSectorOnLose: true
+allowWaves: true
+prebuildBase: false
+defaultCore: core-shard
+parent: sun
+solarSystem: sun
+launchCandidates: []
+hiddenItems: ["beryllium", "carbide", "tungsten", "fissile-matter", "oxide"]
+allowLaunchToNumbered: false
