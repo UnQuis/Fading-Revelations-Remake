@@ -20,12 +20,12 @@ You are an AI coding assistant. You have full autonomy to read, write, edit, del
 5. **Minimize output** — be concise, direct, 1-3 sentences when possible.
 
 ## Project Structure
-- **Source**: `src/fadingrevelations/`
-- **Content JSON** (auto-loaded by game): `content/blocks/`, `content/items/`, `content/liquids/`, `content/units/`, `content/status/`, `content/weathers/`
-- **Folders at project root are EXAMPLES, NOT mod content**. Never use root-level folders like `walls/` as game content. Only `content/` subdirectory is auto-loaded.
+- **Source**: `src/fadingrevelations/` — весь контент мода (Java-классы)
+- **All content is Java-only**: items, liquids, blocks, units, status effects, weathers — всё определяется в Java-классах в `src/fadingrevelations/content/`
+- **`content/` and root-level folders (`walls/`, etc.) are EXAMPLES only** — никогда не использовать как часть мода. Игра НЕ загружает их. Только для справки.
 - **Maps**: `assets/maps/*.msav` (pre-built sector maps)
 - **Sprites/Assets**: `assets/sprites/`, `assets/sprites-override/`
-- **Sector presets**: Defined in `src/fadingrevelations/content/FRSectorPresets.java` (Java, NOT JSON — JSON was deleted to avoid duplicate planet issues)
+- **Sector presets**: Defined in `src/fadingrevelations/content/FRSectorPresets.java` (Java, NOT JSON)
 
 ## Technical Context
 - **Target**: Mindustry v157.4 (core at `~/.gradle/caches/.../v157.4/...core-v157.4.jar`)
