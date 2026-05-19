@@ -213,14 +213,88 @@ public class FRFullTechTree {
         addBlock(TitaniumPanel.block, TurbineConcentrator.block);
         addBlock(TurbineConcentrator.block, AdvancedWaterExtractor.block);
 
+        // === UNITS GATE → sub-gates for unit types ===
+        addBlock(modGateMain, modGateUnits);
+        addBlock(modGateUnits, modGateFactories);
+        addBlock(modGateUnits, modGateFlying);
+        addBlock(modGateUnits, modGateLegs);
+        addBlock(modGateUnits, modGateNaval);
+        addBlock(modGateUnits, modGateCoreUnits);
+
+        // === FLYING UNITS ===
+        // Branch A: light fighters
+        addBlock(modGateFlying, FRT1Units.aedes);
+        addBlock(FRT1Units.aedes, FRT2Units.armiger);
+        addBlock(FRT2Units.armiger, FRT3Units.kestrel);
+        addBlock(FRT3Units.kestrel, FRT3Units.onirion);
+        // Branch B: scouts
+        addBlock(FRT1Units.aedes, FRT1Units.heliaca);
+        addBlock(FRT1Units.heliaca, FRT2Units.alopex);
+        addBlock(FRT2Units.alopex, FRT3Units.ducalis);
+        // Branch C: bomber/support
+        addBlock(modGateFlying, FRT1Units.apis);
+        addBlock(FRT1Units.apis, FRT2Units.procer);
+        addBlock(FRT2Units.procer, FRT3Units.plant);
+        // Branch D: builder chain
+        addBlock(modGateFlying, FRT1Units.seed);
+        addBlock(FRT1Units.seed, FRT1Units.lancerDrone);
+        addBlock(FRT1Units.lancerDrone, FRT2Units.sapling);
+        // Cerberian flying
+        addBlock(modGateFlying, FRCerberianUnits.spark);
+        addBlock(FRCerberianUnits.spark, FRCerberianUnits.vista);
+        addBlock(FRCerberianUnits.vista, FRCerberianUnits.summit);
+        addBlock(FRCerberianUnits.summit, FRCerberianUnits.penumbra);
+        addBlock(FRCerberianUnits.penumbra, FRCerberianUnits.veil);
+        // Mothership flying
+        addBlock(modGateFlying, FRMothershipUnits.hiveAttack);
+        addBlock(FRMothershipUnits.hiveAttack, FRMothershipUnits.strahl);
+        addBlock(FRMothershipUnits.strahl, FRMothershipUnits.hive);
+        addBlock(FRMothershipUnits.hive, FRMothershipUnits.culiseta);
+
+        // === GROUND UNITS ===
+        // Main progression: mech → tank → legs
+        addBlock(modGateLegs, FRT1Units.annax);
+        addBlock(FRT1Units.annax, FRT1Units.sambuca);
+        addBlock(FRT1Units.sambuca, FRT2Units.scofra);
+        addBlock(FRT2Units.scofra, FRT2Units.scorpio);
+        addBlock(FRT2Units.scorpio, FRT3Units.auratus);
+        addBlock(FRT3Units.auratus, FRT3Units.springald);
+        // Cerberian ground: from weakest to strongest
+        addBlock(modGateLegs, FRCerberianUnits.straggle);
+        addBlock(FRCerberianUnits.straggle, FRCerberianUnits.bayonet);
+        addBlock(FRCerberianUnits.bayonet, FRCerberianUnits.hexathelid);
+        addBlock(FRCerberianUnits.hexathelid, FRCerberianUnits.cudgel);
+        addBlock(FRCerberianUnits.cudgel, FRCerberianUnits.citadel);
+        addBlock(FRCerberianUnits.citadel, FRCerberianUnits.nephila);
+        addBlock(FRCerberianUnits.nephila, FRCerberianUnits.curtulus);
+        addBlock(FRCerberianUnits.curtulus, FRCerberianUnits.auctus);
+        addBlock(FRCerberianUnits.auctus, FRCerberianUnits.baton);
+        addBlock(FRCerberianUnits.baton, FRCerberianUnits.kaiser);
+        addBlock(FRCerberianUnits.kaiser, FRCerberianUnits.setosus);
+        addBlock(FRCerberianUnits.setosus, FRCerberianUnits.behemoth);
+        // Mothership ground
+        addBlock(modGateLegs, FRMothershipUnits.toruct);
+        addBlock(FRMothershipUnits.toruct, FRMothershipUnits.reduct);
+        addBlock(FRMothershipUnits.reduct, FRMothershipUnits.corax);
+        addBlock(FRMothershipUnits.corax, FRMothershipUnits.lycosid);
+        addBlock(FRMothershipUnits.lycosid, FRMothershipUnits.onager);
+
+        // === NAVAL UNITS ===
+        addBlock(modGateNaval, FRT1Units.alba);
+        addBlock(FRT1Units.alba, FRT1Units.mela);
+        addBlock(FRT1Units.mela, FRT2Units.arvens);
+        addBlock(FRT2Units.arvens, FRT2Units.cromis);
+        addBlock(FRT2Units.cromis, FRT3Units.aestiva);
+        addBlock(FRT3Units.aestiva, FRT3Units.arnux);
+        addBlock(FRT3Units.arnux, FRMothershipUnits.japonica);
+        addBlock(FRMothershipUnits.japonica, FRMothershipUnits.altaic);
+
+        // === CORE UNITS ===
+        addBlock(modGateCoreUnits, FRCoreUnits.delta);
+        addBlock(FRCoreUnits.delta, FRCoreUnits.epsilon);
+
         // === FUTURE GATES (empty, for later use) ===
         addBlock(modGateMain, modGateCores);
-        addBlock(modGateMain, modGateUnits);
-        addBlock(modGateMain, modGateFactories);
-        addBlock(modGateMain, modGateFlying);
-        addBlock(modGateMain, modGateLegs);
-        addBlock(modGateMain, modGateNaval);
-        addBlock(modGateMain, modGateCoreUnits);
     }
 
     private static void addBlock(UnlockableContent parent, UnlockableContent child) {
