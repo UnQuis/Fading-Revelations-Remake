@@ -19,6 +19,7 @@ public class FadingRevelationsMod extends Mod {
         FRPowerNodes.load();
         FREffectBlocks.load();
         FRPlanets.load();
+        FRSectorPresets.load();
         FRTechTree.load();
         FRFx.load();
         FRTurrets.load();

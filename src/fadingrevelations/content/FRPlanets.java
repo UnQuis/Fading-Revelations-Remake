@@ -5,6 +5,7 @@ import arc.math.geom.Vec3;
 import mindustry.content.Blocks;
 import mindustry.content.Planets;
 import mindustry.type.Planet;
+import mindustry.type.Sector;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
 import static fadingrevelations.content.FRPlanetGenerators.*;
@@ -13,7 +14,7 @@ public class FRPlanets {
     public static Planet cerbero, cangirus, hathor;
 
     public static void load() {
-        cerbero = new Planet("cerbero", Planets.sun, 1f, 1) {{
+        cerbero = new Planet("cerbero", Planets.sun, 1f, 2) {{
             localizedName = "Cerbero";
             description = "A barren planet where tragedy struck long ago.";
             alwaysUnlocked = true;
@@ -38,7 +39,7 @@ public class FRPlanets {
             solarSystem = Planets.sun;
         }};
 
-        hathor = new Planet("hathor", cerbero, 0.4f, 1) {{
+        hathor = new Planet("hathor", cerbero, 0.4f, 2) {{
             localizedName = "Hathor";
             description = "A small moon of Cerbero.";
             alwaysUnlocked = true;
@@ -64,12 +65,12 @@ public class FRPlanets {
             solarSystem = Planets.sun;
         }};
 
-        cangirus = new Planet("cangirus", Planets.sun, 1f, 1) {{
+        cangirus = new Planet("cangirus", Planets.sun, 1f, 2) {{
             localizedName = "Cangirus";
             description = "A lush planet with land and water.";
             alwaysUnlocked = true;
             visible = true;
-            accessible = false;
+            accessible = true;
             
             meshLoader = () -> new HexMesh(this, 5);
             cloudMeshLoader = () -> new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
