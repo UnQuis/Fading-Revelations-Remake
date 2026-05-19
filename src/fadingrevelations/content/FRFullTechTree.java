@@ -100,51 +100,53 @@ public class FRFullTechTree {
         addBlock(modGateEffect, overdriveRelay);
         addBlock(overdriveRelay, overdriveBeacon);
         addBlock(modGateEffect, fastUnloader);
-        addBlock(modGateEffect, constructionPylon);
+        addBlock(miniOd, constructionPylon);
 
         // --- TURRETS GATE ---
         addBlock(modGateBlocks, modGateTurrets);
 
-        // Item branch
+        // Item branch (research from other item turrets)
         addBlock(modGateTurrets, trio);
         addBlock(trio, sear);
         addBlock(sear, sunflare);
-        addBlock(modGateTurrets, accel);
-        addBlock(modGateTurrets, bigSwarmer);
-        addBlock(modGateTurrets, caats);
-        addBlock(modGateTurrets, corruptedCyclone);
-        addBlock(modGateTurrets, gattling);
+        addBlock(sear, bigSwarmer);
+        addBlock(bigSwarmer, corruptedCyclone);
+        addBlock(bigSwarmer, gattling);
         addBlock(gattling, lightningChaingun);
-        addBlock(modGateTurrets, ignitor);
-        addBlock(modGateTurrets, interitus);
-        addBlock(modGateTurrets, mineLauncher);
+        addBlock(trio, shotgun);
+        addBlock(shotgun, sniper);
+        addBlock(shotgun, upgradeTurret);
+        addBlock(shotgun, oreTurret);
+        addBlock(oreTurret, mineLauncher);
+        addBlock(mineLauncher, mortar);
         addBlock(mineLauncher, missileBattery);
         addBlock(missileBattery, interitus);
-        addBlock(modGateTurrets, mortar);
-        addBlock(modGateTurrets, oreTurret);
-        addBlock(modGateTurrets, ringTurret);
-        addBlock(modGateTurrets, shotgun);
-        addBlock(shotgun, upgradeTurret);
-        addBlock(modGateTurrets, sniper);
-        addBlock(modGateTurrets, missileSilo);
+        addBlock(missileBattery, missileSilo);
+        addBlock(sniper, ringTurret);
+        addBlock(ringTurret, ignitor);
+        addBlock(modGateTurrets, caats);
 
-        // Power branch
+        // Liquid branch
+        addBlock(modGateTurrets, zephyr);
+        addBlock(zephyr, weave);
+        addBlock(zephyr, sprunkler);
+        addBlock(sprunkler, batter);
+
+        // Power branch + cross-branch research
         addBlock(modGateTurrets, airArc);
         addBlock(airArc, uhlan);
+        addBlock(uhlan, kugelblitz);
+        addBlock(kugelblitz, statusWave);
+        addBlock(kugelblitz, cavalry);
         addBlock(airArc, bigArc);
         addBlock(bigArc, bigParallax);
         addBlock(bigArc, bigSegment);
-        addBlock(bigArc, bigScatter);
-        addBlock(modGateTurrets, absole);
+        addBlock(uhlan, accel);
+        addBlock(accel, absole);
         addBlock(absole, megaMeltdown);
-        addBlock(megaMeltdown, kugelblitz);
-        addBlock(kugelblitz, statusWave);
-        addBlock(kugelblitz, diffract);
-        addBlock(diffract, cavalry);
-        addBlock(cavalry, zephyr);
-        addBlock(zephyr, weave);
-        addBlock(weave, sprunkler);
-        addBlock(modGateTurrets, batter);
+        // Cross-branch: power turrets researched from item turrets
+        addBlock(ringTurret, diffract);
+        addBlock(oreTurret, bigScatter);
 
         // --- CORES GATE ---
         addBlock(modGateBlocks, modGateCores);
@@ -362,14 +364,16 @@ public class FRFullTechTree {
     }
 
     private static void addToVanilla(UnlockableContent parent, UnlockableContent child) {
-        TechTree.node(parent, () -> {
-            TechTree.TechNode node = new TechTree.TechNode(TechTree.context(), child, child.researchRequirements());
-            node.objectives.add(new Research(parent));
-        });
+        TechTree.TechNode parentNode = TechTree.all.find(t -> t.content == parent);
+        if (parentNode == null) return;
+        TechTree.TechNode node = new TechTree.TechNode(parentNode, child, child.researchRequirements());
+        nodes.put(child, node);
+        node.objectives.add(new Research(parent));
     }
 
     private static void addAdditionalObjectives(UnlockableContent target, UnlockableContent... objectives) {
         TechTree.TechNode node = nodes.get(target);
+        if (node == null) node = TechTree.all.find(t -> t.content == target);
         if (node == null) return;
         for (UnlockableContent obj : objectives) {
             node.objectives.add(new Research(obj));
