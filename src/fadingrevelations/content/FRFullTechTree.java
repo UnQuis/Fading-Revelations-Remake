@@ -46,18 +46,22 @@ public class FRFullTechTree {
         addBlock(modGateDistribution, massAccelerator);
 
         // --- DRILLS GATE ---
+        // Main drill chain (mod-gate-drills root)
         addBlock(modGateBlocks, modGateDrills);
         addBlock(modGateDrills, tinyMechanicalDrill);
         addBlock(tinyMechanicalDrill, tinyPneumaticDrill);
-        addBlock(modGateDrills, titaniumDrill);
+        addBlock(tinyPneumaticDrill, titaniumDrill);
         addBlock(titaniumDrill, compactLaserDrill);
+        addBlock(compactLaserDrill, hyperDrill);
+        // Ground grinder chain (mod-gate-drills root)
         addBlock(modGateDrills, groundGrinder);
-        addBlock(modGateDrills, groundMiller);
-        addBlock(modGateDrills, groundCrusher);
-        addBlock(modGateDrills, cliffGrinder);
-        addBlock(modGateDrills, cliffMiller);
-        addBlock(modGateDrills, oilBore);
-        addBlock(modGateDrills, hyperDrill);
+        addBlock(groundGrinder, groundMiller);
+        addBlock(groundMiller, groundCrusher);
+        addBlock(groundCrusher, oilBore);
+        // Cliff drills → Erekir vanilla tree (cliffCrusher, plasmaBore, ventCondenser)
+        addToNode(cliffCrusher, () -> node(cliffGrinder, () -> node(cliffMiller)));
+        addToNode(plasmaBore, () -> { node(tinyPlasmaBore); node(tungstenBore); });
+        addToNode(ventCondenser, () -> node(ventConcentrator));
 
         // --- WALLS GATE ---
         // JSON: living-steel-wall → living-steel-wall-2 → steel-alloy-wall-small → steel-alloy-wall-large
