@@ -216,6 +216,11 @@ public class FRFullTechTree {
         // === UNITS GATE → sub-gates for unit types ===
         addBlock(modGateMain, modGateUnits);
         addBlock(modGateUnits, modGateFactories);
+        addBlock(modGateFactories, FRUnitFactories.primaryFactory);
+        addBlock(FRUnitFactories.primaryFactory, FRUnitFactories.basicReassembly);
+        addBlock(FRUnitFactories.basicReassembly, FRUnitFactories.advancedReassembly);
+        addBlock(FRUnitFactories.advancedReassembly, FRUnitFactories.progressiveAssembly);
+        addBlock(modGateFactories, FRUnitFactories.regenerator);
         addBlock(modGateUnits, modGateFlying);
         addBlock(modGateUnits, modGateLegs);
         addBlock(modGateUnits, modGateNaval);
