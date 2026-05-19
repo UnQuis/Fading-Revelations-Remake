@@ -23,7 +23,6 @@ public class FadingRevelationsMod extends Mod {
         FRTechTree.load();
         FRFx.load();
         FRTurrets.load();
-        FRFullTechTree.load();
         FRT1Units.load();
         FRT2Units.load();
         FRT3Units.load();
@@ -107,5 +106,7 @@ public class FadingRevelationsMod extends Mod {
         Powderizer.load();
         Greenhouse.load();
         CarbideBasin.load();
+        
+        FRFullTechTree.load();
     }
 }
