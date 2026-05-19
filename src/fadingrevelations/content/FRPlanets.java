@@ -13,7 +13,7 @@ public class FRPlanets {
     public static Planet cerbero, cangirus, hathor;
 
     public static void load() {
-        cerbero = new Planet("cerbero", Planets.sun, 1f, 2) {{
+        cerbero = new Planet("cerbero", Planets.sun, 1f, 1) {{
             localizedName = "Cerbero";
             description = "A barren planet where tragedy struck long ago.";
             alwaysUnlocked = true;
@@ -38,7 +38,7 @@ public class FRPlanets {
             solarSystem = Planets.sun;
         }};
 
-        hathor = new Planet("hathor", cerbero, 0.4f, 2) {{
+        hathor = new Planet("hathor", cerbero, 0.4f, 1) {{
             localizedName = "Hathor";
             description = "A small moon of Cerbero.";
             alwaysUnlocked = true;
@@ -64,7 +64,7 @@ public class FRPlanets {
             solarSystem = Planets.sun;
         }};
 
-        cangirus = new Planet("cangirus", Planets.sun, 1f, 2) {{
+        cangirus = new Planet("cangirus", Planets.sun, 1f, 1) {{
             localizedName = "Cangirus";
             description = "A lush planet with land and water.";
             alwaysUnlocked = true;
