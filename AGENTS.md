@@ -13,7 +13,7 @@ You are an AI coding assistant. You have full autonomy to read, write, edit, del
 - **Extract Mindustry source**: `unzip -o ~/.gradle/caches/modules-2/files-2.1/com.github.Anuken.Mindustry/core/v154/8128c0873cd0a3095d32719838310e328fd78d04/core-v154-sources.jar` for API reference
 
 ## Workflow Rules
-1. **Commit and push** after completing each task. Use descriptive commit messages in Russian or English. Push to current branch (`main`).
+1. **Commit and push** after completing each task. Use descriptive commit messages in English only. Push to current branch (`main`).
 2. **Build** with `./gradlew build` to verify compilation before committing.
 3. **Do NOT add code explanations/summaries** unless asked.
 4. **Do NOT add comments** to code unless asked.
