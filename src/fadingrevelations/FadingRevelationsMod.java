@@ -34,4 +34,12 @@ public class FadingRevelationsMod extends Mod {
 
         FRFullTechTree.load();
     }
+
+    @Override
+    public void init() {
+        FRSettings.init();
+        if (FRSettings.mixTech) {
+            FROverride.mixTech();
+        }
+    }
 }
