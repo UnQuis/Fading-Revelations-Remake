@@ -19,7 +19,7 @@ import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
 public class FRT3Units {
-    public static UnitType aestiva, arnux, auratus, ducalis, kestrel, onirion, plant, springald;
+    public static UnitType aestiva, arnux, auratus, ducalis, kestrel, plant, springald;
 
     public static void load() {
         aestiva = new UnitType("aestiva") {{
@@ -247,108 +247,6 @@ public class FRT3Units {
                         length = 200; damage = 40;
                         makeFire = true; status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("d06b53"), Color.valueOf("d18877"), Color.valueOf("ffa665")};
-                    }};
-                }}
-            );
-        }};
-
-        onirion = new UnitType("onirion") {{
-            constructor = UnitEntity::create; localizedName = "Onirion"; flying = true; lowAltitude = true;
-            engineSize = 0; payloadCapacity = 64;
-            health = 5400; armor = 6; hitSize = 23;
-            range = 240; speed = 1; strafePenalty = 1;
-            weapons.addAll(
-                new Weapon() {{
-                    x = 0; y = 0; shootY = 0; shootX = 0;
-                    mirror = false; shootSound = Sounds.none;
-                    rotate = false; alwaysShooting = true; ignoreRotation = true;
-                    shootCone = 360; reload = 15;
-                    bullet = new BulletType() {{
-                        status = FRStatus.mediumDowndraft; statusDuration = 20;
-                        instantDisappear = true; knockback = 0.3f; damage = 0;
-                        pierceBuilding = true;
-                        splashDamage = 11; splashDamageRadius = 40;
-                        shootEffect = Fx.none; smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;
-                        speed = 0;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 0; y = -20; mirror = false; rotate = false;
-                    reload = 240; ignoreRotation = true;
-                    minShootVelocity = 0.1f; shootCone = 180;
-                    shootSound = Sounds.none; shootY = 0; inaccuracy = 15;
-                    bullet = new BombBulletType() {{
-                        splashDamageRadius = 18; splashDamage = 20;
-                        width = 36; height = 36;
-                        hitEffect = flakExplosion;
-                        shootEffect = Fx.none; smokeEffect = Fx.none;
-                        status = StatusEffects.blasted; statusDuration = 120;
-                        despawnEffect = Fx.none;
-                        fragSpread = 90; fragRandomSpread = 0; fragBullets = 4;
-                        fragBullet = new ShrapnelBulletType() {{
-                            fromColor = Color.valueOf("ffffff00"); toColor = Color.valueOf("ffffff88");
-                            length = 40; width = 6; lifetime = 90; damage = 5;
-                            despawnEffect = Fx.none; hitEffect = Fx.none;
-                        }};
-                    }};
-                }},
-                new Weapon() {{
-                    x = 8; y = -5; mirror = true; rotate = false;
-                    reload = 180; baseRotation = 90; alternate = false;
-                    shootCone = 360; ignoreRotation = true;
-                    shootSound = shootArtillery;
-                    bullet = new BulletType() {{
-                        instantDisappear = true; damage = 0;
-                        spawnUnit = FRMissiles.tinyMissile4;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 15; y = 4; mirror = true; rotate = false;
-                    reload = 12; alternate = false;
-                    shootSound = Sounds.shoot;
-                    bullet = new BasicBulletType() {{
-                        width = 12; height = 16;
-                        pierce = true; pierceCap = 4; pierceArmor = true;
-                        homingPower = 0.01f;
-                        weaveMag = 4; weaveScale = 4;
-                        lifetime = 60; speed = 5; damage = 8;
-                        trailWidth = 2; trailColor = Color.valueOf("d9dcbc");
-                        trailLength = 9; trailChance = -1;
-                        hitEffect = flakExplosion;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 0; y = 16; mirror = false; rotate = false;
-                    reload = 21;
-                    shootSound = shootMissile;
-                    bullet = new MissileBulletType() {{
-                        width = 16; height = 22;
-                        pierce = true; pierceCap = 4; pierceArmor = true;
-                        lifetime = 90; homingPower = 0.01f;
-                        speed = 3; damage = 10;
-                        trailWidth = 2.6f; trailColor = Color.valueOf("d9dcbc");
-                        trailLength = 11; trailChance = -1;
-                        hitEffect = flakExplosion;
-                    }};
-                }}
-            );
-            abilities.addAll(
-                new StatusFieldAbility(StatusEffects.none, 0f, 15f, 0f) {{
-                    effectY = 13; parentizeEffects = true;
-                    activeEffect = new ParticleEffect() {{
-                        followParent = true; rotWithParent = true;
-                        particles = 1; lifetime = 20; length = 0;
-                        region = "fading-revelations-patched-onirion-rotor";
-                        sizeFrom = 24; sizeTo = 24; spin = 16; layer = 95.1f;
-                    }};
-                }},
-                new StatusFieldAbility(StatusEffects.none, 0f, 15f, 0f) {{
-                    effectY = -13; parentizeEffects = true;
-                    activeEffect = new ParticleEffect() {{
-                        followParent = true; rotWithParent = true;
-                        particles = 1; lifetime = 20; length = 0;
-                        region = "fading-revelations-patched-onirion-rotor";
-                        sizeFrom = 18; sizeTo = 18; spin = 16; layer = 95.1f;
                     }};
                 }}
             );
