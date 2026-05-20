@@ -42,5 +42,6 @@ public class FadingRevelationsMod extends Mod {
             FROverride.mixTech();
         }
         FROverride.hardcore();
+        FRMusic.load();
     }
 }
