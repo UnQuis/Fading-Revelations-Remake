@@ -1,10 +1,11 @@
 {
-    displayName: "Fading Revelations Patched"
-    name: "fading-revelations-patched"
+    displayName: "[#bd7374]Fading[white] Revelations[white] [gray]Remake[]"
+    name: "fading-revelations-remake"
     main: "fadingrevelations.FadingRevelationsMod"
-    author: "Catser"
-    description: "A huge, fun & balanced content extension mod."
-    subtitle: "Bug fixes fork"
+    author: "[white]Catser[gray] &[white] UnQuis[]"
+    description: "[yellow]A huge, fun & balanced content extension mod.[]\n[lightgray]Continuing the legacy of Fading Revelations with new content, fixes, and improvements.[]"
+    subtitle: "[accent]Alpha rebuild[]"
     minGameVersion: "154"
-    version: "2.3.1"
+    version: "2.3.1-alpha"
+    java: true
 }
