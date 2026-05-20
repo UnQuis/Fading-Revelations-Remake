@@ -1,9 +1,12 @@
 package fadingrevelations.content;
 
+import arc.Events;
 import arc.struct.ObjectSet;
 import arc.struct.Seq;
 import mindustry.Vars;
 import mindustry.content.Planets;
+import mindustry.game.EventType;
+import mindustry.game.Team;
 import mindustry.type.Planet;
 import mindustry.type.Item;
 import mindustry.type.Liquid;
@@ -39,5 +42,16 @@ public class FROverride {
                 liquid.postInit();
             }
         }
+    }
+
+    public static void hardcore() {
+        Events.on(EventType.WorldLoadEvent.class, event -> {
+            if (!FRSettings.hardcore) return;
+
+            var enemyRules = Vars.state.rules.teams.get(Team.crux);
+            enemyRules.unitHealthMultiplier = 5f;
+            enemyRules.buildSpeedMultiplier = 3f;
+            enemyRules.unitBuildSpeedMultiplier = 3f;
+        });
     }
 }

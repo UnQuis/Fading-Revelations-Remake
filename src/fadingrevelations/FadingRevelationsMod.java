@@ -41,5 +41,6 @@ public class FadingRevelationsMod extends Mod {
         if (FRSettings.mixTech) {
             FROverride.mixTech();
         }
+        FROverride.hardcore();
     }
 }
