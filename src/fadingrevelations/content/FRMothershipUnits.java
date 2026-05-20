@@ -457,7 +457,7 @@ public class FRMothershipUnits {
                     status = FRStatus.japonicaWeakened; statusDuration = 60;
                     x = 0; y = 40;
                 }}
-                //TODO: UnitSpawnAbility for "risso" — not yet converted to Java
+                
             );
         }};
 
@@ -868,7 +868,7 @@ public class FRMothershipUnits {
                 }}
             );
             abilities.addAll(
-                //TODO: UnitSpawnAbility for "oxynoe" — not yet converted to Java
+                
                 new EnergyFieldAbility(20f, 12f, 240f) {{
                     color = Color.valueOf("84f491");
                     healPercent = 1; hitBuildings = true; hitUnits = true;
