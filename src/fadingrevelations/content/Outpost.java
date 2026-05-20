@@ -1,11 +1,78 @@
 package fadingrevelations.content;
 
+import arc.graphics.*;
+import arc.graphics.g2d.*;
+import arc.math.*;
+import arc.math.geom.*;
 import mindustry.Vars;
+import mindustry.entities.Effect;
 import mindustry.gen.Building;
+import mindustry.graphics.Drawf;
+import mindustry.graphics.Layer;
+import mindustry.graphics.Pal;
 import mindustry.type.Item;
 import mindustry.world.Block;
 
 public class Outpost extends Block {
+    private static final Vec2 v1 = new Vec2();
+    private static final Vec2 v2 = new Vec2();
+    private static final Vec2 v3 = new Vec2();
+    private static final Vec2 v4 = new Vec2();
+
+    public static final Effect haloGold = new Effect(40f, e -> {
+        float p = Interp.pow2Out.apply(e.fin());
+        float alpha = Interp.fade.apply(e.fin());
+        float baseRot = e.rotation + e.fin() * 45f;
+
+        float timeOffset = (e.id * 33.3f) + e.time;
+        float bobbing = Mathf.sin(timeOffset * 0.05f) * 2f - 12f;
+
+        float radius = 11f + Mathf.sin(timeOffset * 0.02f) * 0.5f;
+        float thick = 2.2f * alpha;
+
+        Draw.z(Layer.turret + 0.01f);
+
+        Draw.color(Pal.accent);
+        Draw.alpha(alpha * 0.35f);
+        Drawf.light(e.x, e.y + bobbing, radius * 2.5f, Pal.accent, 0.7f * alpha);
+
+        for(int i = 0; i < 4; i++){
+            float a = baseRot + i * 90f;
+            v1.trns(a, radius).add(e.x, e.y + bobbing);
+            v2.trns(a + 27f, radius * 1.25f).add(e.x, e.y + bobbing);
+            v3.trns(a + 63f, radius * 1.25f).add(e.x, e.y + bobbing);
+            v4.trns(a + 90f, radius).add(e.x, e.y + bobbing);
+
+            Draw.color(Pal.accent, Color.white, e.fin() * 0.3f);
+            Draw.alpha(alpha);
+
+            int steps = 12;
+            float lastX = v1.x, lastY = v1.y;
+            for(int j = 1; j <= steps; j++){
+                float t = (float)j / steps;
+                float u = 1f - t;
+                float bx = u*u*u*v1.x + 3f*u*u*t*v2.x + 3f*u*t*t*v3.x + t*t*t*v4.x;
+                float by = u*u*u*v1.y + 3f*u*u*t*v2.y + 3f*u*t*t*v3.y + t*t*t*v4.y;
+
+                Lines.stroke(thick * (1f - Mathf.sin(t * Mathf.PI) * 0.25f));
+                Lines.line(lastX, lastY, bx, by);
+                lastX = bx;
+                lastY = by;
+            }
+        }
+
+        for(int i = 0; i < 3; i++){
+            float floatAngle = baseRot * 1.5f + Mathf.randomSeed(e.id + i, 0f, 360f);
+            float floatRad = radius * Mathf.randomSeed(e.id + i * 3, 0.4f, 0.9f);
+            float px = e.x + Angles.trnsx(floatAngle, floatRad);
+            float py = e.y + bobbing + Angles.trnsy(floatAngle, floatRad * 0.5f) + p * 4f;
+
+            Draw.color(Color.white, Pal.accent, p);
+            Draw.alpha(alpha * 0.8f);
+            Fill.circle(px, py, 1f * (1f - p));
+        }
+    });
+
     public Outpost(String name) {
         super(name);
         update = true;
@@ -16,6 +83,8 @@ public class Outpost extends Block {
     }
 
     public class OutpostBuild extends Building {
+        protected float effectTime = 0f;
+
         @Override
         public boolean acceptItem(Building source, Item item) {
             return items.get(item) < getMaximumAccepted(item);
@@ -23,6 +92,12 @@ public class Outpost extends Block {
 
         @Override
         public void updateTile() {
+            effectTime += edelta();
+            if(effectTime >= 25f){
+                haloGold.at(x, y, effectTime);
+                effectTime = Mathf.random(8f);
+            }
+
             if (items.total() > 0) {
                 Building core = core();
                 if (core != null) {
