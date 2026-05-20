@@ -59,9 +59,19 @@ public class FROverride {
     public static void noCoreBurn() {
         Events.on(EventType.WorldLoadEvent.class, event -> {
             if (!FRSettings.noCoreBurnEffect) return;
+            Vars.state.rules.coreIncinerates = true;
 
             for (CoreBlock.CoreBuild core : Vars.state.teams.playerCores()) {
-                core.noEffect = true;
+                core.storageCapacity = Integer.MAX_VALUE;
+            }
+        });
+
+        Events.run(EventType.Trigger.update, () -> {
+            if (!FRSettings.noCoreBurnEffect) return;
+            if (Vars.state == null || Vars.state.isMenu()) return;
+
+            for (CoreBlock.CoreBuild core : Vars.state.teams.playerCores()) {
+                core.storageCapacity = Integer.MAX_VALUE;
             }
         });
     }
