@@ -129,6 +129,8 @@ public class FRFullTechTree {
         addBlock(fastUnloader, tinyMd);
         addBlock(tinyMd, massAccelerator);
         addBlock(modGateEffect, depository);
+        addBlock(depository, FRDistribution.frReinforcedVault);
+        addBlock(FRDistribution.frReinforcedVault, FRDistribution.frQuantumVault);
         addBlock(miniOd, constructionPylon);
 
         // --- TURRETS GATE ---
@@ -182,6 +184,7 @@ public class FRFullTechTree {
         addBlock(modGateCores, coreLevel4);
         addBlock(coreLevel4, coreLevel5);
         addBlock(coreLevel5, mainCore);
+        addBlock(mainCore, corePrime);
 
         // --- CRAFTERS GATE → all production blocks ---
         // JSON: research → mod-gate-blocks
@@ -379,6 +382,7 @@ public class FRFullTechTree {
         // === CORE UNITS ===
         addBlock(modGateCoreUnits, FRCoreUnits.delta);
         addBlock(FRCoreUnits.delta, FRCoreUnits.epsilon);
+        addBlock(FRCoreUnits.epsilon, FRCoreUnits.omega);
 
         // === FUTURE GATES (empty, for later use) ===
     }

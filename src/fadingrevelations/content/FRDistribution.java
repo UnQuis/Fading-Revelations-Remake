@@ -8,7 +8,8 @@ import mindustry.world.blocks.storage.StorageBlock;
 
 public class FRDistribution {
     public static Block titaniumRouter, titaniumJunction, titaniumDistributor, titaniumBridgeConveyor,
-            tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor;
+            tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor,
+            frReinforcedVault, frQuantumVault;
 
     public static void load() {
         titaniumRouter = new Router("titanium-router") {{
@@ -75,6 +76,20 @@ public class FRDistribution {
             description = "Stores a gigantic amount of items of each type, akin to a vault. Expands storage when placed next to a core. Contents can be retrieved with an unloader.";
             size = 4; hasItems = true; itemCapacity = 1800; health = 760; coreMerge = true;
             requirements(Category.effect, ItemStack.with(Items.titanium, 300, Items.thorium, 180, Items.plastanium, 20));
+        }};
+
+        frReinforcedVault = new StorageBlock("fr-reinforced-vault") {{
+            localizedName = "Reinforced Vault";
+            description = "Stores a massive amount of items. Expands storage when placed next to a core.";
+            size = 5; hasItems = true; itemCapacity = 10000; health = 1280; coreMerge = true;
+            requirements(Category.effect, ItemStack.with(Items.titanium, 600, Items.thorium, 350, Items.plastanium, 80, FRItems.livingSteel, 40));
+        }};
+
+        frQuantumVault = new StorageBlock("fr-quantum-vault") {{
+            localizedName = "Quantum Vault";
+            description = "Stores an astronomical amount of items. Expands storage when placed next to a core.";
+            size = 6; hasItems = true; itemCapacity = 25000; health = 1920; coreMerge = true;
+            requirements(Category.effect, ItemStack.with(Items.titanium, 1200, Items.thorium, 800, Items.plastanium, 200, FRItems.livingSteel, 120, Items.surgeAlloy, 60));
         }};
 
         amalgamConveyor = new StackConveyor("amalgam-conveyor") {{
