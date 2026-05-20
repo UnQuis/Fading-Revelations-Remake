@@ -10,6 +10,7 @@ import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.units.*;
 import mindustry.world.consumers.*;
+import fadingrevelations.worlds.blocks.unit.FRAscendedUnitFactory;
 import mindustry.world.meta.*;
 
 import static mindustry.type.ItemStack.*;
@@ -35,7 +36,8 @@ public class FRProduction {
         siliconForge, siliconArcForge, graphiteForge, powderizer, greenhouse,
         carbideBasin,
         primaryFactory, basicReassembly, advancedReassembly,
-        progressiveAssembly, regenerator;
+        progressiveAssembly, regenerator,
+        ascendedFactory;
 
     public static void load() {
         tinyThermalGen = new ThermalGenerator("tiny-thermal-gen") {{
@@ -760,6 +762,36 @@ public class FRProduction {
             addUpgrade(FRT3Units.springald, FRMothershipUnits.onager);
             addUpgrade(FRT3Units.onirion, FRMothershipUnits.culiseta);
             requirements(Category.units, with(FRItems.livingSteel, 2000, Items.thorium, 1500, Items.silicon, 3800, Items.plastanium, 700, Items.phaseFabric, 700, Items.surgeAlloy, 920));
+        }};
+
+        ascendedFactory = new FRAscendedUnitFactory("ascended-factory") {{
+            localizedName = "Ascended Factory";
+            description = "An advanced unit fabricator capable of constructing mothership-class units and transcendent units using the most advanced materials.";
+            size = 5;
+            consumePower(30f);
+            consumeLiquid(FRLiquids.neutronFluid, 0.3f);
+            plans = arc.struct.Seq.with(
+                new UnitPlan(FRMothershipUnits.toruct, 4800f, with(FRItems.livingSteel, 100, Items.silicon, 80, Items.titanium, 60, Items.phaseFabric, 30)),
+                new UnitPlan(FRMothershipUnits.reduct, 4800f, with(FRItems.livingSteel, 100, Items.silicon, 80, Items.titanium, 60, Items.phaseFabric, 30)),
+                new UnitPlan(FRMothershipUnits.hiveAttack, 3600f, with(FRItems.livingSteel, 80, Items.silicon, 60, Items.plastanium, 40)),
+                new UnitPlan(FRMothershipUnits.lycosid, 12000f, with(Items.silicon, 400, FRItems.livingSteel, 300, Items.plastanium, 200, Items.surgeAlloy, 150, Items.phaseFabric, 120)),
+                new UnitPlan(FRMothershipUnits.strahl, 12000f, with(Items.silicon, 400, FRItems.livingSteel, 300, Items.plastanium, 200, Items.surgeAlloy, 150, Items.phaseFabric, 120)),
+                new UnitPlan(FRMothershipUnits.onager, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
+                new UnitPlan(FRMothershipUnits.japonica, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
+                new UnitPlan(FRMothershipUnits.hive, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
+                new UnitPlan(FRMothershipUnits.culiseta, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
+                new UnitPlan(FRMothershipUnits.corax, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
+                new UnitPlan(FRMothershipUnits.altaic, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
+                new UnitPlan(FRTranscendentUnits.mygale, 24000f, with(Items.silicon, 800, Items.surgeAlloy, 500, FRItems.nanoFabric, 300, FRItems.optiCrystal, 200, FRItems.energyCell, 200)),
+                new UnitPlan(FRTranscendentUnits.scepter, 24000f, with(Items.silicon, 800, Items.surgeAlloy, 500, FRItems.nanoFabric, 300, FRItems.optiCrystal, 200, FRItems.energyCell, 200)),
+                new UnitPlan(FRTranscendentUnits.mangonel, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
+                new UnitPlan(FRTranscendentUnits.thalass, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
+                new UnitPlan(FRTranscendentUnits.vex, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
+                new UnitPlan(FRTranscendentUnits.anopheles, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
+                new UnitPlan(FRTranscendentUnits.medusae, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
+                new UnitPlan(FRTranscendentUnits.nivosa, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250))
+            );
+            requirements(Category.units, with(FRItems.livingSteelHard, 3000, Items.surgeAlloy, 2000, Items.silicon, 4000, Items.plastanium, 1500, Items.phaseFabric, 1200, FRItems.cryogenicAlloy, 800));
         }};
 
         regenerator = new RepairTower("unit-repair-field") {{

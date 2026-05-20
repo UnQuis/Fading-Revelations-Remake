@@ -30,6 +30,7 @@ public class FadingRevelationsMod extends Mod {
         FRMissiles.load();
         FRCerberianUnits.load();
         FRMothershipUnits.load();
+        FRTranscendentUnits.load();
         FRProduction.load();
 
         FRFullTechTree.load();
