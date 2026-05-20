@@ -13,7 +13,7 @@ import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
 public class FRCoreUnits {
-    public static UnitType mainCoreUnit, epsilon, delta;
+    public static UnitType mainCoreUnit, epsilon, delta, omega;
 
     public static void load() {
         mainCoreUnit = new UnitType("main-core-unit") {{
@@ -190,6 +190,30 @@ public class FRCoreUnits {
                 }}
             );
             abilities.add(new ForceFieldAbility(10f, 1f, 140f, 480f));
+        }};
+
+        omega = new UnitType("omega") {{
+            constructor = UnitEntity::create; localizedName = "[cyan]Omega";
+            description = "The ultimate core defense unit. Rapidly constructs and repairs structures, and projects a large force field.";
+            drag = 0.12f; speed = 5f; buildSpeed = 4f; mineSpeed = 20; mineTier = 4;
+            armor = 14; coreUnitDock = true; health = 480;
+            flying = true; itemCapacity = 140; hitSize = 14;
+            weapons.add(
+                new Weapon("nothing") {{
+                    x = 0; y = 2; reload = 4; shootSound = shootLaser;
+                    bullet = new LaserBoltBulletType(6f, 11f) {{
+                        buildingDamageMultiplier = 0.01f; pierce = true; pierceCap = 12;
+                        splashDamage = 8; splashDamageRadius = 6;
+                        homingRange = 180; homingPower = 0.2f;
+                        healPercent = 3; collidesTeam = true;
+                        hitEffect = new MultiEffect(
+                            new WaveEffect() {{ colorFrom = Color.valueOf("44aaff"); colorTo = Color.valueOf("88eeff"); rotation = 3; sizeFrom = 0; sizeTo = 6; }},
+                            new WaveEffect() {{ colorFrom = Color.valueOf("88eeff"); colorTo = Color.valueOf("44aaff"); rotation = 3; sizeFrom = 6; sizeTo = 0; }}
+                        );
+                    }};
+                }}
+            );
+            abilities.add(new ForceFieldAbility(14f, 3f, 400f, 600f));
         }};
     }
 }

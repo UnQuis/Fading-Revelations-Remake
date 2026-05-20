@@ -12,9 +12,9 @@ import mindustry.content.UnitTypes;
 import mindustry.gen.Sounds;
 
 public class FREffectBlocks {
-    public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, forceDome, forceField, fastUnloader, enhancedMendProjector, darkMender, bigLaunchPad,
-            mainCore, coreLevel4, coreLevel5;
-
+    public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, forceDome, forceField,
+            fastUnloader, enhancedMendProjector, darkMender, bigLaunchPad,
+            mainCore, coreLevel4, coreLevel5, corePrime;
     public static void load() {
         outpost = new Outpost("outpost") {{
             localizedName = "Outpost";
@@ -126,6 +126,17 @@ public class FREffectBlocks {
             size = 8; researchCostMultiplier = 0.4f; health = 11200; itemCapacity = 22000;
             unitType = UnitTypes.oct; unitCapModifier = 56;
             requirements(Category.effect, ItemStack.with(Items.copper, 18000, Items.lead, 18000, Items.silicon, 11000, Items.titanium, 13000, Items.thorium, 15000, Items.plastanium, 3600, Items.phaseFabric, 5200, Items.surgeAlloy, 2300));
+        }};
+
+        corePrime = new CoreBlock("core-prime") {{
+            localizedName = "Core: Prime";
+            description = "The ultimate core. Stores an astronomical amount of resources and is defended by the Omega unit.";
+            size = 9; researchCostMultiplier = 0.3f; health = 14000; itemCapacity = 32000;
+            unitType = FRCoreUnits.omega; unitCapModifier = 72;
+            requirements(Category.effect, ItemStack.with(Items.copper, 25000, Items.lead, 25000,
+                Items.silicon, 15000, Items.titanium, 18000, Items.thorium, 20000,
+                Items.plastanium, 5000, Items.phaseFabric, 7000, Items.surgeAlloy, 3500,
+                FRItems.livingSteel, 2000));
         }};
     }
 }
