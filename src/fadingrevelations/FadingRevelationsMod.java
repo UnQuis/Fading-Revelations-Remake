@@ -17,6 +17,7 @@ public class FadingRevelationsMod extends Mod {
         FRWalls.load();
         FRLiquidsBlocks.load();
         FRPowerNodes.load();
+        FRCoreUnits.load();
         FREffectBlocks.load();
         FRPlanets.load();
         FRSectorPresets.load();
@@ -27,7 +28,6 @@ public class FadingRevelationsMod extends Mod {
         FRT2Units.load();
         FRT3Units.load();
         FRMissiles.load();
-        FRCoreUnits.load();
         FRCerberianUnits.load();
         FRMothershipUnits.load();
         FRProduction.load();
