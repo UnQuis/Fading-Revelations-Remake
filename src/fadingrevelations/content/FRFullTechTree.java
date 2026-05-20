@@ -219,16 +219,11 @@ public class FRFullTechTree {
         
         
         
-        addBlock(modGateCrafters, ammoCrafter1);
-        addBlock(ammoCrafter1, ammoCrafter2);
-        addBlock(ammoCrafter2, ammoCrafter3);
-        addBlock(ammoCrafter3, healAmmoCrafter);
-        addBlock(healAmmoCrafter, homingAmmoCrafter);
-        addBlock(homingAmmoCrafter, nanoAmmoCrafter);
-        addBlock(nanoAmmoCrafter, nukeCrafter);
 
-        
-        
+
+
+
+
         
         
         
@@ -258,6 +253,10 @@ public class FRFullTechTree {
         addBlock(amalgamSmelter, amalgamForge);
         addBlock(cryogenicGelMixer, alloyCrafter);
         addBlock(alloyCrafter, cryogenicAlloyAssembler);
+        addBlock(cryogenicAlloyAssembler, crystalSynthesizer);
+        addBlock(crystalSynthesizer, cellFabricator);
+        addBlock(cellFabricator, nanoWeaver);
+        addBlock(greenhouse, bioRefinery);
 
         
         addToNode(siliconArcFurnace, () -> node(siliconArcForge));
@@ -283,16 +282,13 @@ public class FRFullTechTree {
         addBlock(FRItems.fuelRod, FRItems.cryogenicGel);
         addBlock(FRItems.cryogenicGel, FRItems.igneousAlloy);
         addBlock(FRItems.igneousAlloy, FRItems.cryogenicAlloy);
+        addBlock(FRItems.cryogenicAlloy, FRItems.optiCrystal);
+        addBlock(FRItems.optiCrystal, FRItems.energyCell);
+        addBlock(FRItems.energyCell, FRItems.nanoFabric);
+        addBlock(FRItems.nanoFabric, FRItems.bioMatter);
 
         
-        addBlock(modGateItems, modGateAmmo);
-        addBlock(modGateAmmo, FRItems.ammoLevel1);
-        addBlock(FRItems.ammoLevel1, FRItems.ammoLevel2);
-        addBlock(FRItems.ammoLevel2, FRItems.ammoLevel3);
-        addBlock(FRItems.ammoLevel1, FRItems.healAmmo);
-        addBlock(FRItems.ammoLevel2, FRItems.homingAmmo);
-        addBlock(FRItems.ammoLevel3, FRItems.nanoAmmo);
-        addBlock(FRItems.nanoAmmo, FRItems.nuke);
+        addBlock(modGateItems, FRItems.nuke);
 
         
         addBlock(modGateItems, modGateResources);

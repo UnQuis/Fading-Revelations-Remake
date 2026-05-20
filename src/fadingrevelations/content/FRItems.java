@@ -5,8 +5,8 @@ import mindustry.type.Item;
 
 public class FRItems {
     public static Item livingSteel, livingSteelHard, steelAlloy, fuelRod,
-            cryogenicGel, igneousAlloy, cryogenicAlloy,
-            ammoLevel1, ammoLevel2, ammoLevel3, healAmmo, homingAmmo, nanoAmmo, nuke;
+            cryogenicGel, igneousAlloy, cryogenicAlloy, nuke,
+            optiCrystal, energyCell, nanoFabric, bioMatter;
 
     public static void load() {
         livingSteel = new Item("living-steel", Color.valueOf("88299f")) {{
@@ -52,40 +52,28 @@ public class FRItems {
             description = "A shock-cooled, highly durable metal made from Igneous Alloy, Cryogenic Gel and Neutron Fluid. Useful in advanced electronic components.";
         }};
 
-        ammoLevel1 = new Item("ammo-level-1", Color.valueOf("9d7600")) {{
-            cost = 2.5f; hardness = 4; flammability = 0.1f; explosiveness = 0.1f;
-            localizedName = "Copper Ammo";
-            description = "Simple, boring ammo with absolutely no effects whatsoever.";
+        optiCrystal = new Item("opti-crystal", Color.valueOf("8a2be2")) {{
+            cost = 3f; hardness = 5; flammability = 0f; explosiveness = 0.1f; radioactivity = 0.3f; charge = 0.7f;
+            localizedName = "Optical Crystal";
+            description = "A highly pure crystalline structure grown from silicon and thorium. Used in advanced optical systems and energy weaponry.";
         }};
 
-        ammoLevel2 = new Item("ammo-level-2", Color.valueOf("002b92")) {{
-            cost = 2.5f; hardness = 6; flammability = 0.1f; explosiveness = 0.3f;
-            localizedName = "Titanium Ammo";
-            description = "Ammo made from titanium. Decent damage and has pierce.";
+        energyCell = new Item("energy-cell", Color.valueOf("f0d000")) {{
+            cost = 4f; hardness = 2; flammability = 0.6f; explosiveness = 0.8f; radioactivity = 0f; charge = 1.5f;
+            localizedName = "Energy Cell";
+            description = "A compact energy storage cell made from surge alloy and silicon. Holds a massive electrical charge and is used in high-power equipment.";
         }};
 
-        ammoLevel3 = new Item("ammo-level-3", Color.valueOf("df0505")) {{
-            cost = 2.5f; hardness = 3; flammability = 0.3f; explosiveness = 0.6f;
-            localizedName = "Explosive Ammo";
-            description = "Ammo made from blast compound. Decent damage and has a frag effect in some turrets.";
+        nanoFabric = new Item("nano-fabric", Color.valueOf("20b2aa")) {{
+            cost = 5f; hardness = 7; flammability = 0f; explosiveness = 0f; radioactivity = 0f; charge = 0.3f;
+            localizedName = "Nano Fabric";
+            description = "An advanced woven material made from living steel infused with phase fabric. Self-repairing and nearly indestructible.";
         }};
 
-        healAmmo = new Item("heal-ammo", Color.valueOf("77df05")) {{
-            cost = 2.5f; hardness = 0; flammability = 0.2f; explosiveness = 0.05f;
-            localizedName = "Healing Ammo";
-            description = "Ammo made from spore pods. No damage but heals hit allied blocks.";
-        }};
-
-        homingAmmo = new Item("homing-ammo", Color.valueOf("df21fa")) {{
-            cost = 2.5f; hardness = 1; flammability = 0.2f; explosiveness = 1.2f; radioactivity = 0.3f;
-            localizedName = "Homing Ammo";
-            description = "Ammo made from thorium. Good damage and has a homing effect.";
-        }};
-
-        nanoAmmo = new Item("nano-ammo", Color.valueOf("6e0268")) {{
-            cost = 2.5f; hardness = 0; flammability = 0.6f; explosiveness = 0.1f;
-            localizedName = "Nano Ammo";
-            description = "Ammo made from living steel that infects enemies with nano bots which burn them from the inside.";
+        bioMatter = new Item("bio-matter", Color.valueOf("66cc00")) {{
+            cost = 1.5f; hardness = 0; flammability = 0.8f; explosiveness = 0.1f; radioactivity = 0f; charge = 0f;
+            localizedName = "Biological Matter";
+            description = "A concentrated organic compound extracted from spores. Rich in energy and useful as a biological fuel source.";
         }};
 
         nuke = new Item("nuke", Color.valueOf("22b400")) {{
