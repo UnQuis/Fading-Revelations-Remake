@@ -4,6 +4,8 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
+import arc.util.Time;
+import arc.util.Tmp;
 import mindustry.Vars;
 import mindustry.entities.Effect;
 import mindustry.gen.Building;
@@ -12,6 +14,8 @@ import mindustry.graphics.Layer;
 import mindustry.graphics.Pal;
 import mindustry.type.Item;
 import mindustry.world.Block;
+
+import static mindustry.Vars.tilesize;
 
 public class Outpost extends Block {
     private static final Vec2 v1 = new Vec2();
@@ -84,6 +88,8 @@ public class Outpost extends Block {
 
     public class OutpostBuild extends Building {
         protected float effectTime = 0f;
+        protected float warmup = 0f;
+        protected float progress = 0f;
 
         @Override
         public boolean acceptItem(Building source, Item item) {
@@ -98,19 +104,65 @@ public class Outpost extends Block {
                 effectTime = Mathf.random(8f);
             }
 
-            if (items.total() > 0) {
-                Building core = core();
-                if (core != null) {
-                    for (int i = 0; i < Vars.content.items().size; i++) {
-                        Item item = Vars.content.item(i);
-                        int amount = items.get(item);
-                        if (amount > 0) {
-                            items.remove(item, amount);
-                            core.items.add(item, amount);
-                        }
+            Building c = core();
+            boolean hasCore = c != null && c.isValid();
+
+            if (hasCore && items.total() > 0) {
+                warmup = Mathf.lerpDelta(warmup, 1f, 0.02f);
+            } else {
+                warmup = Mathf.lerpDelta(warmup, 0f, 0.04f);
+            }
+
+            progress += warmup * efficiency * Time.delta;
+
+            if (hasCore && warmup >= 0.99f && items.total() > 0) {
+                for (int i = 0; i < Vars.content.items().size; i++) {
+                    Item item = Vars.content.item(i);
+                    int amount = items.get(item);
+                    if (amount > 0) {
+                        items.remove(item, amount);
+                        c.items.add(item, amount);
                     }
                 }
             }
+        }
+
+        @Override
+        public void draw() {
+            super.draw();
+            if (warmup <= 0.01f) return;
+
+            Building c = core();
+            if (c == null) return;
+
+            Draw.z(Layer.effect - 1f);
+            Draw.color(team.color);
+
+            for (int i = 0; i < 5; i++) {
+                float f = (progress - 25 * i) % 100 / 100;
+                Tmp.v1.trns(angleTo(c), f * tilesize * size * 4);
+                Lines.stroke(warmup * 1.5f * (1 - f));
+                Lines.square(x + Tmp.v1.x, y + Tmp.v1.y, (1 - f) * 8, 45);
+            }
+        }
+
+        @Override
+        public void drawConfigure() {
+            Building c = core();
+            if (c == null) return;
+            float ox = x, oy = y, cx = c.x, cy = c.y;
+
+            Draw.color(team.color);
+            Lines.stroke(1f);
+            Lines.dashLine(ox, oy, cx, cy, 12);
+            Fill.square(ox, oy, 3f, 45);
+            Fill.square(cx, cy, 3f, 45);
+            Draw.reset();
+        }
+
+        @Override
+        public boolean canPickup() {
+            return false;
         }
     }
 }
