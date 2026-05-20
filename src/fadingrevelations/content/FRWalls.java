@@ -13,9 +13,9 @@ import mindustry.world.meta.Env;
 
 public class FRWalls {
     public static Block
-        // mod walls
+        
         steelAlloyWallSmall, steelAlloyWallLarge, livingSteelWall, livingSteelWallLarge,
-        // serpulo advanced walls
+        
         copperWall2, copperWall3,
         titaniumWall2, titaniumWall3,
         thoriumWall2, thoriumWall3,
@@ -24,7 +24,7 @@ public class FRWalls {
         phaseFabricWall2, phaseFabricWall3,
         armoredDoor, doorHuge, doorGigantic,
         armoredWall,
-        // erekir advanced walls
+        
         berylliumWallHuge, berylliumWallGigantic,
         tungstenWallHuge, tungstenWallGigantic,
         carbideWallHuge, carbideWallGigantic,

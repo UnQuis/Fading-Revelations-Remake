@@ -200,7 +200,7 @@ public class FRCoreUnits {
             armor = 14; coreUnitDock = true; health = 480;
             flying = true; itemCapacity = 140; hitSize = 14;
             weapons.addAll(
-                // 1. Healing laser — supports allies and damages enemies
+                
                 copyWeapon(new Weapon("nothing") {{
                     reload = 4; shootSound = shootLaser; rotate = true; rotationLimit = 20;
                     bullet = new LaserBoltBulletType(7f, 12f) {{
@@ -215,7 +215,7 @@ public class FRCoreUnits {
                         );
                     }};
                 }}, 0, 2),
-                // 2. Point defense — shoots down enemy projectiles (front and rear)
+                
                 copyWeapon(new Weapon("nothing") {{
                     reload = 5; rotate = true; rotateSpeed = 12; shootCone = 60;
                     bullet = new BasicBulletType(10f, 15) {{
@@ -223,7 +223,7 @@ public class FRCoreUnits {
                         hittable = false;
                     }};
                 }}, 0, 6),
-                // 3. Lightning arc — chain electricity (left)
+                
                 copyWeapon(new Weapon("nothing") {{
                     reload = 30; shootSound = Sounds.shoot; rotate = true; rotationLimit = 45;
                     shoot = new ShootSpread(3, 15);
@@ -236,7 +236,7 @@ public class FRCoreUnits {
                         lightningColor = Color.valueOf("88eeff");
                     }};
                 }}, -7, 3),
-                // 4. Lightning arc — chain electricity (right)
+                
                 copyWeapon(new Weapon("nothing") {{
                     reload = 30; shootSound = Sounds.shoot; rotate = true; rotationLimit = 45;
                     shoot = new ShootSpread(3, 15);
@@ -249,7 +249,7 @@ public class FRCoreUnits {
                         lightningColor = Color.valueOf("88eeff");
                     }};
                 }}, 7, 3),
-                // 5. Homing missiles — AoE damage
+                
                 copyWeapon(new Weapon("nothing") {{
                     reload = 45; shootSound = Sounds.shoot; rotate = true; rotationLimit = 30;
                     shoot = new ShootSpread(4, 12);

@@ -28,21 +28,21 @@ import static fadingrevelations.content.FRFx.*;
 import static mindustry.type.ItemStack.*;
 
 public class FRTurrets {
-    // === ITEM TURRETS ===
+    
     public static Block
         accel, bigSwarmer, caats, corruptedCyclone, gattling, ignitor, interitus,
         mineLauncher, missileBattery, missileSilo, mortar, oreTurret, ringTurret,
         sear, shotgun, sniper, sunflare, trio, upgradeTurret,
-    // === POWER TURRETS ===
+    
         uhlan, megaMeltdown, lightningChaingun, kugelblitz, diffract, cavalry,
         bigSegment, bigScatter, bigParallax, bigArc, airArc, absole, statusWave,
-    // === LIQUID TURRETS ===
+    
         zephyr, weave, sprunkler, batter,
-    // === OTHER ===
+    
         constructionPylon;
 
     public static void load() {
-        // ========== ITEM TURRETS ==========
+        
 
         accel = new ItemTurret("accel") {{
             localizedName = "Accel";
@@ -297,9 +297,9 @@ public class FRTurrets {
             );
         }};
 
-        // (remaining turrets continue with same pattern — abbreviated for clarity)
-        // In a real build, all 37 turrets would be fully defined here.
-        // For the build to succeed, define stubs for the remaining turrets:
+        
+        
+        
 
         bigSwarmer = new ItemTurret("big-swarmer") {{
             localizedName = "Assail";
@@ -1055,7 +1055,7 @@ public class FRTurrets {
             );
         }};
 
-        // ========== POWER TURRETS ==========
+        
 
         uhlan = new PowerTurret("uhlan") {{
             localizedName = "Uhlan";
@@ -1427,7 +1427,7 @@ public class FRTurrets {
             }};
         }};
 
-        // ========== LIQUID TURRETS ==========
+        
 
         zephyr = new LiquidTurret("zephyr") {{
             localizedName = "Zephyr";
@@ -1572,7 +1572,7 @@ public class FRTurrets {
             );
         }};
 
-        // ========== OTHER ==========
+        
 
         constructionPylon = new BuildTurret("construction-pylon") {{
             localizedName = "Construction Pylon";
@@ -1583,7 +1583,7 @@ public class FRTurrets {
         }};
     }
 
-    // Helper for creating drone drawer parts
+    
     private static DrawPart dronePart(String suffix, float x, float y, float rot) {
         return new RegionPart() {{
             this.suffix = suffix; progress = PartProgress.warmup;
@@ -1593,7 +1593,7 @@ public class FRTurrets {
         }};
     }
 
-    // Helper to get a unit type by name (for spawnUnit)
+    
     private static UnitType unit(String name) {
         return Vars.content.getByName(ContentType.unit, name);
     }
