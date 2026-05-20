@@ -302,6 +302,7 @@ public class FRFullTechTree {
         addBlock(primaryFactory, basicReassembly);
         addBlock(basicReassembly, advancedReassembly);
         addBlock(advancedReassembly, progressiveAssembly);
+        addBlock(progressiveAssembly, ascendedFactory);
         addBlock(modGateFactories, regenerator);
         addBlock(modGateUnits, modGateFlying);
         addBlock(modGateUnits, modGateLegs);
@@ -376,6 +377,16 @@ public class FRFullTechTree {
         
         addBlock(FRT3Units.arnux, FRMothershipUnits.japonica);
         addBlock(FRT3Units.aestiva, FRMothershipUnits.altaic);
+
+        
+        addBlock(ascendedFactory, FRTranscendentUnits.mygale);
+        addBlock(ascendedFactory, FRTranscendentUnits.scepter);
+        addBlock(ascendedFactory, FRTranscendentUnits.mangonel);
+        addBlock(ascendedFactory, FRTranscendentUnits.thalass);
+        addBlock(ascendedFactory, FRTranscendentUnits.vex);
+        addBlock(ascendedFactory, FRTranscendentUnits.anopheles);
+        addBlock(ascendedFactory, FRTranscendentUnits.medusae);
+        addBlock(ascendedFactory, FRTranscendentUnits.nivosa);
 
         
         addBlock(modGateCoreUnits, FRCoreUnits.delta);

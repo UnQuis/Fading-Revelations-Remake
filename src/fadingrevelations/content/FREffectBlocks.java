@@ -42,10 +42,10 @@ public class FREffectBlocks {
 
         overdriveBeacon = new OverdriveProjector("overdrive-beacon") {{
             localizedName = "Overdrive Beacon";
-            description = "An advanced overdrive beacon that supercharges nearby buildings to extreme speeds. Phase Fabric boost provides an extraordinary effect.";
+            description = "An advanced overdrive beacon that supercharges nearby buildings to extreme speeds. Nano Fabric boost provides an extraordinary effect.";
             size = 3; range = 90; speedBoost = 13f; hasBoost = true; speedBoostPhase = 38f; phaseRangeBoost = 100;
             consumePower(45f);
-            consumeItem(Items.phaseFabric, 2).boost();
+            consumeItem(FRItems.nanoFabric, 2).boost();
             requirements(Category.effect, ItemStack.with(Items.silicon, 350, Items.thorium, 250, Items.surgeAlloy, 150, Items.phaseFabric, 120, FRItems.steelAlloy, 80));
         }};
 
