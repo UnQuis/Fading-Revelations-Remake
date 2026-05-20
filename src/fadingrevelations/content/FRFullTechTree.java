@@ -272,6 +272,7 @@ public class FRFullTechTree {
         // === ITEMS GATE → main items branch ===
         addBlock(modGateMain, modGateItems);
         addBlock(modGateItems, FRItems.livingSteel);
+        addBlock(FRItems.livingSteel, FRItems.livingSteelHard);
         addBlock(FRItems.livingSteel, FRItems.steelAlloy);
         addBlock(FRItems.steelAlloy, FRItems.fuelRod);
         addBlock(FRItems.fuelRod, FRItems.cryogenicGel);
