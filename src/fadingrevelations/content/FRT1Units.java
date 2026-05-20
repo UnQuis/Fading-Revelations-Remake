@@ -16,50 +16,9 @@ import mindustry.type.*;
 import mindustry.gen.Sounds;
 
 public class FRT1Units {
-    public static UnitType aedes, alba, annax, apis, heliaca, lancerDrone, mela, sambuca, seed;
+    public static UnitType alba, annax, apis, heliaca, lancerDrone, mela, sambuca, seed;
 
     public static void load() {
-        aedes = new UnitType("aedes") {{
-            constructor = UnitEntity::create; localizedName = "Aedes"; flying = true; lowAltitude = true;
-            engineSize = 0;
-            health = 55; hitSize = 9;
-            range = 135; speed = 1; strafePenalty = 1;
-            weapons.addAll(
-                new Weapon() {{
-                    x = 0; y = 0; shootY = 0; shootX = 0;
-                    mirror = false; rotate = false;
-                    shootSound = Sounds.none;
-                    alwaysShooting = true; ignoreRotation = true;
-                    recoil = 0; shootCone = 360; reload = 15;
-                    bullet = new BulletType() {{
-                        status = FRStatus.minimalDowndraft; statusDuration = 30;
-                        instantDisappear = true; damage = 0;
-                        shootEffect = new ParticleEffect() {{
-                            followParent = true; rotWithParent = true;
-                            particles = 1; lifetime = 20; length = 0;
-                            region = "fading-revelations-patched-aedes-rotor";
-                            sizeFrom = 10; sizeTo = 10; spin = 10; layer = 95.1f;
-                        }};
-                        pierceBuilding = true; knockback = 0.1f;
-                        smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;
-                        splashDamage = 10; splashDamageRadius = 16;
-                        speed = 0;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 0; y = 0; rotate = false; mirror = false;
-                    reload = 20; shootSound = Sounds.shoot;
-                    bullet = new BasicBulletType() {{
-                        width = 6; height = 10;
-                        weaveMag = 4; weaveScale = 4;
-                        lifetime = 45; speed = 3; damage = 9;
-                        trailWidth = 1.5f; trailColor = Color.valueOf("d9dcbc");
-                        trailLength = 6; trailChance = -1;
-                    }};
-                }}
-            );
-        }};
-
         alba = new UnitType("alba") {{
             constructor = UnitWaterMove::create; localizedName = "Alba";
             health = 310; armor = 3; speed = 1.2f; drag = 0.14f; hitSize = 9;

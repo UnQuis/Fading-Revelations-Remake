@@ -699,8 +699,7 @@ public class FRProduction {
                 new UnitPlan(FRT1Units.apis, 1200f, with(Items.lead, 15, Items.silicon, 15)),
                 new UnitPlan(FRT1Units.alba, 3600f, with(Items.silicon, 25, Items.metaglass, 30, Items.titanium, 25)),
                 new UnitPlan(FRT1Units.annax, 2400f, with(Items.scrap, 40, Items.silicon, 30, Items.lead, 20)),
-                new UnitPlan(FRT1Units.sambuca, 3000f, with(Items.silicon, 40, Items.lead, 30, Items.titanium, 20)),
-                new UnitPlan(FRT1Units.aedes, 1600f, with(Items.silicon, 30, Items.lead, 20, Items.graphite, 20))
+                new UnitPlan(FRT1Units.sambuca, 3000f, with(Items.silicon, 40, Items.lead, 30, Items.titanium, 20))
             );
             requirements(Category.units, with(Items.copper, 90, Items.lead, 110, Items.silicon, 40, Items.metaglass, 60));
         }};
@@ -720,7 +719,6 @@ public class FRProduction {
             addUpgrade(FRT1Units.alba, FRT2Units.arvens);
             addUpgrade(FRT1Units.annax, FRT2Units.scofra);
             addUpgrade(FRT1Units.sambuca, FRT2Units.scorpio);
-            addUpgrade(FRT1Units.aedes, FRT2Units.armiger);
             requirements(Category.units, with(Items.copper, 500, Items.lead, 800, Items.silicon, 700, Items.titanium, 800));
         }};
 
@@ -740,7 +738,6 @@ public class FRProduction {
             addUpgrade(FRT2Units.arvens, FRT3Units.aestiva);
             addUpgrade(FRT2Units.scofra, FRT3Units.auratus);
             addUpgrade(FRT2Units.scorpio, FRT3Units.springald);
-            addUpgrade(FRT2Units.armiger, FRT3Units.onirion);
             requirements(Category.units, with(Items.lead, 2200, Items.titanium, 2100, Items.thorium, 900, Items.plastanium, 520, Items.phaseFabric, 640));
         }};
 
@@ -760,7 +757,6 @@ public class FRProduction {
             addUpgrade(FRT3Units.aestiva, FRMothershipUnits.altaic);
             addUpgrade(FRT3Units.auratus, FRMothershipUnits.lycosid);
             addUpgrade(FRT3Units.springald, FRMothershipUnits.onager);
-            addUpgrade(FRT3Units.onirion, FRMothershipUnits.culiseta);
             requirements(Category.units, with(FRItems.livingSteel, 2000, Items.thorium, 1500, Items.silicon, 3800, Items.plastanium, 700, Items.phaseFabric, 700, Items.surgeAlloy, 920));
         }};
 
@@ -779,7 +775,6 @@ public class FRProduction {
                 new UnitPlan(FRMothershipUnits.onager, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
                 new UnitPlan(FRMothershipUnits.japonica, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
                 new UnitPlan(FRMothershipUnits.hive, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
-                new UnitPlan(FRMothershipUnits.culiseta, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
                 new UnitPlan(FRMothershipUnits.corax, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
                 new UnitPlan(FRMothershipUnits.altaic, 15000f, with(Items.silicon, 500, FRItems.livingSteel, 400, Items.plastanium, 250, Items.surgeAlloy, 200, Items.phaseFabric, 150)),
                 new UnitPlan(FRTranscendentUnits.mygale, 24000f, with(Items.silicon, 800, Items.surgeAlloy, 500, FRItems.nanoFabric, 300, FRItems.optiCrystal, 200, FRItems.energyCell, 200)),
@@ -787,7 +782,6 @@ public class FRProduction {
                 new UnitPlan(FRTranscendentUnits.mangonel, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
                 new UnitPlan(FRTranscendentUnits.thalass, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
                 new UnitPlan(FRTranscendentUnits.vex, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
-                new UnitPlan(FRTranscendentUnits.anopheles, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
                 new UnitPlan(FRTranscendentUnits.medusae, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250)),
                 new UnitPlan(FRTranscendentUnits.nivosa, 30000f, with(Items.silicon, 1000, Items.surgeAlloy, 600, FRItems.nanoFabric, 400, FRItems.optiCrystal, 250, FRItems.energyCell, 250))
             );

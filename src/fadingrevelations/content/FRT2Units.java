@@ -18,59 +18,9 @@ import mindustry.type.weapons.*;
 import static mindustry.content.Fx.*;
 
 public class FRT2Units {
-    public static UnitType armiger, arvens, alopex, cromis, procer, sapling, scofra, scorpio;
+    public static UnitType arvens, alopex, cromis, procer, sapling, scofra, scorpio;
 
     public static void load() {
-        armiger = new UnitType("armiger") {{
-            constructor = UnitEntity::create; localizedName = "Armiger"; flying = true; lowAltitude = true; engineSize = 0;
-            health = 525; armor = 6; speed = 1; range = 180; hitSize = 12; strafePenalty = 1;
-            weapons.addAll(
-                new Weapon() {{
-                    x = 0; y = 0; shootY = 0; shootX = 0;
-                    mirror = false; rotate = false;
-                    alwaysShooting = true; shootSound = Sounds.none;
-                    recoil = 0; ignoreRotation = true; shootCone = 360; reload = 15;
-                    bullet = new BulletType() {{
-                        status = FRStatus.slightDowndraft; statusDuration = 20;
-                        instantDisappear = true; damage = 0;
-                        splashDamage = 7; splashDamageRadius = 32;
-                        pierceBuilding = true; knockback = 0.2f;
-                        shootEffect = new ParticleEffect() {{
-                            followParent = true; rotWithParent = true;
-                            particles = 1; lifetime = 20; length = 0;
-                            region = "fading-revelations-patched-armiger-rotor";
-                            sizeFrom = 13; sizeTo = 13; spin = 12; layer = 95.1f;
-                        }};
-                        smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;
-                        speed = 0;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 0; y = 4;
-                    rotate = false; mirror = true; alternate = false;
-                    reload = 20; shootSound = Sounds.shoot;
-                    bullet = new BasicBulletType() {{
-                        width = 8; height = 12;
-                        weaveMag = 4; weaveScale = 4;
-                        lifetime = 60; speed = 3; damage = 6;
-                        trailWidth = 1.7f; trailColor = Color.valueOf("d9dcbc");
-                        trailLength = 7; trailChance = -1;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 7; y = 1; mirror = true; rotate = false;
-                    reload = 26;
-                    shoot = new ShootPattern() {{ shots = 2; shotDelay = 1; }};
-                    shootSound = Sounds.shootMissile;
-                    bullet = new MissileBulletType() {{
-                        width = 8; height = 12; lifetime = 60; speed = 3; damage = 8;
-                        trailWidth = 1.7f; trailColor = Color.valueOf("d9dcbc");
-                        trailLength = 7; trailChance = -1;
-                    }};
-                }}
-            );
-        }};
-
         arvens = new UnitType("arvens") {{
             constructor = UnitWaterMove::create; localizedName = "Arvens";
             health = 920; armor = 6; hitSize = 17;

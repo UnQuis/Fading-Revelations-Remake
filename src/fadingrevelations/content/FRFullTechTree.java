@@ -311,11 +311,8 @@ public class FRFullTechTree {
 
         
         
-        addBlock(modGateFlying, FRT1Units.aedes);
-        addBlock(FRT1Units.aedes, FRT2Units.armiger);
-        addBlock(FRT2Units.armiger, FRT3Units.onirion);
-        addBlock(FRT1Units.aedes, FRT1Units.heliaca);
-        
+        addBlock(modGateFlying, FRT1Units.heliaca);
+
         addBlock(modGateFlying, FRT1Units.apis);
         addBlock(FRT1Units.apis, FRT2Units.procer);
         addBlock(FRT2Units.procer, FRT3Units.ducalis);
@@ -336,7 +333,6 @@ public class FRFullTechTree {
         
         addBlock(FRT3Units.kestrel, FRMothershipUnits.strahl);
         addBlock(FRT3Units.ducalis, FRMothershipUnits.hive);
-        addBlock(FRT3Units.onirion, FRMothershipUnits.culiseta);
 
         
         
@@ -384,7 +380,6 @@ public class FRFullTechTree {
         addBlock(ascendedFactory, FRTranscendentUnits.mangonel);
         addBlock(ascendedFactory, FRTranscendentUnits.thalass);
         addBlock(ascendedFactory, FRTranscendentUnits.vex);
-        addBlock(ascendedFactory, FRTranscendentUnits.anopheles);
         addBlock(ascendedFactory, FRTranscendentUnits.medusae);
         addBlock(ascendedFactory, FRTranscendentUnits.nivosa);
 

@@ -19,7 +19,7 @@ import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
 public class FRTranscendentUnits {
-    public static UnitType scepter, mangonel, thalass, vex, medusae, nivosa, mygale, anopheles;
+    public static UnitType scepter, mangonel, thalass, vex, medusae, nivosa, mygale;
 
     public static void load() {
         mygale = new UnitType("mygale") {{
@@ -77,8 +77,6 @@ public class FRTranscendentUnits {
                 }}
             );
             abilities.addAll(
-                new UnitSpawnAbility(FRMothershipUnits.toruct, -25, -55, 180),
-                new UnitSpawnAbility(FRMothershipUnits.reduct, 25, -55, 180),
                 new ForceFieldAbility(120f, 6f, 15000f, 800f)
             );
         }};
@@ -384,190 +382,6 @@ public class FRTranscendentUnits {
             abilities.addAll(
                 new UnitSpawnAbility(FRMothershipUnits.hiveAttack, 0, -20, 350),
                 new ForceFieldAbility(130f, 6f, 30000f, 800f)
-            );
-        }};
-
-        anopheles = new UnitType("anopheles") {{
-            constructor = PayloadUnit::create; localizedName = "Anopheles"; flying = true; lowAltitude = true;
-            health = 30000; armor = 6; speed = 1.2f; hitSize = 72;
-            range = 300; strafePenalty = 1; payloadCapacity = 320; engineSize = 0;
-            weapons.addAll(
-                new Weapon() {{
-                    x = 0; y = 4; shootY = 0; shootX = 0;
-                    mirror = false; rotate = false; shootCone = 360;
-                    alwaysShooting = true; ignoreRotation = true;
-                    reload = 10; recoil = 0;
-                    shootSound = Sounds.none;
-                    bullet = new BulletType() {{
-                        status = FRStatus.powerfulDowndraft; statusDuration = 25;
-                        instantDisappear = true; damage = 0;
-                        splashDamage = 25; splashDamageRadius = 100;
-                        pierceBuilding = true; knockback = 0.6f;
-                        shootEffect = new ParticleEffect() {{
-                            followParent = true; rotWithParent = true;
-                            particles = 1; lifetime = 20; length = 0;
-                            region = "fading-revelations-patched-culiseta-rotor";
-                            sizeFrom = 140; sizeTo = 140; spin = 18; layer = 95.1f;
-                        }};
-                        smokeEffect = Fx.none; hitEffect = Fx.none; despawnEffect = Fx.none;
-                        speed = 0;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 0; y = 0; mirror = false; rotate = false;
-                    reload = 120; shootSound = shootMissile;
-                    shoot = new ShootSpread(6, 18) {{ shotDelay = 5; }};
-                    bullet = new BulletType() {{
-                        instantDisappear = true; damage = 0;
-                        spawnUnit = FRMissiles.tinyMissile4;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 0; y = 50; mirror = false; rotate = false;
-                    shootCone = 60; reload = 140;
-                    shootSound = shootArtillery;
-                    bullet = new BasicBulletType() {{
-                        speed = 3.5f; lifetime = 100; width = 38; height = 38;
-                        sprite = "large-orb"; hitSize = 38;
-                        pierce = true; pierceBuilding = true; damage = 650;
-                        knockback = -12;
-                        lightning = 6; lightningLength = 12; lightningDamage = 30;
-                        shootEffect = shootTitan; smokeEffect = shootSmokeTitan;
-                        hitEffect = blastExplosion;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 40; y = 24; mirror = true; alternate = false;
-                    rotate = false; reload = 8; inaccuracy = 4;
-                    bullet = new BasicBulletType() {{
-                        speed = 4; lifetime = 90; width = 12; height = 16; damage = 60;
-                        pierce = true; pierceBuilding = true; pierceCap = 6;
-                        buildingDamageMultiplier = 0.5f;
-                        lightning = 2; lightningLength = 5; lightningDamage = 6;
-                        shootEffect = shootSmall; hitEffect = flakExplosion;
-                        despawnEffect = flakExplosion; smokeEffect = shootSmallSmoke;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 62; y = 8; mirror = true; alternate = true;
-                    rotate = false; reload = 90; shootCone = 32; inaccuracy = 2;
-                    shootSound = shootLaser;
-                    bullet = new LaserBulletType() {{
-                        length = 250; damage = 500; lifetime = 100;
-                        knockback = -3;
-                        colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
-                    }};
-                }},
-                new Weapon() {{
-                    x = 20; y = 48; mirror = true; alternate = true;
-                    rotate = false; reload = 10; shootCone = 35; inaccuracy = 3;
-                    shootSound = shootMissile;
-                    bullet = new MissileBulletType() {{
-                        speed = 5; lifetime = 80; width = 12; height = 16; damage = 90;
-                        pierce = true; pierceCap = 6; pierceBuilding = true;
-                        buildingDamageMultiplier = 0.5f;
-                        lightning = 2; lightningLength = 5; lightningDamage = 15;
-                        shootEffect = shootSmall; hitEffect = flakExplosion;
-                        despawnEffect = flakExplosion; smokeEffect = shootSmallSmoke;
-                    }};
-                }},
-                new Weapon() {{
-                    x = 0; y = -45; mirror = false; rotate = false;
-                    shootCone = 360; ignoreRotation = true;
-                    reload = 180; minShootVelocity = 0.1f;
-                    shootSound = shootArtillery;
-                    bullet = new BombBulletType() {{
-                        splashDamage = 550; splashDamageRadius = 40;
-                        width = 56; height = 56;
-                        hitEffect = massiveExplosion; shootEffect = Fx.none;
-                        smokeEffect = Fx.none; despawnEffect = Fx.none;
-                        status = StatusEffects.blasted; statusDuration = 150;
-                        fragSpread = 45; fragLifeMin = 1; fragRandomSpread = 0; fragBullets = 10;
-                        fragBullet = new MissileBulletType() {{
-                            width = 18; height = 18; speed = 2.5f; lifetime = 35; damage = 160;
-                            pierce = true; pierceBuilding = true; pierceCap = 2;
-                            fragBullets = 5; fragLifeMin = 1; fragRandomSpread = 0; fragSpread = 90;
-                            hitEffect = Fx.none;
-                            fragBullet = new MissileBulletType() {{
-                                width = 14; height = 14; speed = 2.5f; lifetime = 25; damage = 110;
-                                pierce = true; pierceBuilding = true; pierceCap = 2;
-                                hitEffect = Fx.none;
-                                fragBullets = 1; fragLifeMin = 1; fragRandomSpread = 0; fragAngle = 90;
-                                fragBullet = new ExplosionBulletType() {{
-                                    killShooter = false;
-                                    splashDamage = 220; splashDamageRadius = 30;
-                                }};
-                            }};
-                        }};
-                    }};
-                }},
-                new Weapon() {{
-                    x = 20; y = -12; mirror = true; rotate = false;
-                    reload = 140; baseRotation = 90; ignoreRotation = true;
-                    alternate = false; shootCone = 180;
-                    shootSound = shootArtillery;
-                    bullet = new ArtilleryBulletType() {{
-                        collidesAir = false; speed = 2.5f; lifetime = 65;
-                        damage = 180; width = 20; height = 20;
-                        splashDamage = 50; splashDamageRadius = 30;
-                        pierce = false;
-                        fragBullets = 20; fragSpread = 22.5f; fragRandomSpread = 0; fragLifeMin = 1;
-                        hitEffect = sapExplosion; despawnHit = true;
-                        fragBullet = new MissileBulletType() {{
-                            speed = 2.5f; lifetime = 18; damage = 85;
-                            hitEffect = flakExplosion; despawnEffect = Fx.none;
-                        }};
-                    }};
-                }},
-                new Weapon() {{
-                    x = 20; y = -24; mirror = true; rotate = false;
-                    reload = 145; baseRotation = 90; ignoreRotation = true;
-                    alternate = false; shootCone = 180;
-                    shootSound = shootArtillery;
-                    bullet = new ArtilleryBulletType() {{
-                        collidesAir = false; speed = 2.5f; lifetime = 65;
-                        damage = 190; width = 20; height = 20;
-                        splashDamage = 50; splashDamageRadius = 20;
-                        pierce = false;
-                        fragBullets = 20; fragSpread = 22.5f; fragRandomSpread = 0; fragLifeMin = 1;
-                        hitEffect = sapExplosion; despawnHit = true;
-                        fragBullet = new MissileBulletType() {{
-                            speed = 2.5f; lifetime = 18; damage = 85;
-                            hitEffect = flakExplosion; despawnEffect = Fx.none;
-                        }};
-                    }};
-                }},
-                new Weapon() {{
-                    x = 22; y = -36; mirror = true; rotate = false;
-                    reload = 150; baseRotation = 90; ignoreRotation = true;
-                    alternate = false; shootCone = 180;
-                    shootSound = shootArtillery;
-                    bullet = new ArtilleryBulletType() {{
-                        collidesAir = false; speed = 2.5f; lifetime = 65;
-                        damage = 150; width = 20; height = 20;
-                        splashDamage = 50; splashDamageRadius = 20;
-                        pierce = false;
-                        fragBullets = 20; fragSpread = 22.5f; fragRandomSpread = 0; fragLifeMin = 1;
-                        hitEffect = sapExplosion; despawnHit = true;
-                        fragBullet = new MissileBulletType() {{
-                            speed = 2.5f; lifetime = 18; damage = 65;
-                            hitEffect = flakExplosion; despawnEffect = Fx.none;
-                        }};
-                    }};
-                }},
-                new PointDefenseWeapon() {{
-                    x = 32; y = -62; mirror = true; alternate = true;
-                    rotate = false; shootCone = 360; reload = 8;
-                    targetInterval = 5; targetSwitchInterval = 6;
-                    bullet = new BulletType() {{
-                        shootEffect = sparkShoot;
-                        maxRange = 200; damage = 25;
-                    }};
-                }}
-            );
-            abilities.addAll(
-                new SpawnDeathAbility(FRMothershipUnits.toruct, 4, 90) {{ faceOutwards = true; }},
-                new SpawnDeathAbility(FRMothershipUnits.reduct, 6, 60) {{ faceOutwards = true; }}
             );
         }};
 
