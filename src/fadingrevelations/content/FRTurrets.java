@@ -253,38 +253,11 @@ public class FRTurrets {
             shoot = new ShootPattern() {{ shots = 3; }};
 
             ammoTypes = ObjectMap.of(
-                FRItems.ammoLevel1, new BasicBulletType() {{
-                    damage = 31f; speed = 8f; lifetime = 25f;
-                    splashDamage = 2f; splashDamageRadius = 5f; ammoMultiplier = 2f;
-                    shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
-                }},
-                FRItems.ammoLevel2, new BasicBulletType() {{
-                    damage = 40f; speed = 12f; pierce = true;
-                    splashDamage = 8f; splashDamageRadius = 10f; ammoMultiplier = 2f;
-                    shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
-                }},
-                FRItems.ammoLevel3, new MissileBulletType() {{
-                    damage = 50f; speed = 10f;
-                    splashDamage = 14f; splashDamageRadius = 20f; ammoMultiplier = 1f;
-                    shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
-                    trailEffect = trailBezierRed;
-                }},
-                FRItems.healAmmo, new LaserBoltBulletType() {{
-                    damage = 0f; healPercent = 5f;
-                    collidesTeam = true;
-                    shootEffect = bezierBurstGreen; hitEffect = hitBezierGreen;
-                }},
                 FRItems.livingSteel, new BasicBulletType() {{
                     damage = 40f; speed = 8f;
                     splashDamage = 8f; splashDamageRadius = 10f;
                     status = StatusEffects.slow; statusDuration = 20f;
                     shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
-                }},
-                FRItems.nanoAmmo, new BasicBulletType() {{
-                    damage = 9f; speed = 10f;
-                    splashDamage = 1f; splashDamageRadius = 1f;
-                    status = StatusEffects.melting; statusDuration = 8000000f;
-                    shootEffect = bezierBurstPink; hitEffect = hitBezierWhite;
                 }},
                 FRItems.steelAlloy, new BasicBulletType() {{
                     damage = 61f; speed = 10f;
@@ -467,39 +440,11 @@ public class FRTurrets {
             targetAir = false;
             hasLiquids = true; liquidCapacity = 20f;
             ammoTypes = ObjectMap.of(
-                FRItems.ammoLevel1, new BasicBulletType() {{
-                    damage = 12f; speed = 12f; lifetime = 25f;
-                    splashDamage = 5f; splashDamageRadius = 5f; ammoMultiplier = 10f;
-                    shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
-                }},
-                FRItems.ammoLevel2, new BasicBulletType() {{
-                    damage = 18f; speed = 12f; pierce = true;
-                    splashDamage = 12f; splashDamageRadius = 10f; ammoMultiplier = 15f;
-                    shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
-                }},
-                FRItems.ammoLevel3, new BasicBulletType() {{
-                    damage = 22f; speed = 12f; pierce = true;
-                    splashDamage = 25f; splashDamageRadius = 12f; ammoMultiplier = 15f;
-                    shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
-                }},
-                FRItems.homingAmmo, new MissileBulletType() {{
-                    damage = 32f; speed = 12f; pierce = true;
-                    splashDamage = 18f; splashDamageRadius = 14f;
-                    homingPower = 0.2f; status = StatusEffects.burning;
-                    shootEffect = bezierBurstOrange; hitEffect = hitBezierOrange;
-                    trailEffect = trailBezierOrange;
-                }},
                 FRItems.livingSteel, new BasicBulletType() {{
                     damage = 30f; speed = 12f;
                     splashDamage = 10f; splashDamageRadius = 6f;
                     status = StatusEffects.slow; ammoMultiplier = 15f;
                     shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
-                }},
-                FRItems.nanoAmmo, new BasicBulletType() {{
-                    damage = 5f; speed = 12f;
-                    splashDamage = 1f; splashDamageRadius = 1f;
-                    status = StatusEffects.melting; statusDuration = 8000000f; ammoMultiplier = 15f;
-                    shootEffect = bezierBurstPink; hitEffect = hitBezierWhite;
                 }},
                 FRItems.steelAlloy, new BasicBulletType() {{
                     damage = 9f; speed = 12f;
@@ -604,21 +549,6 @@ public class FRTurrets {
                             sprite = "lml-mine";
                             status = StatusEffects.melting; statusDuration = 240f;
                             shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
-                        }};
-                    }};
-                }},
-                FRItems.ammoLevel3, new BasicBulletType() {{
-                    damage = 0f; speed = 3f; lifetime = 40f;
-                    fragBullets = 3; fragSpread = 45f;
-                    fragBullet = new BasicBulletType() {{
-                        speed = 18f; lifetime = 2f; damage = 0f;
-                        fragBullets = 1;
-                        fragBullet = new BasicBulletType() {{
-                            damage = 90f; speed = 0f; lifetime = 720f;
-                            splashDamage = 75f; splashDamageRadius = 45f;
-                            sprite = "lml-mine";
-                            status = StatusEffects.melting; statusDuration = 300f;
-                            shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
                         }};
                     }};
                 }}
@@ -794,40 +724,6 @@ public class FRTurrets {
             targetAir = true;
             shoot = new ShootPattern() {{ shots = 21; }};
             ammoTypes = ObjectMap.of(
-                FRItems.ammoLevel1, new MissileBulletType() {{
-                    speed = 2f; lifetime = 140f; damage = 40f;
-                    trailWidth = 6f; trailLength = 60; trailChance = -1;
-                    lightRadius = 40f; lightOpacity = 0.7f;
-                    width = 24f; height = 24f;
-                    fragBullets = 10;
-                    fragBullet = new BasicBulletType() {{ damage = 15f; speed = 3f; }};
-                    shootEffect = bezierBurstWhite; trailEffect = trailBezierGold;
-                }},
-                FRItems.ammoLevel2, new MissileBulletType() {{
-                    speed = 2f; lifetime = 140f; damage = 60f;
-                    trailWidth = 6f; trailLength = 60; trailChance = -1;
-                    width = 24f; height = 24f;
-                    fragBullets = 10;
-                    fragBullet = new BasicBulletType() {{ damage = 20f; pierce = true; pierceCap = 4; frontColor = Color.valueOf("7575c8"); }};
-                    shootEffect = bezierBurstBlue; trailEffect = trailBezierBlue;
-                }},
-                FRItems.ammoLevel3, new MissileBulletType() {{
-                    speed = 2f; lifetime = 140f; damage = 90f;
-                    trailWidth = 6f; trailLength = 60; trailChance = -1;
-                    width = 24f; height = 24f;
-                    status = StatusEffects.blasted;
-                    fragBullets = 10;
-                    fragBullet = new BasicBulletType() {{ damage = 25f; status = StatusEffects.blasted; frontColor = Color.valueOf("c85c51"); }};
-                    shootEffect = bezierBurstRed; trailEffect = trailBezierRed;
-                }},
-                FRItems.nanoAmmo, new MissileBulletType() {{
-                    speed = 2f; lifetime = 140f; damage = 5f;
-                    trailWidth = 6f; trailLength = 60; trailChance = -1;
-                    width = 24f; height = 24f;
-                    fragBullets = 10;
-                    fragBullet = new BasicBulletType() {{ damage = 2f; status = StatusEffects.melting; statusDuration = 8000000f; frontColor = Color.valueOf("570047"); }};
-                    shootEffect = bezierBurstPink; trailEffect = trailBezierPink;
-                }},
                 FRItems.livingSteel, new MissileBulletType() {{
                     speed = 2f; lifetime = 140f; damage = 30f;
                     trailWidth = 6f; trailLength = 60; trailChance = -1;
@@ -897,40 +793,11 @@ public class FRTurrets {
             targetAir = false;
             shoot = new ShootAlternate(25f) {{ shots = 2; }};
             ammoTypes = ObjectMap.of(
-                FRItems.ammoLevel1, new BasicBulletType() {{
-                    damage = 50f; speed = 5f; width = 3f; height = 6f;
-                    backColor = Color.valueOf("d17f4d"); frontColor = Color.valueOf("b87044");
-                    shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
-                }},
-                FRItems.ammoLevel2, new BasicBulletType() {{
-                    damage = 75f; speed = 6f; lifetime = 30f; pierce = true;
-                    width = 3f; height = 6f;
-                    backColor = Color.valueOf("2a4bc2"); frontColor = Color.valueOf("2442ab");
-                    shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
-                }},
-                FRItems.ammoLevel3, new BasicBulletType() {{
-                    damage = 100f; speed = 6f; lifetime = 30f;
-                    width = 3f; height = 6f;
-                    backColor = Color.valueOf("c03939"); frontColor = Color.valueOf("a23030");
-                    shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
-                }},
-                FRItems.homingAmmo, new BasicBulletType() {{
-                    damage = 120f; speed = 6f; lifetime = 30f;
-                    width = 3f; height = 6f;
-                    backColor = Color.valueOf("963ac4"); frontColor = Color.valueOf("772c9c");
-                    shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
-                }},
                 FRItems.livingSteel, new BasicBulletType() {{
                     damage = 75f; speed = 6f; lifetime = 24f;
                     width = 3f; height = 6f;
                     backColor = Color.valueOf("8b0091"); frontColor = Color.valueOf("af00b5");
                     shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
-                }},
-                FRItems.nanoAmmo, new BasicBulletType() {{
-                    damage = 10f; speed = 7f;
-                    splashDamage = 1f; splashDamageRadius = 1f;
-                    status = StatusEffects.melting; statusDuration = 8000000f;
-                    shootEffect = bezierBurstPink; hitEffect = hitBezierWhite;
                 }},
                 FRItems.steelAlloy, new BasicBulletType() {{
                     damage = 90f; speed = 6f; lifetime = 24f;
@@ -951,37 +818,6 @@ public class FRTurrets {
             maxAmmo = 50; coolantMultiplier = 1f;
             consumeCoolant(0.8f);
             ammoTypes = ObjectMap.of(
-                FRItems.ammoLevel1, new PointBulletType() {{
-                    damage = 300f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
-                    splashDamage = 300f; splashDamageRadius = 16f; ammoMultiplier = 2f;
-                    shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
-                    trailEffect = new ParticleEffect() {{ particles = 16; line = true; colorFrom = Color.white; colorTo = Color.lightGray; lifetime = 15f; }};
-                }},
-                FRItems.ammoLevel2, new PointBulletType() {{
-                    damage = 400f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
-                    splashDamage = 400f; splashDamageRadius = 24f; ammoMultiplier = 1f;
-                    shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
-                    trailEffect = new ParticleEffect() {{ particles = 16; line = true; colorFrom = Color.valueOf("66b1ff"); colorTo = Color.valueOf("e4fdff"); lifetime = 15f; }};
-                }},
-                FRItems.ammoLevel3, new PointBulletType() {{
-                    damage = 500f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
-                    splashDamage = 500f; splashDamageRadius = 24f;
-                    shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
-                    trailEffect = new ParticleEffect() {{ particles = 16; line = true; colorFrom = Color.valueOf("ff6666"); colorTo = Color.valueOf("ffcccc"); lifetime = 15f; }};
-                }},
-                FRItems.homingAmmo, new PointBulletType() {{
-                    damage = 600f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
-                    splashDamage = 600f; splashDamageRadius = 32f; homingPower = 0.9f;
-                    shootEffect = bezierBurstGold; hitEffect = hitBezierGold;
-                    trailEffect = new ParticleEffect() {{ particles = 16; line = true; colorFrom = Color.valueOf("f3e979"); colorTo = Color.valueOf("d99f6b"); lifetime = 15f; }};
-                }},
-                FRItems.nanoAmmo, new PointBulletType() {{
-                    damage = 30f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
-                    splashDamage = 30f; splashDamageRadius = 24f;
-                    status = StatusEffects.melting; statusDuration = 8000000f;
-                    shootEffect = bezierBurstPink; hitEffect = hitBezierWhite;
-                    trailEffect = new ParticleEffect() {{ particles = 16; line = true; colorFrom = Color.valueOf("ff69b4"); colorTo = Color.valueOf("ffb6d9"); lifetime = 15f; }};
-                }},
                 FRItems.livingSteel, new PointBulletType() {{
                     damage = 600f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
                     splashDamage = 600f; splashDamageRadius = 24f;
@@ -1326,8 +1162,7 @@ public class FRTurrets {
                 Items.lead, new FlakBulletType() {{ speed = 4.2f; damage = 14f; splashDamage = 17f; splashDamageRadius = 16f; ammoMultiplier = 4f; frontColor = Color.valueOf("83008b"); backColor = Color.valueOf("7e7e7e"); hitEffect = Fx.flakExplosion; shootEffect = bezierBurstPurple; }},
                 Items.metaglass, new FlakBulletType() {{ damage = 14f; splashDamage = 25f; splashDamageRadius = 22f; ammoMultiplier = 5f; fragBullets = 3; fragBullet = new FlakBulletType() {{ damage = 8f; splashDamage = 8f; splashDamageRadius = 5f; }}; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstCyan; }},
                 Items.pyratite, new FlakBulletType() {{ damage = 22f; splashDamage = 29f; splashDamageRadius = 28f; ammoMultiplier = 5f; status = StatusEffects.burning; fragBullets = 2; fragBullet = new FlakBulletType() {{ damage = 14f; splashDamage = 4f; }}; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstRed; }},
-                FRItems.livingSteel, new FlakBulletType() {{ damage = 18f; splashDamage = 17f; splashDamageRadius = 32f; status = StatusEffects.slow; statusDuration = 30f; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstPurple; }},
-                FRItems.nanoAmmo, new FlakBulletType() {{ damage = 4f; splashDamage = 5f; splashDamageRadius = 24f; status = StatusEffects.melting; statusDuration = 8000000f; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstPink; }}
+                FRItems.livingSteel, new FlakBulletType() {{ damage = 18f; splashDamage = 17f; splashDamageRadius = 32f; status = StatusEffects.slow; statusDuration = 30f; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstPurple; }}
             );
             drawer = new DrawTurret() {{
                 parts = Seq.with(

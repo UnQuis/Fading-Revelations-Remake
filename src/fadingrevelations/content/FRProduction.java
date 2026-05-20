@@ -24,8 +24,8 @@ public class FRProduction {
         cryogenicGelMixer, alloyCrafter, cryogenicAlloyAssembler,
         amalgamSmelter, amalgamForge, basicMultismelter, steamCondenser,
         neutronBlender, acidVat, acidEmulsifier, uraniumrodCrafter,
-        ammoCrafter1, ammoCrafter2, ammoCrafter3, healAmmoCrafter,
-        homingAmmoCrafter, nanoAmmoCrafter, nukeCrafter,
+        nukeCrafter,
+        crystalSynthesizer, cellFabricator, nanoWeaver, bioRefinery,
         advancedSeparator, advancedCryofluidMixer, advancedCoalCentrifuge,
         atmosphericHeatConcentrator, bigPhaseWeaver, atmosphericExtractor,
         advancedWaterExtractor, enhancedPyratiteMixer, enhancedBlastMixer,
@@ -332,64 +332,56 @@ public class FRProduction {
             requirements(Category.crafting, with(Items.copper, 200, Items.lead, 150, Items.titanium, 60, Items.thorium, 50));
         }};
 
-        ammoCrafter1 = new GenericCrafter("ammo-crafter-1") {{
-            localizedName = "Level 1 Ammocrafter";
-            description = "Crafts copper ammo out of copper and coal.";
-            size = 2; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.pulverizeRed;
-            consumeItems(with(Items.coal, 1, Items.copper, 2));
-            outputItem = new ItemStack(FRItems.ammoLevel1, 2);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120));
+        crystalSynthesizer = new GenericCrafter("crystal-synthesizer") {{
+            localizedName = "Crystal Synthesizer";
+            description = "Grows highly pure optical crystals from a silicon-thorium solution. Produces [#8a2be2]Optical Crystals[] used in advanced optics and energy weapons.";
+            size = 3; hasPower = true; hasItems = true; hasLiquids = true;
+            liquidCapacity = 30; itemCapacity = 20; craftTime = 90;
+            craftEffect = Fx.pulverize;
+            consumePower(2.5f);
+            consumeItems(with(Items.silicon, 3, Items.thorium, 2));
+            consumeLiquid(Liquids.water, 0.15f);
+            outputItem = new ItemStack(FRItems.optiCrystal, 1);
+            requirements(Category.crafting, with(Items.copper, 250, Items.lead, 200, Items.silicon, 150, Items.thorium, 100, Items.graphite, 80));
         }};
 
-        ammoCrafter2 = new GenericCrafter("ammo-crafter-2") {{
-            localizedName = "Level 2 Ammocrafter";
-            description = "Crafts titanium ammo out of titanium and coal.";
-            size = 2; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.pulverizeRed;
-            consumePower(0.15f); consumeItems(with(Items.coal, 3, Items.titanium, 2));
-            outputItem = new ItemStack(FRItems.ammoLevel2, 1);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.graphite, 55));
+        cellFabricator = new GenericCrafter("cell-fabricator") {{
+            localizedName = "Cell Fabricator";
+            description = "Assembles compact energy cells from surge alloy and silicon. [#f0d000]Energy Cells[] store massive electrical charges for high-power equipment.";
+            size = 3; hasPower = true; hasItems = true; hasLiquids = false;
+            itemCapacity = 20; craftTime = 120;
+            craftEffect = Fx.shootSmokeSquare;
+            consumePower(3f);
+            consumeItems(with(Items.silicon, 4, Items.surgeAlloy, 2, Items.lead, 3));
+            outputItem = new ItemStack(FRItems.energyCell, 1);
+            requirements(Category.crafting, with(Items.copper, 300, Items.lead, 250, Items.silicon, 200, Items.surgeAlloy, 120, Items.graphite, 100));
         }};
 
-        ammoCrafter3 = new GenericCrafter("ammo-crafter-3") {{
-            localizedName = "Level 3 Ammocrafter";
-            description = "Crafts explosive ammo out of blast compound and coal.";
-            size = 2; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.pulverizeRed;
-            consumePower(0.2f); consumeItems(with(Items.coal, 5, Items.blastCompound, 2));
-            outputItem = new ItemStack(FRItems.ammoLevel3, 2);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.titanium, 55));
+        nanoWeaver = new GenericCrafter("nano-weaver") {{
+            localizedName = "Nano Weaver";
+            description = "Weaves living steel fibers with phase fabric to create self-repairing [#20b2aa]Nano Fabric[]. Nearly indestructible and used in the most advanced equipment.";
+            size = 3; hasPower = true; hasItems = true; hasLiquids = true;
+            liquidCapacity = 30; itemCapacity = 20; craftTime = 150;
+            craftEffect = Fx.smeltsmoke;
+            consumePower(4f);
+            consumeItems(with(FRItems.livingSteel, 3, Items.phaseFabric, 2));
+            consumeLiquid(FRLiquids.neutronFluid, 0.1f);
+            outputItem = new ItemStack(FRItems.nanoFabric, 1);
+            requirements(Category.crafting, with(Items.copper, 350, Items.lead, 300, Items.silicon, 250, Items.phaseFabric, 150, FRItems.livingSteelHard, 100));
         }};
 
-        healAmmoCrafter = new GenericCrafter("heal-ammo-crafter") {{
-            localizedName = "Heal-Ammo Crafter";
-            description = "Crafts healing ammunition using spore pods and coal. Used in turrets, this ammo can heal allied blocks.";
-            size = 2; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.pulverizeRed;
-            consumePower(0.2f); consumeItems(with(Items.sporePod, 2, Items.coal, 2));
-            outputItem = new ItemStack(FRItems.healAmmo, 2);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.titanium, 55));
-        }};
-
-        homingAmmoCrafter = new GenericCrafter("homing-ammo-crafter") {{
-            localizedName = "Homing-Ammo Crafter";
-            description = "Crafts homing ammo out of thorium and coal.";
-            size = 2; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.pulverizeRed;
-            consumePower(0.2f); consumeItems(with(Items.thorium, 2, Items.coal, 2));
-            outputItem = new ItemStack(FRItems.homingAmmo, 2);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.titanium, 55));
-        }};
-
-        nanoAmmoCrafter = new GenericCrafter("nano-ammo-crafter") {{
-            localizedName = "Nanobot Ammo Crafter";
-            description = "Crafts nanobot ammo out of living steel and coal.";
-            size = 2; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.pulverizeRed;
-            consumePower(0.2f); consumeItems(with(Items.coal, 5, FRItems.livingSteel, 2));
-            outputItem = new ItemStack(FRItems.nanoAmmo, 2);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.graphite, 65, Items.titanium, 55));
+        bioRefinery = new GenericCrafter("bio-refinery") {{
+            localizedName = "Bio-Refinery";
+            description = "Processes spores into concentrated [#66cc00]Biological Matter[] through a controlled fermentation process. The resulting organic compound is rich in energy.";
+            size = 3; hasPower = true; hasItems = true; hasLiquids = true;
+            liquidCapacity = 60; itemCapacity = 30; craftTime = 60;
+            craftEffect = Fx.steam;
+            consumePower(1.5f);
+            consumeItems(with(Items.sporePod, 4));
+            consumeLiquid(Liquids.water, 0.2f);
+            outputItem = new ItemStack(FRItems.bioMatter, 2);
+            outputLiquid = new LiquidStack(Liquids.water, 0.1f);
+            requirements(Category.crafting, with(Items.copper, 200, Items.lead, 150, Items.silicon, 80, Items.graphite, 60));
         }};
 
         nukeCrafter = new GenericCrafter("nuke-crafter") {{
