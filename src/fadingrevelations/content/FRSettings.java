@@ -3,6 +3,7 @@ package fadingrevelations.content;
 import arc.Core;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.Table;
+import arc.scene.ui.Tooltip;
 import mindustry.Vars;
 import mindustry.gen.Icon;
 import mindustry.ui.Styles;
@@ -32,8 +33,8 @@ public class FRSettings {
                             hardcore = box.isChecked();
                         });
                         box.left();
-                        addDesc(parent.add(box).left().padTop(3f).get());
-                        parent.row();
+                        box.addListener(new Tooltip(t -> t.add("[gray]Enemy units have 5x health[].\n[gray]All enemy production is 3x faster[].\n[red]Requires restarting the sector.[]").width(300f)));
+                        parent.add(box).left().padTop(3f).row();
                     }
                 });
 
@@ -47,8 +48,8 @@ public class FRSettings {
                             mixTech = box.isChecked();
                         });
                         box.left();
-                        addDesc(parent.add(box).left().padTop(3f).get());
-                        parent.row();
+                        box.addListener(new Tooltip(t -> t.add("[gray]All content becomes available on[]\n[gray]all planets instead of being[]\n[gray]planet-exclusive.[]\n[orange]Requires restarting the game.[]").width(300f)));
+                        parent.add(box).left().padTop(3f).row();
                     }
                 });
 
@@ -62,8 +63,8 @@ public class FRSettings {
                             showVersion = box.isChecked();
                         });
                         box.left();
-                        addDesc(parent.add(box).left().padTop(3f).get());
-                        parent.row();
+                        box.addListener(new Tooltip(t -> t.add("[gray]Displays the mod version on the[]\n[gray]HUD screen.[]").width(300f)));
+                        parent.add(box).left().padTop(3f).row();
                     }
                 });
             });
