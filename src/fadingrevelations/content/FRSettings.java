@@ -10,16 +10,18 @@ import mindustry.ui.Styles;
 import mindustry.ui.dialogs.SettingsMenuDialog;
 
 public class FRSettings {
-    public static boolean hardcore, mixTech, showVersion;
+    public static boolean hardcore, mixTech, showVersion, noCoreBurnEffect;
 
     public static void init() {
         Core.settings.defaults("fr-hardcore", false);
         Core.settings.defaults("fr-mix-tech", false);
         Core.settings.defaults("fr-show-version", true);
+        Core.settings.defaults("fr-no-core-burn-effect", false);
 
         hardcore = Core.settings.getBool("fr-hardcore");
         mixTech = Core.settings.getBool("fr-mix-tech");
         showVersion = Core.settings.getBool("fr-show-version");
+        noCoreBurnEffect = Core.settings.getBool("fr-no-core-burn-effect");
 
         if (Vars.ui != null && Vars.ui.settings != null) {
             Vars.ui.settings.addCategory("Fading Revelations", Icon.settings, table -> {
@@ -64,6 +66,21 @@ public class FRSettings {
                         });
                         box.left();
                         box.addListener(new Tooltip(t -> t.add("[gray]Displays the mod version on the[]\n[gray]HUD screen.[]").width(300f)));
+                        parent.add(box).left().padTop(3f).row();
+                    }
+                });
+
+                table.pref(new SettingsMenuDialog.SettingsTable.CheckSetting("fr-no-core-burn-effect", false, null) {
+                    @Override
+                    public void add(SettingsMenuDialog.SettingsTable parent) {
+                        CheckBox box = new CheckBox("[orange]Disable core burn effect[]");
+                        box.update(() -> box.setChecked(Core.settings.getBool(name)));
+                        box.changed(() -> {
+                            Core.settings.put(name, box.isChecked());
+                            noCoreBurnEffect = box.isChecked();
+                        });
+                        box.left();
+                        box.addListener(new Tooltip(t -> t.add("[gray]Prevents the burn/fire effect when[]\n[gray]the core is full and items overflow.[]\n[lightgray]Helps with lag on busy maps.[]").width(300f)));
                         parent.add(box).left().padTop(3f).row();
                     }
                 });

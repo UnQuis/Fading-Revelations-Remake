@@ -11,6 +11,7 @@ import mindustry.type.Planet;
 import mindustry.type.Item;
 import mindustry.type.Liquid;
 import mindustry.world.Block;
+import mindustry.world.blocks.storage.CoreBlock;
 
 public class FROverride {
     public static void mixTech() {
@@ -52,6 +53,16 @@ public class FROverride {
             enemyRules.unitHealthMultiplier = 5f;
             enemyRules.buildSpeedMultiplier = 3f;
             enemyRules.unitBuildSpeedMultiplier = 3f;
+        });
+    }
+
+    public static void noCoreBurn() {
+        Events.on(EventType.WorldLoadEvent.class, event -> {
+            if (!FRSettings.noCoreBurnEffect) return;
+
+            for (CoreBlock.CoreBuild core : Vars.state.teams.playerCores()) {
+                core.noEffect = true;
+            }
         });
     }
 }
