@@ -1,17 +1,19 @@
 package fadingrevelations.content;
 
 import arc.Events;
+import arc.func.Cons;
 import arc.struct.ObjectSet;
 import arc.struct.Seq;
 import mindustry.Vars;
+import mindustry.content.Fx;
 import mindustry.content.Planets;
+import mindustry.entities.Effect;
 import mindustry.game.EventType;
 import mindustry.game.Team;
 import mindustry.type.Planet;
 import mindustry.type.Item;
 import mindustry.type.Liquid;
 import mindustry.world.Block;
-import mindustry.world.blocks.storage.CoreBlock;
 
 public class FROverride {
     public static void mixTech() {
@@ -57,22 +59,11 @@ public class FROverride {
     }
 
     public static void noCoreBurn() {
-        Events.on(EventType.WorldLoadEvent.class, event -> {
-            if (!FRSettings.noCoreBurnEffect) return;
-            Vars.state.rules.coreIncinerates = true;
-
-            for (CoreBlock.CoreBuild core : Vars.state.teams.playerCores()) {
-                core.storageCapacity = Integer.MAX_VALUE;
+        Cons<Effect.EffectContainer> orig = Fx.coreBurn.renderer;
+        Fx.coreBurn.renderer = e -> {
+            if (!FRSettings.noCoreBurnEffect) {
+                orig.get(e);
             }
-        });
-
-        Events.run(EventType.Trigger.update, () -> {
-            if (!FRSettings.noCoreBurnEffect) return;
-            if (Vars.state == null || Vars.state.isMenu()) return;
-
-            for (CoreBlock.CoreBuild core : Vars.state.teams.playerCores()) {
-                core.storageCapacity = Integer.MAX_VALUE;
-            }
-        });
+        };
     }
 }
