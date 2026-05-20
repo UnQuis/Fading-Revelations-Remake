@@ -88,7 +88,7 @@ public class Outpost extends Block {
         update = true;
         solid = true;
         hasItems = true;
-        itemCapacity = 5;
+        itemCapacity = 10000;
         buildType = OutpostBuild::new;
     }
 
@@ -96,11 +96,6 @@ public class Outpost extends Block {
         protected float effectTime = 0f;
         protected float warmup = 0f;
         protected float progress = 0f;
-
-        @Override
-        public boolean acceptItem(Building source, Item item) {
-            return items.get(item) < getMaximumAccepted(item);
-        }
 
         @Override
         public void updateTile() {
