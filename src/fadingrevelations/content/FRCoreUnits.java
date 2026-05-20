@@ -1,6 +1,7 @@
 package fadingrevelations.content;
 
 import arc.graphics.*;
+import arc.struct.Seq;
 import mindustry.content.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
@@ -198,22 +199,82 @@ public class FRCoreUnits {
             drag = 0.12f; speed = 5f; buildSpeed = 4f; mineSpeed = 20; mineTier = 4;
             armor = 14; coreUnitDock = true; health = 480;
             flying = true; itemCapacity = 140; hitSize = 14;
-            weapons.add(
-                new Weapon("nothing") {{
-                    x = 0; y = 2; reload = 4; shootSound = shootLaser;
-                    bullet = new LaserBoltBulletType(6f, 11f) {{
+            weapons.addAll(
+                // 1. Healing laser — supports allies and damages enemies
+                copyWeapon(new Weapon("nothing") {{
+                    reload = 4; shootSound = shootLaser; rotate = true; rotationLimit = 20;
+                    bullet = new LaserBoltBulletType(7f, 12f) {{
                         buildingDamageMultiplier = 0.01f; pierce = true; pierceCap = 12;
                         splashDamage = 8; splashDamageRadius = 6;
                         homingRange = 180; homingPower = 0.2f;
                         healPercent = 3; collidesTeam = true;
+                        status = StatusEffects.shocked; statusDuration = 30;
                         hitEffect = new MultiEffect(
                             new WaveEffect() {{ colorFrom = Color.valueOf("44aaff"); colorTo = Color.valueOf("88eeff"); rotation = 3; sizeFrom = 0; sizeTo = 6; }},
                             new WaveEffect() {{ colorFrom = Color.valueOf("88eeff"); colorTo = Color.valueOf("44aaff"); rotation = 3; sizeFrom = 6; sizeTo = 0; }}
                         );
                     }};
+                }}, 0, 2),
+                // 2. Point defense — shoots down enemy projectiles (front and rear)
+                copyWeapon(new Weapon("nothing") {{
+                    reload = 5; rotate = true; rotateSpeed = 12; shootCone = 60;
+                    bullet = new BasicBulletType(10f, 15) {{
+                        lifetime = 40; despawnHit = true; keepVelocity = false;
+                        hittable = false;
+                    }};
+                }}, 0, 6),
+                // 3. Lightning arc — chain electricity (left)
+                copyWeapon(new Weapon("nothing") {{
+                    reload = 30; shootSound = Sounds.shoot; rotate = true; rotationLimit = 45;
+                    shoot = new ShootSpread(3, 15);
+                    bullet = new LightningBulletType() {{
+                        lightningLength = 8; lightningLengthRand = 12;
+                        damage = 18; lightningType = new LightningBulletType() {{
+                            lightningLength = 4; lightningLengthRand = 6; damage = 9;
+                            lightningColor = Color.valueOf("44aaff");
+                        }};
+                        lightningColor = Color.valueOf("88eeff");
+                    }};
+                }}, -7, 3),
+                // 4. Lightning arc — chain electricity (right)
+                copyWeapon(new Weapon("nothing") {{
+                    reload = 30; shootSound = Sounds.shoot; rotate = true; rotationLimit = 45;
+                    shoot = new ShootSpread(3, 15);
+                    bullet = new LightningBulletType() {{
+                        lightningLength = 8; lightningLengthRand = 12;
+                        damage = 18; lightningType = new LightningBulletType() {{
+                            lightningLength = 4; lightningLengthRand = 6; damage = 9;
+                            lightningColor = Color.valueOf("44aaff");
+                        }};
+                        lightningColor = Color.valueOf("88eeff");
+                    }};
+                }}, 7, 3),
+                // 5. Homing missiles — AoE damage
+                copyWeapon(new Weapon("nothing") {{
+                    reload = 45; shootSound = Sounds.shoot; rotate = true; rotationLimit = 30;
+                    shoot = new ShootSpread(4, 12);
+                    bullet = new MissileBulletType(5f, 22) {{
+                        lifetime = 120; splashDamage = 35; splashDamageRadius = 24;
+                        homingPower = 0.08f; homingRange = 160;
+                        trailColor = Color.valueOf("88eeff");
+                        hitEffect = blastExplosion;
+                    }};
+                }}, 0, -5)
+            );
+            abilities.addAll(
+                new ForceFieldAbility(14f, 3f, 400f, 600f) {{ alpha = 0.08f; }},
+                new EnergyFieldAbility(18f, 10f, 90f) {{
+                    color = Color.valueOf("44aaff"); healPercent = 3; hitBuildings = true; hitUnits = true;
+                    maxTargets = 6; sectors = 6;
+                    status = StatusEffects.shielded; statusDuration = 30;
+                    targetAir = true; targetGround = true;
                 }}
             );
-            abilities.add(new ForceFieldAbility(14f, 3f, 400f, 600f));
         }};
+    }
+
+    private static Weapon copyWeapon(Weapon weapon, float x, float y) {
+        weapon.x = x; weapon.y = y; weapon.mirror = true; weapon.alternate = true;
+        return weapon;
     }
 }
