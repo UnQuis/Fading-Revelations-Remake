@@ -13,7 +13,7 @@ import mindustry.gen.Sounds;
 
 public class FRDrills {
     public static Block tinyMechanicalDrill, tinyPneumaticDrill, tinyPlasmaBore, titaniumDrill,
-            compactLaserDrill, hyperDrill,
+            compactLaserDrill, hyperDrill, cosmicDrill, omniDrill,
 
             groundGrinder, groundMiller, groundCrusher,
             cliffGrinder, cliffMiller, ventConcentrator, oilBore, tungstenBore;
@@ -71,6 +71,37 @@ public class FRDrills {
             consumePower(4f);
             consumeLiquid(Liquids.cryofluid, 0.09f);
             requirements(Category.production, ItemStack.with(Items.copper, 130, Items.silicon, 120, Items.titanium, 100, FRItems.livingSteel, 100, FRItems.livingSteelHard, 150, Items.plastanium, 75));
+        }};
+
+        cosmicDrill = new Drill("cosmic-drill") {{
+            localizedName = "Cosmic Drill";
+            description = "A drill that has reached the limits of physics. Mines at impossible speeds. Requires cryofluid.";
+            size = 4; drillTime = 3; tier = 25; itemCapacity = 500; liquidCapacity = 80;
+            warmupSpeed = 0.01f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
+            rotateSpeed = 20; liquidBoostIntensity = 2f; updateEffectChance = 0.2f; drawMineItem = false;
+            consumePower(50f);
+            consumeLiquid(Liquids.cryofluid, 0.3f);
+            requirements(Category.production, ItemStack.with(
+                Items.copper, 500, Items.silicon, 400, Items.titanium, 300,
+                FRItems.livingSteelHard, 300, Items.plastanium, 200,
+                Items.surgeAlloy, 150, Items.phaseFabric, 100
+            ));
+        }};
+
+        omniDrill = new Drill("omni-drill") {{
+            localizedName = "Omni Drill";
+            description = "The ultimate drilling machine. Tears through reality itself to extract ores. Consumes massive power.";
+            size = 5; drillTime = 0.5f; tier = 50; itemCapacity = 2000; liquidCapacity = 150;
+            warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
+            rotateSpeed = 30; liquidBoostIntensity = 3f; updateEffectChance = 0.3f; drawMineItem = false;
+            consumePower(200f);
+            consumeLiquid(Liquids.cryofluid, 1f);
+            requirements(Category.production, ItemStack.with(
+                Items.copper, 2000, Items.lead, 1500, Items.silicon, 1000,
+                Items.titanium, 1000, Items.thorium, 500, Items.plastanium, 500,
+                Items.surgeAlloy, 400, Items.phaseFabric, 300,
+                FRItems.livingSteelHard, 500, FRItems.cryogenicAlloy, 200
+            ));
         }};
 
         groundGrinder = new GenericCrafter("ground-grinder") {{
