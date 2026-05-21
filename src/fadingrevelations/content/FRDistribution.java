@@ -11,7 +11,8 @@ public class FRDistribution {
             tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor,
             frReinforcedVault, frQuantumVault,
             kineticConveyor, kineticRouter, kineticJunction, kineticBridgeConveyor, kineticDistributor,
-            bioConveyor, bioRouter, bioJunction, bioBridgeConveyor, bioDistributor;
+            bioConveyor, bioRouter, bioJunction, bioBridgeConveyor, bioDistributor,
+            fusionConveyor;
 
     public static void load() {
         titaniumRouter = new Router("titanium-router") {{
@@ -172,6 +173,15 @@ public class FRDistribution {
             description = "Distributes input items to 7 output directions at extreme speed. The ultimate distributor.";
             dumpTime = 1; speed = 0.4f; health = 550; itemCapacity = 30; size = 2;
             requirements(Category.distribution, ItemStack.with(Items.copper, 10, Items.lead, 8, FRItems.bioMatter, 5, FRItems.livingSteelHard, 3, FRItems.nanoFabric, 2));
+        }};
+
+        fusionConveyor = new StackConveyor("fusion-conveyor") {{
+            localizedName = "Fusion Stack Conveyor";
+            description = "Combines kinetic energy cells and bio-alloy materials into a hyper-efficient batch conveyor. Moves items at extreme throughput.";
+            details = "The ultimate expression of material science.";
+            health = 900; speed = 0.3f; itemCapacity = 30; outputRouter = true;
+            glowColor = Color.valueOf("b0d000");
+            requirements(Category.distribution, ItemStack.with(FRItems.steelAlloy, 3, FRItems.energyCell, 3, FRItems.bioMatter, 3, FRItems.livingSteelHard, 3, FRItems.nanoFabric, 2));
         }};
     }
 }
