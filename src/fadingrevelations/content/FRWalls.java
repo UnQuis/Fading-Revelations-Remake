@@ -8,6 +8,7 @@ import mindustry.type.*;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
+import fadingrevelations.worlds.blocks.defense.NanoOpticWall;
 import mindustry.world.consumers.ConsumePower;
 import mindustry.world.meta.Env;
 
@@ -283,7 +284,7 @@ public class FRWalls {
             requirements(Category.defense, ItemStack.with(Items.surgeAlloy, 96, Items.tungsten, 32));
         }};
 
-        nanoOpticWall = new Wall("nano-optic-wall") {{
+        nanoOpticWall = new NanoOpticWall("nano-optic-wall") {{
             localizedName = "Nano-Optic Wall";
             description = "A wall woven from Nano Fabric and reinforced with Optical Crystals. Highly durable, deflects projectiles, and rapidly repairs itself.";
             health = 3200; size = 1; armor = 20; insulated = true;
@@ -293,7 +294,7 @@ public class FRWalls {
             requirements(Category.defense, ItemStack.with(FRItems.nanoFabric, 2, FRItems.optiCrystal, 2));
         }};
 
-        nanoOpticWallLarge = new Wall("nano-optic-wall-large") {{
+        nanoOpticWallLarge = new NanoOpticWall("nano-optic-wall-large") {{
             localizedName = "Large Nano-Optic Wall";
             description = "A larger Nano-Optic Wall with increased durability and deflection.";
             health = 11500; size = 2; armor = 22; insulated = true;
@@ -303,7 +304,7 @@ public class FRWalls {
             requirements(Category.defense, ItemStack.with(FRItems.nanoFabric, 8, FRItems.optiCrystal, 8));
         }};
 
-        nanoOpticWallHuge = new Wall("nano-optic-wall-huge") {{
+        nanoOpticWallHuge = new NanoOpticWall("nano-optic-wall-huge") {{
             localizedName = "Huge Nano-Optic Wall";
             description = "A massive Nano-Optic Wall. Its crystal lattice deflects even heavy ordinance.";
             health = 28000; size = 3; armor = 24; insulated = true;
@@ -313,7 +314,7 @@ public class FRWalls {
             requirements(Category.defense, ItemStack.with(FRItems.nanoFabric, 18, FRItems.optiCrystal, 18));
         }};
 
-        nanoOpticWallGigantic = new Wall("nano-optic-wall-gigantic") {{
+        nanoOpticWallGigantic = new NanoOpticWall("nano-optic-wall-gigantic") {{
             localizedName = "Gigantic Nano-Optic Wall";
             description = "An enormous Nano-Optic Wall of unparalleled strength. Nearly impervious to attack.";
             health = 50000; size = 4; armor = 26; insulated = true;
