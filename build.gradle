@@ -1,3 +1,8 @@
+import javax.imageio.*;
+import javax.imageio.stream.*;
+import java.awt.image.*;
+import java.io.*;
+
 plugins {
     id "java"
 }
@@ -20,10 +25,57 @@ dependencies {
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
 }
 
+task convertGifFrames {
+    description = "Convert .gif files in assets/sprites to individual frame .png files"
+    doLast {
+        File spritesDir = file("assets/sprites")
+        if (!spritesDir.exists()) return
+
+        fileTree(dir: spritesDir, include: "**/*.gif").each { gifFile ->
+            println "Converting: ${gifFile.name}"
+            try {
+                ImageInputStream input = ImageIO.createImageInputStream(gifFile)
+                Iterator<ImageReader> readers = ImageIO.getImageReaders(input)
+                if (!readers.hasNext()) {
+                    println "  No reader for: ${gifFile.name}"
+                    input.close()
+                    return
+                }
+                ImageReader reader = readers.next()
+                reader.setInput(input)
+
+                int frameCount = reader.getNumImages(true)
+                println "  Frames: $frameCount"
+
+                String baseName = gifFile.name[0..gifFile.name.toLowerCase().lastIndexOf(".gif")-1]
+                File parent = gifFile.parentFile
+
+                for (int i = 0; i < frameCount; i++) {
+                    BufferedImage frame = reader.read(i)
+                    File outFile = new File(parent, "${baseName}-${i}.png")
+                    ImageIO.write(frame, "png", outFile)
+                    println "    -> ${outFile.name}"
+                }
+
+                reader.dispose()
+                input.close()
+            } catch (Exception e) {
+                println "  Error: ${e.message}"
+            }
+        }
+    }
+}
+
+tasks.named("jar") {
+    dependsOn convertGifFrames
+}
+
 jar {
     archiveFileName = "FadingRevelations.jar"
     from sourceSets.main.output
     from files("mod.hjson")
-    from fileTree("assets")
+    from(fileTree("assets")) {
+        exclude "**/*.gif"
+    }
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
