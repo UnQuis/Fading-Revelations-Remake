@@ -26,7 +26,10 @@ public class FRProduction {
         amalgamSmelter, amalgamForge, basicMultismelter, steamCondenser,
         neutronBlender, acidVat, acidEmulsifier, uraniumrodCrafter,
         nukeCrafter,
-        crystalSynthesizer, cellFabricator, nanoWeaver, bioRefinery,
+        crystalSynthesizer, crystalSynthesisArray,
+        cellFabricator, cellFabricationForge,
+        nanoWeaver, nanoWeavingForge,
+        bioRefinery, bioRefineryForge,
         advancedSeparator, advancedCryofluidMixer, advancedCoalCentrifuge,
         atmosphericHeatConcentrator, bigPhaseWeaver, atmosphericExtractor,
         advancedWaterExtractor, enhancedPyratiteMixer, enhancedBlastMixer,
@@ -384,6 +387,58 @@ public class FRProduction {
             outputItem = new ItemStack(FRItems.bioMatter, 2);
             outputLiquid = new LiquidStack(Liquids.water, 0.1f);
             requirements(Category.crafting, with(Items.copper, 200, Items.lead, 150, Items.silicon, 80, Items.graphite, 60));
+        }};
+
+        crystalSynthesisArray = new GenericCrafter("crystal-synthesis-array") {{
+            localizedName = "Crystal Synthesis Array";
+            description = "A massive array of synthesizers that mass-produces [#8a2be2]Optical Crystals[] at greatly improved efficiency. Requires large amounts of silicon and thorium.";
+            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
+            liquidCapacity = 60; itemCapacity = 40; craftTime = 60;
+            craftEffect = Fx.pulverize;
+            consumePower(4.5f);
+            consumeItems(with(Items.silicon, 5, Items.thorium, 3));
+            consumeLiquid(Liquids.water, 0.2f);
+            outputItem = new ItemStack(FRItems.optiCrystal, 2);
+            requirements(Category.crafting, with(Items.copper, 500, Items.lead, 400, Items.silicon, 300, Items.thorium, 200, Items.graphite, 160, Items.titanium, 120));
+        }};
+
+        cellFabricationForge = new GenericCrafter("cell-fabrication-forge") {{
+            localizedName = "Cell Fabrication Forge";
+            description = "A high-throughput forge that produces [#f0d000]Energy Cells[] from surge alloy and silicon in bulk. More efficient than standard fabricators.";
+            size = 4; hasPower = true; hasItems = true; hasLiquids = false;
+            liquidCapacity = 30; itemCapacity = 40; craftTime = 80;
+            craftEffect = Fx.shootSmokeSquare;
+            consumePower(5.5f);
+            consumeItems(with(Items.silicon, 6, Items.surgeAlloy, 3, Items.lead, 5));
+            outputItem = new ItemStack(FRItems.energyCell, 2);
+            requirements(Category.crafting, with(Items.copper, 600, Items.lead, 500, Items.silicon, 400, Items.surgeAlloy, 240, Items.graphite, 200, Items.titanium, 150));
+        }};
+
+        nanoWeavingForge = new GenericCrafter("nano-weaving-forge") {{
+            localizedName = "Nano Weaving Forge";
+            description = "An industrial-scale weaver that produces [#20b2aa]Nano Fabric[] in large quantities. Weaves living steel and phase fabric using neutron fluid cooling.";
+            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
+            liquidCapacity = 60; itemCapacity = 40; craftTime = 100;
+            craftEffect = Fx.smeltsmoke;
+            consumePower(7f);
+            consumeItems(with(FRItems.livingSteel, 5, Items.phaseFabric, 3));
+            consumeLiquid(FRLiquids.neutronFluid, 0.15f);
+            outputItem = new ItemStack(FRItems.nanoFabric, 2);
+            requirements(Category.crafting, with(Items.copper, 700, Items.lead, 600, Items.silicon, 500, Items.phaseFabric, 300, FRItems.livingSteelHard, 200, Items.thorium, 150));
+        }};
+
+        bioRefineryForge = new GenericCrafter("bio-refinery-forge") {{
+            localizedName = "Bio-Refinery Forge";
+            description = "An advanced fermentation forge that processes spores into [#66cc00]Biological Matter[] at higher volumes and speeds.";
+            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
+            liquidCapacity = 120; itemCapacity = 60; craftTime = 40;
+            craftEffect = Fx.steam;
+            consumePower(3f);
+            consumeItems(with(Items.sporePod, 6));
+            consumeLiquid(Liquids.water, 0.3f);
+            outputItem = new ItemStack(FRItems.bioMatter, 4);
+            outputLiquid = new LiquidStack(Liquids.water, 0.15f);
+            requirements(Category.crafting, with(Items.copper, 400, Items.lead, 300, Items.silicon, 160, Items.graphite, 120, Items.titanium, 100));
         }};
 
         nukeCrafter = new GenericCrafter("nuke-crafter") {{
