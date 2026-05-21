@@ -1,5 +1,7 @@
 package fadingrevelations.worlds.blocks.defense;
 
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Fill;
 import arc.math.Mathf;
 import arc.struct.Queue;
 import arc.struct.Seq;
@@ -36,6 +38,17 @@ public class NanoOpticWall extends Wall {
                     }
                 }
             }
+        }
+
+        @Override
+        public void drawSelect() {
+            findLinkWalls();
+            for (Building wall : toDamage) {
+                Draw.color(wall.team.color);
+                Draw.alpha(0.35f);
+                Fill.square(wall.x, wall.y, wall.block.size * 4f);
+            }
+            Draw.reset();
         }
 
         @Override
