@@ -85,6 +85,10 @@ public class FRFullTechTree {
         addBlock(surgeAlloyWall2, surgeAlloyWall3);
         addBlock(surgeAlloyWall2, phaseFabricWall2);
         addBlock(phaseFabricWall2, phaseFabricWall3);
+        addBlock(phaseFabricWall3, nanoOpticWall);
+        addBlock(nanoOpticWall, nanoOpticWallLarge);
+        addBlock(nanoOpticWallLarge, nanoOpticWallHuge);
+        addBlock(nanoOpticWallHuge, nanoOpticWallGigantic);
         addBlock(titaniumWall2, armoredDoor);
         addBlock(armoredDoor, doorHuge);
         addBlock(doorHuge, doorGigantic);

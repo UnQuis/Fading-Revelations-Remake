@@ -13,9 +13,7 @@ import mindustry.world.meta.Env;
 
 public class FRWalls {
     public static Block
-        
         steelAlloyWallSmall, steelAlloyWallLarge, livingSteelWall, livingSteelWallLarge,
-        
         copperWall2, copperWall3,
         titaniumWall2, titaniumWall3,
         thoriumWall2, thoriumWall3,
@@ -24,11 +22,11 @@ public class FRWalls {
         phaseFabricWall2, phaseFabricWall3,
         armoredDoor, doorHuge, doorGigantic,
         armoredWall,
-        
         berylliumWallHuge, berylliumWallGigantic,
         tungstenWallHuge, tungstenWallGigantic,
         carbideWallHuge, carbideWallGigantic,
-        reinforcedSurgeWallHuge, reinforcedSurgeWallGigantic;
+        reinforcedSurgeWallHuge, reinforcedSurgeWallGigantic,
+        nanoOpticWall, nanoOpticWallLarge, nanoOpticWallHuge, nanoOpticWallGigantic;
 
     public static void load() {
         steelAlloyWallSmall = new PowerTurret("steel-alloy-wall-small") {{
@@ -283,6 +281,46 @@ public class FRWalls {
             lightningChance = 0.05f; lightningDamage = 30;
             envDisabled = Env.scorching;
             requirements(Category.defense, ItemStack.with(Items.surgeAlloy, 96, Items.tungsten, 32));
+        }};
+
+        nanoOpticWall = new Wall("nano-optic-wall") {{
+            localizedName = "Nano-Optic Wall";
+            description = "A wall woven from Nano Fabric and reinforced with Optical Crystals. Highly durable, deflects projectiles, and rapidly repairs itself.";
+            health = 3200; size = 1; armor = 20; insulated = true;
+            chanceDeflect = 12; flashHit = true;
+            lightningChance = 0.08f; lightningDamage = 30; lightningLength = 16;
+            envDisabled = Env.scorching;
+            requirements(Category.defense, ItemStack.with(FRItems.nanoFabric, 2, FRItems.optiCrystal, 2));
+        }};
+
+        nanoOpticWallLarge = new Wall("nano-optic-wall-large") {{
+            localizedName = "Large Nano-Optic Wall";
+            description = "A larger Nano-Optic Wall with increased durability and deflection.";
+            health = 11500; size = 2; armor = 22; insulated = true;
+            chanceDeflect = 16; flashHit = true;
+            lightningChance = 0.10f; lightningDamage = 35; lightningLength = 20;
+            envDisabled = Env.scorching;
+            requirements(Category.defense, ItemStack.with(FRItems.nanoFabric, 8, FRItems.optiCrystal, 8));
+        }};
+
+        nanoOpticWallHuge = new Wall("nano-optic-wall-huge") {{
+            localizedName = "Huge Nano-Optic Wall";
+            description = "A massive Nano-Optic Wall. Its crystal lattice deflects even heavy ordinance.";
+            health = 28000; size = 3; armor = 24; insulated = true;
+            chanceDeflect = 20; flashHit = true;
+            lightningChance = 0.12f; lightningDamage = 40; lightningLength = 24;
+            envDisabled = Env.scorching;
+            requirements(Category.defense, ItemStack.with(FRItems.nanoFabric, 18, FRItems.optiCrystal, 18));
+        }};
+
+        nanoOpticWallGigantic = new Wall("nano-optic-wall-gigantic") {{
+            localizedName = "Gigantic Nano-Optic Wall";
+            description = "An enormous Nano-Optic Wall of unparalleled strength. Nearly impervious to attack.";
+            health = 50000; size = 4; armor = 26; insulated = true;
+            chanceDeflect = 25; flashHit = true;
+            lightningChance = 0.15f; lightningDamage = 45; lightningLength = 28;
+            envDisabled = Env.scorching;
+            requirements(Category.defense, ItemStack.with(FRItems.nanoFabric, 32, FRItems.optiCrystal, 32));
         }};
     }
 }
