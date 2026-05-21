@@ -10,7 +10,7 @@ public class FRDistribution {
     public static Block titaniumRouter, titaniumJunction, titaniumDistributor, titaniumBridgeConveyor,
             tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor,
             frReinforcedVault, frQuantumVault,
-            kineticConveyor, kineticRouter, kineticJunction, kineticBridgeConveyor, kineticDistributor,
+            kineticRouter, kineticJunction, kineticBridgeConveyor, kineticDistributor,
             bioConveyor, bioRouter, bioJunction, bioBridgeConveyor, bioDistributor,
             fusionConveyor;
 
@@ -104,39 +104,32 @@ public class FRDistribution {
             requirements(Category.distribution, ItemStack.with(Items.graphite, 1, Items.silicon, 1, FRItems.steelAlloy, 1));
         }};
 
-        kineticConveyor = new Conveyor("kinetic-conveyor") {{
-            localizedName = "Kinetic Conveyor";
-            description = "Transports items forward at high speed using kinetic energy cells. Faster than the alloy conveyor.";
-            health = 380; speed = 0.2f; displayedSpeed = 22;
-            requirements(Category.distribution, ItemStack.with(Items.copper, 1, Items.lead, 1, FRItems.steelAlloy, 1, FRItems.energyCell, 1));
-        }};
-
         kineticRouter = new Router("kinetic-router") {{
             localizedName = "Kinetic Router";
-            description = "Distributes items to 3 output directions equally. Built with kinetic energy cells for faster throughput.";
+            description = "Distributes items to 3 output directions equally. Uses surge alloy for high-speed throughput.";
             dumpTime = 1; speed = 0.12f; health = 90; itemCapacity = 20; size = 1;
-            requirements(Category.distribution, ItemStack.with(Items.copper, 4, Items.lead, 4, FRItems.steelAlloy, 2, FRItems.energyCell, 1));
+            requirements(Category.distribution, ItemStack.with(Items.copper, 4, Items.lead, 4, Items.surgeAlloy, 2));
         }};
 
         kineticJunction = new Junction("kinetic-junction") {{
             localizedName = "Kinetic Junction";
             description = "Acts as a bridge for two crossing kinetic conveyor belts.";
             speed = 22; health = 55; size = 1;
-            requirements(Category.distribution, ItemStack.with(Items.copper, 4, FRItems.steelAlloy, 3, FRItems.energyCell, 1));
+            requirements(Category.distribution, ItemStack.with(Items.copper, 4, Items.surgeAlloy, 3));
         }};
 
         kineticBridgeConveyor = new ItemBridge("kinetic-bridge-conveyor") {{
             localizedName = "Kinetic Bridge Conveyor";
-            description = "Transports items over terrain or buildings using kinetic energy. Longer range and faster than the alloy bridge.";
+            description = "Transports items over terrain or buildings at high speed. Longer range and faster than the alloy bridge.";
             health = 280; range = 7; transportTime = 2; hasPower = false;
-            requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 8, FRItems.steelAlloy, 6, FRItems.energyCell, 3));
+            requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 8, Items.surgeAlloy, 4, Items.silicon, 2));
         }};
 
         kineticDistributor = new Router("kinetic-distributor") {{
             localizedName = "Kinetic Distributor";
-            description = "Distributes input items to 7 output directions equally. Uses kinetic energy for high throughput.";
+            description = "Distributes input items to 7 output directions equally. Surge-alloy powered high throughput.";
             dumpTime = 1; speed = 0.12f; health = 240; itemCapacity = 20; size = 2;
-            requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 6, FRItems.steelAlloy, 4, FRItems.energyCell, 2));
+            requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 6, Items.surgeAlloy, 4, Items.silicon, 1));
         }};
 
         bioConveyor = new Conveyor("bio-conveyor") {{
