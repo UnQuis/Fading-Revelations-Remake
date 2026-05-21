@@ -1,8 +1,7 @@
 {
-    displayName: "[#bd7374]Fading[white] Revelations[white] [gray]Remake[]"
-    repo: UnQuis/Fading-Revelations-Remake
-    name: "fading-revelations-remake"
-    main: "fadingrevelations.FadingRevelationsMod"
+    displayName: Fading Revelations
+    repo: Catana791/Fading-Revelations
+    name: me
 
     author:
         '''
@@ -34,8 +33,7 @@
     description:
         '''
         
-        A huge, fun & balanced content extension mod.
-        Continuing the legacy of Fading Revelations with new content, fixes, and improvements.
+        A huge, fun & balanced content extension.
         
         Please note that the Serpulo research tree has
         been moved into it's own tree because it was
@@ -66,8 +64,7 @@
         for more information!
         '''
 
-    subtitle: "[accent]Alpha rebuild[]"
-    minGameVersion: "154"
-    version: "2.3.1-alpha"
-    java: true
+    subtitle: "No longer in development!"
+    minGameVersion: 144.3
+    version: "2.3"
 }
