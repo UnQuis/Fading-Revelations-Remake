@@ -30,13 +30,13 @@ def framesBuildDir = file("build/tmp/frames")
 task convertGifFrames {
     description = "Convert .gif files in assets/sprites to individual frame .png files in build/tmp/frames"
     doLast {
-        File spritesDir = file("assets/sprites")
-        if (!spritesDir.exists()) return
+        File assetsDir = file("assets")
+        if (!assetsDir.exists()) return
 
         // clean previous output
         delete framesBuildDir
 
-        fileTree(dir: spritesDir, include: "**/*.gif").each { gifFile ->
+        fileTree(dir: assetsDir, include: "**/*.gif").each { gifFile ->
             println "Converting: ${gifFile.name}"
             try {
                 ImageInputStream input = ImageIO.createImageInputStream(gifFile)
@@ -54,8 +54,8 @@ task convertGifFrames {
 
                 String baseName = gifFile.name[0..gifFile.name.toLowerCase().lastIndexOf(".gif")-1]
 
-                // derive relative path from assets/sprites/... to preserve directory structure
-                String relativeDir = spritesDir.toPath().relativize(gifFile.parentFile.toPath()).toString()
+                // derive relative path from assets/ to preserve directory structure (e.g. sprites/items/...)
+                String relativeDir = assetsDir.toPath().relativize(gifFile.parentFile.toPath()).toString()
                 File outDir = new File(framesBuildDir, relativeDir)
                 outDir.mkdirs()
 
