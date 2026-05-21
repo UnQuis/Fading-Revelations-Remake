@@ -25,11 +25,16 @@ dependencies {
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
 }
 
+def framesBuildDir = file("build/tmp/frames")
+
 task convertGifFrames {
-    description = "Convert .gif files in assets/sprites to individual frame .png files"
+    description = "Convert .gif files in assets/sprites to individual frame .png files in build/tmp/frames"
     doLast {
         File spritesDir = file("assets/sprites")
         if (!spritesDir.exists()) return
+
+        // clean previous output
+        delete framesBuildDir
 
         fileTree(dir: spritesDir, include: "**/*.gif").each { gifFile ->
             println "Converting: ${gifFile.name}"
@@ -48,11 +53,15 @@ task convertGifFrames {
                 println "  Frames: $frameCount"
 
                 String baseName = gifFile.name[0..gifFile.name.toLowerCase().lastIndexOf(".gif")-1]
-                File parent = gifFile.parentFile
+
+                // derive relative path from assets/sprites/... to preserve directory structure
+                String relativeDir = spritesDir.toPath().relativize(gifFile.parentFile.toPath()).toString()
+                File outDir = new File(framesBuildDir, relativeDir)
+                outDir.mkdirs()
 
                 for (int i = 0; i < frameCount; i++) {
                     BufferedImage frame = reader.read(i)
-                    File outFile = new File(parent, "${baseName}-${i}.png")
+                    File outFile = new File(outDir, "${baseName}-${i}.png")
                     ImageIO.write(frame, "png", outFile)
                     println "    -> ${outFile.name}"
                 }
@@ -66,6 +75,10 @@ task convertGifFrames {
     }
 }
 
+clean {
+    delete framesBuildDir
+}
+
 tasks.named("jar") {
     dependsOn convertGifFrames
 }
@@ -77,5 +90,6 @@ jar {
     from(fileTree("assets")) {
         exclude "**/*.gif"
     }
+    from fileTree(framesBuildDir)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
