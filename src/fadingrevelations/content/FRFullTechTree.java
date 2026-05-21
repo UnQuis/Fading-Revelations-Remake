@@ -49,7 +49,7 @@ public class FRFullTechTree {
         addBlock(titaniumJunction, kineticJunction);
         addBlock(titaniumDistributor, kineticDistributor);
         addBlock(surgeAlloyConveyor, bioConveyor);
-        addBlock(bioConveyor, bioBridgeConveyor);
+        addBlock(surgeBridgeConveyor, bioBridgeConveyor);
         addBlock(titaniumRouter, bioRouter);
         addBlock(titaniumJunction, bioJunction);
         addBlock(titaniumDistributor, bioDistributor);
