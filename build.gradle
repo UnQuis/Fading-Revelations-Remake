@@ -61,7 +61,7 @@ task convertGifFrames {
 
                 for (int i = 0; i < frameCount; i++) {
                     BufferedImage frame = reader.read(i)
-                    File outFile = new File(outDir, "${baseName}-${i}.png")
+                    File outFile = new File(outDir, "${baseName}${i}.png")
                     ImageIO.write(frame, "png", outFile)
                     println "    -> ${outFile.name}"
                 }
