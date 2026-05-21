@@ -11,7 +11,7 @@ public class FRDistribution {
             tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor,
             frReinforcedVault, frQuantumVault,
             kineticRouter, kineticJunction, kineticDistributor,
-            bioRouter, bioJunction, bioDistributor,
+            bioConveyor, bioRouter, bioJunction, bioBridgeConveyor, bioDistributor,
             fusionConveyor;
 
     public static void load() {
@@ -125,6 +125,14 @@ public class FRDistribution {
             requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 6, Items.surgeAlloy, 4, Items.silicon, 1));
         }};
 
+        bioConveyor = new Conveyor("bio-conveyor") {{
+            localizedName = "Bio-Alloy Conveyor";
+            description = "An ultra-fast conveyor woven from biological matter and hardened living steel. Extreme throughput.";
+            details = "It's alive! ALIVE!";
+            health = 600; speed = 0.8f; displayedSpeed = 88;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 1, Items.titanium, 1, FRItems.bioMatter, 1, FRItems.livingSteel, 1, FRItems.livingSteelHard, 1));
+        }};
+
         bioRouter = new Router("bio-router") {{
             localizedName = "Bio-Alloy Router";
             description = "Distributes items to 3 output directions at incredible speed. Grown from bio-alloy composites.";
@@ -137,6 +145,13 @@ public class FRDistribution {
             description = "Acts as a bridge for two crossing bio-alloy conveyor belts.";
             speed = 88; health = 220; size = 1;
             requirements(Category.distribution, ItemStack.with(Items.copper, 6, FRItems.bioMatter, 3, FRItems.livingSteelHard, 3, FRItems.nanoFabric, 1));
+        }};
+
+        bioBridgeConveyor = new ItemBridge("bio-bridge-conveyor") {{
+            localizedName = "Bio-Alloy Bridge Conveyor";
+            description = "Transports items over terrain or buildings at extreme speed. The pinnacle of distribution technology.";
+            health = 650; range = 10; transportTime = 0.5f; hasPower = false;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 10, Items.lead, 10, FRItems.bioMatter, 6, FRItems.livingSteelHard, 4, FRItems.nanoFabric, 2));
         }};
 
         bioDistributor = new Router("bio-distributor") {{
