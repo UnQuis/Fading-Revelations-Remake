@@ -9,7 +9,9 @@ import mindustry.world.blocks.storage.StorageBlock;
 public class FRDistribution {
     public static Block titaniumRouter, titaniumJunction, titaniumDistributor, titaniumBridgeConveyor,
             tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor,
-            frReinforcedVault, frQuantumVault;
+            frReinforcedVault, frQuantumVault,
+            kineticConveyor, kineticRouter, kineticJunction, kineticBridgeConveyor, kineticDistributor,
+            bioConveyor, bioRouter, bioJunction, bioBridgeConveyor, bioDistributor;
 
     public static void load() {
         titaniumRouter = new Router("titanium-router") {{
@@ -99,6 +101,77 @@ public class FRDistribution {
             health = 110; speed = 0.09f; itemCapacity = 20; outputRouter = true;
             glowColor = Color.valueOf("dbaf85");
             requirements(Category.distribution, ItemStack.with(Items.graphite, 1, Items.silicon, 1, FRItems.steelAlloy, 1));
+        }};
+
+        kineticConveyor = new Conveyor("kinetic-conveyor") {{
+            localizedName = "Kinetic Conveyor";
+            description = "Transports items forward at high speed using kinetic energy cells. Faster than the alloy conveyor.";
+            health = 380; speed = 0.2f; displayedSpeed = 22;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 1, Items.lead, 1, FRItems.steelAlloy, 1, FRItems.energyCell, 1));
+        }};
+
+        kineticRouter = new Router("kinetic-router") {{
+            localizedName = "Kinetic Router";
+            description = "Distributes items to 3 output directions equally. Built with kinetic energy cells for faster throughput.";
+            dumpTime = 1; speed = 0.12f; health = 90; itemCapacity = 20; size = 1;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 4, Items.lead, 4, FRItems.steelAlloy, 2, FRItems.energyCell, 1));
+        }};
+
+        kineticJunction = new Junction("kinetic-junction") {{
+            localizedName = "Kinetic Junction";
+            description = "Acts as a bridge for two crossing kinetic conveyor belts.";
+            speed = 22; health = 55; size = 1;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 4, FRItems.steelAlloy, 3, FRItems.energyCell, 1));
+        }};
+
+        kineticBridgeConveyor = new ItemBridge("kinetic-bridge-conveyor") {{
+            localizedName = "Kinetic Bridge Conveyor";
+            description = "Transports items over terrain or buildings using kinetic energy. Longer range and faster than the alloy bridge.";
+            health = 280; range = 7; transportTime = 2; hasPower = false;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 8, FRItems.steelAlloy, 6, FRItems.energyCell, 3));
+        }};
+
+        kineticDistributor = new Router("kinetic-distributor") {{
+            localizedName = "Kinetic Distributor";
+            description = "Distributes input items to 7 output directions equally. Uses kinetic energy for high throughput.";
+            dumpTime = 1; speed = 0.12f; health = 240; itemCapacity = 20; size = 2;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 6, FRItems.steelAlloy, 4, FRItems.energyCell, 2));
+        }};
+
+        bioConveyor = new Conveyor("bio-conveyor") {{
+            localizedName = "Bio-Alloy Conveyor";
+            description = "An ultra-fast conveyor woven from biological matter and hardened living steel. Extreme throughput.";
+            details = "It's alive! ALIVE!";
+            health = 600; speed = 0.8f; displayedSpeed = 88;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 1, Items.titanium, 1, FRItems.bioMatter, 1, FRItems.livingSteel, 1, FRItems.livingSteelHard, 1));
+        }};
+
+        bioRouter = new Router("bio-router") {{
+            localizedName = "Bio-Alloy Router";
+            description = "Distributes items to 3 output directions at incredible speed. Grown from bio-alloy composites.";
+            dumpTime = 1; speed = 0.4f; health = 350; itemCapacity = 30; size = 1;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 6, Items.lead, 6, FRItems.bioMatter, 3, FRItems.livingSteelHard, 2, FRItems.nanoFabric, 1));
+        }};
+
+        bioJunction = new Junction("bio-junction") {{
+            localizedName = "Bio-Alloy Junction";
+            description = "Acts as a bridge for two crossing bio-alloy conveyor belts.";
+            speed = 88; health = 220; size = 1;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 6, FRItems.bioMatter, 3, FRItems.livingSteelHard, 3, FRItems.nanoFabric, 1));
+        }};
+
+        bioBridgeConveyor = new ItemBridge("bio-bridge-conveyor") {{
+            localizedName = "Bio-Alloy Bridge Conveyor";
+            description = "Transports items over terrain or buildings at extreme speed. The pinnacle of distribution technology.";
+            health = 650; range = 10; transportTime = 0.5f; hasPower = false;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 10, Items.lead, 10, FRItems.bioMatter, 6, FRItems.livingSteelHard, 4, FRItems.nanoFabric, 2));
+        }};
+
+        bioDistributor = new Router("bio-distributor") {{
+            localizedName = "Bio-Alloy Distributor";
+            description = "Distributes input items to 7 output directions at extreme speed. The ultimate distributor.";
+            dumpTime = 1; speed = 0.4f; health = 550; itemCapacity = 30; size = 2;
+            requirements(Category.distribution, ItemStack.with(Items.copper, 10, Items.lead, 8, FRItems.bioMatter, 5, FRItems.livingSteelHard, 3, FRItems.nanoFabric, 2));
         }};
     }
 }
