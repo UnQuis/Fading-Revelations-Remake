@@ -10,7 +10,7 @@ public class FRDistribution {
     public static Block titaniumRouter, titaniumJunction, titaniumDistributor, titaniumBridgeConveyor,
             tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor,
             frReinforcedVault, frQuantumVault,
-            kineticRouter, kineticJunction, kineticBridgeConveyor, kineticDistributor,
+            kineticRouter, kineticJunction, kineticDistributor,
             bioConveyor, bioRouter, bioJunction, bioBridgeConveyor, bioDistributor,
             fusionConveyor;
 
@@ -116,13 +116,6 @@ public class FRDistribution {
             description = "Acts as a bridge for two crossing kinetic conveyor belts.";
             speed = 22; health = 55; size = 1;
             requirements(Category.distribution, ItemStack.with(Items.copper, 4, Items.surgeAlloy, 3));
-        }};
-
-        kineticBridgeConveyor = new ItemBridge("kinetic-bridge-conveyor") {{
-            localizedName = "Kinetic Bridge Conveyor";
-            description = "Transports items over terrain or buildings at high speed. Longer range and faster than the alloy bridge.";
-            health = 280; range = 7; transportTime = 2; hasPower = false;
-            requirements(Category.distribution, ItemStack.with(Items.copper, 8, Items.lead, 8, Items.surgeAlloy, 4, Items.silicon, 2));
         }};
 
         kineticDistributor = new Router("kinetic-distributor") {{
