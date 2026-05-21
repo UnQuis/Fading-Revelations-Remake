@@ -4,7 +4,6 @@
     main: "fadingrevelations.FadingRevelationsMod"
     author: "[white]Catser[gray] &[white] UnQuis[]"
     description: "[yellow]A huge, fun & balanced content extension mod.[]\n[lightgray]Continuing the legacy of Fading Revelations with new content, fixes, and improvements.[]"
-    subtitle: "[accent]Alpha rebuild[]"
     minGameVersion: "154"
     version: "2.3.1-alpha"
     java: true
