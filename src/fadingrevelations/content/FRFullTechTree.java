@@ -54,6 +54,7 @@ public class FRFullTechTree {
         addBlock(bioRouter, bioJunction);
         addBlock(bioRouter, bioBridgeConveyor);
         addBlock(bioRouter, bioDistributor);
+        addBlock(bioDistributor, fusionConveyor);
 
         
         
