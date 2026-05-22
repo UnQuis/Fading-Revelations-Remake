@@ -105,7 +105,7 @@ public class FRDrills {
         }};
 
         percussionDrill = new BurstDrill("percussion-drill") {{
-            localizedName = "Impact Drill";
+            localizedName = "Percussion Drill";
             description = "A high-frequency percussion drill that pulverizes ore through sheer kinetic force. No coolant needed.";
             size = 4; drillTime = 90; tier = 25; itemCapacity = 500; shake = 4f;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasItems = true;
