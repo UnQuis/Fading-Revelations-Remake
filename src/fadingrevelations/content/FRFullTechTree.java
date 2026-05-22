@@ -41,14 +41,14 @@ public class FRFullTechTree {
         addBlock(titaniumJunction, titaniumRouter);
         addBlock(titaniumRouter, titaniumBridgeConveyor);
         addBlock(titaniumRouter, titaniumDistributor);
-        addBlock(titaniumBridgeConveyor, surgeAlloyConveyor);
-        addBlock(surgeAlloyConveyor, surgeBridgeConveyor);
-        addBlock(surgeAlloyConveyor, amalgamConveyor);
+        addBlock(titaniumBridgeConveyor, kineticConveyor);
+        addBlock(kineticConveyor, surgeBridgeConveyor);
+        addBlock(kineticConveyor, amalgamConveyor);
         addBlock(amalgamConveyor, fusionConveyor);
         addBlock(titaniumRouter, kineticRouter);
         addBlock(titaniumJunction, kineticJunction);
         addBlock(titaniumDistributor, kineticDistributor);
-        addBlock(surgeAlloyConveyor, bioConveyor);
+        addBlock(kineticConveyor, bioConveyor);
         addBlock(surgeBridgeConveyor, bioBridgeConveyor);
         addBlock(titaniumRouter, bioRouter);
         addBlock(titaniumJunction, bioJunction);
