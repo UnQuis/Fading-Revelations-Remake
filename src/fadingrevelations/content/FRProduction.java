@@ -23,16 +23,15 @@ public class FRProduction {
         tinyThermalGen, titaniumPanel, steamTurbine, slagGenerator, slagReactor,
         pyratiteGenerator, lsGen, steelReactor, uraniumReactor, solarArray,
         advancedSolarPanel, turbineConcentrator,
-        livingSteelForge, livingSteelInfuser, livingSteelHardener,
-        livingSteelHardeningForge, livingSteelLiquifier, livingSteelLiquifyingForge,
+        livingSteelInfuser, livingSteelLiquifier, livingSteelLiquifyingForge,
         cryogenicGelMixer, alloyCrafter, cryogenicAlloyAssembler,
         amalgamSmelter, amalgamForge, basicMultismelter, steamCondenser,
         neutronBlender, acidVat, acidEmulsifier, uraniumrodCrafter,
         nukeCrafter,
-        crystalSynthesizer, crystalSynthesisArray,
-        cellFabricator, cellFabricationForge,
-        nanoWeaver, nanoWeavingForge,
-        bioRefinery, bioRefineryForge,
+        crystalSynthesizer,
+        cellFabricator,
+        nanoWeaver,
+        bioRefinery,
         advancedSeparator, advancedCryofluidMixer, advancedCoalCentrifuge,
         atmosphericHeatConcentrator, bigPhaseWeaver, atmosphericExtractor,
         advancedWaterExtractor, enhancedPyratiteMixer, enhancedBlastMixer,
@@ -41,6 +40,7 @@ public class FRProduction {
         bigPlastaniumPress, sporeCrusher, smallHeatRouter, esterificationChamber,
         siliconForge, siliconArcForge, graphiteForge, powderizer, greenhouse,
         carbideBasin,
+        livingSteelComplex,
         primaryFactory, basicReassembly, advancedReassembly,
         progressiveAssembly, regenerator,
             ascendedFactory,
@@ -158,16 +158,6 @@ public class FRProduction {
             requirements(Category.power, with(Items.beryllium, 90, Items.graphite, 75));
         }};
 
-        livingSteelForge = new GenericCrafter("living-steel-forge") {{
-            localizedName = "Living Steel Forge";
-            description = "Fuses titanium with spore pods, creating living steel in large quantities. More efficient than the infuser.";
-            size = 3; health = 285; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 40; craftEffect = Fx.smeltsmoke; updateEffect = Fx.smeltsmoke;
-            consumePower(1.4f); consumeItems(with(Items.titanium, 2, Items.sporePod, 1));
-            outputItem = new ItemStack(FRItems.livingSteel, 3);
-            requirements(Category.crafting, with(Items.copper, 460, Items.lead, 320, Items.titanium, 145));
-        }};
-
         livingSteelInfuser = new GenericCrafter("living-steel-infuser") {{
             localizedName = "Living Steel Infusion Chamber";
             description = "Infuses titanium with spore pods, creating living steel.";
@@ -176,26 +166,6 @@ public class FRProduction {
             consumePower(0.8f); consumeItems(with(Items.titanium, 2, Items.sporePod, 1));
             outputItem = new ItemStack(FRItems.livingSteel, 2);
             requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.titanium, 50));
-        }};
-
-        livingSteelHardener = new GenericCrafter("living-steel-hardener") {{
-            localizedName = "Living Steel Hardening Chamber";
-            description = "Reinforces living steel via thorium infusion.";
-            size = 2; hasPower = true; hasItems = true; health = 160; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.smeltsmoke; updateEffect = Fx.smeltsmoke;
-            consumePower(0.8f); consumeItems(with(FRItems.livingSteel, 1, Items.thorium, 2));
-            outputItem = new ItemStack(FRItems.livingSteelHard, 2);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.titanium, 50));
-        }};
-
-        livingSteelHardeningForge = new GenericCrafter("living-steel-hardening-forge") {{
-            localizedName = "Living Steel Hardening Forge";
-            description = "Reinforces living steel via thorium infusion. More efficient than the hardening chamber.";
-            size = 3; health = 285; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 40; craftEffect = Fx.smeltsmoke; updateEffect = Fx.smeltsmoke;
-            consumePower(1.4f); consumeItems(with(FRItems.livingSteel, 1, Items.thorium, 2));
-            outputItem = new ItemStack(FRItems.livingSteelHard, 3);
-            requirements(Category.crafting, with(Items.copper, 460, Items.lead, 320, Items.titanium, 145));
         }};
 
         livingSteelLiquifier = new GenericCrafter("living-steel-liquifier") {{
@@ -393,59 +363,6 @@ public class FRProduction {
             requirements(Category.crafting, with(Items.copper, 200, Items.lead, 150, Items.silicon, 80, Items.graphite, 60));
         }};
 
-        crystalSynthesisArray = new GenericCrafter("crystal-synthesis-array") {{
-            localizedName = "Crystal Synthesis Array";
-            description = "An advanced array that synthesizes optical crystals using energy cells and hardened living steel as catalytic agents.";
-            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
-            liquidCapacity = 60; itemCapacity = 40; craftTime = 75;
-            craftEffect = Fx.pulverize;
-            consumePower(5f);
-            consumeItems(with(FRItems.energyCell, 2, FRItems.livingSteelHard, 4));
-            consumeLiquid(Liquids.cryofluid, 0.2f);
-            outputItem = new ItemStack(FRItems.optiCrystal, 3);
-            requirements(Category.crafting, with(Items.copper, 500, Items.lead, 400, Items.silicon, 300, Items.thorium, 200, Items.graphite, 160, Items.titanium, 120));
-        }};
-
-        cellFabricationForge = new GenericCrafter("cell-fabrication-forge") {{
-            localizedName = "Cell Fabrication Forge";
-            description = "Forge that amplifies energy cell production using optical crystal catalysts and surge alloy.";
-            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
-            liquidCapacity = 30; itemCapacity = 40; craftTime = 90;
-            craftEffect = Fx.shootSmokeSquare;
-            consumePower(6f);
-            consumeItems(with(FRItems.optiCrystal, 2, Items.surgeAlloy, 4));
-            consumeLiquid(Liquids.water, 0.15f);
-            outputItem = new ItemStack(FRItems.energyCell, 3);
-            requirements(Category.crafting, with(Items.copper, 600, Items.lead, 500, Items.silicon, 400, Items.surgeAlloy, 240, Items.graphite, 200, Items.titanium, 150));
-        }};
-
-        nanoWeavingForge = new GenericCrafter("nano-weaving-forge") {{
-            localizedName = "Nano Weaving Forge";
-            description = "Catalyzes nano fabric production using biological matter as a binding agent for phase-weaved fibers.";
-            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
-            liquidCapacity = 60; itemCapacity = 40; craftTime = 110;
-            craftEffect = Fx.smeltsmoke;
-            consumePower(7.5f);
-            consumeItems(with(FRItems.bioMatter, 3, Items.phaseFabric, 3));
-            consumeLiquid(FRLiquids.neutronFluid, 0.15f);
-            outputItem = new ItemStack(FRItems.nanoFabric, 3);
-            requirements(Category.crafting, with(Items.copper, 700, Items.lead, 600, Items.silicon, 500, Items.phaseFabric, 300, FRItems.livingSteelHard, 200, Items.thorium, 150));
-        }};
-
-        bioRefineryForge = new GenericCrafter("bio-refinery-forge") {{
-            localizedName = "Bio-Refinery Forge";
-            description = "A nano-catalyzed fermentation forge that processes spores into biological matter at extreme efficiency.";
-            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
-            liquidCapacity = 120; itemCapacity = 60; craftTime = 50;
-            craftEffect = Fx.steam;
-            consumePower(3.5f);
-            consumeItems(with(FRItems.nanoFabric, 1, Items.sporePod, 6));
-            consumeLiquid(Liquids.water, 0.3f);
-            outputItem = new ItemStack(FRItems.bioMatter, 5);
-            outputLiquid = new LiquidStack(Liquids.water, 0.15f);
-            requirements(Category.crafting, with(Items.copper, 400, Items.lead, 300, Items.silicon, 160, Items.graphite, 120, Items.titanium, 100));
-        }};
-
         fabricationNexus = new MultiCrafter("fabrication-nexus") {{
             localizedName = "Fabrication Nexus";
             description = "A centralized 6x6 multi-factory that combines all advanced material production chains. Switch between 8 different recipes to produce optical crystals, energy cells, nano fabric, and biological matter.";
@@ -560,6 +477,70 @@ public class FRProduction {
             requirements(Category.crafting,
                 with(Items.copper, 1500, Items.lead, 1200, Items.silicon, 1000, Items.thorium, 600,
                     Items.surgeAlloy, 400, Items.phaseFabric, 300, FRItems.livingSteel, 250, FRItems.livingSteelHard, 200)
+            );
+        }};
+
+        livingSteelComplex = new MultiCrafter("living-steel-complex") {{
+            localizedName = "Living Steel Complex";
+            description = "A centralized 5x5 multi-factory that combines living steel production and hardening into one versatile block. Switch between efficient and basic recipes for both processes.";
+            details = "MultiCrafter Lib integration by Fading Revelations team.";
+            size = 5; health = 680;
+            switchStyle = RecipeSwitchStyle.transform;
+            craftEffect = Fx.smeltsmoke;
+            updateEffect = Fx.smeltsmoke;
+            changeRecipeEffect = Fx.rotateBlock;
+            ambientSound = Sounds.loopMachine;
+            ambientSoundVolume = 0.05f;
+            drawer = new DrawDefault();
+            resolvedRecipes = Seq.with(
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(Items.titanium, 2, Items.sporePod, 1);
+                        power = 1.4f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.livingSteel, 3);
+                    }};
+                    craftTime = 40f;
+                    craftEffect = Fx.smeltsmoke;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(Items.titanium, 2, Items.sporePod, 1);
+                        power = 0.8f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.livingSteel, 2);
+                    }};
+                    craftTime = 50f;
+                    craftEffect = Fx.smeltsmoke;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(FRItems.livingSteel, 1, Items.thorium, 2);
+                        power = 1.4f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.livingSteelHard, 3);
+                    }};
+                    craftTime = 40f;
+                    craftEffect = Fx.smeltsmoke;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(FRItems.livingSteel, 1, Items.thorium, 2);
+                        power = 0.8f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.livingSteelHard, 2);
+                    }};
+                    craftTime = 50f;
+                    craftEffect = Fx.smeltsmoke;
+                }}
+            );
+            requirements(Category.crafting,
+                with(Items.copper, 800, Items.lead, 600, Items.titanium, 300, Items.thorium, 200,
+                    FRItems.livingSteel, 150, Items.graphite, 100)
             );
         }};
 

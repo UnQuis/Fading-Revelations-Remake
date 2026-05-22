@@ -223,11 +223,9 @@ public class FRFullTechTree {
         
         
         addBlock(modGateCrafters, livingSteelInfuser);
-        addBlock(livingSteelInfuser, livingSteelForge);
+        addBlock(livingSteelInfuser, livingSteelComplex);
         addBlock(livingSteelInfuser, livingSteelLiquifier);
         addBlock(livingSteelLiquifier, livingSteelLiquifyingForge);
-        addBlock(livingSteelLiquifier, livingSteelHardener);
-        addBlock(livingSteelHardener, livingSteelHardeningForge);
 
         
         
@@ -267,14 +265,10 @@ public class FRFullTechTree {
         addBlock(cryogenicGelMixer, alloyCrafter);
         addBlock(alloyCrafter, cryogenicAlloyAssembler);
         addBlock(cryogenicAlloyAssembler, crystalSynthesizer);
-        addBlock(crystalSynthesizer, crystalSynthesisArray);
         addBlock(crystalSynthesizer, cellFabricator);
-        addBlock(cellFabricator, cellFabricationForge);
         addBlock(cellFabricator, nanoWeaver);
-        addBlock(nanoWeaver, nanoWeavingForge);
         addBlock(greenhouse, bioRefinery);
-        addBlock(bioRefinery, bioRefineryForge);
-        addBlock(bioRefineryForge, fabricationNexus);
+        addBlock(nanoWeaver, fabricationNexus);
 
         
         addToNode(siliconArcFurnace, () -> node(siliconArcForge));

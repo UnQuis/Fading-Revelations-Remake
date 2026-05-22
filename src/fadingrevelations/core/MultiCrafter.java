@@ -35,6 +35,7 @@ public class MultiCrafter extends PayloadBlock {
     public boolean hasPayloads = false;
 
     public float powerCapacity = 0f;
+    public float displayedPowerUsage = 0f;
     public int payloadCapacity = 1;
 
     public float itemCapacityMultiplier = 1f;
@@ -699,6 +700,7 @@ public class MultiCrafter extends PayloadBlock {
         itemCapacity = Math.max((int) (maxItemAmount * itemCapacityMultiplier), itemCapacity);
         liquidCapacity = Math.max((int) (maxFluidAmount * 60f * fluidCapacityMultiplier), liquidCapacity);
         powerCapacity = Math.max(maxPower * 60f * powerCapacityMultiplier, powerCapacity);
+        displayedPowerUsage = maxPower;
         payloadCapacity = Math.max((int) (maxPayloadAmount * payloadCapacityMultiplier), payloadCapacity);
         if (isOutputHeat) {
             rotate = true;
@@ -715,7 +717,7 @@ public class MultiCrafter extends PayloadBlock {
         if (isConsumeFluid) consume(new ConsumeFluidDynamic(
             (MultiCrafterBuild b) -> b.getCurRecipe().input.fluids
         ));
-        if (isConsumePower) consume(new ConsumePowerDynamic(b ->
+        if (isConsumePower) consume(new ConsumePowerDynamic(displayedPowerUsage, b ->
             ((MultiCrafterBuild) b).getCurRecipe().input.power
         ));
         if (isConsumePayload) consume(new CustomConsumePayloadDynamic(
