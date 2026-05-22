@@ -475,7 +475,7 @@ public class FRProduction {
             description = "A centralized 5x5 multi-factory that combines living steel production and hardening into one versatile block. Switch between efficient and basic recipes for both processes.";
             details = "MultiCrafter Lib integration by Fading Revelations team.";
             size = 5; health = 680;
-            researchCost = with(Items.copper, 500, Items.lead, 400, Items.graphite, 300, Items.titanium, 250, Items.silicon, 200, Items.thorium, 150, Items.sporePod, 150);
+            researchCost = with(Items.copper, 2500, Items.lead, 2000, Items.graphite, 1500, Items.titanium, 1250, Items.silicon, 1000, Items.thorium, 750, Items.sporePod, 750);
             switchStyle = RecipeSwitchStyle.transform;
             craftEffect = Fx.smeltsmoke;
             updateEffect = Fx.smeltsmoke;
