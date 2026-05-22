@@ -17,7 +17,7 @@ public class PowerImage extends Table {
         powerImage.setColor(Pal.power);
         add(powerImage).size(iconSmall);
         if (amount > 0) {
-            add(new Label(String.format("%.1f", amount / 60f))).padLeft(2);
+            add(new Label(String.format("%.1f", amount))).padLeft(2);
         }
     }
 }

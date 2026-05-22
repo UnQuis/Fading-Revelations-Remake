@@ -506,7 +506,7 @@ public class FRProduction {
                 }},
                 new fadingrevelations.core.Recipe() {{
                     input = new IOEntry() {{
-                        items = ItemStack.with(Items.titanium, 2, Items.sporePod, 1);
+                        items = ItemStack.with(Items.titanium, 1, Items.sporePod, 2);
                         power = 0.8f;
                     }};
                     output = new IOEntry() {{
@@ -528,7 +528,7 @@ public class FRProduction {
                 }},
                 new fadingrevelations.core.Recipe() {{
                     input = new IOEntry() {{
-                        items = ItemStack.with(FRItems.livingSteel, 1, Items.thorium, 2);
+                        items = ItemStack.with(FRItems.livingSteel, 1, Items.thorium, 1, Items.titanium, 1);
                         power = 0.8f;
                     }};
                     output = new IOEntry() {{

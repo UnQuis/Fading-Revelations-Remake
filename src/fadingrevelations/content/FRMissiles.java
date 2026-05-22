@@ -15,7 +15,7 @@ import static mindustry.gen.Sounds.*;
 
 public class FRMissiles {
     public static MissileUnitType tinyMissile, tinyMissile2, tinyMissile3, tinyMissile4,
-        nukeMissile, plastMissile, phaseMissile, surgeMissile, onagerMissile,
+        nukeMissile, plastMissile, phaseMissile, surgeMissile, energyMissile, onagerMissile,
         artillerySentry, railgunSentry;
 
     public static void load() {
@@ -203,6 +203,41 @@ public class FRMissiles {
                             smokeEffect = shootBigSmoke;
                             despawnShake = 7;
                             lightRadius = 30; lightColor = Color.valueOf("f3e979"); lightOpacity = 0.5f;
+                            trailLength = 20; trailWidth = 3.5f;
+                            trailEffect = Fx.none;
+                        }};
+                    }};
+                }}
+            );
+        }};
+
+        energyMissile = new MissileUnitType("energy-missile") {{
+            flying = true; speed = 9; lifetime = 240;
+            deathExplosionEffect = massiveExplosion;
+            trailColor = Color.valueOf("f0d000"); trailLength = 22;
+            weapons.add(
+                new Weapon() {{
+                    shootCone = 360; mirror = false; reload = 1;
+                    shootOnDeath = true; shake = 12;
+                    bullet = new ExplosionBulletType(3000f, 90f) {{
+                        hitColor = Color.valueOf("f0d000");
+                        collidesAir = true; collidesGround = false;
+                        buildingDamageMultiplier = 0;
+                        lightning = 6; lightningLength = 20; lightningDamage = 40f; lightningColor = Color.valueOf("f0d000");
+                        fragLifeMin = 0.1f; fragBullets = 7;
+                        fragBullet = new FlakBulletType(3.4f, 160f) {{
+                            collidesAir = true; collidesGround = false; collidesTiles = false;
+                            buildingDamageMultiplier = 0; drag = 0.02f;
+                            hitEffect = massiveExplosion; despawnEffect = scatheSlash;
+                            knockback = 0.8f; lifetime = 23;
+                            height = 18; width = 9;
+                            splashDamageRadius = 40; splashDamage = 80;
+                            backColor = Color.valueOf("f0d000"); trailColor = Color.valueOf("f0d000");
+                            hitColor = Color.valueOf("f0d000"); frontColor = Color.valueOf("ffffff");
+                            lightning = 2; lightningLength = 10; lightningDamage = 15f;
+                            smokeEffect = shootBigSmoke;
+                            despawnShake = 8;
+                            lightRadius = 30; lightColor = Color.valueOf("f0d000"); lightOpacity = 0.5f;
                             trailLength = 20; trailWidth = 3.5f;
                             trailEffect = Fx.none;
                         }};

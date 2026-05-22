@@ -162,6 +162,56 @@ public class FRTurrets {
                         }}
                     );
                     trailEffect = trailBezierPurple;
+                }},
+                FRItems.optiCrystal, new MissileBulletType() {{
+                    speed = 8f; lifetime = 60f; damage = 1400f;
+                    splashDamage = 400f; splashDamageRadius = 28f;
+                    pierce = true; pierceBuilding = false;
+                    homingPower = 0.15f; homingRange = 500f;
+                    hitSound = Sounds.shootMissileLarge;
+                    despawnSound = Sounds.shootMissileLarge;
+                    shrinkX = -1f; shrinkY = -0.5f;
+                    sprite = "shell";
+                    height = 34f; width = 22f;
+                    status = StatusEffects.shocked;
+                    frontColor = Color.valueOf("c77dff"); backColor = Color.valueOf("7b2dbf");
+                    trailColor = Color.valueOf("c77dff");
+                    trailWidth = 8f; trailLength = 50; trailChance = -1;
+                    lightColor = Color.valueOf("c77dff");
+                    lightRadius = 40f; lightOpacity = 0.7f;
+                    shootEffect = Fx.shootBig2;
+                    smokeEffect = new MultiEffect(
+                        new ParticleEffect() {{
+                            particles = 8; length = 40f; baseLength = 50f; cone = 20f;
+                            sizeFrom = 6f; sizeTo = 2f; lifetime = 30f;
+                            colorFrom = Color.valueOf("c77dff"); colorTo = Color.white;
+                        }},
+                        new ParticleEffect() {{
+                            particles = 8; length = 40f; baseLength = 50f; cone = 20f;
+                            sizeFrom = 6f; sizeTo = 2f; lifetime = 30f;
+                            colorFrom = Color.white; colorTo = Color.valueOf("c77dff");
+                        }}
+                    );
+                    hitEffect = new MultiEffect(
+                        new WaveEffect() {{
+                            colorFrom = Color.valueOf("c77dff"); colorTo = Color.white;
+                            sizeFrom = 2f; sizeTo = 60f;
+                        }},
+                        new ParticleEffect() {{
+                            particles = 22; length = 60f; baseLength = 50f;
+                            interp = Interp.pow2Out; sizeInterp = Interp.pow2Out;
+                            sizeFrom = 12f; sizeTo = 2f;
+                        }}
+                    );
+                    spawnBullets = Seq.with(
+                        new LaserBulletType() {{
+                            damage = 120f; pierce = true; pierceBuilding = false;
+                            length = 480f; lifetime = 120f; width = 30f;
+                            sideWidth = 1.5f; sideAngle = 20f; sideLength = 80f;
+                            colors = new Color[]{Color.valueOf("c77dff"), Color.valueOf("7b2dbf"), Color.white};
+                        }}
+                    );
+                    trailEffect = trailBezierGold;
                 }}
             );
 
@@ -525,6 +575,16 @@ public class FRTurrets {
                         new ParticleEffect() {{ particles = 8; length = 80f; cone = 360f; colorFrom = Color.valueOf("6d0071"); colorTo = Color.valueOf("9e78dc"); lifetime = 60f; }},
                         new ParticleEffect() {{ particles = 6; length = 100f; cone = 360f; colorFrom = Color.white; colorTo = Color.valueOf("9e78dc"); lifetime = 80f; }}
                     );
+                }},
+                FRItems.energyCell, new BasicBulletType() {{
+                    damage = 0f; speed = 0f; spawnUnit = FRTurrets.unit("energy-missile");
+                    shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
+                    chargeEffect = new MultiEffect(
+                        bezierRingGold, bezierRingGold, bezierRingGold,
+                        new ParticleEffect() {{ particles = 12; length = 60f; cone = 360f; colorFrom = Color.valueOf("f0d000"); colorTo = Color.white; lifetime = 40f; }},
+                        new ParticleEffect() {{ particles = 8; length = 80f; cone = 360f; colorFrom = Color.valueOf("d99f6b"); colorTo = Color.valueOf("f0d000"); lifetime = 60f; }},
+                        new ParticleEffect() {{ particles = 6; length = 100f; cone = 360f; colorFrom = Color.white; colorTo = Color.valueOf("f0d000"); lifetime = 80f; }}
+                    );
                 }}
             );
         }};
@@ -887,6 +947,16 @@ public class FRTurrets {
                     smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
                     hitEffect = Fx.hitFlameSmall;
                     shootEffect = bezierBurstGold;
+                }},
+                FRItems.bioMatter, new BasicBulletType() {{
+                    damage = 18f; speed = 5.5f; lifetime = 50f;
+                    pierce = true; pierceBuilding = true;
+                    ammoMultiplier = 30f; status = StatusEffects.corroded; makeFire = true;
+                    width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
+                    lightning = 3; lightningLength = 2; lightningDamage = 8f;
+                    smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("66cc00"); colorTo = Color.valueOf("2d6b00"); lifetime = 30f; }};
+                    hitEffect = Fx.hitFlameSmall;
+                    shootEffect = bezierBurstGreen;
                 }}
             );
         }};
@@ -1083,6 +1153,26 @@ public class FRTurrets {
                         spawnBullets = Seq.with( new LaserBulletType() {{ length = 120f; width = 16f; damage = 50f; colors = new Color[]{Color.valueOf("218b8f"), Color.valueOf("87ceeb"), Color.white}; }} );
                         fragBullets = 3; fragSpread = 22.5f;
                         fragBullet = new BasicBulletType() {{ damage = 30f; }};
+                    }};
+                    shootEffect = bezierBurstCyan; hitEffect = hitBezierCyan;
+                    chargeEffect = chargeBezierCyan;
+                }},
+                FRItems.nanoFabric, new BasicBulletType() {{
+                    speed = 4f; lifetime = 28f; damage = 110f;
+                    pierce = true; pierceBuilding = true; pierceCap = 4;
+                    width = 24f; height = 30f;
+                    trailColor = Color.valueOf("20b2aa");
+                    ammoMultiplier = 5f; rangeChange = 100f;
+                    lightning = 4; lightningLength = 18; lightningDamage = 12f; lightningColor = Color.valueOf("20b2aa");
+                    fragBullets = 5; fragSpread = 25f;
+                    fragBullet = new BasicBulletType() {{
+                        spawnBullets = Seq.with( new LaserBulletType() {{ length = 140f; width = 18f; damage = 60f; colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("87ceeb"), Color.white}; }} );
+                        fragBullets = 4; fragSpread = 25f;
+                        fragBullet = new BasicBulletType() {{
+                            damage = 35f;
+                            fragBullets = 2; fragSpread = 30f;
+                            fragBullet = new BasicBulletType() {{ damage = 25f; }};
+                        }};
                     }};
                     shootEffect = bezierBurstCyan; hitEffect = hitBezierCyan;
                     chargeEffect = chargeBezierCyan;
