@@ -274,6 +274,7 @@ public class FRFullTechTree {
         addBlock(nanoWeaver, nanoWeavingForge);
         addBlock(greenhouse, bioRefinery);
         addBlock(bioRefinery, bioRefineryForge);
+        addBlock(bioRefineryForge, fabricationNexus);
 
         
         addToNode(siliconArcFurnace, () -> node(siliconArcForge));
