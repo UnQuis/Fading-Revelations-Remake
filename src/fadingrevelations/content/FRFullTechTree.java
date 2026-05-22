@@ -63,6 +63,8 @@ public class FRFullTechTree {
         addBlock(titaniumDrill, compactLaserDrill);
         addBlock(compactLaserDrill, hyperDrill);
         addBlock(hyperDrill, cosmicDrill);
+        addBlock(cosmicDrill, plasmaArcBore);
+        addBlock(cosmicDrill, percussionDrill);
         addBlock(cosmicDrill, omniDrill);
         
         addBlock(modGateDrills, groundGrinder);

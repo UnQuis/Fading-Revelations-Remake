@@ -13,7 +13,7 @@ import mindustry.gen.Sounds;
 
 public class FRDrills {
     public static Block tinyMechanicalDrill, tinyPneumaticDrill, tinyPlasmaBore, titaniumDrill,
-            compactLaserDrill, hyperDrill, cosmicDrill, omniDrill,
+            compactLaserDrill, hyperDrill, cosmicDrill, plasmaArcBore, percussionDrill, omniDrill,
 
             groundGrinder, groundMiller, groundCrusher,
             cliffGrinder, cliffMiller, ventConcentrator, oilBore, tungstenBore;
@@ -85,6 +85,37 @@ public class FRDrills {
                 Items.copper, 500, Items.silicon, 400, Items.titanium, 300,
                 FRItems.livingSteelHard, 300, Items.plastanium, 200,
                 Items.surgeAlloy, 150, Items.phaseFabric, 100
+            ));
+        }};
+
+        plasmaArcBore = new BeamDrill("plasma-arc-bore") {{
+            localizedName = "Plasma Arc Bore";
+            description = "An advanced Erekir plasma bore repurposed for planetary drilling. Burns through any material with a focused plasma beam.";
+            size = 4; tier = 25; range = 12; drillTime = 2; fogRadius = 4;
+            itemCapacity = 500; liquidCapacity = 80;
+            hasPower = true; hasLiquids = true; hasItems = true;
+            consumePower(60f);
+            consumeLiquid(Liquids.hydrogen, 0.2f).boost();
+            requirements(Category.production, ItemStack.with(
+                Items.copper, 500, Items.silicon, 400, Items.titanium, 300,
+                FRItems.livingSteelHard, 300, Items.plastanium, 200,
+                Items.surgeAlloy, 150, Items.phaseFabric, 100,
+                FRItems.optiCrystal, 50, FRItems.energyCell, 50
+            ));
+        }};
+
+        percussionDrill = new Drill("percussion-drill") {{
+            localizedName = "Impact Drill";
+            description = "A high-frequency percussion drill that pulverizes ore through sheer kinetic force. No coolant needed.";
+            size = 4; drillTime = 3; tier = 25; itemCapacity = 500;
+            warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasItems = true;
+            rotateSpeed = 25; updateEffectChance = 0.3f; drawMineItem = false;
+            consumePower(40f);
+            requirements(Category.production, ItemStack.with(
+                Items.copper, 600, Items.lead, 500, Items.silicon, 400, Items.titanium, 300,
+                FRItems.livingSteelHard, 300, Items.plastanium, 250,
+                Items.surgeAlloy, 200, Items.phaseFabric, 100,
+                FRItems.nanoFabric, 40, FRItems.bioMatter, 80
             ));
         }};
 
