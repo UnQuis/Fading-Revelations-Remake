@@ -16,6 +16,7 @@ public class FRDistribution {
 
     public static void load() {
         titaniumRouter = new Router("titanium-router") {{
+            placeableLiquid = true;
             localizedName = "Titanium Router";
             description = "Distributes items to 3 output directions equally. Faster than the regular router.";
             dumpTime = 1; speed = 0.1f; health = 75; itemCapacity = 20; size = 1;
@@ -23,6 +24,7 @@ public class FRDistribution {
         }};
 
         titaniumJunction = new Junction("titanium-junction") {{
+            placeableLiquid = true;
             localizedName = "Titanium Junction";
             description = "Acts as a bridge for two crossing titanium conveyor belts.";
             speed = 18; health = 45; size = 1;
@@ -30,6 +32,7 @@ public class FRDistribution {
         }};
 
         titaniumDistributor = new Router("titanium-distributor") {{
+            placeableLiquid = true;
             localizedName = "Titanium Distributor";
             description = "Distributes input items to 7 output directions equally. Faster than the regular distributor.";
             dumpTime = 1; speed = 0.1f; health = 220; itemCapacity = 20; size = 2;
@@ -37,6 +40,7 @@ public class FRDistribution {
         }};
 
         titaniumBridgeConveyor = new ItemBridge("titanium-bridge-conveyor") {{
+            placeableLiquid = true;
             localizedName = "Titanium Bridge Conveyor";
             description = "Transports items over terrain or buildings. Faster than the regular bridge conveyor.";
             health = 250; range = 6; transportTime = 4; hasPower = false;
@@ -44,6 +48,7 @@ public class FRDistribution {
         }};
 
         tinyMd = new MassDriver("tiny-md") {{
+            placeableLiquid = true;
             localizedName = "Tiny Mass Driver";
             description = "Short range item transport structure. Collects small batches of items and shoots them to other tiny mass drivers.";
             health = 160; itemCapacity = 20; reload = 10; range = 88; size = 1;
@@ -52,6 +57,7 @@ public class FRDistribution {
         }};
 
         surgeBridgeConveyor = new ItemBridge("surge-bridge-conveyor") {{
+            placeableLiquid = true;
             localizedName = "Alloy Bridge Conveyor";
             description = "Transports items over terrain or buildings. Faster than the titanium bridge conveyor.";
             health = 250; range = 6; transportTime = 2; hasPower = false;
@@ -59,6 +65,7 @@ public class FRDistribution {
         }};
 
         surgeAlloyConveyor = new Conveyor("surge-alloy-conveyor") {{
+            placeableLiquid = true;
             localizedName = "Alloy Conveyor";
             description = "Transports items forward. Faster than a titanium conveyor.";
             details = "You hear a faint Speeeeeeedwagggoooooooon in the distance.";
@@ -67,6 +74,7 @@ public class FRDistribution {
         }};
 
         massAccelerator = new MassDriver("mass-accelerator") {{
+            placeableLiquid = true;
             localizedName = "Mass Accelerator";
             description = "Long-range item transport structure. Collects large batches of items and shoots them to other mass accelerators.";
             health = 720; itemCapacity = 300; reload = 120; range = 600; size = 4;
@@ -75,6 +83,7 @@ public class FRDistribution {
         }};
 
         depository = new StorageBlock("depository") {{
+            placeableLiquid = true;
             localizedName = "Depository";
             description = "Stores a gigantic amount of items of each type, akin to a vault. Expands storage when placed next to a core. Contents can be retrieved with an unloader.";
             size = 4; hasItems = true; itemCapacity = 1800; health = 760; coreMerge = true;
@@ -82,6 +91,7 @@ public class FRDistribution {
         }};
 
         frReinforcedVault = new StorageBlock("fr-reinforced-vault") {{
+            placeableLiquid = true;
             localizedName = "Reinforced Vault";
             description = "Stores a massive amount of items. Expands storage when placed next to a core.";
             size = 5; hasItems = true; itemCapacity = 10000; health = 1280; coreMerge = true;
@@ -89,6 +99,7 @@ public class FRDistribution {
         }};
 
         frQuantumVault = new StorageBlock("fr-quantum-vault") {{
+            placeableLiquid = true;
             localizedName = "Quantum Vault";
             description = "Stores an astronomical amount of items. Expands storage when placed next to a core.";
             size = 6; hasItems = true; itemCapacity = 25000; health = 1920; coreMerge = true;
@@ -96,6 +107,7 @@ public class FRDistribution {
         }};
 
         amalgamConveyor = new StackConveyor("amalgam-conveyor") {{
+            placeableLiquid = true;
             localizedName = "Amalgam Conveyor";
             description = "Quickly transports items forward in larger batches, akin to the plastanium conveyor. Identical functionality.";
             details = "Something's wrong with my copy of Factorio...";
@@ -105,6 +117,7 @@ public class FRDistribution {
         }};
 
         kineticRouter = new Router("kinetic-router") {{
+            placeableLiquid = true;
             localizedName = "Kinetic Router";
             description = "Distributes items to 3 output directions equally. Uses surge alloy for high-speed throughput.";
             dumpTime = 1; speed = 0.12f; health = 90; itemCapacity = 20; size = 1;
@@ -112,6 +125,7 @@ public class FRDistribution {
         }};
 
         kineticJunction = new Junction("kinetic-junction") {{
+            placeableLiquid = true;
             localizedName = "Kinetic Junction";
             description = "Acts as a bridge for two crossing kinetic conveyor belts.";
             speed = 22; health = 55; size = 1;
@@ -119,6 +133,7 @@ public class FRDistribution {
         }};
 
         kineticDistributor = new Router("kinetic-distributor") {{
+            placeableLiquid = true;
             localizedName = "Kinetic Distributor";
             description = "Distributes input items to 7 output directions equally. Surge-alloy powered high throughput.";
             dumpTime = 1; speed = 0.12f; health = 240; itemCapacity = 20; size = 2;
@@ -126,6 +141,7 @@ public class FRDistribution {
         }};
 
         bioConveyor = new Conveyor("bio-conveyor") {{
+            placeableLiquid = true;
             localizedName = "Bio-Alloy Conveyor";
             description = "An ultra-fast conveyor woven from biological matter and hardened living steel. Extreme throughput.";
             details = "It's alive! ALIVE!";
@@ -134,6 +150,7 @@ public class FRDistribution {
         }};
 
         bioRouter = new Router("bio-router") {{
+            placeableLiquid = true;
             localizedName = "Bio-Alloy Router";
             description = "Distributes items to 3 output directions at incredible speed. Grown from bio-alloy composites.";
             dumpTime = 1; speed = 0.4f; health = 350; itemCapacity = 30; size = 1;
@@ -141,6 +158,7 @@ public class FRDistribution {
         }};
 
         bioJunction = new Junction("bio-junction") {{
+            placeableLiquid = true;
             localizedName = "Bio-Alloy Junction";
             description = "Acts as a bridge for two crossing bio-alloy conveyor belts.";
             speed = 88; health = 220; size = 1;
@@ -148,6 +166,7 @@ public class FRDistribution {
         }};
 
         bioBridgeConveyor = new ItemBridge("bio-bridge-conveyor") {{
+            placeableLiquid = true;
             localizedName = "Bio-Alloy Bridge Conveyor";
             description = "Transports items over terrain or buildings at extreme speed. The pinnacle of distribution technology.";
             health = 650; range = 10; transportTime = 0.5f; hasPower = false;
@@ -155,6 +174,7 @@ public class FRDistribution {
         }};
 
         bioDistributor = new Router("bio-distributor") {{
+            placeableLiquid = true;
             localizedName = "Bio-Alloy Distributor";
             description = "Distributes input items to 7 output directions at extreme speed. The ultimate distributor.";
             dumpTime = 1; speed = 0.4f; health = 550; itemCapacity = 30; size = 2;
@@ -162,6 +182,7 @@ public class FRDistribution {
         }};
 
         fusionConveyor = new StackConveyor("fusion-conveyor") {{
+            placeableLiquid = true;
             localizedName = "Fusion Stack Conveyor";
             description = "Combines kinetic energy cells and bio-alloy materials into a hyper-efficient batch conveyor. Moves items at extreme throughput.";
             details = "The ultimate expression of material science.";

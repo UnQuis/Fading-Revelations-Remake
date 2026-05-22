@@ -31,6 +31,7 @@ public class FRWalls {
 
     public static void load() {
         steelAlloyWallSmall = new PowerTurret("steel-alloy-wall-small") {{
+            placeableLiquid = true;
             localizedName = "Amalgam Wall";
             description = "A small wall made from Steel Amalgam. Zaps enemies around it when they get close.";
             hasItems = false; hasPower = false; hasLiquids = false; canOverdrive = false;
@@ -49,6 +50,7 @@ public class FRWalls {
         }};
 
         steelAlloyWallLarge = new PowerTurret("steel-alloy-wall-large") {{
+            placeableLiquid = true;
             localizedName = "Large Amalgam Wall";
             description = "A large wall made from Steel Amalgam. Zaps enemies around it when they get close.";
             hasItems = false; hasPower = false; hasLiquids = false; canOverdrive = false;
@@ -67,6 +69,7 @@ public class FRWalls {
         }};
 
         livingSteelWall = new MendProjector("living-steel-wall") {{
+            placeableLiquid = true;
             localizedName = "Living Steel Wall";
             description = "A wall made from living steel that heals itself slowly.";
             health = 960; size = 1; range = 1; itemCapacity = 0; hasItems = false; hasPower = false;
@@ -77,6 +80,7 @@ public class FRWalls {
         }};
 
         livingSteelWallLarge = new MendProjector("living-steel-wall-2") {{
+            placeableLiquid = true;
             localizedName = "Living Steel Wall Large";
             description = "A large wall made of Living Steel. Heals itself slowly.";
             health = 3220; healPercent = 1; reload = 2500; insulated = true;
@@ -87,6 +91,7 @@ public class FRWalls {
         }};
 
         copperWall2 = new Wall("copper-wall-2") {{
+            placeableLiquid = true;
             localizedName = "Huge Copperwall";
             description = "A copper wall. Bigger than the big one.";
             health = 2880; size = 3;
@@ -95,6 +100,7 @@ public class FRWalls {
         }};
 
         copperWall3 = new Wall("copper-wall-3") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Copperwall.";
             description = "A gigantic copper wall";
             health = 5120; size = 4;
@@ -103,6 +109,7 @@ public class FRWalls {
         }};
 
         titaniumWall2 = new Wall("titanium-wall-2") {{
+            placeableLiquid = true;
             localizedName = "Huge Titanium-Wall";
             description = "A huge wall made from titanium.";
             health = 3960; size = 3;
@@ -111,6 +118,7 @@ public class FRWalls {
         }};
 
         titaniumWall3 = new Wall("titanium-wall-3") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Titanium-Wall";
             description = "A gigantic wall made out of titanium.";
             health = 7040; size = 4;
@@ -119,6 +127,7 @@ public class FRWalls {
         }};
 
         thoriumWall2 = new Wall("thorium-wall-2") {{
+            placeableLiquid = true;
             localizedName = "Huge Thorium-Wall";
             description = "A huge wall of thorium.";
             health = 7200; size = 3;
@@ -127,6 +136,7 @@ public class FRWalls {
         }};
 
         thoriumWall3 = new Wall("thorium-wall-3") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Thorium-Wall";
             description = "A gigantic wall made out of thorium.";
             health = 12800; size = 4;
@@ -135,6 +145,7 @@ public class FRWalls {
         }};
 
         plastaniumWall2 = new Wall("plastanium-wall-2") {{
+            placeableLiquid = true;
             localizedName = "Huge Plastanium-Wall";
             description = "A huge wall made from plastanium";
             health = 4680; size = 3; insulated = true; absorbLasers = true;
@@ -143,6 +154,7 @@ public class FRWalls {
         }};
 
         plastaniumWall3 = new Wall("plastanium-wall-3") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Plastanium-Wall";
             description = "A gigantic wall made from plastanium.";
             health = 8320; size = 4; insulated = true; absorbLasers = true;
@@ -151,6 +163,7 @@ public class FRWalls {
         }};
 
         surgeAlloyWall2 = new Wall("surge-alloy-wall-2") {{
+            placeableLiquid = true;
             localizedName = "Huge Surge-Alloy-Wall";
             description = "A huge wall made of surge alloy. Can shoot lightning sometimes.";
             health = 8280; size = 3;
@@ -160,6 +173,7 @@ public class FRWalls {
         }};
 
         surgeAlloyWall3 = new Wall("surge-alloy-wall-3") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Surge-Alloy-Wall";
             description = "A gigantic wall made of surge alloy.";
             health = 14720; size = 4;
@@ -169,6 +183,7 @@ public class FRWalls {
         }};
 
         phaseFabricWall2 = new Wall("phase-fabric-wall-2") {{
+            placeableLiquid = true;
             localizedName = "Huge Phase-Fabric Wall";
             description = "A huge wall made out of phase-fabric.";
             health = 5400; size = 3; flashHit = true; chanceDeflect = 15;
@@ -177,6 +192,7 @@ public class FRWalls {
         }};
 
         phaseFabricWall3 = new Wall("phase-fabric-wall-3") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Phase-Fabric-Wall";
             description = "A gigantic wall made of phase-fabric. A lot of it.";
             health = 9600; size = 4; flashHit = true; chanceDeflect = 20;
@@ -185,6 +201,7 @@ public class FRWalls {
         }};
 
         armoredDoor = new AutoDoor("armored-door") {{
+            placeableLiquid = true;
             localizedName = "Armored Door";
             description = "A door that opens automatically for allied units. Cannot be manually opened or closed.";
             health = 1860; size = 2;
@@ -193,6 +210,7 @@ public class FRWalls {
         }};
 
         doorHuge = new Door("door-huge") {{
+            placeableLiquid = true;
             localizedName = "Huge door";
             description = "A huge door.";
             health = 3600; size = 3;
@@ -201,6 +219,7 @@ public class FRWalls {
         }};
 
         doorGigantic = new Door("door-gigantic") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Door";
             description = "A gigantic door.";
             health = 6400; size = 4;
@@ -209,6 +228,7 @@ public class FRWalls {
         }};
 
         armoredWall = new ShieldWall("armored-wall") {{
+            placeableLiquid = true;
             localizedName = "Armored Wall";
             description = "A better Shielded Wall that has more health and a stronger shield. Uses Carbide.";
             health = 5820; size = 2; armor = 18; chanceDeflect = 9; shieldHealth = 1200;
@@ -219,6 +239,7 @@ public class FRWalls {
         }};
 
         berylliumWallHuge = new Wall("beryllium-wall-huge") {{
+            placeableLiquid = true;
             localizedName = "Huge Beryllium Wall";
             description = "A huge wall made from Beryllium.";
             health = 4680; size = 3; armor = 2;
@@ -227,6 +248,7 @@ public class FRWalls {
         }};
 
         berylliumWallGigantic = new Wall("beryllium-wall-gigantic") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Beryllium Wall";
             description = "A gigantic wall made from Beryllium.";
             health = 8320; size = 4; armor = 2;
@@ -235,6 +257,7 @@ public class FRWalls {
         }};
 
         tungstenWallHuge = new Wall("tungsten-wall-huge") {{
+            placeableLiquid = true;
             localizedName = "Huge Tungsten Wall";
             description = "A huge wall made from Tungsten.";
             health = 6480; size = 3; armor = 14;
@@ -243,6 +266,7 @@ public class FRWalls {
         }};
 
         tungstenWallGigantic = new Wall("tungsten-wall-gigantic") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Tungsten Wall";
             description = "A gigantic wall made from Tungsten.";
             health = 11520; size = 4; armor = 14;
@@ -251,6 +275,7 @@ public class FRWalls {
         }};
 
         carbideWallHuge = new Wall("carbide-wall-huge") {{
+            placeableLiquid = true;
             localizedName = "Huge Carbide Wall";
             description = "A huge wall made out of Carbide. Is armored.";
             health = 9720; size = 3; armor = 16;
@@ -259,6 +284,7 @@ public class FRWalls {
         }};
 
         carbideWallGigantic = new Wall("carbide-wall-gigantic") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Carbide Wall";
             description = "A gigantic wall made out of Carbide. Is armored.";
             health = 17280; size = 4; armor = 16;
@@ -267,6 +293,7 @@ public class FRWalls {
         }};
 
         reinforcedSurgeWallHuge = new Wall("reinforced-surge-wall-huge") {{
+            placeableLiquid = true;
             localizedName = "Huge Reinforced Surge Wall";
             description = "A huge wall made out of Surge Alloy and Tungsten. Is armored.";
             health = 9000; size = 3; armor = 20;
@@ -276,6 +303,7 @@ public class FRWalls {
         }};
 
         reinforcedSurgeWallGigantic = new Wall("reinforced-surge-wall-gigantic") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Reinforced Surge Wall";
             description = "A gigantic wall made out of Surge Alloy and Tungsten. Is armored.";
             health = 16000; size = 4; armor = 20;
@@ -285,6 +313,7 @@ public class FRWalls {
         }};
 
         nanoOpticWall = new NanoOpticWall("nano-optic-wall") {{
+            placeableLiquid = true;
             localizedName = "Nano-Optic Wall";
             description = "A wall woven from Nano Fabric and reinforced with Optical Crystals. Highly durable, deflects projectiles, and rapidly repairs itself.";
             health = 3200; size = 1; armor = 20; insulated = true;
@@ -295,6 +324,7 @@ public class FRWalls {
         }};
 
         nanoOpticWallLarge = new NanoOpticWall("nano-optic-wall-large") {{
+            placeableLiquid = true;
             localizedName = "Large Nano-Optic Wall";
             description = "A larger Nano-Optic Wall with increased durability and deflection.";
             health = 11500; size = 2; armor = 22; insulated = true;
@@ -305,6 +335,7 @@ public class FRWalls {
         }};
 
         nanoOpticWallHuge = new NanoOpticWall("nano-optic-wall-huge") {{
+            placeableLiquid = true;
             localizedName = "Huge Nano-Optic Wall";
             description = "A massive Nano-Optic Wall. Its crystal lattice deflects even heavy ordinance.";
             health = 28000; size = 3; armor = 24; insulated = true;
@@ -315,6 +346,7 @@ public class FRWalls {
         }};
 
         nanoOpticWallGigantic = new NanoOpticWall("nano-optic-wall-gigantic") {{
+            placeableLiquid = true;
             localizedName = "Gigantic Nano-Optic Wall";
             description = "An enormous Nano-Optic Wall of unparalleled strength. Nearly impervious to attack.";
             health = 50000; size = 4; armor = 26; insulated = true;
