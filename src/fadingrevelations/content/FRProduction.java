@@ -495,7 +495,7 @@ public class FRProduction {
             resolvedRecipes = Seq.with(
                 new fadingrevelations.core.Recipe() {{
                     input = new IOEntry() {{
-                        items = ItemStack.with(Items.titanium, 3, Items.sporePod, 1);
+                        items = ItemStack.with(Items.graphite, 2, Items.sporePod, 1);
                         power = 1.4f;
                     }};
                     output = new IOEntry() {{
