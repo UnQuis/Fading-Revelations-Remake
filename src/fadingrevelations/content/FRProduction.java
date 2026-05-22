@@ -1,6 +1,7 @@
 package fadingrevelations.content;
 
 import arc.graphics.*;
+import arc.struct.Seq;
 import mindustry.content.*;
 import mindustry.gen.Sounds;
 import mindustry.type.*;
@@ -10,6 +11,8 @@ import mindustry.world.blocks.power.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.blocks.units.*;
 import mindustry.world.consumers.*;
+import mindustry.world.draw.*;
+import fadingrevelations.core.*;
 import fadingrevelations.worlds.blocks.unit.FRAscendedUnitFactory;
 import mindustry.world.meta.*;
 
@@ -40,7 +43,8 @@ public class FRProduction {
         carbideBasin,
         primaryFactory, basicReassembly, advancedReassembly,
         progressiveAssembly, regenerator,
-        ascendedFactory;
+            ascendedFactory,
+            fabricationNexus;
 
     public static void load() {
         tinyThermalGen = new ThermalGenerator("tiny-thermal-gen") {{
@@ -391,54 +395,172 @@ public class FRProduction {
 
         crystalSynthesisArray = new GenericCrafter("crystal-synthesis-array") {{
             localizedName = "Crystal Synthesis Array";
-            description = "A massive array of synthesizers that mass-produces [#8a2be2]Optical Crystals[] at greatly improved efficiency. Requires large amounts of silicon and thorium.";
+            description = "An advanced array that synthesizes optical crystals using energy cells and hardened living steel as catalytic agents.";
             size = 4; hasPower = true; hasItems = true; hasLiquids = true;
-            liquidCapacity = 60; itemCapacity = 40; craftTime = 60;
+            liquidCapacity = 60; itemCapacity = 40; craftTime = 75;
             craftEffect = Fx.pulverize;
-            consumePower(4.5f);
-            consumeItems(with(Items.silicon, 5, Items.thorium, 3));
-            consumeLiquid(Liquids.water, 0.2f);
-            outputItem = new ItemStack(FRItems.optiCrystal, 2);
+            consumePower(5f);
+            consumeItems(with(FRItems.energyCell, 2, FRItems.livingSteelHard, 4));
+            consumeLiquid(Liquids.cryofluid, 0.2f);
+            outputItem = new ItemStack(FRItems.optiCrystal, 3);
             requirements(Category.crafting, with(Items.copper, 500, Items.lead, 400, Items.silicon, 300, Items.thorium, 200, Items.graphite, 160, Items.titanium, 120));
         }};
 
         cellFabricationForge = new GenericCrafter("cell-fabrication-forge") {{
             localizedName = "Cell Fabrication Forge";
-            description = "A high-throughput forge that produces [#f0d000]Energy Cells[] from surge alloy and silicon in bulk. More efficient than standard fabricators.";
-            size = 4; hasPower = true; hasItems = true; hasLiquids = false;
-            liquidCapacity = 30; itemCapacity = 40; craftTime = 80;
+            description = "Forge that amplifies energy cell production using optical crystal catalysts and surge alloy.";
+            size = 4; hasPower = true; hasItems = true; hasLiquids = true;
+            liquidCapacity = 30; itemCapacity = 40; craftTime = 90;
             craftEffect = Fx.shootSmokeSquare;
-            consumePower(5.5f);
-            consumeItems(with(Items.silicon, 6, Items.surgeAlloy, 3, Items.lead, 5));
-            outputItem = new ItemStack(FRItems.energyCell, 2);
+            consumePower(6f);
+            consumeItems(with(FRItems.optiCrystal, 2, Items.surgeAlloy, 4));
+            consumeLiquid(Liquids.water, 0.15f);
+            outputItem = new ItemStack(FRItems.energyCell, 3);
             requirements(Category.crafting, with(Items.copper, 600, Items.lead, 500, Items.silicon, 400, Items.surgeAlloy, 240, Items.graphite, 200, Items.titanium, 150));
         }};
 
         nanoWeavingForge = new GenericCrafter("nano-weaving-forge") {{
             localizedName = "Nano Weaving Forge";
-            description = "An industrial-scale weaver that produces [#20b2aa]Nano Fabric[] in large quantities. Weaves living steel and phase fabric using neutron fluid cooling.";
+            description = "Catalyzes nano fabric production using biological matter as a binding agent for phase-weaved fibers.";
             size = 4; hasPower = true; hasItems = true; hasLiquids = true;
-            liquidCapacity = 60; itemCapacity = 40; craftTime = 100;
+            liquidCapacity = 60; itemCapacity = 40; craftTime = 110;
             craftEffect = Fx.smeltsmoke;
-            consumePower(7f);
-            consumeItems(with(FRItems.livingSteel, 5, Items.phaseFabric, 3));
+            consumePower(7.5f);
+            consumeItems(with(FRItems.bioMatter, 3, Items.phaseFabric, 3));
             consumeLiquid(FRLiquids.neutronFluid, 0.15f);
-            outputItem = new ItemStack(FRItems.nanoFabric, 2);
+            outputItem = new ItemStack(FRItems.nanoFabric, 3);
             requirements(Category.crafting, with(Items.copper, 700, Items.lead, 600, Items.silicon, 500, Items.phaseFabric, 300, FRItems.livingSteelHard, 200, Items.thorium, 150));
         }};
 
         bioRefineryForge = new GenericCrafter("bio-refinery-forge") {{
             localizedName = "Bio-Refinery Forge";
-            description = "An advanced fermentation forge that processes spores into [#66cc00]Biological Matter[] at higher volumes and speeds.";
+            description = "A nano-catalyzed fermentation forge that processes spores into biological matter at extreme efficiency.";
             size = 4; hasPower = true; hasItems = true; hasLiquids = true;
-            liquidCapacity = 120; itemCapacity = 60; craftTime = 40;
+            liquidCapacity = 120; itemCapacity = 60; craftTime = 50;
             craftEffect = Fx.steam;
-            consumePower(3f);
-            consumeItems(with(Items.sporePod, 6));
+            consumePower(3.5f);
+            consumeItems(with(FRItems.nanoFabric, 1, Items.sporePod, 6));
             consumeLiquid(Liquids.water, 0.3f);
-            outputItem = new ItemStack(FRItems.bioMatter, 4);
+            outputItem = new ItemStack(FRItems.bioMatter, 5);
             outputLiquid = new LiquidStack(Liquids.water, 0.15f);
             requirements(Category.crafting, with(Items.copper, 400, Items.lead, 300, Items.silicon, 160, Items.graphite, 120, Items.titanium, 100));
+        }};
+
+        fabricationNexus = new MultiCrafter("fabrication-nexus") {{
+            localizedName = "Fabrication Nexus";
+            description = "A centralized 6x6 multi-factory that combines all advanced material production chains. Switch between 8 different recipes to produce optical crystals, energy cells, nano fabric, and biological matter.";
+            details = "MultiCrafter Lib integration by Fading Revelations team.";
+            size = 6; health = 800;
+            switchStyle = RecipeSwitchStyle.transform;
+            craftEffect = Fx.pulverize;
+            updateEffect = Fx.none;
+            changeRecipeEffect = Fx.rotateBlock;
+            ambientSound = Sounds.loopMachine;
+            ambientSoundVolume = 0.06f;
+            drawer = new DrawDefault();
+            resolvedRecipes = Seq.with(
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(Items.silicon, 3, Items.thorium, 2);
+                        fluids = LiquidStack.with(Liquids.water, 0.15f);
+                        power = 2.5f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.optiCrystal, 1);
+                    }};
+                    craftTime = 90f;
+                    craftEffect = Fx.pulverize;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(Items.silicon, 4, Items.surgeAlloy, 2, Items.lead, 3);
+                        power = 3f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.energyCell, 1);
+                    }};
+                    craftTime = 120f;
+                    craftEffect = Fx.shootSmokeSquare;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(FRItems.livingSteel, 3, Items.phaseFabric, 2);
+                        fluids = LiquidStack.with(FRLiquids.neutronFluid, 0.1f);
+                        power = 4f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.nanoFabric, 1);
+                    }};
+                    craftTime = 150f;
+                    craftEffect = Fx.smeltsmoke;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(Items.sporePod, 4);
+                        fluids = LiquidStack.with(Liquids.water, 0.2f);
+                        power = 1.5f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.bioMatter, 2);
+                        fluids = LiquidStack.with(Liquids.water, 0.1f);
+                    }};
+                    craftTime = 60f;
+                    craftEffect = Fx.steam;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(FRItems.energyCell, 2, FRItems.livingSteelHard, 4);
+                        fluids = LiquidStack.with(Liquids.cryofluid, 0.2f);
+                        power = 5f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.optiCrystal, 3);
+                    }};
+                    craftTime = 75f;
+                    craftEffect = Fx.pulverize;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(FRItems.optiCrystal, 2, Items.surgeAlloy, 4);
+                        fluids = LiquidStack.with(Liquids.water, 0.15f);
+                        power = 6f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.energyCell, 3);
+                    }};
+                    craftTime = 90f;
+                    craftEffect = Fx.shootSmokeSquare;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(FRItems.bioMatter, 3, Items.phaseFabric, 3);
+                        fluids = LiquidStack.with(FRLiquids.neutronFluid, 0.15f);
+                        power = 7.5f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.nanoFabric, 3);
+                    }};
+                    craftTime = 110f;
+                    craftEffect = Fx.smeltsmoke;
+                }},
+                new fadingrevelations.core.Recipe() {{
+                    input = new IOEntry() {{
+                        items = ItemStack.with(FRItems.nanoFabric, 1, Items.sporePod, 6);
+                        fluids = LiquidStack.with(Liquids.water, 0.3f);
+                        power = 3.5f;
+                    }};
+                    output = new IOEntry() {{
+                        items = ItemStack.with(FRItems.bioMatter, 5);
+                        fluids = LiquidStack.with(Liquids.water, 0.15f);
+                    }};
+                    craftTime = 50f;
+                    craftEffect = Fx.steam;
+                }}
+            );
+            requirements(Category.crafting,
+                with(Items.copper, 1500, Items.lead, 1200, Items.silicon, 1000, Items.thorium, 600,
+                    Items.surgeAlloy, 400, Items.phaseFabric, 300, FRItems.livingSteel, 250, FRItems.livingSteelHard, 200)
+            );
         }};
 
         nukeCrafter = new GenericCrafter("nuke-crafter") {{
