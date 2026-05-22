@@ -16,5 +16,8 @@ public class HeatImage extends Table {
         Image heatImage = new Image(Icon.waves.getRegion());
         heatImage.setColor(Pal.lightOrange);
         add(heatImage).size(iconSmall);
+        if (amount > 0) {
+            add(new Label(String.format("%.0f", amount))).padLeft(2);
+        }
     }
 }
