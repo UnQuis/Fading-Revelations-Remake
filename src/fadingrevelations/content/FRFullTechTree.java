@@ -222,9 +222,8 @@ public class FRFullTechTree {
         
         
         
-        addBlock(modGateCrafters, livingSteelInfuser);
-        addBlock(livingSteelInfuser, livingSteelComplex);
-        addBlock(livingSteelInfuser, livingSteelLiquifier);
+        addBlock(modGateCrafters, livingSteelComplex);
+        addBlock(modGateCrafters, livingSteelLiquifier);
         addBlock(livingSteelLiquifier, livingSteelLiquifyingForge);
 
         
