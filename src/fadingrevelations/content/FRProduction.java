@@ -164,7 +164,7 @@ public class FRProduction {
             size = 2; health = 140; hasPower = true; hasItems = true; hasLiquids = false;
             craftTime = 50; craftEffect = Fx.smeltsmoke; updateEffect = Fx.smeltsmoke;
             consumePower(0.8f); consumeItems(with(Items.titanium, 2, Items.sporePod, 1));
-            outputItem = new ItemStack(FRItems.livingSteel, 2);
+            outputItem = new ItemStack(FRItems.livingSteel, 4);
             requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.titanium, 50));
         }};
 
@@ -495,7 +495,7 @@ public class FRProduction {
             resolvedRecipes = Seq.with(
                 new fadingrevelations.core.Recipe() {{
                     input = new IOEntry() {{
-                        items = ItemStack.with(Items.graphite, 2, Items.sporePod, 1);
+                        items = ItemStack.with(Items.titanium, 2, Items.sporePod, 1);
                         power = 1.4f;
                     }};
                     output = new IOEntry() {{
@@ -506,7 +506,7 @@ public class FRProduction {
                 }},
                 new fadingrevelations.core.Recipe() {{
                     input = new IOEntry() {{
-                        items = ItemStack.with(Items.titanium, 1, Items.sporePod, 2);
+                        items = ItemStack.with(Items.graphite, 1, Items.sporePod, 2);
                         power = 0.8f;
                     }};
                     output = new IOEntry() {{
