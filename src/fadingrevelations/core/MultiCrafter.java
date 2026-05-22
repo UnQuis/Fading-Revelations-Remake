@@ -517,12 +517,12 @@ public class MultiCrafter extends PayloadBlock {
                             () -> Pal.accent,
                             () -> Interp.smooth.apply(duration[0] / visualCraftTime))
                     ).height(45f);
-            barCell.width(Vars.mobile ? 220f : 250f);
+            barCell.width(Vars.mobile ? 160f : 180f);
             Cell<Table> timeCell = t.add(time).pad(12f);
             if (showNameTooltip)
                 timeCell.tooltip(Stat.productionTime.localized() + ": " + craftTime + " " + StatUnit.seconds.localized());
             buildIOEntry(t, recipe, false);
-            stat.add(t).pad(10f).grow();
+            stat.add(t).pad(10f).growX();
             stat.row();
         }
         stat.row();
@@ -591,8 +591,8 @@ public class MultiCrafter extends PayloadBlock {
         Cell<Table> matCell = t.add(mat);
         if (isInput) matCell.left();
         else matCell.right();
-        Cell<Table> tCell = table.add(t).pad(12f).fill();
-        tCell.width(Vars.mobile ? 90f : 120f);
+        Cell<Table> tCell = table.add(t).pad(12f).fillX();
+        tCell.minWidth(Vars.mobile ? 90f : 140f);
     }
 
     @Override

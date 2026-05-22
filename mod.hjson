@@ -69,6 +69,6 @@
 
     subtitle: "[accent]Alpha rebuild[]. Uses [#42a5f5]MultiCrafter Lib[] by Liplum & Jojo."
     minGameVersion: "154"
-    version: "2.3.1-alpha"
+    version: "2.4.0-alpha"
     java: true
 }
