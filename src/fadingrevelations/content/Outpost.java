@@ -6,22 +6,13 @@ import arc.math.*;
 import arc.math.geom.*;
 import arc.util.Time;
 import arc.util.Tmp;
-import mindustry.Vars;
 import mindustry.gen.Building;
 import mindustry.graphics.Drawf;
 import mindustry.graphics.Layer;
-import mindustry.graphics.Pal;
 import mindustry.type.Item;
 import mindustry.world.Block;
 
-import static mindustry.Vars.tilesize;
-
 public class Outpost extends Block {
-    private static final Vec2 v1 = new Vec2();
-    private static final Vec2 v2 = new Vec2();
-    private static final Vec2 v3 = new Vec2();
-    private static final Vec2 v4 = new Vec2();
-
     public Outpost(String name) {
         super(name);
         update = true;
@@ -68,45 +59,34 @@ public class Outpost extends Block {
             super.draw();
 
             float time = Time.time;
-            float bobbing = Mathf.sin(time * 0.05f) * 1.2f;
-            float radius = 10f + Mathf.sin(time * 0.02f) * 0.4f;
+            float bobbing = Mathf.sin(time * 0.05f) * 1.5f;
+            float rx = x;
+            float ry = y + 4f + bobbing;
 
             Draw.z(Layer.turret + 0.01f);
             Draw.blend(Blending.additive);
 
-            Drawf.light(x, y + bobbing, radius * 3f, Pal.accent, 0.7f);
+            float glowRadius = 12f + Mathf.absin(time, 4f, 2f);
+            Drawf.light(rx, ry, glowRadius * 2.5f, team.color, 0.7f);
 
-            Draw.color(Pal.accent);
-            Draw.alpha(0.15f);
-            Fill.circle(x, y + bobbing, radius + 2f);
-
-            Draw.color(Pal.accent);
+            Draw.color(team.color, Color.white, 0.3f);
             Draw.alpha(0.8f);
-            Lines.stroke(1.8f);
-            Lines.circle(x, y + bobbing, radius);
 
-            for (int i = 0; i < 3; i++) {
-                float orbAngle = time * 1.5f + i * 120f;
-                float px = x + Angles.trnsx(orbAngle, radius);
-                float py = y + bobbing + Angles.trnsy(orbAngle, radius);
-
-                Draw.color(Color.white);
-                Draw.alpha(0.9f);
-                Fill.circle(px, py, 2f);
-
-                Draw.color(Pal.accent);
-                Draw.alpha(0.4f);
-                Fill.circle(px, py, 4f);
+            for (int i = 0; i < 4; i++) {
+                Drawf.tri(rx, ry, 3.5f, 9f + Mathf.absin(time, 5f, 2f), i * 90f + time * 1.5f);
             }
 
-            for (int i = 0; i < 2; i++) {
-                float orbAngle = -time * 2f + i * 180f;
-                float px = x + Angles.trnsx(orbAngle, radius - 3f);
-                float py = y + bobbing + Angles.trnsy(orbAngle, radius - 3f);
+            Lines.stroke(1.5f);
+            for (int i = 0; i < 4; i++) {
+                Lines.arc(rx, ry, 8f, 0.15f, i * 90f - time * 2f);
+            }
 
-                Draw.color(Pal.accent, Color.white, 0.3f);
-                Draw.alpha(0.7f);
-                Fill.circle(px, py, 1.3f);
+            for (int i = 0; i < 3; i++) {
+                float a = time * 3f + i * 120f;
+                float px = rx + Angles.trnsx(a, 12f);
+                float py = ry + Angles.trnsy(a, 12f);
+
+                Fill.square(px, py, 2f, a + 45f);
             }
 
             Draw.blend();
@@ -117,43 +97,38 @@ public class Outpost extends Block {
             Building c = core();
             if (c == null) return;
 
-            float laserOpacity = arc.Core.settings.getInt("laseropacity", 100) / 100f;
+            float laserOpacity = arc.Core.settings.getInt("lasersopacity", 100) / 100f;
+            if (laserOpacity <= 0.01f) return;
 
-            Draw.z(Layer.effect - 1f);
+            Draw.z(Layer.power - 1f);
             Draw.blend(Blending.additive);
 
             float angle = angleTo(c);
-            float pulse = 1f + Mathf.absin(Time.time, 4f, 0.3f);
+            float dst = dst(c);
 
+            float pulse = 0.7f + Mathf.absin(time, 3f, 0.3f);
             Draw.color(team.color);
-            Draw.alpha(warmup * 0.4f * laserOpacity);
-            Lines.stroke(4f * pulse * warmup);
+            Draw.alpha(warmup * 0.5f * laserOpacity * pulse);
+            Lines.stroke(3.5f * warmup);
             Lines.line(x, y, c.x, c.y);
 
             Draw.color(Color.white);
-            Draw.alpha(warmup * 0.8f * laserOpacity);
+            Draw.alpha(warmup * 0.8f * laserOpacity * pulse);
             Lines.stroke(1.2f * warmup);
             Lines.line(x, y, c.x, c.y);
 
-            Draw.color(team.color, Color.white, 0.3f);
-            for (int i = 0; i < 4; i++) {
-                float f = (progress * 0.8f + i * 25f) % 100f / 100f;
-                float dst = dst(c);
+            Draw.color(team.color, Color.white, 0.4f);
+            for (int i = 0; i < 5; i++) {
+                float f = (progress * 1.5f + i * 20f) % 100f / 100f;
+                float alphaEdge = Mathf.sin(f * Mathf.PI) * warmup * laserOpacity;
 
                 Tmp.v1.trns(angle, f * dst);
                 float px = x + Tmp.v1.x;
                 float py = y + Tmp.v1.y;
 
-                float alphaEdge = Mathf.sin(f * Mathf.PI) * warmup * laserOpacity;
                 Draw.alpha(alphaEdge);
-
-                float sizeMod = (1f - f * 0.3f) * 6f;
-                Fill.square(px, py, sizeMod, angle + 45f);
-
-                Draw.color(Color.white);
-                Draw.alpha(alphaEdge * 0.7f);
-                Fill.square(px, py, sizeMod * 0.5f, angle + 45f);
-                Draw.color(team.color, Color.white, 0.3f);
+                Drawf.tri(px, py, 5f * warmup, 9f * warmup, angle);
+                Drawf.tri(px, py, 5f * warmup, 3f * warmup, angle + 180f);
             }
 
             Draw.blend();
@@ -164,15 +139,14 @@ public class Outpost extends Block {
         public void drawConfigure() {
             Building c = core();
             if (c == null) return;
-            float ox = x, oy = y, cx = c.x, cy = c.y;
 
             Draw.color(team.color);
             Lines.stroke(1.5f);
-            Lines.dashLine(ox, oy, cx, cy, 8);
+            Lines.dashLine(x, y, c.x, c.y, 8);
 
             Draw.blend(Blending.additive);
-            Fill.square(ox, oy, 4f, Time.time * 2f);
-            Fill.square(cx, cy, 4f, -Time.time * 2f);
+            Fill.square(x, y, 4f, Time.time * 2f);
+            Fill.square(c.x, c.y, 4f, -Time.time * 2f);
             Draw.blend();
             Draw.reset();
         }
