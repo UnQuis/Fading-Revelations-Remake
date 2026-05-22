@@ -23,7 +23,7 @@ public class FRProduction {
         tinyThermalGen, titaniumPanel, steamTurbine, slagGenerator, slagReactor,
         pyratiteGenerator, lsGen, steelReactor, uraniumReactor, solarArray,
         advancedSolarPanel, turbineConcentrator,
-        livingSteelInfuser, livingSteelLiquifier, livingSteelLiquifyingForge,
+        livingSteelLiquifier, livingSteelLiquifyingForge,
         cryogenicGelMixer, alloyCrafter, cryogenicAlloyAssembler,
         amalgamSmelter, amalgamForge, basicMultismelter, steamCondenser,
         neutronBlender, acidVat, acidEmulsifier, uraniumrodCrafter,
@@ -156,16 +156,6 @@ public class FRProduction {
             generateEffect = Fx.turbinegenerate; effectChance = 0.05f;
             ambientSound = Sounds.loopHum; ambientSoundVolume = 0.08f;
             requirements(Category.power, with(Items.beryllium, 90, Items.graphite, 75));
-        }};
-
-        livingSteelInfuser = new GenericCrafter("living-steel-infuser") {{
-            localizedName = "Living Steel Infusion Chamber";
-            description = "Infuses titanium with spore pods, creating living steel.";
-            size = 2; health = 140; hasPower = true; hasItems = true; hasLiquids = false;
-            craftTime = 50; craftEffect = Fx.smeltsmoke; updateEffect = Fx.smeltsmoke;
-            consumePower(0.8f); consumeItems(with(Items.titanium, 2, Items.sporePod, 1));
-            outputItem = new ItemStack(FRItems.livingSteel, 4);
-            requirements(Category.crafting, with(Items.copper, 150, Items.lead, 120, Items.titanium, 50));
         }};
 
         livingSteelLiquifier = new GenericCrafter("living-steel-liquifier") {{
@@ -485,6 +475,7 @@ public class FRProduction {
             description = "A centralized 5x5 multi-factory that combines living steel production and hardening into one versatile block. Switch between efficient and basic recipes for both processes.";
             details = "MultiCrafter Lib integration by Fading Revelations team.";
             size = 5; health = 680;
+            researchCost = with(Items.sporePod, 200);
             switchStyle = RecipeSwitchStyle.transform;
             craftEffect = Fx.smeltsmoke;
             updateEffect = Fx.smeltsmoke;
@@ -510,7 +501,7 @@ public class FRProduction {
                         power = 0.8f;
                     }};
                     output = new IOEntry() {{
-                        items = ItemStack.with(FRItems.livingSteel, 2);
+                        items = ItemStack.with(FRItems.livingSteel, 4);
                     }};
                     craftTime = 50f;
                     craftEffect = Fx.smeltsmoke;
