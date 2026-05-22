@@ -2,18 +2,18 @@ package fadingrevelations.core.ui;
 
 import arc.graphics.g2d.*;
 import arc.scene.ui.*;
+import arc.scene.ui.layout.*;
+import static mindustry.Vars.*;
 
-public class FluidImage extends Image {
+public class FluidImage extends Table {
     public float amount;
 
     public FluidImage(TextureRegion region, float amount) {
-        super(region);
         this.amount = amount;
-    }
-
-    @Override
-    public void draw() {
-        setScale(Math.min(1f, amount / 60f));
-        super.draw();
+        Image img = new Image(region);
+        add(img).size(iconSmall);
+        if (amount > 0) {
+            add(new Label(String.format("%.2f", amount / 60f))).padLeft(2);
+        }
     }
 }

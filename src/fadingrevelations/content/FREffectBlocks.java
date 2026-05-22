@@ -136,7 +136,8 @@ public class FREffectBlocks {
             requirements(Category.effect, ItemStack.with(Items.copper, 25000, Items.lead, 25000,
                 Items.silicon, 15000, Items.titanium, 18000, Items.thorium, 20000,
                 Items.plastanium, 5000, Items.phaseFabric, 7000, Items.surgeAlloy, 3500,
-                FRItems.livingSteel, 2000));
+                FRItems.livingSteel, 2000,
+                FRItems.optiCrystal, 300, FRItems.energyCell, 300, FRItems.nanoFabric, 200, FRItems.bioMatter, 500));
         }};
     }
 }

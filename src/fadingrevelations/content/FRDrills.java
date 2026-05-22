@@ -100,7 +100,8 @@ public class FRDrills {
                 Items.copper, 2000, Items.lead, 1500, Items.silicon, 1000,
                 Items.titanium, 1000, Items.thorium, 500, Items.plastanium, 500,
                 Items.surgeAlloy, 400, Items.phaseFabric, 300,
-                FRItems.livingSteelHard, 500, FRItems.cryogenicAlloy, 200
+                FRItems.livingSteelHard, 500, FRItems.cryogenicAlloy, 200,
+                FRItems.optiCrystal, 100, FRItems.energyCell, 100, FRItems.nanoFabric, 50, FRItems.bioMatter, 200
             ));
         }};
 
