@@ -8,7 +8,7 @@ import mindustry.world.blocks.storage.StorageBlock;
 
 public class FRDistribution {
     public static Block titaniumRouter, titaniumJunction, titaniumDistributor, titaniumBridgeConveyor,
-            tinyMd, surgeBridgeConveyor, surgeAlloyConveyor, massAccelerator, depository, amalgamConveyor,
+            tinyMd, surgeBridgeConveyor, kineticConveyor, massAccelerator, depository, amalgamConveyor,
             frReinforcedVault, frQuantumVault,
             kineticRouter, kineticJunction, kineticDistributor,
             bioConveyor, bioRouter, bioJunction, bioBridgeConveyor, bioDistributor,
@@ -64,7 +64,7 @@ public class FRDistribution {
             requirements(Category.distribution, ItemStack.with(Items.copper, 6, Items.lead, 6, Items.surgeAlloy, 4));
         }};
 
-        surgeAlloyConveyor = new Conveyor("surge-alloy-conveyor") {{
+        kineticConveyor = new Conveyor("kinetic-conveyor") {{
             placeableLiquid = true;
             localizedName = "Alloy Conveyor";
             description = "Transports items forward. Faster than a titanium conveyor.";
