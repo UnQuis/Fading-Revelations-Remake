@@ -517,7 +517,7 @@ public class FRProduction {
                 }},
                 new fadingrevelations.core.Recipe() {{
                     input = new IOEntry() {{
-                        items = ItemStack.with(FRItems.livingSteel, 1, Items.thorium, 2);
+                        items = ItemStack.with(FRItems.livingSteel, 1, Items.thorium, 2, Items.graphite, 1);
                         power = 1.4f;
                     }};
                     output = new IOEntry() {{
