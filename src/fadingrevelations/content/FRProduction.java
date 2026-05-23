@@ -121,42 +121,38 @@ public class FRProduction {
 
         plasmaReactor = new NuclearReactor("plasma-reactor") {{
             localizedName = "Plasma Reactor";
-            description = "An advanced plasma reactor that consumes energy cells and neutron fluid to generate immense amounts of power. Requires constant cooling. Explodes catastrophically if overheating is not managed.";
-            size = 5; health = 2400;
-            hasLiquids = true;
+            description = "An ultra-powerful plasma core. Requires energy cells and a constant supply of neutron fluid for cooling. Explodes with apocalyptic force if overheated.";
+            size = 5; health = 3000;
+            hasItems = true; hasLiquids = true; hasPower = true;
+            itemCapacity = 30;
             liquidCapacity = 300;
 
             powerProduction = 500f;
-            heating = 0.03f;
-            coolantPower = 0.5f;
-            heatOutput = 30f;
+            heating = 0.05f;
+            coolantPower = 0.6f;
 
+            consumeItem(FRItems.energyCell);
             fuelItem = FRItems.energyCell;
-            itemDuration = 3600f;
+            itemDuration = 450f;
 
+            consumeLiquid(FRLiquids.neutronFluid, 0.5f).update(false);
+
+            baseExplosiveness = 25f;
             explosionShake = 12f;
             explosionShakeDuration = 20f;
-            explosionRadius = 800;
-            explosionDamage = 25000;
+            explosionRadius = 80;
+            explosionDamage = 12000;
             explodeEffect = Fx.reactorExplosion;
             explodeSound = Sounds.explosionReactor;
-            baseExplosiveness = 15f;
 
             ambientSound = Sounds.loopHum;
             ambientSoundVolume = 0.12f;
 
             requirements(Category.power, with(
-                Items.copper, 1500,
-                Items.lead, 1200,
-                Items.silicon, 800,
-                Items.titanium, 1000,
-                Items.thorium, 1500,
-                Items.surgeAlloy, 500,
-                Items.phaseFabric, 300,
-                FRItems.optiCrystal, 200,
-                FRItems.energyCell, 200,
-                FRItems.nanoFabric, 100,
-                FRItems.livingSteelHard, 500
+                Items.surgeAlloy, 800,
+                FRItems.livingSteelHard, 1000,
+                FRItems.nanoFabric, 500,
+                FRItems.optiCrystal, 400
             ));
         }};
 
