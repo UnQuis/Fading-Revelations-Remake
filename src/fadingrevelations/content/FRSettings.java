@@ -35,7 +35,7 @@ public class FRSettings {
                             hardcore = box.isChecked();
                         });
                         box.left();
-                        box.addListener(new Tooltip(t -> t.add("[gray]Enemy units have 5x health[].\n[gray]All enemy production is 3x faster[].\n[red]Requires restarting the sector.[]").width(300f)));
+                        box.addListener(new Tooltip(t -> { t.background(Styles.black6); t.add("[gray]Enemy units have 5x health[].\n[gray]All enemy production is 3x faster[].\n[red]Requires restarting the sector.[]").width(300f); }));
                         parent.add(box).left().padTop(3f).row();
                     }
                 });
@@ -50,7 +50,7 @@ public class FRSettings {
                             mixTech = box.isChecked();
                         });
                         box.left();
-                        box.addListener(new Tooltip(t -> t.add("[gray]All content becomes available on[]\n[gray]all planets instead of being[]\n[gray]planet-exclusive.[]\n[orange]Requires restarting the game.[]").width(300f)));
+                        box.addListener(new Tooltip(t -> { t.background(Styles.black6); t.add("[gray]All content becomes available on[]\n[gray]all planets instead of being[]\n[gray]planet-exclusive.[]\n[orange]Requires restarting the game.[]").width(300f); }));
                         parent.add(box).left().padTop(3f).row();
                     }
                 });
@@ -65,7 +65,7 @@ public class FRSettings {
                             showVersion = box.isChecked();
                         });
                         box.left();
-                        box.addListener(new Tooltip(t -> t.add("[gray]Displays the mod version on the[]\n[gray]HUD screen.[]").width(300f)));
+                        box.addListener(new Tooltip(t -> { t.background(Styles.black6); t.add("[gray]Displays the mod version on the[]\n[gray]HUD screen.[]").width(300f); }));
                         parent.add(box).left().padTop(3f).row();
                     }
                 });
@@ -80,7 +80,7 @@ public class FRSettings {
                             noCoreBurnEffect = box.isChecked();
                         });
                         box.left();
-                        box.addListener(new Tooltip(t -> t.add("[gray]Prevents the burn/fire effect when[]\n[gray]the core is full and items overflow.[]\n[lightgray]Helps with lag on busy maps.[]").width(300f)));
+                        box.addListener(new Tooltip(t -> { t.background(Styles.black6); t.add("[gray]Prevents the burn/fire effect when[]\n[gray]the core is full and items overflow.[]\n[lightgray]Helps with lag on busy maps.[]").width(300f); }));
                         parent.add(box).left().padTop(3f).row();
                     }
                 });
