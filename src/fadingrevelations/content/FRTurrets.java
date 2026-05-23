@@ -824,20 +824,20 @@ public class FRTurrets {
                 Items.coal, new BasicBulletType() {{
                     damage = 24f; speed = 6f; lifetime = 18f;
                     pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 5f; status = StatusEffects.burning; makeFire = true;
+                    collidesAir = false; ammoMultiplier = 5f; status = StatusEffects.burning; makeFire = true;
                     width = 0.01f; height = 0.01f;
                     shootEffect = bezierBurstOrange; smokeEffect = smokeBezierRed;
                 }},
                 Items.pyratite, new BasicBulletType() {{
                     damage = 34f; speed = 6f; lifetime = 18f;
-                    pierce = true; pierceBuilding = true;
+                    collidesAir = false; pierce = true; pierceBuilding = true;
                     ammoMultiplier = 7f; status = StatusEffects.burning; makeFire = true;
                     width = 0.01f; height = 0.01f;
                     shootEffect = bezierBurstRed; smokeEffect = smokeBezierRed;
                 }},
                 FRItems.livingSteel, new BasicBulletType() {{
                     damage = 44f; speed = 6f; lifetime = 18f;
-                    pierce = true; pierceBuilding = true;
+                    collidesAir = false; pierce = true; pierceBuilding = true;
                     ammoMultiplier = 8f; status = StatusEffects.melting; makeFire = true;
                     width = 0.01f; height = 0.01f;
                     shootEffect = bezierBurstPurple; smokeEffect = smokeBezierPurple;
@@ -899,14 +899,14 @@ public class FRTurrets {
         sunflare = new ItemTurret("sunflare") {{
             localizedName = "Sunflare";
             requirements(Category.turret, with(copper, 2000, lead, 3000, graphite, 2000, titanium, 1500, plastanium, 600, FRItems.steelAlloy, 400));
-            size = 4; health = 1720; reload = 6f; range = 240f;
+            size = 4; health = 1720; reload = 6f; range = 240f; targetAir = false;
             shoot = new ShootPattern() {{ shots = 12; }};
             ammoTypes = ObjectMap.of(
                 Items.coal, new BasicBulletType() {{
                     damage = 3f; speed = 6f; lifetime = 45f;
                     pierce = true; pierceCap = 2; pierceBuilding = true;
                     ammoMultiplier = 10f; status = StatusEffects.burning; makeFire = true;
-                    width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
+                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
                     smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
                     hitEffect = Fx.hitFlameSmall;
                     shootEffect = bezierBurstOrange;
@@ -915,7 +915,7 @@ public class FRTurrets {
                     damage = 6f; speed = 6f; lifetime = 45f;
                     pierce = true; pierceBuilding = true;
                     ammoMultiplier = 15f; status = StatusEffects.burning; makeFire = true;
-                    width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
+                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
                     smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
                     hitEffect = Fx.hitFlameSmall;
                     shootEffect = bezierBurstRed;
@@ -924,7 +924,7 @@ public class FRTurrets {
                     damage = 8f; speed = 6f; lifetime = 45f;
                     pierce = true; pierceBuilding = true;
                     ammoMultiplier = 15f; status = StatusEffects.blasted; makeFire = true;
-                    width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
+                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
                     smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
                     hitEffect = Fx.hitFlameSmall;
                     shootEffect = bezierBurstOrange;
@@ -933,7 +933,7 @@ public class FRTurrets {
                     damage = 10f; speed = 6f; lifetime = 45f;
                     pierce = true; pierceBuilding = true;
                     ammoMultiplier = 18f; status = StatusEffects.melting; makeFire = true;
-                    width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
+                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
                     smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
                     hitEffect = Fx.hitFlameSmall;
                     shootEffect = bezierBurstPurple;
@@ -942,7 +942,7 @@ public class FRTurrets {
                     damage = 14f; speed = 6f; lifetime = 45f;
                     pierce = true; pierceBuilding = true;
                     ammoMultiplier = 25f; status = StatusEffects.melting; makeFire = true;
-                    width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
+                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
                     lightning = 2; lightningLength = 1; lightningDamage = 6f;
                     smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
                     hitEffect = Fx.hitFlameSmall;
@@ -952,7 +952,7 @@ public class FRTurrets {
                     damage = 18f; speed = 5.5f; lifetime = 50f;
                     pierce = true; pierceBuilding = true;
                     ammoMultiplier = 30f; status = StatusEffects.corroded; makeFire = true;
-                    width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
+                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
                     lightning = 3; lightningLength = 2; lightningDamage = 8f;
                     smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("66cc00"); colorTo = Color.valueOf("2d6b00"); lifetime = 30f; }};
                     hitEffect = Fx.hitFlameSmall;
