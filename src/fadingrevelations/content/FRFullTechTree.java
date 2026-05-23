@@ -133,8 +133,7 @@ public class FRFullTechTree {
         addAdditionalObjectives(steamTurbine, steamGenerator, FRItems.livingSteel);
         addBlock(modGatePower, slagGenerator);
         addBlock(slagGenerator, pyratiteGenerator);
-        addBlock(advancedSolarPanel, plasmaReactor);
-        addBlock(plasmaReactor, steelReactor);
+        addBlock(steelReactor, plasmaReactor);
         addBlock(modGatePower, lsGen);
 
         
