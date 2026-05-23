@@ -13,7 +13,7 @@ import mindustry.gen.Sounds;
 
 public class FREffectBlocks {
     public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, forceDome, forceField,
-            fastUnloader, enhancedMendProjector, darkMender, bigLaunchPad,
+            fastUnloader, enhancedMendProjector, darkMender, nanoRepairField, bigLaunchPad,
             mainCore, coreLevel4, coreLevel5, corePrime;
     public static void load() {
         outpost = new Outpost("outpost") {{
@@ -91,6 +91,15 @@ public class FREffectBlocks {
             baseColor = Color.valueOf("6d5ac6"); phaseColor = Color.valueOf("6d5ac6");
             consumeItem(FRItems.livingSteel, 1).optional(false, false);
             requirements(Category.effect, ItemStack.with(Items.graphite, 60, Items.silicon, 140, Items.titanium, 150, FRItems.livingSteelHard, 120, Items.phaseFabric, 40));
+        }};
+
+        nanoRepairField = new MendProjector("nano-repair-field") {{
+            localizedName = "Nano-Repair Field";
+            description = "Projects a field of nanites that rapidly repairs nearby blocks. Boost with Nano Fabric to dramatically expand the repair radius.";
+            health = 1600; size = 3; range = 120; reload = 60; healPercent = 8;
+            consumePower(15f);
+            consumeItem(FRItems.nanoFabric, 1).boost();
+            requirements(Category.effect, ItemStack.with(Items.silicon, 400, Items.phaseFabric, 200, Items.surgeAlloy, 150, FRItems.nanoFabric, 150, FRItems.optiCrystal, 100, FRItems.livingSteelHard, 300));
         }};
 
         bigLaunchPad = new LaunchPad("big-launch-pad") {{

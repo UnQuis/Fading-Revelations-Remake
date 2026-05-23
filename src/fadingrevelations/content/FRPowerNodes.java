@@ -7,7 +7,7 @@ import mindustry.world.Block;
 import mindustry.world.blocks.power.*;
 
 public class FRPowerNodes {
-    public static Block reinforcedPowerNode, reinforcedLargePowerNode, powerReserve, advancedSurgeTower;
+    public static Block reinforcedPowerNode, reinforcedLargePowerNode, powerReserve, advancedSurgeTower, crystalAccumulator;
 
     public static void load() {
         reinforcedPowerNode = new PowerNode("reinforced-power-node") {{
@@ -38,6 +38,14 @@ public class FRPowerNodes {
             details = "And upgraded version of the original.";
             size = 3; health = 320; laserRange = 80; maxNodes = 2;
             requirements(Category.power, ItemStack.with(Items.lead, 20, Items.silicon, 30, Items.titanium, 14, Items.phaseFabric, 25, Items.surgeAlloy, 30));
+        }};
+
+        crystalAccumulator = new Battery("crystal-accumulator") {{
+            localizedName = "Crystal Accumulator";
+            description = "A massive accumulator that stores energy in a crystalline lattice. Capable of holding astronomical amounts of power.";
+            size = 5; health = 2200;
+            consumePowerBuffered(5000000f);
+            requirements(Category.power, ItemStack.with(Items.lead, 600, Items.silicon, 500, Items.titanium, 400, Items.surgeAlloy, 300, Items.phaseFabric, 200, FRItems.optiCrystal, 200, FRItems.energyCell, 150, FRItems.nanoFabric, 100, FRItems.livingSteelHard, 250));
         }};
     }
 }

@@ -34,6 +34,12 @@ public class FRFullTechTree {
         addBlock(modGateLiquids, steelTank);
         addBlock(steelTank, steelPump);
         addBlock(steelPump, plastaniumConduit);
+        addBlock(plastaniumConduit, kineticConduit);
+        addBlock(kineticConduit, kineticLiquidRouter);
+        addBlock(kineticConduit, kineticLiquidBridge);
+        addBlock(kineticConduit, kineticLiquidJunction);
+        addBlock(kineticConduit, bioLiquidContainer);
+        addBlock(kineticLiquidRouter, liquidUnloader);
 
         
         addBlock(modGateBlocks, modGateDistribution);
@@ -118,6 +124,7 @@ public class FRFullTechTree {
         addBlock(reinforcedPowerNode, reinforcedLargePowerNode);
         addBlock(reinforcedLargePowerNode, powerReserve);
         addBlock(reinforcedLargePowerNode, advancedSurgeTower);
+        addBlock(powerReserve, crystalAccumulator);
 
         
         addBlock(modGatePower, tinyThermalGen);
@@ -128,8 +135,8 @@ public class FRFullTechTree {
         addAdditionalObjectives(steamTurbine, steamGenerator, FRItems.livingSteel);
         addBlock(modGatePower, slagGenerator);
         addBlock(slagGenerator, pyratiteGenerator);
-        addBlock(advancedSolarPanel, uraniumReactor);
-        addBlock(uraniumReactor, steelReactor);
+        addBlock(advancedSolarPanel, plasmaReactor);
+        addBlock(plasmaReactor, steelReactor);
         addBlock(modGatePower, lsGen);
 
         
@@ -138,7 +145,8 @@ public class FRFullTechTree {
         addBlock(modGateEffect, miniOd);
         addBlock(miniOd, enhancedMendProjector);
         addBlock(enhancedMendProjector, darkMender);
-        addBlock(darkMender, forceDome);
+        addBlock(darkMender, nanoRepairField);
+        addBlock(nanoRepairField, forceDome);
         addBlock(forceDome, forceField);
         addBlock(modGateEffect, overdriveRelay);
         addBlock(overdriveRelay, overdriveBeacon);
