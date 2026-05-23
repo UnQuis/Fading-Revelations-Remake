@@ -9,8 +9,8 @@ import mindustry.world.blocks.production.Pump;
 import fadingrevelations.worlds.blocks.liquid.LiquidUnloader;
 
 public class FRLiquidsBlocks {
-    public static Block steelTank, steelPump, plastaniumConduit,
-            kineticConduit, kineticLiquidRouter, kineticLiquidBridge, kineticLiquidJunction,
+    public static Block steelTank, steelPump,
+            kineticConduit, kineticLiquidRouter, kineticLiquidBridge,
             bioLiquidContainer, liquidUnloader;
 
     public static void load() {
@@ -27,13 +27,6 @@ public class FRLiquidsBlocks {
             hasPower = true; hasLiquids = true; liquidCapacity = 40; size = 3;
             consumePower(1.6f); pumpAmount = 0.25f; squareSprite = false;
             requirements(Category.liquid, ItemStack.with(Items.copper, 90, Items.metaglass, 100, Items.silicon, 35, FRItems.livingSteel, 60, Items.thorium, 45));
-        }};
-
-        plastaniumConduit = new Conduit("plastanium-conduit") {{
-            localizedName = "Isolated Conduit";
-            description = "A decently fast conduit made from plastanium.";
-            health = 200; liquidPressure = 2;
-            requirements(Category.liquid, ItemStack.with(Items.metaglass, 2, Items.thorium, 3, Items.plastanium, 2));
         }};
 
         kineticConduit = new Conduit("kinetic-conduit") {{
@@ -59,14 +52,6 @@ public class FRLiquidsBlocks {
             health = 250; range = 8; liquidCapacity = 40;
             consumePower(0.3f);
             requirements(Category.liquid, ItemStack.with(Items.metaglass, 10, Items.surgeAlloy, 6, Items.silicon, 5));
-        }};
-
-        kineticLiquidJunction = new Conduit("kinetic-liquid-junction") {{
-            localizedName = "Kinetic Liquid Junction";
-            description = "Allows two crossing liquid conduits to pass through each other without mixing. A four-way liquid crossroad.";
-            placeableLiquid = true;
-            health = 160; liquidPressure = 4;
-            requirements(Category.liquid, ItemStack.with(Items.metaglass, 4, Items.surgeAlloy, 3, Items.silicon, 2));
         }};
 
         bioLiquidContainer = new LiquidRouter("bio-liquid-container") {{

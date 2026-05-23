@@ -33,12 +33,10 @@ public class FRFullTechTree {
         addBlock(modGateBlocks, modGateLiquids);
         addBlock(modGateLiquids, steelTank);
         addBlock(steelTank, steelPump);
-        addBlock(steelPump, plastaniumConduit);
-        addBlock(plastaniumConduit, kineticConduit);
+        addBlock(steelPump, kineticConduit);
         addBlock(kineticConduit, kineticLiquidRouter);
         addBlock(kineticConduit, kineticLiquidBridge);
-        addBlock(kineticConduit, kineticLiquidJunction);
-        addBlock(kineticConduit, bioLiquidContainer);
+        addBlock(steelTank, bioLiquidContainer);
         addBlock(kineticLiquidRouter, liquidUnloader);
 
         
