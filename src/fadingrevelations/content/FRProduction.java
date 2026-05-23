@@ -13,6 +13,7 @@ import mindustry.world.blocks.units.*;
 import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import fadingrevelations.core.*;
+import fadingrevelations.worlds.blocks.power.PlasmaReactor;
 import fadingrevelations.worlds.blocks.unit.FRAscendedUnitFactory;
 import mindustry.world.meta.*;
 
@@ -119,7 +120,7 @@ public class FRProduction {
             requirements(Category.power, with(Items.copper, 750, Items.lead, 700, Items.graphite, 400, Items.metaglass, 350, Items.silicon, 350, Items.thorium, 150, FRItems.steelAlloy, 50));
         }};
 
-        plasmaReactor = new NuclearReactor("plasma-reactor") {{
+        plasmaReactor = new PlasmaReactor("plasma-reactor") {{
             localizedName = "Plasma Reactor";
             description = "An ultra-powerful plasma core. Requires energy cells and a constant supply of neutron fluid for cooling. Explodes with apocalyptic force if overheated.";
             size = 5; health = 3000;
@@ -133,6 +134,8 @@ public class FRProduction {
 
             consumeItem(FRItems.energyCell);
             fuelItem = FRItems.energyCell;
+            coolant = FRLiquids.neutronFluid;
+            buildType = PlasmaReactor.PlasmaReactorBuild::new;
             itemDuration = 450f;
 
             consumeLiquid(FRLiquids.neutronFluid, 0.5f).update(false);
