@@ -818,29 +818,21 @@ public class FRTurrets {
         sear = new ItemTurret("sear") {{
             localizedName = "Sear";
             requirements(Category.turret, with(copper, 50, graphite, 44));
-            size = 2; health = 800; reload = 7f; range = 112f;
-            targetAir = false;
+            size = 2; health = 800; reload = 6f; range = 112f;
+            targetAir = false; shootCone = 30f; rotateSpeed = 10f; recoil = 0f;
             ammoTypes = ObjectMap.of(
-                Items.coal, new BasicBulletType() {{
-                    damage = 24f; speed = 6f; lifetime = 18f;
-                    pierce = true; pierceBuilding = true;
-                    collidesAir = false; ammoMultiplier = 5f; status = StatusEffects.burning; makeFire = true;
-                    width = 0.01f; height = 0.01f;
-                    shootEffect = bezierBurstOrange; smokeEffect = smokeBezierRed;
+                Items.coal, new FireBulletType() {{
+                    damage = 15f; speed = 3.5f; radius = 4f;
+                    makeFire = true; ammoMultiplier = 3;
                 }},
-                Items.pyratite, new BasicBulletType() {{
-                    damage = 34f; speed = 6f; lifetime = 18f;
-                    collidesAir = false; pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 7f; status = StatusEffects.burning; makeFire = true;
-                    width = 0.01f; height = 0.01f;
-                    shootEffect = bezierBurstRed; smokeEffect = smokeBezierRed;
+                Items.pyratite, new FireBulletType() {{
+                    damage = 35f; speed = 4f; radius = 6f;
+                    makeFire = true; ammoMultiplier = 5; pierce = true;
                 }},
-                FRItems.livingSteel, new BasicBulletType() {{
-                    damage = 44f; speed = 6f; lifetime = 18f;
-                    collidesAir = false; pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 8f; status = StatusEffects.melting; makeFire = true;
-                    width = 0.01f; height = 0.01f;
-                    shootEffect = bezierBurstPurple; smokeEffect = smokeBezierPurple;
+                FRItems.livingSteel, new FireBulletType() {{
+                    damage = 45f; speed = 4f; radius = 7f;
+                    makeFire = true; ammoMultiplier = 6; pierce = true;
+                    colorFrom = Color.valueOf("8c0291"); colorMid = Color.valueOf("5c0170"); colorTo = Color.gray;
                 }}
             );
         }};
@@ -899,64 +891,36 @@ public class FRTurrets {
         sunflare = new ItemTurret("sunflare") {{
             localizedName = "Sunflare";
             requirements(Category.turret, with(copper, 2000, lead, 3000, graphite, 2000, titanium, 1500, plastanium, 600, FRItems.steelAlloy, 400));
-            size = 4; health = 1720; reload = 6f; range = 240f; targetAir = false;
-            shoot = new ShootPattern() {{ shots = 12; }};
+            size = 4; health = 1720; reload = 5f; range = 150f;
+            targetAir = false; shootCone = 30f; rotateSpeed = 10f; recoil = 0f;
             ammoTypes = ObjectMap.of(
-                Items.coal, new BasicBulletType() {{
-                    damage = 3f; speed = 6f; lifetime = 45f;
-                    pierce = true; pierceCap = 2; pierceBuilding = true;
-                    ammoMultiplier = 10f; status = StatusEffects.burning; makeFire = true;
-                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
-                    smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
-                    hitEffect = Fx.hitFlameSmall;
-                    shootEffect = bezierBurstOrange;
+                Items.coal, new FireBulletType() {{
+                    damage = 20f; speed = 4f; radius = 5f;
+                    makeFire = true; ammoMultiplier = 4;
                 }},
-                Items.pyratite, new BasicBulletType() {{
-                    damage = 6f; speed = 6f; lifetime = 45f;
-                    pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 15f; status = StatusEffects.burning; makeFire = true;
-                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
-                    smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
-                    hitEffect = Fx.hitFlameSmall;
-                    shootEffect = bezierBurstRed;
+                Items.pyratite, new FireBulletType() {{
+                    damage = 40f; speed = 4.5f; radius = 7f;
+                    makeFire = true; ammoMultiplier = 6; pierce = true;
                 }},
-                Items.blastCompound, new BasicBulletType() {{
-                    damage = 8f; speed = 6f; lifetime = 45f;
-                    pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 15f; status = StatusEffects.blasted; makeFire = true;
-                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
-                    smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
-                    hitEffect = Fx.hitFlameSmall;
-                    shootEffect = bezierBurstOrange;
+                Items.blastCompound, new FireBulletType() {{
+                    damage = 50f; speed = 4.5f; radius = 8f;
+                    makeFire = true; ammoMultiplier = 8; pierce = true;
+                    colorFrom = Color.valueOf("ff6633"); colorMid = Color.valueOf("cc3300"); colorTo = Color.gray;
                 }},
-                FRItems.livingSteel, new BasicBulletType() {{
-                    damage = 10f; speed = 6f; lifetime = 45f;
-                    pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 18f; status = StatusEffects.melting; makeFire = true;
-                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
-                    smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
-                    hitEffect = Fx.hitFlameSmall;
-                    shootEffect = bezierBurstPurple;
+                FRItems.livingSteel, new FireBulletType() {{
+                    damage = 60f; speed = 4.5f; radius = 8f;
+                    makeFire = true; ammoMultiplier = 10; pierce = true;
+                    colorFrom = Color.valueOf("8c0291"); colorMid = Color.valueOf("5c0170"); colorTo = Color.gray;
                 }},
-                FRItems.steelAlloy, new BasicBulletType() {{
-                    damage = 14f; speed = 6f; lifetime = 45f;
-                    pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 25f; status = StatusEffects.melting; makeFire = true;
-                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
-                    lightning = 2; lightningLength = 1; lightningDamage = 6f;
-                    smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("ffdd55"); colorTo = Color.valueOf("db401c"); lifetime = 30f; }};
-                    hitEffect = Fx.hitFlameSmall;
-                    shootEffect = bezierBurstGold;
+                FRItems.steelAlloy, new FireBulletType() {{
+                    damage = 75f; speed = 5f; radius = 9f;
+                    makeFire = true; ammoMultiplier = 12; pierce = true;
+                    colorFrom = Color.valueOf("dbaf85"); colorMid = Color.valueOf("ba6a83"); colorTo = Color.gray;
                 }},
-                FRItems.bioMatter, new BasicBulletType() {{
-                    damage = 18f; speed = 5.5f; lifetime = 50f;
-                    pierce = true; pierceBuilding = true;
-                    ammoMultiplier = 30f; status = StatusEffects.corroded; makeFire = true;
-                    collidesAir = false; width = 0.01f; height = 0.01f; hittable = false; reflectable = false;
-                    lightning = 3; lightningLength = 2; lightningDamage = 8f;
-                    smokeEffect = new ParticleEffect() {{ particles = 25; length = 280f; colorFrom = Color.valueOf("66cc00"); colorTo = Color.valueOf("2d6b00"); lifetime = 30f; }};
-                    hitEffect = Fx.hitFlameSmall;
-                    shootEffect = bezierBurstGreen;
+                FRItems.bioMatter, new FireBulletType() {{
+                    damage = 90f; speed = 4.5f; radius = 10f;
+                    makeFire = true; ammoMultiplier = 14; pierce = true;
+                    colorFrom = Color.valueOf("66cc00"); colorMid = Color.valueOf("2d6b00"); colorTo = Color.gray;
                 }}
             );
         }};
