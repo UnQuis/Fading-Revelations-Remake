@@ -47,3 +47,4 @@ public class FadingRevelationsMod extends Mod {
         FRMusic.load();
     }
 }
+//I'm so fucking tired
