@@ -161,9 +161,12 @@ public class FRFullTechTree {
 
         
         addBlock(modGateTurrets, trio);
-        addBlock(trio, sear);
-        addBlock(sear, sunflare);
-        addBlock(sear, bigSwarmer);
+        addToNode(scorch, () -> {
+            node(sear, () -> {
+                node(sunflare);
+                node(bigSwarmer);
+            });
+        });
         addBlock(bigSwarmer, corruptedCyclone);
         addBlock(bigSwarmer, gattling);
         addBlock(gattling, lightningChaingun);
