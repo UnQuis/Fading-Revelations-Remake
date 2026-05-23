@@ -21,7 +21,7 @@ import static mindustry.type.ItemStack.*;
 public class FRProduction {
     public static Block
         tinyThermalGen, titaniumPanel, steamTurbine, slagGenerator, slagReactor,
-        pyratiteGenerator, lsGen, steelReactor, uraniumReactor, solarArray,
+        pyratiteGenerator, lsGen, steelReactor, plasmaReactor, solarArray,
         advancedSolarPanel, turbineConcentrator,
         livingSteelLiquifier, livingSteelLiquifyingForge,
         cryogenicGelMixer, alloyCrafter, cryogenicAlloyAssembler,
@@ -119,18 +119,15 @@ public class FRProduction {
             requirements(Category.power, with(Items.copper, 750, Items.lead, 700, Items.graphite, 400, Items.metaglass, 350, Items.silicon, 350, Items.thorium, 150, FRItems.steelAlloy, 50));
         }};
 
-        uraniumReactor = new NuclearReactor("uranium-reactor") {{
-            localizedName = "Nuclear Reactor";
-            description = "A reactor that uses uraniumrods to create a lot of power. Explodes violently when it is not cooled extensively!";
-            size = 4; hasPower = true; hasLiquids = true; hasItems = true;
-            explosionShake = 10; itemCapacity = 20; liquidCapacity = 120;
-            itemDuration = 1650; powerProduction = 330; heating = 0.02f;
-            smokeThreshold = 0.58f; explosionRadius = 500; explosionDamage = 10000;
-            flashThreshold = 0.4f; coolantPower = 0.5f;
-            fuelItem = FRItems.fuelRod;
-            consumeLiquid(FRLiquids.livingSteelLiquid, 0.2f);
-            consumeItem(FRItems.fuelRod, 9);
-            requirements(Category.power, with(Items.copper, 1000, Items.lead, 900, Items.graphite, 750, Items.metaglass, 500, Items.silicon, 500, Items.titanium, 800, Items.thorium, 1200));
+        plasmaReactor = new ConsumeGenerator("plasma-reactor") {{
+            localizedName = "Plasma Reactor";
+            description = "An advanced plasma reactor that consumes energy cells and neutron fluid to generate immense amounts of power. Requires constant cooling.";
+            size = 5; health = 2400; hasPower = true; hasLiquids = true; hasItems = true;
+            itemCapacity = 30; liquidCapacity = 300; itemDuration = 3600; powerProduction = 30000;
+            consumeItem(FRItems.energyCell, 1);
+            consumeLiquid(FRLiquids.neutronFluid, 0.5f);
+            ambientSound = Sounds.loopHum; ambientSoundVolume = 0.12f;
+            requirements(Category.power, with(Items.copper, 1500, Items.lead, 1200, Items.silicon, 800, Items.titanium, 1000, Items.thorium, 1500, Items.surgeAlloy, 500, Items.phaseFabric, 300, FRItems.optiCrystal, 200, FRItems.energyCell, 200, FRItems.nanoFabric, 100, FRItems.livingSteelHard, 500));
         }};
 
         solarArray = new SolarGenerator("solar-array") {{
