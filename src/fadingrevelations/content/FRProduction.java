@@ -124,6 +124,7 @@ public class FRProduction {
             description = "An advanced plasma reactor that consumes energy cells and neutron fluid to generate immense amounts of power. Requires constant cooling.";
             size = 5; health = 2400; hasPower = true; hasLiquids = true; hasItems = true;
             itemCapacity = 30; liquidCapacity = 300; itemDuration = 3600; powerProduction = 500;
+            explosionDamage = 25000; explosionRadius = 800;
             consumeItem(FRItems.energyCell, 1);
             consumeLiquid(FRLiquids.neutronFluid, 0.5f);
             ambientSound = Sounds.loopHum; ambientSoundVolume = 0.12f;
