@@ -119,16 +119,45 @@ public class FRProduction {
             requirements(Category.power, with(Items.copper, 750, Items.lead, 700, Items.graphite, 400, Items.metaglass, 350, Items.silicon, 350, Items.thorium, 150, FRItems.steelAlloy, 50));
         }};
 
-        plasmaReactor = new ConsumeGenerator("plasma-reactor") {{
+        plasmaReactor = new NuclearReactor("plasma-reactor") {{
             localizedName = "Plasma Reactor";
-            description = "An advanced plasma reactor that consumes energy cells and neutron fluid to generate immense amounts of power. Requires constant cooling.";
-            size = 5; health = 2400; hasPower = true; hasLiquids = true; hasItems = true;
-            itemCapacity = 30; liquidCapacity = 300; itemDuration = 3600; powerProduction = 500;
-            explosionDamage = 25000; explosionRadius = 800;
-            consumeItem(FRItems.energyCell, 1);
-            consumeLiquid(FRLiquids.neutronFluid, 0.5f);
-            ambientSound = Sounds.loopHum; ambientSoundVolume = 0.12f;
-            requirements(Category.power, with(Items.copper, 1500, Items.lead, 1200, Items.silicon, 800, Items.titanium, 1000, Items.thorium, 1500, Items.surgeAlloy, 500, Items.phaseFabric, 300, FRItems.optiCrystal, 200, FRItems.energyCell, 200, FRItems.nanoFabric, 100, FRItems.livingSteelHard, 500));
+            description = "An advanced plasma reactor that consumes energy cells and neutron fluid to generate immense amounts of power. Requires constant cooling. Explodes catastrophically if overheating is not managed.";
+            size = 5; health = 2400;
+            hasLiquids = true;
+            liquidCapacity = 300;
+
+            powerProduction = 500f;
+            heating = 0.03f;
+            coolantPower = 0.5f;
+            heatOutput = 30f;
+
+            fuelItem = FRItems.energyCell;
+            itemDuration = 3600f;
+
+            explosionShake = 12f;
+            explosionShakeDuration = 20f;
+            explosionRadius = 800;
+            explosionDamage = 25000;
+            explodeEffect = Fx.reactorExplosion;
+            explodeSound = Sounds.explosionReactor;
+            baseExplosiveness = 15f;
+
+            ambientSound = Sounds.loopHum;
+            ambientSoundVolume = 0.12f;
+
+            requirements(Category.power, with(
+                Items.copper, 1500,
+                Items.lead, 1200,
+                Items.silicon, 800,
+                Items.titanium, 1000,
+                Items.thorium, 1500,
+                Items.surgeAlloy, 500,
+                Items.phaseFabric, 300,
+                FRItems.optiCrystal, 200,
+                FRItems.energyCell, 200,
+                FRItems.nanoFabric, 100,
+                FRItems.livingSteelHard, 500
+            ));
         }};
 
         solarArray = new SolarGenerator("solar-array") {{
