@@ -51,7 +51,7 @@ public class FROverride {
         Events.on(EventType.WorldLoadEvent.class, event -> {
             if (!FRSettings.hardcore) return;
 
-            var enemyRules = Vars.state.rules.teams.get(Team.crux);
+            mindustry.game.Rules.TeamRule enemyRules = Vars.state.rules.teams.get(Team.crux);
             enemyRules.unitHealthMultiplier = 5f;
             enemyRules.buildSpeedMultiplier = 3f;
             enemyRules.unitBuildSpeedMultiplier = 3f;

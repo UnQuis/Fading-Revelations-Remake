@@ -38,7 +38,7 @@ public class FRTechTree {
         
         if (Vars.state.isCampaign()) {
             try {
-                var rules = Vars.state.rules;
+                mindustry.game.Rules rules = Vars.state.rules;
                 if (rules != null && rules.researched != null && !rules.researched.contains(content)) {
                     rules.researched.add(content);
                 }
@@ -62,7 +62,8 @@ public class FRTechTree {
 
             for (String name : researched) {
                 Content content = findContent(name);
-                if (content instanceof UnlockableContent unlockable) {
+                if (content instanceof UnlockableContent) {
+                    UnlockableContent unlockable = (UnlockableContent) content;
                     unlockOnAllPlanets(unlockable);
                 }
             }
