@@ -16,8 +16,8 @@ public class FRCoreUnits {
     public static UnitType coreTurretUnit, epsilon, delta;
 
     public static void load() {
-        coreTurretUnit = new UnitType("main-core-unit") {{
-            constructor = UnitEntity::create; localizedName = "Main Core Unit"; hidden = true; flying = true;
+        coreTurretUnit = new UnitType("ultimate-unit") {{
+            constructor = UnitEntity::create; localizedName = "Ultimate Unit"; hidden = true; flying = true;
 
             hittable = false; hitSize = 1;
             killable = false; targetable = false;
@@ -32,7 +32,7 @@ public class FRCoreUnits {
             healFlash = false; canBoost = false; canAttack = true; canDrown = false; canHeal = false;
             speed = 0; rotateSpeed = 0;
 
-            buildRange = 999999999999f; buildSpeed = 3.5f;
+            buildRange = Float.MAX_VALUE; buildSpeed = 3.5f;
             drawBuildBeam = true; buildBeamOffset = -2;
             drawCell = false; drawItems = false; itemCapacity = 0;
             drawShields = false; drawMinimap = false; engineSize = 0;
@@ -41,7 +41,7 @@ public class FRCoreUnits {
             lightColor = Color.valueOf("ffffff"); lightRadius = 0;
             lowAltitude = true;
 
-            mineFloor = true; mineWalls = true; mineRange = 999999999999f;
+            mineFloor = true; mineWalls = true; mineRange = Float.MAX_VALUE;
             mineHardnessScaling = true; mineSpeed = 20; mineTier = 10;
 
             physics = false; playerControllable = true; useUnitCap = false; bounded = true;
