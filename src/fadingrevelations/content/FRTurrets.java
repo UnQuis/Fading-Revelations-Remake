@@ -1,6 +1,7 @@
 package fadingrevelations.content;
 
 import arc.graphics.*;
+import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.struct.*;
 import mindustry.Vars;
@@ -13,6 +14,7 @@ import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
@@ -21,6 +23,8 @@ import mindustry.world.consumers.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
+import static arc.graphics.g2d.Draw.*;
+import static arc.math.Angles.*;
 import static mindustry.content.Items.*;
 import static mindustry.content.Liquids.*;
 import static mindustry.gen.Sounds.*;
@@ -821,18 +825,68 @@ public class FRTurrets {
             size = 2; health = 800; reload = 6f; range = 112f;
             targetAir = false; shootCone = 30f; rotateSpeed = 10f; recoil = 0f;
             ammoTypes = ObjectMap.of(
-                Items.coal, new FireBulletType() {{
-                    damage = 15f; speed = 3.5f; radius = 4f;
-                    makeFire = true; ammoMultiplier = 3;
+                Items.coal, new BulletType(14f, 15f) {{
+                    lifetime = 8f;
+                    hitSize = 6f;
+                    ammoMultiplier = 3;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(20f, 100f, e -> {
+                        color(Pal.lightPyraFlame, Pal.darkPyraFlame, Color.gray, e.fin());
+                        randLenVectors(e.id, 13, e.finpow() * 88f, e.rotation, 10f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.65f + e.fout() * 1.6f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 3; lifetime = 10; sizeFrom = 3;
+                        colorFrom = colorTo = Color.valueOf("FF8C00");
+                    }};
                 }},
-                Items.pyratite, new FireBulletType() {{
-                    damage = 35f; speed = 4f; radius = 6f;
-                    makeFire = true; ammoMultiplier = 5; pierce = true;
+                Items.pyratite, new BulletType(14f, 35f) {{
+                    lifetime = 8f;
+                    hitSize = 8f;
+                    ammoMultiplier = 5;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(20f, 120f, e -> {
+                        color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
+                        randLenVectors(e.id, 14, e.finpow() * 100f, e.rotation, 12f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.7f + e.fout() * 1.8f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 4; lifetime = 12; sizeFrom = 4;
+                        colorFrom = colorTo = Color.valueOf("FF4500");
+                    }};
                 }},
-                FRItems.livingSteel, new FireBulletType() {{
-                    damage = 45f; speed = 4f; radius = 7f;
-                    makeFire = true; ammoMultiplier = 6; pierce = true;
-                    colorFrom = Color.valueOf("8c0291"); colorMid = Color.valueOf("5c0170"); colorTo = Color.gray;
+                FRItems.livingSteel, new BulletType(14f, 45f) {{
+                    lifetime = 8f;
+                    hitSize = 9f;
+                    ammoMultiplier = 6;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(20f, 120f, e -> {
+                        color(Color.valueOf("8c0291"), Color.valueOf("5c0170"), Color.gray, e.fin());
+                        randLenVectors(e.id, 14, e.finpow() * 100f, e.rotation, 12f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.7f + e.fout() * 1.8f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 4; lifetime = 12; sizeFrom = 4;
+                        colorFrom = colorTo = Color.valueOf("6d0071");
+                    }};
                 }}
             );
         }};
@@ -894,33 +948,131 @@ public class FRTurrets {
             size = 4; health = 1720; reload = 5f; range = 150f;
             targetAir = false; shootCone = 30f; rotateSpeed = 10f; recoil = 0f;
             ammoTypes = ObjectMap.of(
-                Items.coal, new FireBulletType() {{
-                    damage = 20f; speed = 4f; radius = 5f;
-                    makeFire = true; ammoMultiplier = 4;
+                Items.coal, new BulletType(4f, 20f) {{
+                    lifetime = 37.5f;
+                    hitSize = 7f;
+                    ammoMultiplier = 4;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(25f, 180f, e -> {
+                        color(Pal.lightPyraFlame, Pal.darkPyraFlame, Color.gray, e.fin());
+                        randLenVectors(e.id, 16, e.finpow() * 140f, e.rotation, 10f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.7f + e.fout() * 2f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 4; lifetime = 10; sizeFrom = 3;
+                        colorFrom = colorTo = Color.valueOf("FF8C00");
+                    }};
                 }},
-                Items.pyratite, new FireBulletType() {{
-                    damage = 40f; speed = 4.5f; radius = 7f;
-                    makeFire = true; ammoMultiplier = 6; pierce = true;
+                Items.pyratite, new BulletType(4.5f, 40f) {{
+                    lifetime = 33.3f;
+                    hitSize = 9f;
+                    ammoMultiplier = 6;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(25f, 200f, e -> {
+                        color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
+                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 5; lifetime = 12; sizeFrom = 4;
+                        colorFrom = colorTo = Color.valueOf("FF4500");
+                    }};
                 }},
-                Items.blastCompound, new FireBulletType() {{
-                    damage = 50f; speed = 4.5f; radius = 8f;
-                    makeFire = true; ammoMultiplier = 8; pierce = true;
-                    colorFrom = Color.valueOf("ff6633"); colorMid = Color.valueOf("cc3300"); colorTo = Color.gray;
+                Items.blastCompound, new BulletType(4.5f, 50f) {{
+                    lifetime = 33.3f;
+                    hitSize = 10f;
+                    ammoMultiplier = 8;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(25f, 200f, e -> {
+                        color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
+                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 5; lifetime = 14; sizeFrom = 4;
+                        colorFrom = colorTo = Color.valueOf("FF4500");
+                    }};
                 }},
-                FRItems.livingSteel, new FireBulletType() {{
-                    damage = 60f; speed = 4.5f; radius = 8f;
-                    makeFire = true; ammoMultiplier = 10; pierce = true;
-                    colorFrom = Color.valueOf("8c0291"); colorMid = Color.valueOf("5c0170"); colorTo = Color.gray;
+                FRItems.livingSteel, new BulletType(4.5f, 60f) {{
+                    lifetime = 33.3f;
+                    hitSize = 10f;
+                    ammoMultiplier = 10;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(25f, 200f, e -> {
+                        color(Color.valueOf("8c0291"), Color.valueOf("5c0170"), Color.gray, e.fin());
+                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 5; lifetime = 12; sizeFrom = 4;
+                        colorFrom = colorTo = Color.valueOf("6d0071");
+                    }};
                 }},
-                FRItems.steelAlloy, new FireBulletType() {{
-                    damage = 75f; speed = 5f; radius = 9f;
-                    makeFire = true; ammoMultiplier = 12; pierce = true;
-                    colorFrom = Color.valueOf("dbaf85"); colorMid = Color.valueOf("ba6a83"); colorTo = Color.gray;
+                FRItems.steelAlloy, new BulletType(5f, 75f) {{
+                    lifetime = 30f;
+                    hitSize = 11f;
+                    ammoMultiplier = 12;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(25f, 200f, e -> {
+                        color(Color.valueOf("dbaf85"), Color.valueOf("ba6a83"), Color.gray, e.fin());
+                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 5; lifetime = 12; sizeFrom = 4;
+                        colorFrom = colorTo = Color.valueOf("d99f6b");
+                    }};
                 }},
-                FRItems.bioMatter, new FireBulletType() {{
-                    damage = 90f; speed = 4.5f; radius = 10f;
-                    makeFire = true; ammoMultiplier = 14; pierce = true;
-                    colorFrom = Color.valueOf("66cc00"); colorMid = Color.valueOf("2d6b00"); colorTo = Color.gray;
+                FRItems.bioMatter, new BulletType(4.5f, 90f) {{
+                    lifetime = 33.3f;
+                    hitSize = 12f;
+                    ammoMultiplier = 14;
+                    makeFire = true;
+                    pierce = pierceBuilding = true;
+                    hittable = false; absorbable = false; reflectable = false;
+                    collidesAir = false;
+                    status = StatusEffects.burning;
+                    shootEffect = new Effect(25f, 200f, e -> {
+                        color(Color.valueOf("66cc00"), Color.valueOf("2d6b00"), Color.gray, e.fin());
+                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
+                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
+                        });
+                    });
+                    hitEffect = Fx.hitFlameSmall;
+                    despawnEffect = new ParticleEffect() {{
+                        particles = 5; lifetime = 12; sizeFrom = 4;
+                        colorFrom = colorTo = Color.valueOf("2d6b00");
+                    }};
                 }}
             );
         }};
@@ -1258,12 +1410,7 @@ public class FRTurrets {
             rotateSpeed = 0f;
             shootCone = 360f;
             recoil = 0f;
-            shootEffect = new WaveEffect() {{
-                sizeFrom = 0f; sizeTo = 900f;
-                strokeFrom = 1f; strokeTo = 1.4f;
-                colorFrom = Color.valueOf("e5ed2c"); colorTo = Color.valueOf("cfd712");
-                lifetime = 45f;
-            }};
+            shootEffect = FRFx.stasisWave;
             shootType = new BulletType() {{
                 instantDisappear = true; damage = 0f;
                 splashDamage = 1f; splashDamageRadius = 640f;
