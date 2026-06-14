@@ -116,7 +116,7 @@ public class FREffectBlocks {
             localizedName = "Core: Atom";
             description = "Core of the base. Very well armored and stores a good amount of resources.";
             size = 6; researchCostMultiplier = 0.5f; health = 80000; itemCapacity = 16000;
-            unitType = UnitTypes.alpha; unitCapModifier = 32;
+            unitType = FRCoreUnits.delta; unitCapModifier = 32;
             requirements(Category.effect, ItemStack.with(Items.copper, 10000, Items.lead, 10000, Items.silicon, 6000, Items.titanium, 8000, Items.thorium, 10000, Items.plastanium, 1000, Items.phaseFabric, 1000));
         }};
 
@@ -124,7 +124,7 @@ public class FREffectBlocks {
             localizedName = "Core: Element";
             description = "Core of the base. Extremely well armored and stores a huge amount of resources.";
             size = 7; researchCostMultiplier = 0.5f; health = 95000; itemCapacity = 19000;
-            unitType = UnitTypes.alpha; unitCapModifier = 42;
+            unitType = FRCoreUnits.epsilon; unitCapModifier = 42;
             requirements(Category.effect, ItemStack.with(Items.copper, 13000, Items.lead, 13000, Items.silicon, 9000, Items.titanium, 11000, Items.thorium, 12000, Items.plastanium, 2000, Items.phaseFabric, 2500, Items.surgeAlloy, 1500));
         }};
 
