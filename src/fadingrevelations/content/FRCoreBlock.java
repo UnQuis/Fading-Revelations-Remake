@@ -57,6 +57,12 @@ public class FRCoreBlock extends CoreBlock {
 
             if (dead || !isValid()) return;
 
+            if (player != null && !player.dead() && player.unit().type == ((FRCoreBlock) block).unitType) {
+                if (!Core.settings.getBool("detach-camera", false)) {
+                    Core.settings.put("detach-camera", true);
+                }
+            }
+
             arc.struct.Queue<mindustry.game.Teams.BlockPlan> plans = team.data().plans;
             for (int i = 0; i < plans.size; i++) {
                 mindustry.game.Teams.BlockPlan plan = plans.get(i);
