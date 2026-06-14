@@ -35,6 +35,8 @@ public class FRFx {
 
         hitBezierOrange;
 
+    public static Effect stasisWave;
+
     public static void load() {
         bezierBurstGold = bezierBurst(12, 65, 3.5f, Pal.accent, Color.white);
         bezierBurstPurple = bezierBurst(10, 55, 3.5f, Color.valueOf("9e78dc"), Color.valueOf("e2b3ff"));
@@ -96,6 +98,43 @@ public class FRFx {
         trailBezierCyan = trailEffect(18, 5, Color.valueOf("87ceeb"), Color.valueOf("c0ecff"));
         trailBezierOrange = trailEffect(18, 5, Color.valueOf("ffaa5f"), Color.valueOf("ffd699"));
         trailBezierPink = trailEffect(18, 5, Color.valueOf("ff69b4"), Color.valueOf("ffb6d9"));
+
+        stasisWave = new Effect(50f, 1000f, e -> {
+            float f = e.fin();
+            float fout = e.fout();
+
+            Draw.color(Color.valueOf("e5ed2c"), Color.valueOf("b8c418"), f);
+            Draw.alpha(0.6f * fout);
+            Fill.circle(e.x, e.y, 12f * fout);
+
+            Draw.color(Color.valueOf("e5ed2c"), Color.valueOf("cfd712"), f);
+            Lines.stroke(2.5f * fout + 0.3f);
+            Lines.circle(e.x, e.y, 200f * f);
+
+            Draw.color(Color.valueOf("cfd712"), Color.valueOf("a0aa10"), f);
+            Lines.stroke(1.8f * fout + 0.2f);
+            Lines.circle(e.x, e.y, 350f * f);
+
+            Draw.color(Color.valueOf("a0aa10"), Color.valueOf("7a8510"), f);
+            Lines.stroke(1.2f * fout + 0.1f);
+            Lines.circle(e.x, e.y, 500f * f);
+
+            Draw.color(Color.valueOf("e5ed2c"), Color.white, f * 0.5f);
+            Lines.stroke(0.8f * fout);
+            Lines.circle(e.x, e.y, 640f * f);
+
+            Angles.randLenVectors(e.id, 24, 640f * f, (x, y) -> {
+                float len = Mathf.sqrt(x * x + y * y);
+                float alpha = fout * (1f - len / 700f);
+                if (alpha <= 0f) return;
+                Draw.color(Color.valueOf("e5ed2c"), Color.valueOf("cfd712"), f);
+                Draw.alpha(alpha * 0.7f);
+                Fill.circle(e.x + x, e.y + y, 2f * fout + 0.5f);
+            });
+
+            Draw.color(Color.white, 0.4f * fout);
+            Fill.circle(e.x, e.y, 640f * f);
+        }).layer(Layer.bullet);
     }
 
     private static Effect bezierBurst(int curves, float length, float width, Color c1, Color c2) {
