@@ -9,8 +9,6 @@ plugins {
 
 version = "2.4.0"
 sourceSets.main.java.srcDirs = ["src"]
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenLocal()
@@ -21,6 +19,13 @@ repositories {
 
 ext {
     mindustryVersion = "v158.1"
+}
+
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.compilerArgs.addAll(["--release", "8"])
+    }
 }
 
 dependencies {
@@ -35,7 +40,6 @@ task convertGifFrames {
         File assetsDir = file("assets")
         if (!assetsDir.exists()) return
 
-        // clean previous output
         delete framesBuildDir
 
         fileTree(dir: assetsDir, include: "**/*.gif").each { gifFile ->
@@ -56,7 +60,6 @@ task convertGifFrames {
 
                 String baseName = gifFile.name[0..gifFile.name.toLowerCase().lastIndexOf(".gif")-1]
 
-                // derive relative path from assets/ to preserve directory structure (e.g. sprites/items/...)
                 String relativeDir = assetsDir.toPath().relativize(gifFile.parentFile.toPath()).toString()
                 File outDir = new File(framesBuildDir, relativeDir)
                 outDir.mkdirs()
