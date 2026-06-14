@@ -57,9 +57,9 @@ public class FRCoreBlock extends CoreBlock {
 
             if (dead || !isValid()) return;
 
-            var plans = team.data().plans;
+            arc.struct.Queue<mindustry.game.Teams.BlockPlan> plans = team.data().plans;
             for (int i = 0; i < plans.size; i++) {
-                var plan = plans.get(i);
+                mindustry.game.Teams.BlockPlan plan = plans.get(i);
                 if (plan == null || plan.removed) continue;
 
                 float planX = plan.x * 8f;
@@ -68,7 +68,8 @@ public class FRCoreBlock extends CoreBlock {
                 if (dist > buildRange) continue;
 
                 Building building = world.build(plan.x, plan.y);
-                if (building instanceof ConstructBuild cons) {
+                if (building instanceof ConstructBuild) {
+                    ConstructBuild cons = (ConstructBuild) building;
                     if (team.core() != null && team.core().items.has(cons.block.requirements)) {
                         cons.progress += (edelta() / cons.buildCost) * buildSpeedMultiplier;
                         cons.progress = Math.min(cons.progress, 1f);

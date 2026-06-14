@@ -9,6 +9,8 @@ plugins {
 
 version = "2.4.0"
 sourceSets.main.java.srcDirs = ["src"]
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenLocal()
@@ -18,7 +20,7 @@ repositories {
 }
 
 ext {
-    mindustryVersion = "v157.4"
+    mindustryVersion = "v158.1"
 }
 
 dependencies {
