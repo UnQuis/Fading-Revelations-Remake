@@ -404,7 +404,7 @@ public class FRFullTechTree {
         
         addBlock(modGateCoreUnits, FRCoreUnits.delta);
         addBlock(FRCoreUnits.delta, FRCoreUnits.epsilon);
-        addBlock(FRCoreUnits.epsilon, FRCoreUnits.omega);
+        addBlock(FRCoreUnits.epsilon, FRCoreUnits.coreTurretUnit);
 
         
     }
