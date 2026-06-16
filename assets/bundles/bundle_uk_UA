@@ -7,685 +7,685 @@
 
 #distribution
 
-block.fading-revelations-patched-amalgam-conveyor.name = 
-block.fading-revelations-patched-amalgam-conveyor.description = 
+block.amalgam-conveyor.name = 
+block.amalgam-conveyor.description = 
 
-block.fading-revelations-patched-mass-accelerator.name = 
-block.fading-revelations-patched-mass-accelerator.description = 
+block.mass-accelerator.name = 
+block.mass-accelerator.description = 
 
-block.fading-revelations-patched-surge-alloy-conveyor.name = 
-block.fading-revelations-patched-surge-alloy-conveyor.description = 
+block.surge-alloy-conveyor.name = 
+block.surge-alloy-conveyor.description = 
 
-block.fading-revelations-patched-tiny-md.name = 
-block.fading-revelations-patched-tiny-md.description = 
+block.tiny-md.name = 
+block.tiny-md.description = 
 
-block.fading-revelations-patched-titanium-bridge-conveyor.name = 
-block.fading-revelations-patched-titanium-bridge-conveyor.description = 
+block.titanium-bridge-conveyor.name = 
+block.titanium-bridge-conveyor.description = 
 
-block.fading-revelations-patched-titanium-distributor.name = 
-block.fading-revelations-patched-titanium-distributor.description = 
+block.titanium-distributor.name = 
+block.titanium-distributor.description = 
 
-block.fading-revelations-patched-titanium-junction.name = 
+block.titanium-junction.name = 
 block.me-titanium-junction.descripiton = 
 
-block.fading-revelations-patched-titanium-router.name = 
-block.fading-revelations-patched-titanium-router.description = 
+block.titanium-router.name = 
+block.titanium-router.description = 
 
-block.fading-revelations-patched-depository.name = 
-block.fading-revelations-patched-depository.description = 
+block.depository.name = 
+block.depository.description = 
 
 
 #drills/production
 
-block.fading-revelations-patched-cliff-grinder.name = 
-block.fading-revelations-patched-cliff-grinder.description = 
+block.cliff-grinder.name = 
+block.cliff-grinder.description = 
 
-block.fading-revelations-patched-cliff-miller.name = 
-block.fading-revelations-patched-cliff-miller.description = 
+block.cliff-miller.name = 
+block.cliff-miller.description = 
 
-block.fading-revelations-patched-compact-laser-drill.name = 
-block.fading-revelations-patched-compact-laser-drill.description = 
+block.compact-laser-drill.name = 
+block.compact-laser-drill.description = 
 
-block.fading-revelations-patched-ground-crusher.name = 
-block.fading-revelations-patched-ground-crusher.description = 
+block.ground-crusher.name = 
+block.ground-crusher.description = 
 
-block.fading-revelations-patched-ground-grinder.name = 
-block.fading-revelations-patched-ground-grinder.description = 
+block.ground-grinder.name = 
+block.ground-grinder.description = 
 
-block.fading-revelations-patched-ground-miller.name = 
-block.fading-revelations-patched-ground-miller.description = 
+block.ground-miller.name = 
+block.ground-miller.description = 
 
-block.fading-revelations-patched-hyper-drill.name = 
-block.fading-revelations-patched-hyper-drill.description = 
+block.hyper-drill.name = 
+block.hyper-drill.description = 
 
-block.fading-revelations-patched-mechanical-sieve.name = 
-block.fading-revelations-patched-mechanical-sieve.description = 
+block.mechanical-sieve.name = 
+block.mechanical-sieve.description = 
 
-block.fading-revelations-patched-pneumatic-sieve.name = 
-block.fading-revelations-patched-pneumatic-sieve.description = 
+block.pneumatic-sieve.name = 
+block.pneumatic-sieve.description = 
 
-block.fading-revelations-patched-titanium-sieve.name = 
-block.fading-revelations-patched-titanium-sieve.description = 
+block.titanium-sieve.name = 
+block.titanium-sieve.description = 
 
-block.fading-revelations-patched-steel-sieve.name = 
-block.fading-revelations-patched-steel-sieve.description = 
+block.steel-sieve.name = 
+block.steel-sieve.description = 
 
-block.fading-revelations-patched-oil-bore.name = 
-block.fading-revelations-patched-oil-bore.description = 
+block.oil-bore.name = 
+block.oil-bore.description = 
 
-block.fading-revelations-patched-tiny-mechanical-drill.name = 
-block.fading-revelations-patched-tiny-mechanical-drill.description = 
+block.tiny-mechanical-drill.name = 
+block.tiny-mechanical-drill.description = 
 
-block.fading-revelations-patched-tiny-pneumatic-drill.name = 
-block.fading-revelations-patched-tiny-pneumatic-drill.description = 
+block.tiny-pneumatic-drill.name = 
+block.tiny-pneumatic-drill.description = 
 
-block.fading-revelations-patched-tiny-plasma-bore.name = 
-block.fading-revelations-patched-tiny-plasma-bore.description = 
+block.tiny-plasma-bore.name = 
+block.tiny-plasma-bore.description = 
 
-block.fading-revelations-patched-titanium-drill.name = 
-block.fading-revelations-patched-titanium-drill.description = 
+block.titanium-drill.name = 
+block.titanium-drill.description = 
 
-block.fading-revelations-patched-tungsten-bore.name = 
-block.fading-revelations-patched-tungsten-bore.description = 
+block.tungsten-bore.name = 
+block.tungsten-bore.description = 
 
-block.fading-revelations-patched-vent-concentrator.name = 
-block.fading-revelations-patched-vent-concentrator.description = 
+block.vent-concentrator.name = 
+block.vent-concentrator.description = 
 
 #cores
 
-block.fading-revelations-patched-core-level-4.name = 
-block.fading-revelations-patched-core-level-4.description = 
+block.core-level-4.name = 
+block.core-level-4.description = 
 
-block.fading-revelations-patched-core-level-5.name = 
-block.fading-revelations-patched-core-level-5.description = 
+block.core-level-5.name = 
+block.core-level-5.description = 
 
-block.fading-revelations-patched-main-core.name = 
-block.fading-revelations-patched-main-core.description = 
+block.main-core.name = 
+block.main-core.description = 
 
 #gold exchangers
 
-block.fading-revelations-patched-gold-exchanger-copper.name = 
-block.fading-revelations-patched-gold-exchanger-copper.description = 
+block.gold-exchanger-copper.name = 
+block.gold-exchanger-copper.description = 
 
-block.fading-revelations-patched-gold-exchanger-titanium.name = 
-block.fading-revelations-patched-gold-exchanger-titanium.description = 
+block.gold-exchanger-titanium.name = 
+block.gold-exchanger-titanium.description = 
 
-block.fading-revelations-patched-gold-exchanger-thorium.name = 
-block.fading-revelations-patched-gold-exchanger-thorium.description = 
+block.gold-exchanger-thorium.name = 
+block.gold-exchanger-thorium.description = 
 
 #other
 
-block.fading-revelations-patched-big-launch-pad.name = 
-block.fading-revelations-patched-big-launch-pad.description = 
+block.big-launch-pad.name = 
+block.big-launch-pad.description = 
 
-block.fading-revelations-patched-dark-mender.name = 
-block.fading-revelations-patched-dark-mender.description = 
+block.dark-mender.name = 
+block.dark-mender.description = 
 
-block.fading-revelations-patched-enhanced-mend-projector.name = 
-block.fading-revelations-patched-enhanced-mend-projector.description = 
+block.enhanced-mend-projector.name = 
+block.enhanced-mend-projector.description = 
 
-block.fading-revelations-patched-fast-unloader.name = 
-block.fading-revelations-patched-fast-unloader.description = 
+block.fast-unloader.name = 
+block.fast-unloader.description = 
 
-block.fading-revelations-patched-force-dome.name = 
-block.fading-revelations-patched-force-dome.description = 
+block.force-dome.name = 
+block.force-dome.description = 
 
-block.fading-revelations-patched-mini-od.name = 
-block.fading-revelations-patched-mini-od.description = 
+block.mini-od.name = 
+block.mini-od.description = 
 
-block.fading-revelations-patched-outpost.name = 
-block.fading-revelations-patched-outpost.description = .
+block.outpost.name = 
+block.outpost.description = .
 
 #trading stations
 
-block.fading-revelations-patched-bc-trading-station.name = 
-block.fading-revelations-patched-bc-trading-station.description = 
+block.bc-trading-station.name = 
+block.bc-trading-station.description = 
 
-block.fading-revelations-patched-coal-trading-station.name = 
-block.fading-revelations-patched-coal-trading-station.description = 
+block.coal-trading-station.name = 
+block.coal-trading-station.description = 
 
-block.fading-revelations-patched-graphite-trading-station.name = 
-block.fading-revelations-patched-graphite-trading-station.description = 
+block.graphite-trading-station.name = 
+block.graphite-trading-station.description = 
 
-block.fading-revelations-patched-lead-trading-station.name = 
-block.fading-revelations-patched-lead-trading-station.description = 
+block.lead-trading-station.name = 
+block.lead-trading-station.description = 
 
-block.fading-revelations-patched-metaglass-trading-station.name = 
-block.fading-revelations-patched-metaglass-trading-station.description = 
+block.metaglass-trading-station.name = 
+block.metaglass-trading-station.description = 
 
-block.fading-revelations-patched-phase-trading-station.name = 
-block.fading-revelations-patched-phase-trading-station.description = 
+block.phase-trading-station.name = 
+block.phase-trading-station.description = 
 
-block.fading-revelations-patched-plastanium-trading-station.name = 
-block.fading-revelations-patched-plastanium-trading-station.description = 
+block.plastanium-trading-station.name = 
+block.plastanium-trading-station.description = 
 
-block.fading-revelations-patched-pyratite-trading-station.name = 
-block.fading-revelations-patched-pyratite-trading-station.description = 
+block.pyratite-trading-station.name = 
+block.pyratite-trading-station.description = 
 
-block.fading-revelations-patched-sand-trading-station.name = 
-block.fading-revelations-patched-sand-trading-station.description = 
+block.sand-trading-station.name = 
+block.sand-trading-station.description = 
 
-block.fading-revelations-patched-silicon-trading-station.name = 
-block.fading-revelations-patched-silicon-trading-station.description = 
+block.silicon-trading-station.name = 
+block.silicon-trading-station.description = 
 
-block.fading-revelations-patched-spore-pod-trading-station.name = 
-block.fading-revelations-patched-spore-pod-trading-station.description = 
+block.spore-pod-trading-station.name = 
+block.spore-pod-trading-station.description = 
 
-block.fading-revelations-patched-surge-trading-station.name = 
-block.fading-revelations-patched-surge-trading-station.description = 
+block.surge-trading-station.name = 
+block.surge-trading-station.description = 
 
 #environment
 
-block.fading-revelations-patched-steel-sedimentation.name = 
-block.fading-revelations-patched-steel-sedimentation.description = 
+block.steel-sedimentation.name = 
+block.steel-sedimentation.description = 
 
-block.fading-revelations-patched-env-living-steel-wall.name = 
+block.env-living-steel-wall.name = 
 
-block.fading-revelations-patched-env-petrified-steel-wall.name = 
+block.env-petrified-steel-wall.name = 
 
 #gates
 
-block.fading-revelations-patched-mod-gate-naval.name = 
-block.fading-revelations-patched-mod-gate-naval.description = 
+block.mod-gate-naval.name = 
+block.mod-gate-naval.description = 
 
-block.fading-revelations-patched-mod-gate-flying.name = 
-block.fading-revelations-patched-mod-gate-flying.description = 
+block.mod-gate-flying.name = 
+block.mod-gate-flying.description = 
 
-block.fading-revelations-patched-mod-gate-legs.name = 
-block.fading-revelations-patched-mod-gate-legs.description = 
+block.mod-gate-legs.name = 
+block.mod-gate-legs.description = 
 
-block.fading-revelations-patched-mod-gate-main.name = 
-block.fading-revelations-patched-mod-gate-main.description = 
+block.mod-gate-main.name = 
+block.mod-gate-main.description = 
 
-block.fading-revelations-patched-mod-gate-ammo.name = 
-block.fading-revelations-patched-mod-gate-ammo.description = 
+block.mod-gate-ammo.name = 
+block.mod-gate-ammo.description = 
 
-block.fading-revelations-patched-mod-gate-blocks.name = 
-block.fading-revelations-patched-mod-gate-blocks.description = 
+block.mod-gate-blocks.name = 
+block.mod-gate-blocks.description = 
 
-block.fading-revelations-patched-mod-gate-cores.name = 
-block.fading-revelations-patched-mod-gate-cores.description = 
+block.mod-gate-cores.name = 
+block.mod-gate-cores.description = 
 
-block.fading-revelations-patched-mod-gate-crafters.name = 
-block.fading-revelations-patched-mod-gate-crafters.description = 
+block.mod-gate-crafters.name = 
+block.mod-gate-crafters.description = 
 
-block.fading-revelations-patched-mod-gate-distribution.name = 
-block.fading-revelations-patched-mod-gate-distribution.description = 
+block.mod-gate-distribution.name = 
+block.mod-gate-distribution.description = 
 
-block.fading-revelations-patched-mod-gate-drills.name = 
-block.fading-revelations-patched-mod-gate-drills.description = 
+block.mod-gate-drills.name = 
+block.mod-gate-drills.description = 
 
-block.fading-revelations-patched-mod-gate-effect.name = 
-block.fading-revelations-patched-mod-gate-effect.description = 
+block.mod-gate-effect.name = 
+block.mod-gate-effect.description = 
 
-block.fading-revelations-patched-mod-gate-factories.name = 
-block.fading-revelations-patched-mod-gate-factories.description = 
+block.mod-gate-factories.name = 
+block.mod-gate-factories.description = 
 
-block.fading-revelations-patched-mod-gate-items.name = 
-block.fading-revelations-patched-mod-gate-items.description = 
+block.mod-gate-items.name = 
+block.mod-gate-items.description = 
 
-block.fading-revelations-patched-mod-gate-liquids.name = 
-block.fading-revelations-patched-mod-gate-liquids.description = 
+block.mod-gate-liquids.name = 
+block.mod-gate-liquids.description = 
 
-block.fading-revelations-patched-mod-gate-power.name = 
-block.fading-revelations-patched-mod-gate-power.description = 
+block.mod-gate-power.name = 
+block.mod-gate-power.description = 
 
-block.fading-revelations-patched-mod-gate-resources.name = 
-block.fading-revelations-patched-mod-gate-resources.description = 
+block.mod-gate-resources.name = 
+block.mod-gate-resources.description = 
 
-block.fading-revelations-patched-mod-gate-turrets.name = 
-block.fading-revelations-patched-mod-gate-turrets.description = 
+block.mod-gate-turrets.name = 
+block.mod-gate-turrets.description = 
 
-block.fading-revelations-patched-mod-gate-units.name = 
-block.fading-revelations-patched-mod-gate-units.description = 
+block.mod-gate-units.name = 
+block.mod-gate-units.description = 
 
-block.fading-revelations-patched-mod-gate-walls.name = 
-block.fading-revelations-patched-mod-gate-walls.description = 
+block.mod-gate-walls.name = 
+block.mod-gate-walls.description = 
 
 
 #liquid blocks
 
-block.fading-revelations-patched-plastanium-conduit.name = 
-block.fading-revelations-patched-plastanium-conduit.description = 
+block.plastanium-conduit.name = 
+block.plastanium-conduit.description = 
 
-block.fading-revelations-patched-steel-pump.name = 
-block.fading-revelations-patched-steel-pump.description = 
+block.steel-pump.name = 
+block.steel-pump.description = 
 
-block.fading-revelations-patched-steel-tank.name = 
-block.fading-revelations-patched-steel-tank.description = 
+block.steel-tank.name = 
+block.steel-tank.description = 
 
 #power blocks
 
 #generators
 
-block.fading-revelations-patched-solar-array.name = 
-block.fading-revelations-patched-solar-array.description = 
+block.solar-array.name = 
+block.solar-array.description = 
 
-block.fading-revelations-patched-titanium-solar-panel.name = 
-block.fading-revelations-patched-titanium-solar-panel.description = 
+block.titanium-solar-panel.name = 
+block.titanium-solar-panel.description = 
 
-block.fading-revelations-patched-steam-turbine.name = 
-block.fading-revelations-patched-steam-turbine.description = 
+block.steam-turbine.name = 
+block.steam-turbine.description = 
 
-block.fading-revelations-patched-tiny-thermal-gen.name = 
-block.fading-revelations-patched-tiny-thermal-gen.description = 
+block.tiny-thermal-gen.name = 
+block.tiny-thermal-gen.description = 
 
-block.fading-revelations-patched-advanced-solar-panel.name = 
-block.fading-revelations-patched-advanced-solar-panel.description = 
+block.advanced-solar-panel.name = 
+block.advanced-solar-panel.description = 
 
-block.fading-revelations-patched-ls-gen.name = 
-block.fading-revelations-patched-ls-gen.description = 
+block.ls-gen.name = 
+block.ls-gen.description = 
 
-block.fading-revelations-patched-pyratite-generator.name = 
-block.fading-revelations-patched-pyratite-generator.description = 
+block.pyratite-generator.name = 
+block.pyratite-generator.description = 
 
-block.fading-revelations-patched-slag-generator.name = 
-block.fading-revelations-patched-slag-generator.description = 
+block.slag-generator.name = 
+block.slag-generator.description = 
 
-block.fading-revelations-patched-slag-reactor.name = 
-block.fading-revelations-patched-slag-reactor.description = 
+block.slag-reactor.name = 
+block.slag-reactor.description = 
 
-block.fading-revelations-patched-steel-reactor.name = 
-block.fading-revelations-patched-steel-reactor.description = 
+block.steel-reactor.name = 
+block.steel-reactor.description = 
 
-block.fading-revelations-patched-turbine-concentrator.name = 
-block.fading-revelations-patched-turbine-concentrator.description = 
+block.turbine-concentrator.name = 
+block.turbine-concentrator.description = 
 
-block.fading-revelations-patched-uranium-reactor.name = 
-block.fading-revelations-patched-uranium-reactor.description = 
+block.uranium-reactor.name = 
+block.uranium-reactor.description = 
 
 #other power blocks
 
-block.fading-revelations-patched-reinforced-power-node.name = 
-block.fading-revelations-patched-reinforced-power-node.description = 
+block.reinforced-power-node.name = 
+block.reinforced-power-node.description = 
 
-block.fading-revelations-patched-reinforced-large-power-node.name = 
-block.fading-revelations-patched-reinforced-large-power-node.description = 
+block.reinforced-large-power-node.name = 
+block.reinforced-large-power-node.description = 
 
-block.fading-revelations-patched-advanced-surge-tower.name = 
-block.fading-revelations-patched-advanced-surge-tower.description = 
+block.advanced-surge-tower.name = 
+block.advanced-surge-tower.description = 
 
-block.fading-revelations-patched-power-reserve.name = 
-block.fading-revelations-patched-power-reserve.description = 
+block.power-reserve.name = 
+block.power-reserve.description = 
 
 
 #production
 
 #advanced vanilla
 
-block.fading-revelations-patched-advanced-coal-centrifuge.name = 
-block.fading-revelations-patched-advanced-coal-centrifuge.description = 
+block.advanced-coal-centrifuge.name = 
+block.advanced-coal-centrifuge.description = 
 
-block.fading-revelations-patched-advanced-cryofluid-mixer.name = 
-block.fading-revelations-patched-advanced-cryofluid-mixer.description = 
+block.advanced-cryofluid-mixer.name = 
+block.advanced-cryofluid-mixer.description = 
 
-block.fading-revelations-patched-advanced-separator.name = 
-block.fading-revelations-patched-advanced-separator.description = 
+block.advanced-separator.name = 
+block.advanced-separator.description = 
 
-block.fading-revelations-patched-advanced-water-extractor.name = 
-block.fading-revelations-patched-advanced-water-extractor.description = 
+block.advanced-water-extractor.name = 
+block.advanced-water-extractor.description = 
 
-block.fading-revelations-patched-atmospheric-extractor.name = 
-block.fading-revelations-patched-atmospheric-extractor.description = 
+block.atmospheric-extractor.name = 
+block.atmospheric-extractor.description = 
 
-block.fading-revelations-patched-atmospheric-heat-concentrator.name = 
-block.fading-revelations-patched-atmospheric-heat-concentrator.description = 
+block.atmospheric-heat-concentrator.name = 
+block.atmospheric-heat-concentrator.description = 
 
-block.fading-revelations-patched-big-phase-weaver.name = 
-block.fading-revelations-patched-big-phase-weaver.description = 
+block.big-phase-weaver.name = 
+block.big-phase-weaver.description = 
 
-block.fading-revelations-patched-big-plastanium-press.name = 
-block.fading-revelations-patched-big-plastanium-press.description = 
+block.big-plastanium-press.name = 
+block.big-plastanium-press.description = 
 
-block.fading-revelations-patched-carbide-basin.name = 
-block.fading-revelations-patched-carbide-basin.description = 
+block.carbide-basin.name = 
+block.carbide-basin.description = 
 
-block.fading-revelations-patched-corrosion-chamber.name = 
-block.fading-revelations-patched-corrosion-chamber.description = 
+block.corrosion-chamber.name = 
+block.corrosion-chamber.description = 
 
-block.fading-revelations-patched-cyanogen-fuser.name = 
-block.fading-revelations-patched-cyanogen-fuser.description = 
+block.cyanogen-fuser.name = 
+block.cyanogen-fuser.description = 
 
-block.fading-revelations-patched-dissolver.name = 
-block.fading-revelations-patched-dissolver.description = 
+block.dissolver.name = 
+block.dissolver.description = 
 
-block.fading-revelations-patched-enhanced-blast-mixer.name = 
-block.fading-revelations-patched-enhanced-blast-mixer.description = 
+block.enhanced-blast-mixer.name = 
+block.enhanced-blast-mixer.description = 
 
-block.fading-revelations-patched-enhanced-pyratite-mixer.name = 
-block.fading-revelations-patched-enhanced-pyratite-mixer.description = 
+block.enhanced-pyratite-mixer.name = 
+block.enhanced-pyratite-mixer.description = 
 
-block.fading-revelations-patched-esterification-chamber.name = 
-block.fading-revelations-patched-esterification-chamber.description = 
+block.esterification-chamber.name = 
+block.esterification-chamber.description = 
 
-block.fading-revelations-patched-graphite-forge.name = 
-block.fading-revelations-patched-graphite-forge.description = 
+block.graphite-forge.name = 
+block.graphite-forge.description = 
 
-block.fading-revelations-patched-greenhouse.name = 
-block.fading-revelations-patched-greenouse.description = 
+block.greenhouse.name = 
+block.greenouse.description = 
 
-block.fading-revelations-patched-heat-diverter.name = 
-block.fading-revelations-patched-heat-diverter.description = 
+block.heat-diverter.name = 
+block.heat-diverter.description = 
 
-block.fading-revelations-patched-induced-kiln.name = 
-block.fading-revelations-patched-induced-kiln.description = 
+block.induced-kiln.name = 
+block.induced-kiln.description = 
 
-block.fading-revelations-patched-inverted-pulverizer.name = 
-block.fading-revelations-patched-inverted-pulverizer.description = 
+block.inverted-pulverizer.name = 
+block.inverted-pulverizer.description = 
 
-block.fading-revelations-patched-phase-manufacturer.name = 
-block.fading-revelations-patched-phase-manufacturer.description = 
+block.phase-manufacturer.name = 
+block.phase-manufacturer.description = 
 
-block.fading-revelations-patched-powderizer.name = 
-block.fading-revelations-patched-powderizer.description = 
+block.powderizer.name = 
+block.powderizer.description = 
 
-block.fading-revelations-patched-silicon-arc-forge.name = 
-block.fading-revelations-patched-silicon-arc-forge.description = 
+block.silicon-arc-forge.name = 
+block.silicon-arc-forge.description = 
 
-block.fading-revelations-patched-silicon-forge.name = 
-block.fading-revelations-patched-silicon-forge.description = 
+block.silicon-forge.name = 
+block.silicon-forge.description = 
 
-block.fading-revelations-patched-small-heat-router.name = 
-block.fading-revelations-patched-small-heat-router.description = 
+block.small-heat-router.name = 
+block.small-heat-router.description = 
 
-block.fading-revelations-patched-spore-crusher.name = 
-block.fading-revelations-patched-spore-crusher.description = 
+block.spore-crusher.name = 
+block.spore-crusher.description = 
 
-block.fading-revelations-patched-surge-melter.name = 
-block.fading-revelations-patched-surge-melter.description = 
+block.surge-melter.name = 
+block.surge-melter.description = 
 
-block.fading-revelations-patched-surge-oven-big.name = 
-block.fading-revelations-patched-surge-oven-big.description = 
+block.surge-oven-big.name = 
+block.surge-oven-big.description = 
 
 #ammo crafters
 
-block.fading-revelations-patched-ammo-crafter-1.name = 
-block.fading-revelations-patched-ammo-crafter-1.description = 
+block.ammo-crafter-1.name = 
+block.ammo-crafter-1.description = 
 
-block.fading-revelations-patched-ammo-crafter-2.name = 
-block.fading-revelations-patched-ammo-crafter-2.description = 
+block.ammo-crafter-2.name = 
+block.ammo-crafter-2.description = 
 
-block.fading-revelations-patched-ammo-crafter-3.name = 
-block.fading-revelations-patched-ammo-crafter-3.description = 
+block.ammo-crafter-3.name = 
+block.ammo-crafter-3.description = 
 
-block.fading-revelations-patched-heal-ammo-crafter.name = 
-block.fading-revelations-patched-heal-ammo-crafter.description = 
+block.heal-ammo-crafter.name = 
+block.heal-ammo-crafter.description = 
 
-block.fading-revelations-patched-homing-ammo-crafter.name = 
-block.fading-revelations-patched-homing-ammo-crafter.description = 
+block.homing-ammo-crafter.name = 
+block.homing-ammo-crafter.description = 
 
-block.fading-revelations-patched-nano-ammo-crafter.name = 
-block.fading-revelations-patched-nano-ammo-crafter.description = 
+block.nano-ammo-crafter.name = 
+block.nano-ammo-crafter.description = 
 
-block.fading-revelations-patched-nuke-crafter.name = 
-block.fading-revelations-patched-nuke-crafter.description = 
+block.nuke-crafter.name = 
+block.nuke-crafter.description = 
 
 #living steel
 
-block.fading-revelations-patched-living-steel-forge.name = Lebendstahlschmiede
-block.fading-revelations-patched-living-steel-forge.description = Stellt Lebendstahl effizienter her als eine Lebendstahl-Infusionskammer
+block.living-steel-forge.name = Lebendstahlschmiede
+block.living-steel-forge.description = Stellt Lebendstahl effizienter her als eine Lebendstahl-Infusionskammer
 
-block.fading-revelations-patched-living-steel-hardener.name = Lebendstahl-Härtungskammer
-block.fading-revelations-patched-living-steel-hardener.description = Härtet Lebendstahl zu gehärtetem Lebendstahl.
+block.living-steel-hardener.name = Lebendstahl-Härtungskammer
+block.living-steel-hardener.description = Härtet Lebendstahl zu gehärtetem Lebendstahl.
 
-block.fading-revelations-patched-living-steel-hardening-forge.name = Lebenstahl-Härtungsschmiede
-block.fading-revelations-patched-living-steel-hardening-forge.description = Härtet Lebendstahl effizienter als eine Lebendstahl-Härtungskammer.
+block.living-steel-hardening-forge.name = Lebenstahl-Härtungsschmiede
+block.living-steel-hardening-forge.description = Härtet Lebendstahl effizienter als eine Lebendstahl-Härtungskammer.
 
-block.fading-revelations-patched-living-steel-infuser.name = Lebendstahl-Infusionskammer
-block.fading-revelations-patched-living-steel-infuser.description = Infusiert Titan mit intelligenten Sporen, um Lebendstahl herzustellen.
+block.living-steel-infuser.name = Lebendstahl-Infusionskammer
+block.living-steel-infuser.description = Infusiert Titan mit intelligenten Sporen, um Lebendstahl herzustellen.
 
-block.fading-revelations-patched-living-steel-liquifier.name = Lebendstahl-Verflüssigungskammer
-block.fading-revelations-patched-living-steel-liquifier.description = Verflüssigt Lebendstahl indem diesem Öl zugesetzt wird.
+block.living-steel-liquifier.name = Lebendstahl-Verflüssigungskammer
+block.living-steel-liquifier.description = Verflüssigt Lebendstahl indem diesem Öl zugesetzt wird.
 
-block.fading-revelations-patched-living-steel-liquifying-forge.name = Lebendstahl-Verflüssigungsschmiede
-block.fading-revelations-patched-living-steel-liquifying-forge.description = Verflüssigt Lebendstahl effizeienter als eine Lebendstahl-Verflüssigungskammer.
+block.living-steel-liquifying-forge.name = Lebendstahl-Verflüssigungsschmiede
+block.living-steel-liquifying-forge.description = Verflüssigt Lebendstahl effizeienter als eine Lebendstahl-Verflüssigungskammer.
 
 #other crafters
 
-block.fading-revelations-patched-acid-emulsifier.name = Säureemulgator
-block.fading-revelations-patched-acid-emuslifier.description = Erschafft Öl aus Säure.
+block.acid-emulsifier.name = Säureemulgator
+block.acid-emuslifier.description = Erschafft Öl aus Säure.
 
-block.fading-revelations-patched-acid-vat.name = Säurebottich
-block.fading-revelations-patched-acid-vat.description = Verflüssigt Blei zu Säure. Benötigt Strom.
+block.acid-vat.name = Säurebottich
+block.acid-vat.description = Verflüssigt Blei zu Säure. Benötigt Strom.
 
-block.fading-revelations-patched-steam-condenser.name = Dampfkondensator
-block.fading-revelations-patched-steam-condenser.description = Zieht langsam Feuchtigkeit aus der Luft und verwandelt sie in Dampf.
+block.steam-condenser.name = Dampfkondensator
+block.steam-condenser.description = Zieht langsam Feuchtigkeit aus der Luft und verwandelt sie in Dampf.
 
-block.fading-revelations-patched-amalgam-smelter.name = Amalgamschmelze
-block.fading-revelations-patched-amalgam-smelter.description = Schmilzt Kupfer, Lebendstahl und Spannungslegierung zu Stahl Amalgam.
+block.amalgam-smelter.name = Amalgamschmelze
+block.amalgam-smelter.description = Schmilzt Kupfer, Lebendstahl und Spannungslegierung zu Stahl Amalgam.
 
-block.fading-revelations-patched-amalgam-forge.name = Amalgamschmiede
-block.fading-revelations-patched-amalgam-forge.description = Eine bessere Amalgamschmelze, welche schneller produziert.
+block.amalgam-forge.name = Amalgamschmiede
+block.amalgam-forge.description = Eine bessere Amalgamschmelze, welche schneller produziert.
 
-block.fading-revelations-patched-uraniumrod-crafter.name = Uranstabfabrik
-block.fading-revelations-patched-uraniumrod-crafter.description = Stellt radioaktive Uranstäbe her.
+block.uraniumrod-crafter.name = Uranstabfabrik
+block.uraniumrod-crafter.description = Stellt radioaktive Uranstäbe her.
 
-block.fading-revelations-patched-basic-multismelter.name = Einfache Multischmelze
-block.fading-revelations-patched-basic-multismelter.description = Nutzt Kohle, Sand und Blei um Metallglass, Graphit und Silizium gleichzeitig herzustellen.
+block.basic-multismelter.name = Einfache Multischmelze
+block.basic-multismelter.description = Nutzt Kohle, Sand und Blei um Metallglass, Graphit und Silizium gleichzeitig herzustellen.
 
-block.fading-revelations-patched-neutron-blender.name = Neutronenmixer
-block.fading-revelations-patched-neutron-blender.description = Mixt relativ große Mengen von Kryoflüssigkeit, Öl und Flüssigem Lebendstahl um hochpotente Neutronenflüssigkeit herzustellen.
+block.neutron-blender.name = Neutronenmixer
+block.neutron-blender.description = Mixt relativ große Mengen von Kryoflüssigkeit, Öl und Flüssigem Lebendstahl um hochpotente Neutronenflüssigkeit herzustellen.
 
 #turrets
 
 #item turrets
 
-block.fading-revelations-patched-caats.name = CAATS
-block.fading-revelations-patched-caats.description = Auch wenn der Name niedlich klingen mag... dies ist Cerberos stolzeste anti-luft Erfindung: Das Cerberian Anti Air Turret System.
+block.caats.name = CAATS
+block.caats.description = Auch wenn der Name niedlich klingen mag... dies ist Cerberos stolzeste anti-luft Erfindung: Das Cerberian Anti Air Turret System.
 
-block.fading-revelations-patched-missile-battery.name = Raketenbatteria
-block.fading-revelations-patched-missile-battery.description = Entsendet ballistische Dronen, welche eine große Barrage zielsuchender Raketen abfeuern. Kann sich während dem Aufladen nicht drehen.
+block.missile-battery.name = Raketenbatteria
+block.missile-battery.description = Entsendet ballistische Dronen, welche eine große Barrage zielsuchender Raketen abfeuern. Kann sich während dem Aufladen nicht drehen.
 
-block.fading-revelations-patched-interitus.name = Interitus
-block.fading-revelations-patched-interitus.description = Ein großer Turm, der dafür gemacht ist, zielsuchende Raketen auf fliegende Gegner zu feuern. Kann schnelle Einheiten nicht sonderlich gut anpeilen.
+block.interitus.name = Interitus
+block.interitus.description = Ein großer Turm, der dafür gemacht ist, zielsuchende Raketen auf fliegende Gegner zu feuern. Kann schnelle Einheiten nicht sonderlich gut anpeilen.
 
-block.fading-revelations-patched-accel.name = Accel
-block.fading-revelations-patched-accel.description = Markiert einen Pfad mit einem Hochenergielaser und schießt dann eine expandierende Spannungskugel diesen Pfad hinunter welche beim Einschlag explodiert. Der hochkonzentrierte Markierungslaser verursacht ebenso Schaden.
+block.accel.name = Accel
+block.accel.description = Markiert einen Pfad mit einem Hochenergielaser und schießt dann eine expandierende Spannungskugel diesen Pfad hinunter welche beim Einschlag explodiert. Der hochkonzentrierte Markierungslaser verursacht ebenso Schaden.
 
-block.fading-revelations-patched-mortar.name = Mörser
-block.fading-revelations-patched-mortar.description = Nutzt Strom und Sporenpods um flammende Mörsergranaten über mittlere Distanz auf Gegner. Setzt den Boden und getroffene Gegner für eine Weile in Flammen.
+block.mortar.name = Mörser
+block.mortar.description = Nutzt Strom und Sporenpods um flammende Mörsergranaten über mittlere Distanz auf Gegner. Setzt den Boden und getroffene Gegner für eine Weile in Flammen.
 
-block.fading-revelations-patched-absole.name = Absole
-block.fading-revelations-patched-absole.description = ein mächtiger Turm, welcher Gegner mit hochkonzentrierten Lasern vernichtet, welche den Hochenergiebrand Statuseffekt verursachen.
+block.absole.name = Absole
+block.absole.description = ein mächtiger Turm, welcher Gegner mit hochkonzentrierten Lasern vernichtet, welche den Hochenergiebrand Statuseffekt verursachen.
 
-block.fading-revelations-patched-big-swarmer.name = Assail
-block.fading-revelations-patched-big-swarmer.description = Eine bessere Version des Schwärmers mit höherem Schaden und Schussgeschwindigkeit.
+block.big-swarmer.name = Assail
+block.big-swarmer.description = Eine bessere Version des Schwärmers mit höherem Schaden und Schussgeschwindigkeit.
 
-block.fading-revelations-patched-corrupted-cyclone.name = Hurricane
-block.fading-revelations-patched-corrupted-cyclone.description = Eine bessere Version des Zyklons.
+block.corrupted-cyclone.name = Hurricane
+block.corrupted-cyclone.description = Eine bessere Version des Zyklons.
 
-block.fading-revelations-patched-gattling.name = Gattling
-block.fading-revelations-patched-gattling.description = Ein Turm, der SEHR schnell feuert. 
+block.gattling.name = Gattling
+block.gattling.description = Ein Turm, der SEHR schnell feuert. 
 
-block.fading-revelations-patched-mine-launcher.name = Minenwerfer
-block.fading-revelations-patched-mine-launcher.description = Shießt Landminen, welche für längere Zeit auf dem Boden liegen bleiben und bei Kontakt eplodieren.
+block.mine-launcher.name = Minenwerfer
+block.mine-launcher.description = Shießt Landminen, welche für längere Zeit auf dem Boden liegen bleiben und bei Kontakt eplodieren.
 
-block.fading-revelations-patched-missile-silo.name = Raketensilo
-block.fading-revelations-patched-missile-silo.description = Braucht eine LANGE Zeit zur Vorbereitung. Shießt mit tödlichen Nuklearraketen.
+block.missile-silo.name = Raketensilo
+block.missile-silo.description = Braucht eine LANGE Zeit zur Vorbereitung. Shießt mit tödlichen Nuklearraketen.
 
-block.fading-revelations-patched-ore-turret.name = Itemslinger
-block.fading-revelations-patched-ore-turret.description = Shießt rohe Stücke Erz/Material auf Gegner.
+block.ore-turret.name = Itemslinger
+block.ore-turret.description = Shießt rohe Stücke Erz/Material auf Gegner.
 
-block.fading-revelations-patched-ring-turret.name = S.E.H.R.A.K
-block.fading-revelations-patched-ring-turret.description = Shießt zwei Schüsse, welche sich bei Kontakt oder nach einiger Entfernung in viele kleinere Kugeln aufteilen.
+block.ring-turret.name = S.E.H.R.A.K
+block.ring-turret.description = Shießt zwei Schüsse, welche sich bei Kontakt oder nach einiger Entfernung in viele kleinere Kugeln aufteilen.
 
-block.fading-revelations-patched-sear.name = Brutzler
-block.fading-revelations-patched-sear.description = Eine bessere Version des Flammenwerfers. Hat mehr Reichweite und verursacht mehr Schaden.
+block.sear.name = Brutzler
+block.sear.description = Eine bessere Version des Flammenwerfers. Hat mehr Reichweite und verursacht mehr Schaden.
 
-block.fading-revelations-patched-shotgun.name = Schrotflinte
-block.fading-revelations-patched-shotgun.description = Eine Schrotflinte. Gegner nehmen mehr Schaden, je näher sie an diesem Turm sind.
+block.shotgun.name = Schrotflinte
+block.shotgun.description = Eine Schrotflinte. Gegner nehmen mehr Schaden, je näher sie an diesem Turm sind.
 
-block.fading-revelations-patched-sniper.name = Scharfschützenturm
-block.fading-revelations-patched-sniper.description = Ein Turm mit sehr hoher Reichweite und hohem Schaden aber niedriger Schussrate.
+block.sniper.name = Scharfschützenturm
+block.sniper.description = Ein Turm mit sehr hoher Reichweite und hohem Schaden aber niedriger Schussrate.
 
-block.fading-revelations-patched-sunflare.name = Sunneneruption
-block.fading-revelations-patched-sunflare.description = Der letzte Turm in der Familie des Flammenwerfers. Shießt eine große Menge tödlichen Feuers.
+block.sunflare.name = Sunneneruption
+block.sunflare.description = Der letzte Turm in der Familie des Flammenwerfers. Shießt eine große Menge tödlichen Feuers.
 
-block.fading-revelations-patched-trio.name = Trio
-block.fading-revelations-patched-trio.description = Wie ein Duo aber schießt aus 3 anstatt nur 2 Rohren.
+block.trio.name = Trio
+block.trio.description = Wie ein Duo aber schießt aus 3 anstatt nur 2 Rohren.
 
-block.fading-revelations-patched-upgrade-turret.name = Von Turmheim
-block.fading-revelations-patched-upgrade-turret.description = Ein Turm, dessen Schüsse verschiedene Effekte haben, basierend auf der genutzen Munitionsart.
+block.upgrade-turret.name = Von Turmheim
+block.upgrade-turret.description = Ein Turm, dessen Schüsse verschiedene Effekte haben, basierend auf der genutzen Munitionsart.
 
-block.fading-revelations-patched-big-scatter.name = Shatter
-block.fading-revelations-patched-big-scatter.description = Eine bessere Version des Luftgeschützes.
+block.big-scatter.name = Shatter
+block.big-scatter.description = Eine bessere Version des Luftgeschützes.
 
 #liquid turrets
 
-block.fading-revelations-patched-zephyr.name = Zephyr
-block.fading-revelations-patched-zephyr.description = Nutzt Dampf, um hochkonzentrierte Schüsse auf Gegner abzufeuern, die zwar keinen Schaden verursachen aber die Gegner weit zurückstoßen.
+block.zephyr.name = Zephyr
+block.zephyr.description = Nutzt Dampf, um hochkonzentrierte Schüsse auf Gegner abzufeuern, die zwar keinen Schaden verursachen aber die Gegner weit zurückstoßen.
 
-block.fading-revelations-patched-batter.name = Schläger
-block.fading-revelations-patched-batter.description = Schießt hochkonzentrierte Flüssigkeitskugeln, um Gegner zurückzuschlagen.
+block.batter.name = Schläger
+block.batter.description = Schießt hochkonzentrierte Flüssigkeitskugeln, um Gegner zurückzuschlagen.
 
-block.fading-revelations-patched-sprunkler.name = Sprinkler
-block.fading-revelations-patched-sprunkler.description = Shießt eine große Menge an Wasser. Sollte nicht im Kampf genutzt werden sondern nur, um Feuer zu löschen.
+block.sprunkler.name = Sprinkler
+block.sprunkler.description = Shießt eine große Menge an Wasser. Sollte nicht im Kampf genutzt werden sondern nur, um Feuer zu löschen.
 
 #power turrets
 
-block.fading-revelations-patched-kugelblitz.name = Kugelblitz
-block.fading-revelations-patched-kugelblitz.description = Lädt leitende Materialien stark auf und erschafft somit mächtige Kugelblitze, die Blitze speien um Gegner auszulöschen.
+block.kugelblitz.name = Kugelblitz
+block.kugelblitz.description = Lädt leitende Materialien stark auf und erschafft somit mächtige Kugelblitze, die Blitze speien um Gegner auszulöschen.
 
-block.fading-revelations-patched-air-arc.name = Luft Arcus
-block.fading-revelations-patched-air-arc.description = Ein Arcus, welcher nur Luftgegner anvisieren kann.
+block.air-arc.name = Luft Arcus
+block.air-arc.description = Ein Arcus, welcher nur Luftgegner anvisieren kann.
 
-block.fading-revelations-patched-big-arc.name = Arcussturm
-block.fading-revelations-patched-big-arc.description = Ein Arcus, der erhöhte Feuerkraft durch höheren Schaden und niedrigere Nachladezeit besitzt.
+block.big-arc.name = Arcussturm
+block.big-arc.description = Ein Arcus, der erhöhte Feuerkraft durch höheren Schaden und niedrigere Nachladezeit besitzt.
 
-block.fading-revelations-patched-big-parallax.name = Deracination
-block.fading-revelations-patched-big-parallax.description = Ein besserer Parallax, welcher Gegner schneller heranzieht und dabei mehr Schaden verursacht.
+block.big-parallax.name = Deracination
+block.big-parallax.description = Ein besserer Parallax, welcher Gegner schneller heranzieht und dabei mehr Schaden verursacht.
 
-block.fading-revelations-patched-big-segment.name = Fragment
-block.fading-revelations-patched-big-segment.description = Ein besseres Segment, welches mehr Schaden gegen Kugeln verursacht. Kann keine Laser anvisieren.
+block.big-segment.name = Fragment
+block.big-segment.description = Ein besseres Segment, welches mehr Schaden gegen Kugeln verursacht. Kann keine Laser anvisieren.
 
-block.fading-revelations-patched-cavalry.name = Kavalerie
-block.fading-revelations-patched-cavalry.description = Ein großer Stromturm, der geladene Energiekugeln auf Gegner feuert.
+block.cavalry.name = Kavalerie
+block.cavalry.description = Ein großer Stromturm, der geladene Energiekugeln auf Gegner feuert.
 
-block.fading-revelations-patched-mega-meltdown.name = Armageddon
-block.fading-revelations-patched-mega-meltdown.description = Eine bessere Version des Meltdowns. Verursacht massig Schaden. Benötigt Flüssigkeit zum Feuern.
+block.mega-meltdown.name = Armageddon
+block.mega-meltdown.description = Eine bessere Version des Meltdowns. Verursacht massig Schaden. Benötigt Flüssigkeit zum Feuern.
 
-block.fading-revelations-patched-status-wave.name = Stasiswelle
-block.fading-revelations-patched-status-wave.description = Sendet Schockwellen aus, die geringen Schaden verursachen dafür aber Gegner verlangsamen.
+block.status-wave.name = Stasiswelle
+block.status-wave.description = Sendet Schockwellen aus, die geringen Schaden verursachen dafür aber Gegner verlangsamen.
 
-block.fading-revelations-patched-uhlan.name = Uhlan
-block.fading-revelations-patched-uhlan.description = Eine bessere Version des Lancers.
+block.uhlan.name = Uhlan
+block.uhlan.description = Eine bessere Version des Lancers.
 
 
 #other turrets
 
-block.fading-revelations-patched-construction-pylon.name = Konstruktionspfeiler
-block.fading-revelations-patched-construction-pylon.description = Baut und zerstört automatisch Strukturen und unterstützt den Spieler.
+block.construction-pylon.name = Konstruktionspfeiler
+block.construction-pylon.description = Baut und zerstört automatisch Strukturen und unterstützt den Spieler.
 
 
 #unit blocks
 
 #factories
 
-block.fading-revelations-patched-primary-factory.name = Primäre Fabrik
-block.fading-revelations-patched-primary-factory.description = Erschafft kleine und leichte Einheiten, welche in Neumontagekammern verbessert werden können.
+block.primary-factory.name = Primäre Fabrik
+block.primary-factory.description = Erschafft kleine und leichte Einheiten, welche in Neumontagekammern verbessert werden können.
 
-block.fading-revelations-patched-unit-repair-field.name = Einheiten Reparaturfeld
-block.fading-revelations-patched-unit-repair-field.description = Heilt durchgehend Einheite in der Reichweite. Benötigt Kryoflüssigkeit.
+block.unit-repair-field.name = Einheiten Reparaturfeld
+block.unit-repair-field.description = Heilt durchgehend Einheite in der Reichweite. Benötigt Kryoflüssigkeit.
 
 #upgraders
 
-block.fading-revelations-patched-progressive-reassembly-chamber.name = Progressive Neumontagekammer
-block.fading-revelations-patched-progressive-reassembly-chamber.description = Verbessert Einheiten auf die vierte und letzte Stufe.
+block.progressive-reassembly-chamber.name = Progressive Neumontagekammer
+block.progressive-reassembly-chamber.description = Verbessert Einheiten auf die vierte und letzte Stufe.
 
-block.fading-revelations-patched-advanced-reassembly-chamber.name = Fortgeschrittene Neumontagekammer
-block.fading-revelations-patched-advanced-reassembly-chamber.description = Verbessert Einheiten auf die dritte Stufe. Sie können noch einmal verbessert werden.
+block.advanced-reassembly-chamber.name = Fortgeschrittene Neumontagekammer
+block.advanced-reassembly-chamber.description = Verbessert Einheiten auf die dritte Stufe. Sie können noch einmal verbessert werden.
 
-block.fading-revelations-patched-basic-reassembly-chamber.name = Einfache Neumontagekammer
-block.fading-revelations-patched-basic-reassembly-chamber.description = Verbessert Einheiten, welche in der Primären Fabrik hergestellt wurden. Einheiten, die in dieser Neumontagekammer hergestellt wurden, können weiter verbessert werden.
+block.basic-reassembly-chamber.name = Einfache Neumontagekammer
+block.basic-reassembly-chamber.description = Verbessert Einheiten, welche in der Primären Fabrik hergestellt wurden. Einheiten, die in dieser Neumontagekammer hergestellt wurden, können weiter verbessert werden.
 
 
 #walls
 
-block.fading-revelations-patched-armored-door.name = Automatische Tür
-block.fading-revelations-patched-armored-door.description = Öffnet automatisch, wenn freundliche Einheiten in der Nähe sind. Kann nicht manuell geöffnet oder geschlossen werden.
+block.armored-door.name = Automatische Tür
+block.armored-door.description = Öffnet automatisch, wenn freundliche Einheiten in der Nähe sind. Kann nicht manuell geöffnet oder geschlossen werden.
 
-block.fading-revelations-patched-armored-wall.name = Panzermauer
-block.fading-revelations-patched-armored-wall.description = Eine bessere Geschirmte Wand.
+block.armored-wall.name = Panzermauer
+block.armored-wall.description = Eine bessere Geschirmte Wand.
 
-block.fading-revelations-patched-beryllium-wall-gigantic.name = Gigantische Berylliummauer
-block.fading-revelations-patched-beryllium-wall-gigantic.description = Eine gigantische Mauer aus Beryllium.
+block.beryllium-wall-gigantic.name = Gigantische Berylliummauer
+block.beryllium-wall-gigantic.description = Eine gigantische Mauer aus Beryllium.
 
-block.fading-revelations-patched-beryllium-wall-huge.name = Riesige Berylliummauer
-block.fading-revelations-patched-beryllium-wall-huge.description = Eine riesige Mauer aus Beryllium.
+block.beryllium-wall-huge.name = Riesige Berylliummauer
+block.beryllium-wall-huge.description = Eine riesige Mauer aus Beryllium.
 
-block.fading-revelations-patched-carbide-wall-gigantic.name = Gigantische Karbidmauer
-block.fading-revelations-patched-carbide-wall-gigantic.description = Eine gigantische Mauer aus Karbid.
+block.carbide-wall-gigantic.name = Gigantische Karbidmauer
+block.carbide-wall-gigantic.description = Eine gigantische Mauer aus Karbid.
 
-block.fading-revelations-patched-carbide-wall-huge.name = Riesige Karbidmauer
-block.fading-revelations-patched-carbide-wall-huge.description = Eine riesige Mauer aus Karbid.
+block.carbide-wall-huge.name = Riesige Karbidmauer
+block.carbide-wall-huge.description = Eine riesige Mauer aus Karbid.
 
-block.fading-revelations-patched-copper-wall-2.name = Riesige Kupfermauer
-block.fading-revelations-patched-copper-wall-2.description = Eine riesige Mauer aus Kupfer.
+block.copper-wall-2.name = Riesige Kupfermauer
+block.copper-wall-2.description = Eine riesige Mauer aus Kupfer.
 
-block.fading-revelations-patched-copper-wall-3.name = Gigantische Kupfermauer
-block.fading-revelations-patched-copper-wall-3.description = Eine gigantische Mauer aus Kupfer.
+block.copper-wall-3.name = Gigantische Kupfermauer
+block.copper-wall-3.description = Eine gigantische Mauer aus Kupfer.
 
-block.fading-revelations-patched-door-gigantic.name = Gigantische Tür
-block.fading-revelations-patched-door-gigantic.description = Eine gigantische Tür.
+block.door-gigantic.name = Gigantische Tür
+block.door-gigantic.description = Eine gigantische Tür.
 
-block.fading-revelations-patched-door-huge.name = Riesige Tür
-block.fading-revelations-patched-door-huge.description = Eine riesige Tür.
+block.door-huge.name = Riesige Tür
+block.door-huge.description = Eine riesige Tür.
 
-block.fading-revelations-patched-phase-fabric-wall-2.name = Riesige Phasenmauer
-block.fading-revelations-patched-phase-fabric-wall-2.description = Eine riesige Mauer aus Phasengewebe.
+block.phase-fabric-wall-2.name = Riesige Phasenmauer
+block.phase-fabric-wall-2.description = Eine riesige Mauer aus Phasengewebe.
 
-block.fading-revelations-patched-phase-fabric-wall-3.name = Gigantische Phasenmauer
-block.fading-revelations-patched-phase-fabric-wall-3.description = Eine gigantische Mauer aus Phasengewebe.
+block.phase-fabric-wall-3.name = Gigantische Phasenmauer
+block.phase-fabric-wall-3.description = Eine gigantische Mauer aus Phasengewebe.
 
-block.fading-revelations-patched-plastanium-wall-2.name = Riesige Plastaniummauer
-block.fading-revelations-patched-plastanium-wall-2.description = Eine riesige Mauer aus Plastanium.
+block.plastanium-wall-2.name = Riesige Plastaniummauer
+block.plastanium-wall-2.description = Eine riesige Mauer aus Plastanium.
 
-block.fading-revelations-patched-plastanium-wall-3.name = Gigantische Plastaniummauer
-block.fading-revelations-patched-plastanium-wall-3.description = Eine gigantische Mauer aus Plastanium.
+block.plastanium-wall-3.name = Gigantische Plastaniummauer
+block.plastanium-wall-3.description = Eine gigantische Mauer aus Plastanium.
 
-block.fading-revelations-patched-reinforced-surge-wall-gigantic.name = Gigantische Verstärkte Legierungsmauer
-block.fading-revelations-patched-reinforced-surge-wall-gigantic.description = Eine gigantische verstärkte Mauer aus Spannungslegierung.
+block.reinforced-surge-wall-gigantic.name = Gigantische Verstärkte Legierungsmauer
+block.reinforced-surge-wall-gigantic.description = Eine gigantische verstärkte Mauer aus Spannungslegierung.
 
-block.fading-revelations-patched-reinforced-surge-wall-huge.name = Riesige Verstärkte Legierungsmauer
-block.fading-revelations-patched-reinforced-surge-wall-huge.description = Eine riesige verstärkte Mauer aus Spannungslegierung.
+block.reinforced-surge-wall-huge.name = Riesige Verstärkte Legierungsmauer
+block.reinforced-surge-wall-huge.description = Eine riesige verstärkte Mauer aus Spannungslegierung.
 
-block.fading-revelations-patched-surge-alloy-wall-2.name = Riesige Legierungsmauer
-block.fading-revelations-patched-surge-alloy-wall-2.description = Eine riesige Mauer aus Spannungslegierung.
+block.surge-alloy-wall-2.name = Riesige Legierungsmauer
+block.surge-alloy-wall-2.description = Eine riesige Mauer aus Spannungslegierung.
 
-block.fading-revelations-patched-surge-alloy-wall-3.name = Gigantische Legierungsmauer
-block.fading-revelations-patched-surge-alloy-wall-3.description = Eine gigantische Mauer aus Spannungslegierung.
+block.surge-alloy-wall-3.name = Gigantische Legierungsmauer
+block.surge-alloy-wall-3.description = Eine gigantische Mauer aus Spannungslegierung.
 
-block.fading-revelations-patched-thorium-wall-2.name = Riesige Thoriummauer
-block.fading-revelations-patched-thorium-wall-2.description = Eine riesige Mauer aus Thorium.
+block.thorium-wall-2.name = Riesige Thoriummauer
+block.thorium-wall-2.description = Eine riesige Mauer aus Thorium.
 
-block.fading-revelations-patched-thorium-wall-3.name = Gigantische Thoriummauer
-block.fading-revelations-patched-thorium-wall-3.description = Eine gigantische Mauer aus Thorium.
+block.thorium-wall-3.name = Gigantische Thoriummauer
+block.thorium-wall-3.description = Eine gigantische Mauer aus Thorium.
 
-block.fading-revelations-patched-titanium-wall-2.name = Riesige Titanmauer
-block.fading-revelations-patched-titanium-wall-2.description = Eine riesige Mauer aus Titan.
+block.titanium-wall-2.name = Riesige Titanmauer
+block.titanium-wall-2.description = Eine riesige Mauer aus Titan.
 
-block.fading-revelations-patched-titanium-wall-3.name = Gigantische Titanmauer
-block.fading-revelations-patched-titanium-wall-3.description = Eine gigantische Mauer aus Titan.
+block.titanium-wall-3.name = Gigantische Titanmauer
+block.titanium-wall-3.description = Eine gigantische Mauer aus Titan.
 
-block.fading-revelations-patched-tungsten-wall-gigantic.name = Gigantische Wolframmauer
-block.fading-revelations-patched-tungsten-wall-gigantic.description = Eine gigantische Mauer aus Wolfram.
+block.tungsten-wall-gigantic.name = Gigantische Wolframmauer
+block.tungsten-wall-gigantic.description = Eine gigantische Mauer aus Wolfram.
 
-block.fading-revelations-patched-tungsten-wall-huge.name = Riesige Wolframmauer
-block.fading-revelations-patched-tungsten-wall-huge.description = Eine riesige Mauer aus Wolfram.
+block.tungsten-wall-huge.name = Riesige Wolframmauer
+block.tungsten-wall-huge.description = Eine riesige Mauer aus Wolfram.
 
 #mod walls
 
-block.fading-revelations-patched-living-steel-wall-2.name = Große Lebendstahlmauer
-block.fading-revelations-patched-living-steel-wall-2.description = Eine große Mauer aus Lebendstahl, die sich selbst sehr langsam heilen kann.
+block.living-steel-wall-2.name = Große Lebendstahlmauer
+block.living-steel-wall-2.description = Eine große Mauer aus Lebendstahl, die sich selbst sehr langsam heilen kann.
 
-block.fading-revelations-patched-living-steel-wall.name = Lebendstahlmauer
-block.fading-revelations-patched-living-steel-wall.description = Eine Mauer aus Lebendstahl, die sich selber langsam regenerieren kann.
+block.living-steel-wall.name = Lebendstahlmauer
+block.living-steel-wall.description = Eine Mauer aus Lebendstahl, die sich selber langsam regenerieren kann.
 
-block.fading-revelations-patched-steel-alloy-wall-large.name = Große Amalgammauer
-block.fading-revelations-patched-steel-alloy-wall-large.description = Ein große Mauer aus Stahl Amalgam, die Blitze auf Gegner schießen kann.
+block.steel-alloy-wall-large.name = Große Amalgammauer
+block.steel-alloy-wall-large.description = Ein große Mauer aus Stahl Amalgam, die Blitze auf Gegner schießen kann.
 
-block.fading-revelations-patched-steel-alloy-wall-small.name = Amalgammauer
-block.fading-revelations-patched-steel-alloy-wall-small.description = Eine Mauer aus Stahl Amalgam, die Blitze auf Gegner schießen kann.
+block.steel-alloy-wall-small.name = Amalgammauer
+block.steel-alloy-wall-small.description = Eine Mauer aus Stahl Amalgam, die Blitze auf Gegner schießen kann.
 
 
 
@@ -693,261 +693,261 @@ block.fading-revelations-patched-steel-alloy-wall-small.description = Eine Mauer
 
 #ammo
 
-item.fading-revelations-patched-ammo-level-1.name = Kupfermunition
-item.fading-revelations-patched-ammo-level-1.description = Einfache Munition aus Kupfer ohne spezielle Effekte.
+item.ammo-level-1.name = Kupfermunition
+item.ammo-level-1.description = Einfache Munition aus Kupfer ohne spezielle Effekte.
 
-item.fading-revelations-patched-ammo-level-2.name = Titanmunition
-item.fading-revelations-patched-ammo-level-2.description = Munition aus Titan, die meist einen durchschlagenden Effekt hat.
+item.ammo-level-2.name = Titanmunition
+item.ammo-level-2.description = Munition aus Titan, die meist einen durchschlagenden Effekt hat.
 
-item.fading-revelations-patched-ammo-level-3.name = Explosive Munition
-item.fading-revelations-patched-ammo-level-3.description = Munition aus Explosiver Mischung, welche meist einen explosiven Effekt hat.
+item.ammo-level-3.name = Explosive Munition
+item.ammo-level-3.description = Munition aus Explosiver Mischung, welche meist einen explosiven Effekt hat.
 
-item.fading-revelations-patched-heal-ammo.name = Heilmunition
-item.fading-revelations-patched-heal-ammo.description = Munition aus Sporenpods, welche meist einen heilenden Effekt hat.
+item.heal-ammo.name = Heilmunition
+item.heal-ammo.description = Munition aus Sporenpods, welche meist einen heilenden Effekt hat.
 
-item.fading-revelations-patched-homing-ammo.name = Zielsuchende Munition
-item.fading-revelations-patched-homing-ammo.description = Munition aus Thorium, welche meist einen zielsuchenden Effekt hat.
+item.homing-ammo.name = Zielsuchende Munition
+item.homing-ammo.description = Munition aus Thorium, welche meist einen zielsuchenden Effekt hat.
 
-item.fading-revelations-patched-nano-ammo.name = Nanomunition
-item.fading-revelations-patched-nano-ammo.description = Munition aus Lebendstahl, welche meist einen Effekt hat, der Einheiten langsam verbrennt.
+item.nano-ammo.name = Nanomunition
+item.nano-ammo.description = Munition aus Lebendstahl, welche meist einen Effekt hat, der Einheiten langsam verbrennt.
 
-item.fading-revelations-patched-nuke.name = Atombombe
-item.fading-revelations-patched-nuke.description = Eine Nuklearrakete, welche mit entsprechenden Silos abgefeuert werden kann.
+item.nuke.name = Atombombe
+item.nuke.description = Eine Nuklearrakete, welche mit entsprechenden Silos abgefeuert werden kann.
 
 #living steel
 
-item.fading-revelations-patched-living-steel.name = Lebendstahl
-item.fading-revelations-patched-living-steel.description = Titan, welches mit intelligenten Sporen infusiert wurde, ein lebendiges Stück Metall.
+item.living-steel.name = Lebendstahl
+item.living-steel.description = Titan, welches mit intelligenten Sporen infusiert wurde, ein lebendiges Stück Metall.
 
-item.fading-revelations-patched-living-steel-hard.name = Gehärteter Lebendstahl
-item.fading-revelations-patched-living-steel-hard.description = Lebendstahl, welcher mithilfe von Thorium gehärtet wurde.
+item.living-steel-hard.name = Gehärteter Lebendstahl
+item.living-steel-hard.description = Lebendstahl, welcher mithilfe von Thorium gehärtet wurde.
 
 #other
 
-item.fading-revelations-patched-gold.name = Gold
-item.fading-revelations-patched-gold.description = Ein glänzendes Stück Metall! Kann gegen andere resourcen eingetauscht werden.
+item.gold.name = Gold
+item.gold.description = Ein glänzendes Stück Metall! Kann gegen andere resourcen eingetauscht werden.
 
-item.fading-revelations-patched-steel-alloy.name = Stahl Amalgam
-item.fading-revelations-patched-steel-alloy.description = Ein Verbundmaterial, welches aus Kupfer, Lebendstahl und Spannungslegierung hergestellt wird.
+item.steel-alloy.name = Stahl Amalgam
+item.steel-alloy.description = Ein Verbundmaterial, welches aus Kupfer, Lebendstahl und Spannungslegierung hergestellt wird.
 
-item.fading-revelations-patched-uraniumrod.name = Uranstab
-item.fading-revelations-patched-uraniumrod.description = Ein radioaktiver Brennstab.
+item.uraniumrod.name = Uranstab
+item.uraniumrod.description = Ein radioaktiver Brennstab.
 
 
 
 #liquids
 
-liquid.fading-revelations-patched-living-steel-liquid.name = Flüssiger Lebendstahl
-liquid.fading-revelations-patched-living-steel-liquid.description = Durch Öl verflüssigter Lebendstahl.
+liquid.living-steel-liquid.name = Flüssiger Lebendstahl
+liquid.living-steel-liquid.description = Durch Öl verflüssigter Lebendstahl.
 
-liquid.fading-revelations-patched-neutron-fluid.name = Neutronenflüssigkeit
-liquid.fading-revelations-patched-neutron-fluid.description = Eine hochpotente Kühlflüssigkeit, erzeugt durch das Mixen von Öl, Flüssigem Lebendstahl und Kryoflüssigkeit.
+liquid.neutron-fluid.name = Neutronenflüssigkeit
+liquid.neutron-fluid.description = Eine hochpotente Kühlflüssigkeit, erzeugt durch das Mixen von Öl, Flüssigem Lebendstahl und Kryoflüssigkeit.
 
-liquid.fading-revelations-patched-steam.name = Dampf
-liquid.fading-revelations-patched-steam.description = Verdampftes Wasser.
+liquid.steam.name = Dampf
+liquid.steam.description = Verdampftes Wasser.
 
-liquid.fading-revelations-patched-acid.name = Säure
-liquid.fading-revelations-patched-acid.description = Eine gefährliche Flüssigkeit. 
+liquid.acid.name = Säure
+liquid.acid.description = Eine gefährliche Flüssigkeit. 
 
 
 #units
 
 #summoned units
 
-unit.fading-revelations-patched-toruct.name = [purple]Toruct
-unit.fading-revelations-patched-toruct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Feuerlasers.
+unit.toruct.name = [purple]Toruct
+unit.toruct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Feuerlasers.
 
-unit.fading-revelations-patched-reduct.name = [purple]Reduct
-unit.fading-revelations-patched-reduct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Frostlasers.
+unit.reduct.name = [purple]Reduct
+unit.reduct.description = Ist ausgestattet mit einer kleinen Version des Lycosid Frostlasers.
 
-unit.fading-revelations-patched-hive-attack.name = [purple]HIVE Schwere Angriffseinheit (HSAE)
-unit.fading-revelations-patched-hive-attack.description = Erschaffen vom HIVE Mutterschiff und ausgerüstet mit speziellen Sensoren, die es der Einheit erlauben, immer den perfekten Abstand zu Gegnern einzuhalten. Diese Drohne ist dafür gemacht, deine Gegner optimal anzugreifen.
+unit.hive-attack.name = [purple]HIVE Schwere Angriffseinheit (HSAE)
+unit.hive-attack.description = Erschaffen vom HIVE Mutterschiff und ausgerüstet mit speziellen Sensoren, die es der Einheit erlauben, immer den perfekten Abstand zu Gegnern einzuhalten. Diese Drohne ist dafür gemacht, deine Gegner optimal anzugreifen.
 
 #core units
 
-unit.fading-revelations-patched-delta.name = [yellow]Delta
-unit.fading-revelations-patched-delta.description = Beschützt den Atom Kern vor Feinden. Baut Strukturen schnell.
+unit.delta.name = [yellow]Delta
+unit.delta.description = Beschützt den Atom Kern vor Feinden. Baut Strukturen schnell.
 
-unit.fading-revelations-patched-epsilon.name = [yellow]Epsilon
-unit.fading-revelations-patched-epsilon.description = Beschützt den Element Kern vor Feinden. Baut Strukturen schnell.
+unit.epsilon.name = [yellow]Epsilon
+unit.epsilon.description = Beschützt den Element Kern vor Feinden. Baut Strukturen schnell.
 
 
 #other units
 
-unit.fading-revelations-patched-onager.name = [orange]Onager
-unit.fading-revelations-patched-onager.description = Ein riesiger Panzer ausgerüstet mit einem zielsuchenden Raketenwerfer und mehreren kleineren Waffen. Spezialisiert auf die Zerstörung von Gebäuden aber schwächer im Kampf gegen Einheiten.
+unit.onager.name = [orange]Onager
+unit.onager.description = Ein riesiger Panzer ausgerüstet mit einem zielsuchenden Raketenwerfer und mehreren kleineren Waffen. Spezialisiert auf die Zerstörung von Gebäuden aber schwächer im Kampf gegen Einheiten.
 
-unit.fading-revelations-patched-sambuca.name = [orange]Sambuca
-unit.fading-revelations-patched-sambuca.description = Ein kleiner Panzer, ausgerüstet mit einer kleinen Waffe. Spezialisiert auf Gebäudezerstörung aber etwas schwächer gegen Einheiten.
+unit.sambuca.name = [orange]Sambuca
+unit.sambuca.description = Ein kleiner Panzer, ausgerüstet mit einer kleinen Waffe. Spezialisiert auf Gebäudezerstörung aber etwas schwächer gegen Einheiten.
 
-unit.fading-revelations-patched-scorpio.name = [orange]Scorpio
-unit.fading-revelations-patched-scorpio.description = Ein Panzer ausgerüstet mit einer Railgun. Spezialisiert auf Belagerungen. Schwächer gegen Einheiten.
+unit.scorpio.name = [orange]Scorpio
+unit.scorpio.description = Ein Panzer ausgerüstet mit einer Railgun. Spezialisiert auf Belagerungen. Schwächer gegen Einheiten.
 
-unit.fading-revelations-patched-springald.name = [orange]Springald
-unit.fading-revelations-patched-springald.description = Ein großer Panzer ausgerüstet mit einem Raketenwerffer und kleinen Lasereinheiten. Glänzt in Belagerungen aber ist etwas schwächer gegen Einheiten.
+unit.springald.name = [orange]Springald
+unit.springald.description = Ein großer Panzer ausgerüstet mit einem Raketenwerffer und kleinen Lasereinheiten. Glänzt in Belagerungen aber ist etwas schwächer gegen Einheiten.
 
-unit.fading-revelations-patched-aestiva.name = [green]Aestiva
-unit.fading-revelations-patched-aestiva.description = Eine große naval-Supporteinheit ausgerüstet mit einer Heil-Shotgun. Erschafft Alba.
+unit.aestiva.name = [green]Aestiva
+unit.aestiva.description = Eine große naval-Supporteinheit ausgerüstet mit einer Heil-Shotgun. Erschafft Alba.
 
-unit.fading-revelations-patched-alba.name = [green]Alba
-unit.fading-revelations-patched-alba.description = Eine kleine naval-Supporteinheit, welche mit nichts außer einem kleinen Regenerationsprojektor ausgerüstet ist.
+unit.alba.name = [green]Alba
+unit.alba.description = Eine kleine naval-Supporteinheit, welche mit nichts außer einem kleinen Regenerationsprojektor ausgerüstet ist.
 
-unit.fading-revelations-patched-annax.name = [purple]Annax
-unit.fading-revelations-patched-annax.description = Eine kleine Bodeneinheit welche mithilfe von zwei Schlackegewehren großen Schaden verursachen kann.
+unit.annax.name = [purple]Annax
+unit.annax.description = Eine kleine Bodeneinheit welche mithilfe von zwei Schlackegewehren großen Schaden verursachen kann.
 
-unit.fading-revelations-patched-apis.name = [orange]Apis
-unit.fading-revelations-patched-apis.description = Eine kleine, laserbasierte Angriffseinheit.
+unit.apis.name = [orange]Apis
+unit.apis.description = Eine kleine, laserbasierte Angriffseinheit.
 
-unit.fading-revelations-patched-arnux.name = [orange]Arnux
-unit.fading-revelations-patched-arnux.description = Eine schwere Navaleinheit ausgerüstet mit hochmodernen Waffen welche EMPs verursachen können.
+unit.arnux.name = [orange]Arnux
+unit.arnux.description = Eine schwere Navaleinheit ausgerüstet mit hochmodernen Waffen welche EMPs verursachen können.
 
-unit.fading-revelations-patched-arvens.name = [green]Arvens
-unit.fading-revelations-patched-arvens.description = Eine mittelgroße naval-Supporteinheit, welche über keine Waffen verfügt aber einen Heilprojektor besitzt. Erhöht das Bautempo von Einheiten in der Nähe.
+unit.arvens.name = [green]Arvens
+unit.arvens.description = Eine mittelgroße naval-Supporteinheit, welche über keine Waffen verfügt aber einen Heilprojektor besitzt. Erhöht das Bautempo von Einheiten in der Nähe.
 
-unit.fading-revelations-patched-auratus.name = [purple]Auratus
-unit.fading-revelations-patched-auratus.description = Eine große Bodeneinheit, die Elementarwaffen nutzt, um hohen Schaden zu verursachen.
+unit.auratus.name = [purple]Auratus
+unit.auratus.description = Eine große Bodeneinheit, die Elementarwaffen nutzt, um hohen Schaden zu verursachen.
 
-unit.fading-revelations-patched-close-range.name = [orange]Alopex
-unit.fading-revelations-patched-close-range.description = Eine extrem schnelle Einheit mit hohem Schaden aber dafür mit sehr niedrigen Lebenspunkten.
+unit.close-range.name = [orange]Alopex
+unit.close-range.description = Eine extrem schnelle Einheit mit hohem Schaden aber dafür mit sehr niedrigen Lebenspunkten.
 
-unit.fading-revelations-patched-kestrel.name = [orange]Kestrel
-unit.fading-revelations-patched-kestrel.description = Eine schnelle aber fragile Einheit mit starken offensiven Waffen.
+unit.kestrel.name = [orange]Kestrel
+unit.kestrel.description = Eine schnelle aber fragile Einheit mit starken offensiven Waffen.
 
-unit.fading-revelations-patched-lancer-drone.name = [orange]Areus
-unit.fading-revelations-patched-lancer-drone.description = Eine kleine Drohne, die mit 2 kleinen Lancern ausgestattet ist.
+unit.lancer-drone.name = [orange]Areus
+unit.lancer-drone.description = Eine kleine Drohne, die mit 2 kleinen Lancern ausgestattet ist.
 
-unit.fading-revelations-patched-plant.name = [green]Setzling
-unit.fading-revelations-patched-plant.description = Eine große Supporteinheit, die darauf spezialisiert ist zu Bauen und zu Heilen.
+unit.plant.name = [green]Setzling
+unit.plant.description = Eine große Supporteinheit, die darauf spezialisiert ist zu Bauen und zu Heilen.
 
-unit.fading-revelations-patched-sapling.name = [green]Sprößling
-unit.fading-revelations-patched-sapling.description = Eine mittelgroße Supporteinheit, die darauf spezialisiert ist zu Bauen und zu Heilen.
+unit.sapling.name = [green]Sprößling
+unit.sapling.description = Eine mittelgroße Supporteinheit, die darauf spezialisiert ist zu Bauen und zu Heilen.
 
-unit.fading-revelations-patched-seed.name = [green]Samen
-unit.fading-revelations-patched-seed.description = Eine kleine Supporteinheit, die darauf spezialisiert ist zu Bauen und zu Heilen.
+unit.seed.name = [green]Samen
+unit.seed.description = Eine kleine Supporteinheit, die darauf spezialisiert ist zu Bauen und zu Heilen.
 
-unit.fading-revelations-patched-mela.name = [orange]Mela
-unit.fading-revelations-patched-mela.description = Eine kleine Einheit ausgerüstet mit einfacher Bewaffnung.
+unit.mela.name = [orange]Mela
+unit.mela.description = Eine kleine Einheit ausgerüstet mit einfacher Bewaffnung.
 
-unit.fading-revelations-patched-scofra.name = [purple]Scofra
-unit.fading-revelations-patched-scofra.description = Eine mittelgroße Bodeneinheit, welche Öl und Feuer nutzt, um viel Schaden zu verursachen.
+unit.scofra.name = [purple]Scofra
+unit.scofra.description = Eine mittelgroße Bodeneinheit, welche Öl und Feuer nutzt, um viel Schaden zu verursachen.
 
-unit.fading-revelations-patched-procer.name = [orange]Procer
-unit.fading-revelations-patched-procer.description = Ein mittelgroße Einheit gemacht für den Angriff.
+unit.procer.name = [orange]Procer
+unit.procer.description = Ein mittelgroße Einheit gemacht für den Angriff.
 
-unit.fading-revelations-patched-ducalis.name = [orange]Ducalis
-unit.fading-revelations-patched-ducalis.description = Eine große Angriffseinheit ausgerüstet mit Raketenwerfern und Lasern.
+unit.ducalis.name = [orange]Ducalis
+unit.ducalis.description = Eine große Angriffseinheit ausgerüstet mit Raketenwerfern und Lasern.
 
-unit.fading-revelations-patched-cromis.name = [orange]Cromis
-unit.fading-revelations-patched-cromis.description = Eine mittelgroße naval-Angriffseinheit, welche mit fortgerschrittener, EMP-auslösender Bewaffnung ausgestattet ist.
+unit.cromis.name = [orange]Cromis
+unit.cromis.description = Eine mittelgroße naval-Angriffseinheit, welche mit fortgerschrittener, EMP-auslösender Bewaffnung ausgestattet ist.
 
 
 #mothership type
 
-unit.fading-revelations-patched-sps-strahl.name = [orange]Orbitale Angriffsplattform STRAHL
-unit.fading-revelations-patched-sps-strahl.description = Eine große Einheit ausgestattet mit mehreren Lasern, die Gegner einfrieren.
+unit.sps-strahl.name = [orange]Orbitale Angriffsplattform STRAHL
+unit.sps-strahl.description = Eine große Einheit ausgestattet mit mehreren Lasern, die Gegner einfrieren.
 
-unit.fading-revelations-patched-japonica.name = [orange]Japonica
-unit.fading-revelations-patched-japonica.description = Eine große Navaleinheit, die mit vielen verschiedenen Offensivwaffen ausgestattet ist und Eineiten erschaffen kann.
+unit.japonica.name = [orange]Japonica
+unit.japonica.description = Eine große Navaleinheit, die mit vielen verschiedenen Offensivwaffen ausgestattet ist und Eineiten erschaffen kann.
 
-unit.fading-revelations-patched-corax.name = [green]Corax
-unit.fading-revelations-patched-corax.description = Eine Einheit ähnlich der Corvus Einheit aber mit verbesserten Waffensystemen.
+unit.corax.name = [green]Corax
+unit.corax.description = Eine Einheit ähnlich der Corvus Einheit aber mit verbesserten Waffensystemen.
 
-unit.fading-revelations-patched-hive.name = [orange]HIVE
-unit.fading-revelations-patched-hive.description = Eine riesige Einheit ausgestattet mit mehreren Lasern, die Gegner verbrennen.
+unit.hive.name = [orange]HIVE
+unit.hive.description = Eine riesige Einheit ausgestattet mit mehreren Lasern, die Gegner verbrennen.
 
-unit.fading-revelations-patched-lycosid.name = [purple]Lycosid
-unit.fading-revelations-patched-lycosid.description = Eine Einheit, welche sehr gut gepanzert ist und mit Elementarwaffen sowie einer großen Energiewaffe kämpft. Erschafft elementare Einheiten.
+unit.lycosid.name = [purple]Lycosid
+unit.lycosid.description = Eine Einheit, welche sehr gut gepanzert ist und mit Elementarwaffen sowie einer großen Energiewaffe kämpft. Erschafft elementare Einheiten.
 
-unit.fading-revelations-patched-altaic.name = [green]Altaic
-unit.fading-revelations-patched-altaic.description = Eine riesige Supporteinheit mit mehreren heilenden und kugel-abwehrenden Waffen. Erschafft Oxynoe. Beschädigt und verlangsamt Gegner mit einem Energiefeld. Dieses Energiefeld visiert auch freundliche Blöcke und Einheiten and und heilt sie.
+unit.altaic.name = [green]Altaic
+unit.altaic.description = Eine riesige Supporteinheit mit mehreren heilenden und kugel-abwehrenden Waffen. Erschafft Oxynoe. Beschädigt und verlangsamt Gegner mit einem Energiefeld. Dieses Energiefeld visiert auch freundliche Blöcke und Einheiten and und heilt sie.
 
 
 #cerberian
 
-unit.fading-revelations-patched-cerberian-penumbra.description = Eine Einheit mit Technologie ähnlich der einer Antumbra Einheit von Serpulo aber die Hauptkanone shießt einen Laser statt normalen Kugeln.
+unit.cerberian-penumbra.description = Eine Einheit mit Technologie ähnlich der einer Antumbra Einheit von Serpulo aber die Hauptkanone shießt einen Laser statt normalen Kugeln.
 
-unit.fading-revelations-patched-cerberian-curtulus.description = Eine Einheit mit einem Aussehen ähnlich dem der Arkyid Einehit aber die Hauptkanone shießt anstatt Artilleriekugeln Flüssigkeitenkugeln.
+unit.cerberian-curtulus.description = Eine Einheit mit einem Aussehen ähnlich dem der Arkyid Einehit aber die Hauptkanone shießt anstatt Artilleriekugeln Flüssigkeitenkugeln.
 
-unit.fading-revelations-patched-cerberian-hexathelid.description = Eine Einheit ähnlich dem Atrax aber shießt mit Schrot-Schlackenkugeln.
+unit.cerberian-hexathelid.description = Eine Einheit ähnlich dem Atrax aber shießt mit Schrot-Schlackenkugeln.
 
-unit.fading-revelations-patched-cerberian-behemoth.description = Eine riesige Einheit und Cerberos stolzeste Erfindung. Shießt mit einem gewaltigen Laser, riesigen Splittergeshossen, Laserbarragen und kleineren FLAK-Geschützen.
+unit.cerberian-behemoth.description = Eine riesige Einheit und Cerberos stolzeste Erfindung. Shießt mit einem gewaltigen Laser, riesigen Splittergeshossen, Laserbarragen und kleineren FLAK-Geschützen.
 
-unit.fading-revelations-patched-cerberian-straggle.description = Eine cerberianische Version der Crawler Einheit.
+unit.cerberian-straggle.description = Eine cerberianische Version der Crawler Einheit.
 
-unit.fading-revelations-patched-cerberian-bayonet.description = Eine stärkere Version der Dagger Einheit, welche typischerweise auf Serpulo aufzufinden ist.
+unit.cerberian-bayonet.description = Eine stärkere Version der Dagger Einheit, welche typischerweise auf Serpulo aufzufinden ist.
 
-unit.fading-revelations-patched-cerberian-veil.description = Wie die Eclipse Einheit aber anstatt Flak shießt diese Einheit mit Rakteten. Schießt außerdem mit einem stärkeren Laser.
+unit.cerberian-veil.description = Wie die Eclipse Einheit aber anstatt Flak shießt diese Einheit mit Rakteten. Schießt außerdem mit einem stärkeren Laser.
 
-unit.fading-revelations-patched-cerberian-spark.description = Eine Einheit änhlich der Flare Einehit von Serpulo aber mit verbesserter Bewaffnung.
+unit.cerberian-spark.description = Eine Einheit änhlich der Flare Einehit von Serpulo aber mit verbesserter Bewaffnung.
 
-unit.fading-revelations-patched-cerberian-citadel.description = Eine verbesserte Version der Fortress Einehit, welche von Cerbero stammt.
+unit.cerberian-citadel.description = Eine verbesserte Version der Fortress Einehit, welche von Cerbero stammt.
 
-unit.fading-revelations-patched-cerberian-vista.description = Eine Einheit wie die Horizon Einheit aber wirft stärkere Bomben ab.
+unit.cerberian-vista.description = Eine Einheit wie die Horizon Einheit aber wirft stärkere Bomben ab.
 
-unit.fading-revelations-patched-cerberian-cudgel.description = Eine Einheit änhlich der Mace Einehit von Serpulo aber stärker. Shießt mit einer anderen Art Flammenwerfer.
+unit.cerberian-cudgel.description = Eine Einheit änhlich der Mace Einehit von Serpulo aber stärker. Shießt mit einer anderen Art Flammenwerfer.
 
-unit.fading-revelations-patched-cerberian-kaiser.description = Eine Einheit inspiriert von der Reign Einehit von Serpulo aber mit verbesserter Technologie.
+unit.cerberian-kaiser.description = Eine Einheit inspiriert von der Reign Einehit von Serpulo aber mit verbesserter Technologie.
 
-unit.fading-revelations-patched-cerberian-baton.description = Eine neu hergestellte Version der Scepter Einheit.
+unit.cerberian-baton.description = Eine neu hergestellte Version der Scepter Einheit.
 
-unit.fading-revelations-patched-cerberian-nephila.description = Wie die Spiroct Einheit aber stiehlt mehr Leben mithilfe von verbesserten schächenden Lasern.
+unit.cerberian-nephila.description = Wie die Spiroct Einheit aber stiehlt mehr Leben mithilfe von verbesserten schächenden Lasern.
 
-unit.fading-revelations-patched-cerberian-setosus.description = Eine Toxopid-ähnliche Einheit. Die Sekundärkanonen schießen schwächende, lebenstehlende Laser statt normalen.
+unit.cerberian-setosus.description = Eine Toxopid-ähnliche Einheit. Die Sekundärkanonen schießen schwächende, lebenstehlende Laser statt normalen.
 
-unit.fading-revelations-patched-cerberian-summit.description = Eine Einheit änhlich der Zenith Einheit aber die Raketenwerfer feuern Raketenbarragen statt einzelnen Raketen.
+unit.cerberian-summit.description = Eine Einheit änhlich der Zenith Einheit aber die Raketenwerfer feuern Raketenbarragen statt einzelnen Raketen.
 
 
 
 #status effects
 
-status.fading-revelations-patched-japonica-weakened.name = Japonica Geschwächt
+status.japonica-weakened.name = Japonica Geschwächt
 
-status.fading-revelations-patched-radiated.name = Verstrahlt
+status.radiated.name = Verstrahlt
 
-status.fading-revelations-patched-super-hastened.name = Super Beschleunigt
+status.super-hastened.name = Super Beschleunigt
 
-status.fading-revelations-patched-hastened.name = Beschleunigt
+status.hastened.name = Beschleunigt
 
-status.fading-revelations-patched-shockslowed.name = Schockverlangsamt
+status.shockslowed.name = Schockverlangsamt
 
-status.fading-revelations-patched-high-energy-burn.name = Hochenergiebrand
+status.high-energy-burn.name = Hochenergiebrand
 
-status.fading-revelations-patched-neutron-frozen.name = Neutronengefroren
+status.neutron-frozen.name = Neutronengefroren
 
-status.fading-revelations-patched-construction-shock.name = Konstruktionsschock
+status.construction-shock.name = Konstruktionsschock
 
-status.fading-revelations-patched-polymorphous-building.name = Polymorphes Bauen
+status.polymorphous-building.name = Polymorphes Bauen
 
-status.fading-revelations-patched-acidic-burn.name = Säurebrand
+status.acidic-burn.name = Säurebrand
 
 
 
 #sectors
 
-sector.fading-revelations-patched-abandoned-battlefield.name = Verlassenes Schlachtfeld
+sector.abandoned-battlefield.name = Verlassenes Schlachtfeld
 
 
 
 #planets
 
-planet.fading-revelations-patched-cerbero.name = Cerbero
-planet.fading-revelations-patched-cerbero.description = Ein verlassener planet auf dem vor langer Zeit eine Tragödie passierte. Nichts ist hier übrig geblieben außer Zerstörung und Tod.
+planet.cerbero.name = Cerbero
+planet.cerbero.description = Ein verlassener planet auf dem vor langer Zeit eine Tragödie passierte. Nichts ist hier übrig geblieben außer Zerstörung und Tod.
 
-planet.fading-revelations-patched-hathor.name = Hathor
-planet.fading-revelations-patched-hathor.description = Ein kleines Stück von Cerbero erschaffen durch einen Meteoriteneinschlag. Nichts kann hier bestehen bleiben außer eine uralte cerberianische Basis welche hier gebaut wurde bevor alles zusammenfiel...
+planet.hathor.name = Hathor
+planet.hathor.description = Ein kleines Stück von Cerbero erschaffen durch einen Meteoriteneinschlag. Nichts kann hier bestehen bleiben außer eine uralte cerberianische Basis welche hier gebaut wurde bevor alles zusammenfiel...
 
 
 #end of bundles uk_UA
 
-unit.fading-revelations-patched-aedes.name = Aedes
-unit.fading-revelations-patched-aedes.description = A small flying unit with basic weapons and a downdraft rotor.
-unit.fading-revelations-patched-heliaca.name = Heliaca
-unit.fading-revelations-patched-heliaca.description = A small fast flying scout unit.
-unit.fading-revelations-patched-armiger.name = Armiger
-unit.fading-revelations-patched-armiger.description = An improved flying unit with enhanced rotor and missile armament.
-unit.fading-revelations-patched-onirion.name = Onirion
-unit.fading-revelations-patched-onirion.description = A flying unit with rotors, bombs and missiles.
-unit.fading-revelations-patched-auctus.name = Auctus
-unit.fading-revelations-patched-auctus.description = A long snake-like unit that stomps buildings.
-unit.fading-revelations-patched-culiseta.name = Culiseta
-unit.fading-revelations-patched-culiseta.description = A large flying transport unit.
+unit.aedes.name = Aedes
+unit.aedes.description = A small flying unit with basic weapons and a downdraft rotor.
+unit.heliaca.name = Heliaca
+unit.heliaca.description = A small fast flying scout unit.
+unit.armiger.name = Armiger
+unit.armiger.description = An improved flying unit with enhanced rotor and missile armament.
+unit.onirion.name = Onirion
+unit.onirion.description = A flying unit with rotors, bombs and missiles.
+unit.auctus.name = Auctus
+unit.auctus.description = A long snake-like unit that stomps buildings.
+unit.culiseta.name = Culiseta
+unit.culiseta.description = A large flying transport unit.
