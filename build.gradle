@@ -19,6 +19,18 @@ repositories {
 
 ext {
     mindustryVersion = "v158.1"
+    arcVersion = "v158.1"
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.github.Anuken.Arc:arc-core:$arcVersion"
+        force "com.github.Anuken.Arc:flabel:$arcVersion"
+        force "com.github.Anuken.Arc:freetype:$arcVersion"
+        force "com.github.Anuken.Arc:g3d:$arcVersion"
+        force "com.github.Anuken.Arc:fx:$arcVersion"
+        force "com.github.Anuken.Arc:arcnet:$arcVersion"
+    }
 }
 
 allprojects {
