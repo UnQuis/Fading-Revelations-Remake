@@ -492,7 +492,8 @@ public class FRProduction {
             );
             requirements(Category.crafting,
                 with(Items.copper, 1500, Items.lead, 1200, Items.silicon, 1000, Items.thorium, 600,
-                    Items.surgeAlloy, 400, Items.phaseFabric, 300, FRItems.livingSteel, 250, FRItems.livingSteelHard, 200)
+                    Items.surgeAlloy, 400, Items.phaseFabric, 300, FRItems.livingSteel, 250, FRItems.livingSteelHard, 200,
+                    FRItems.cryogenicAlloy, 150)
             );
         }};
 
