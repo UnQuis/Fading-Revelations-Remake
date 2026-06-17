@@ -163,10 +163,6 @@ public class FRMothershipUnits {
                     }};
                 }}
             );
-            abilities.addAll(
-                new UnitSpawnAbility(reduct, -20, -48, 200),
-                new UnitSpawnAbility(toruct, 20, -48, 200)
-            );
         }};
 
         strahl = new UnitType("sps-strahl") {{
@@ -221,7 +217,6 @@ public class FRMothershipUnits {
                 }}
             );
             abilities.addAll(
-                new UnitSpawnAbility(FRT2Units.alopex, 0, -30, 240),
                 new ForceFieldAbility(110f, 4f, 9000f, 600f)
             );
         }};
@@ -549,7 +544,6 @@ public class FRMothershipUnits {
                 }}
             );
             abilities.addAll(
-                new UnitSpawnAbility(FRMothershipUnits.hiveAttack, 0, -16, 400),
                 new ForceFieldAbility(115f, 5f, 20900f, 600f)
             );
         }};

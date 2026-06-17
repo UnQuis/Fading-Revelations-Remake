@@ -24,7 +24,7 @@ public class FRTranscendentUnits {
     public static void load() {
         mygale = new UnitType("mygale") {{
             constructor = LegsUnit::create; localizedName = "Mygale"; hovering = true;
-            speed = 1.1f; health = 40000; armor = 38; baseRotateSpeed = 3; hitSize = 68;
+            speed = 1.1f; health = 55000; armor = 45; baseRotateSpeed = 3; hitSize = 68;
             legCount = 10; legMoveSpace = 0.9f; legPairOffset = 3; legLength = 140;
             legExtension = -20; legBaseOffset = 8; stepShake = 10; legLengthScl = 0.93f;
             rippleScale = 10; legSpeed = 0.22f; legSplashDamage = 200; legSplashRange = 90;
@@ -38,7 +38,7 @@ public class FRTranscendentUnits {
                     reload = 22; shake = 3; rotateSpeed = 4; recoil = 5;
                     shootSound = Sounds.shootArtillery; ejectEffect = casing1;
                     bullet = new ShrapnelBulletType() {{
-                        damage = 180; width = 40; length = 300;
+                        damage = 280; width = 40; length = 300;
                         serrationLenScl = 10; serrationSpaceOffset = 70; serrationFadeOffset = 0;
                         serrations = 22; serrationWidth = 9;
                         fromColor = Color.valueOf("8a2be2"); toColor = Color.valueOf("bf92f9");
@@ -51,8 +51,8 @@ public class FRTranscendentUnits {
                     reload = 220; shake = 10; recoil = 15; rotateSpeed = 2; rotationLimit = 90;
                     shootSound = shootArtillery; ejectEffect = casing3;
                     bullet = new ArtilleryBulletType() {{
-                        spin = 2; damage = 80; lifetime = 260; width = 60; height = 60;
-                        splashDamage = 100; splashDamageRadius = 90; knockback = 1.5f;
+                        spin = 2; damage = 150; lifetime = 260; width = 60; height = 60;
+                        splashDamage = 200; splashDamageRadius = 120; knockback = 1.5f;
                         sprite = "lycosid-bullet";
                         backColor = Color.valueOf("8a2be2"); frontColor = Color.valueOf("bf92f9");
                         lightning = 10; lightningLength = 30; lightningDamage = 50;
@@ -62,7 +62,7 @@ public class FRTranscendentUnits {
                         status = FRStatus.sapped; statusDuration = 90;
                         fragLifeMin = 0.4f; fragBullets = 12;
                         fragBullet = new ArtilleryBulletType() {{
-                            damage = 60; lifetime = 150; width = 30; height = 30;
+                            damage = 100; lifetime = 150; width = 30; height = 30;
                             knockback = 1.5f; collidesTiles = false;
                             splashDamage = 100; splashDamageRadius = 100;
                             sprite = "lycosid-bullet";
@@ -77,13 +77,13 @@ public class FRTranscendentUnits {
                 }}
             );
             abilities.addAll(
-                new ForceFieldAbility(120f, 6f, 15000f, 800f)
+                new ForceFieldAbility(120f, 6f, 25000f, 800f)
             );
         }};
 
         scepter = new UnitType("scepter") {{
             constructor = UnitEntity::create; localizedName = "Scepter"; flying = true; lowAltitude = true;
-            speed = 1.1f; drag = 0.12f; health = 22000; armor = 34; hitSize = 100;
+            speed = 1.1f; drag = 0.12f; health = 35000; armor = 40; hitSize = 100;
             baseRotateSpeed = 0.08f; outlineColor = Color.valueOf("2a2a2a");
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
             weapons.addAll(
@@ -91,7 +91,7 @@ public class FRTranscendentUnits {
                     x = -60; y = 20; mirror = false; rotate = true; reload = 22;
                     shootSound = shootLaser;
                     bullet = new LaserBulletType() {{
-                        damage = 200; width = 8; length = 250;
+                        damage = 350; width = 8; length = 250;
                         colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.valueOf("e0c0ff")};
                     }};
                 }},
@@ -99,14 +99,14 @@ public class FRTranscendentUnits {
                     x = 60; y = 20; mirror = false; rotate = true; reload = 22;
                     shootSound = shootLaser;
                     bullet = new LaserBulletType() {{
-                        damage = 200; width = 8; length = 250;
+                        damage = 350; width = 8; length = 250;
                         colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.valueOf("e0c0ff")};
                     }};
                 }},
                 new Weapon("sps-lancer-left") {{
                     x = -36; y = -14; rotate = true; continuous = true;
                     reload = 160; shootSound = shootLaser;
-                    bullet = new ContinuousLaserBulletType(35f) {{
+                    bullet = new ContinuousLaserBulletType(60f) {{
                         length = 300; width = 3; lifetime = 130; fadeTime = 35;
                         colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.valueOf("e0c0ff")};
                         status = FRStatus.sapped; statusDuration = 60;
@@ -115,7 +115,7 @@ public class FRTranscendentUnits {
                 new Weapon("sps-lancer-left") {{
                     x = 36; y = -14; rotate = true; continuous = true;
                     reload = 200; recoil = 5; recoilTime = 180; shootSound = shootLaser;
-                    bullet = new ContinuousLaserBulletType(35f) {{
+                    bullet = new ContinuousLaserBulletType(60f) {{
                         length = 300; width = 3; lifetime = 130; fadeTime = 35;
                         colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.valueOf("e0c0ff")};
                         status = FRStatus.sapped; statusDuration = 60;
@@ -125,7 +125,7 @@ public class FRTranscendentUnits {
                     x = 0; y = -4; mirror = false; continuous = true;
                     recoil = 10; recoilTime = 180; reload = 400;
                     shootSound = shootLaser;
-                    bullet = new ContinuousLaserBulletType(45f) {{
+                    bullet = new ContinuousLaserBulletType(80f) {{
                         width = 8; lifetime = 300; fadeTime = 30; length = 400;
                         colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.valueOf("e0c0ff")};
                         status = FRStatus.sapped; statusDuration = 60;
@@ -133,13 +133,13 @@ public class FRTranscendentUnits {
                 }}
             );
             abilities.addAll(
-                new ForceFieldAbility(130f, 6f, 12000f, 700f)
+                new ForceFieldAbility(130f, 6f, 20000f, 700f)
             );
         }};
 
         mangonel = new UnitType("mangonel") {{
             constructor = TankUnit::create; localizedName = "Mangonel";
-            speed = 0.4f; health = 40000; armor = 38; hitSize = 104;
+            speed = 0.4f; health = 60000; armor = 48; hitSize = 104;
             rotateSpeed = 1.0f; crushDamage = 8;
             treadRects = new Rect[]{new Rect(68, -220, 144, 440)};
             omniMovement = false; singleTarget = false; faceTarget = false;
@@ -160,14 +160,14 @@ public class FRTranscendentUnits {
                         pierce = true; pierceBuilding = true;
                         trailWidth = 8; trailLength = 32;
                         hitEffect = blastExplosion; despawnEffect = blastExplosion;
-                        splashDamage = 100; splashDamageRadius = 80; damage = 300;
+                        splashDamage = 250; splashDamageRadius = 80; damage = 500;
                         buildingDamageMultiplier = 2.5f;
                         fragOnHit = false; fragRandomSpread = 0; fragSpread = 90;
                         fragBullets = 6; fragVelocityMin = 1; fragVelocityMax = 1;
                         despawnSound = explosionDull;
                         fragBullet = new BasicBulletType() {{
                             sprite = "missile-large"; width = 20; height = 28;
-                            lifetime = 25; speed = 2.5f; damage = 30;
+                            lifetime = 25; speed = 2.5f; damage = 120;
                             buildingDamageMultiplier = 2.5f;
                             pierce = true; pierceBuilding = true; hitSize = 10;
                             hitColor = Color.valueOf("f0d000"); backColor = Color.valueOf("f0d000");
@@ -179,7 +179,7 @@ public class FRTranscendentUnits {
                             fragRandomSpread = 0; fragSpread = 45;
                             fragBullet = new BasicBulletType() {{
                                 sprite = "missile-large"; width = 20; height = 28;
-                                lifetime = 25; speed = 2.5f; damage = 30;
+                                lifetime = 25; speed = 2.5f; damage = 120;
                                 buildingDamageMultiplier = 2.5f;
                                 pierce = true; pierceBuilding = true; hitSize = 10;
                                 hitColor = Color.valueOf("f0d000"); backColor = Color.valueOf("f0d000");
@@ -197,7 +197,7 @@ public class FRTranscendentUnits {
                     shootSound = Sounds.shoot;
                     shoot = new ShootPattern() {{ shots = 4; shotDelay = 3; }};
                     bullet = new BasicBulletType() {{
-                        width = 12; height = 18; speed = 5; lifetime = 65; damage = 55;
+                        width = 12; height = 18; speed = 5; lifetime = 65; damage = 90;
                         buildingDamageMultiplier = 2.5f;
                         splashDamage = 12; splashDamageRadius = 20;
                         pierce = true; pierceCap = 4; pierceBuilding = true;
@@ -210,7 +210,7 @@ public class FRTranscendentUnits {
                     shootSound = Sounds.shoot;
                     shoot = new ShootPattern() {{ shots = 4; shotDelay = 4; }};
                     bullet = new BasicBulletType() {{
-                        width = 12; height = 18; speed = 5; lifetime = 95; damage = 55;
+                        width = 12; height = 18; speed = 5; lifetime = 95; damage = 90;
                         buildingDamageMultiplier = 2.5f;
                         splashDamage = 12; splashDamageRadius = 20;
                         pierce = true; pierceCap = 4; pierceBuilding = true;
@@ -222,7 +222,7 @@ public class FRTranscendentUnits {
 
         thalass = new UnitType("thalass") {{
             constructor = UnitWaterMove::create; localizedName = "Thalass";
-            health = 35000; armor = 16; speed = 1.1f; hitSize = 100;
+            health = 50000; armor = 35; speed = 1.1f; hitSize = 100;
             drag = 0.18f; rotateSpeed = 1.4f; accel = 0.2f;
             faceTarget = false;
             trailLength = 360; waveTrailX = 30; waveTrailY = -40; trailScl = 4f;
@@ -233,7 +233,7 @@ public class FRTranscendentUnits {
                     shootY = 10; reload = 160; rotateSpeed = 2.5f;
                     continuous = true;
                     shootSound = shootLaser;
-                    bullet = new ContinuousLaserBulletType(90f) {{
+                    bullet = new ContinuousLaserBulletType(150f) {{
                         length = 500; width = 5; lifetime = 100; fadeTime = 35;
                         colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
                     }};
@@ -243,7 +243,7 @@ public class FRTranscendentUnits {
                     shootY = 10; reload = 160; rotateSpeed = 2.5f;
                     continuous = true;
                     shootSound = shootLaser;
-                    bullet = new ContinuousLaserBulletType(90f) {{
+                    bullet = new ContinuousLaserBulletType(150f) {{
                         length = 550; width = 5; lifetime = 100; fadeTime = 35;
                         colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
                     }};
@@ -254,8 +254,8 @@ public class FRTranscendentUnits {
                     shootSound = shootArtillery;
                     shoot = new ShootPattern() {{ shots = 4; shotDelay = 8; }};
                     bullet = new BasicBulletType() {{
-                        damage = 55; width = 9; height = 15; speed = 6; lifetime = 65;
-                        splashDamage = 30; splashDamageRadius = 28;
+                        damage = 100; width = 9; height = 15; speed = 6; lifetime = 65;
+                        splashDamage = 60; splashDamageRadius = 28;
                         lightning = 6; lightningLength = 3; lightningDamage = 12;
                         collidesAir = true; collidesGround = false;
                         homingPower = 0.12f; homingRange = 360;
@@ -271,8 +271,8 @@ public class FRTranscendentUnits {
                     shootSound = shootArtillery;
                     shoot = new ShootPattern() {{ shots = 4; shotDelay = 8; }};
                     bullet = new BasicBulletType() {{
-                        damage = 55; width = 9; height = 15; speed = 6; lifetime = 65;
-                        splashDamage = 30; splashDamageRadius = 28;
+                        damage = 100; width = 9; height = 15; speed = 6; lifetime = 65;
+                        splashDamage = 60; splashDamageRadius = 28;
                         lightning = 6; lightningLength = 3; lightningDamage = 12;
                         collidesAir = true; collidesGround = false;
                         homingPower = 0.12f; homingRange = 360;
@@ -284,11 +284,11 @@ public class FRTranscendentUnits {
                 }}
             );
             abilities.addAll(
-                new EnergyFieldAbility(4f, 12f, 220f) {{
+                new EnergyFieldAbility(10f, 12f, 220f) {{
                     color = Color.valueOf("20b2aa");
                     targetAir = true; targetGround = true;
                     hitBuildings = false; hitUnits = true;
-                    healPercent = 3; maxTargets = 16;
+                    healPercent = 5; maxTargets = 16;
                     rotateSpeed = 0.25f; sectors = 4;
                     shootSound = shockBullet;
                     status = FRStatus.sapped; statusDuration = 60;
@@ -299,7 +299,7 @@ public class FRTranscendentUnits {
 
         vex = new UnitType("vex") {{
             constructor = UnitEntity::create; localizedName = "Vex"; flying = true; lowAltitude = true;
-            speed = 1.1f; drag = 0.12f; health = 18000; armor = 28; hitSize = 95;
+            speed = 1.1f; drag = 0.12f; health = 30000; armor = 36; hitSize = 95;
             baseRotateSpeed = 0.08f; aimDst = 650;
             createWreck = true; outlineColor = Color.valueOf("191919");
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
@@ -325,7 +325,7 @@ public class FRTranscendentUnits {
                     continuous = true; chargeSound = Sounds.chargeLancer;
                     shoot = new ShootPattern() {{ firstShotDelay = 90; }};
                     shootSound = shootLaser;
-                    bullet = new ContinuousLaserBulletType(110f) {{
+                    bullet = new ContinuousLaserBulletType(180f) {{
                         length = 600; width = 20; lifetime = 300; fadeTime = 60;
                         makeFire = false;
                         status = StatusEffects.melting; statusDuration = 600;
@@ -337,7 +337,7 @@ public class FRTranscendentUnits {
                     reload = 28; shake = 1.5f; rotateSpeed = 22;
                     shootSound = shootLaser;
                     bullet = new LaserBulletType() {{
-                        damage = 160; length = 500;
+                        damage = 280; length = 500;
                         status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("ff6600"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
                     }};
@@ -347,7 +347,7 @@ public class FRTranscendentUnits {
                     reload = 20; shake = 1.5f; rotateSpeed = 22;
                     shootSound = shootLaser;
                     bullet = new LaserBulletType() {{
-                        damage = 140; length = 500;
+                        damage = 280; length = 500;
                         status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("ff6600"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
                     }};
@@ -359,7 +359,7 @@ public class FRTranscendentUnits {
                     shootSound = shootSpectre;
                     bullet = new PointBulletType() {{
                         speed = 14; lifetime = 35; maxRange = 450;
-                        damage = 1000; splashDamage = 1000; splashDamageRadius = 30;
+                        damage = 1800; splashDamage = 1800; splashDamageRadius = 30;
                         trailEffect = instTrail; hitEffect = massiveExplosion;
                         shootEffect = instShoot;
                         pierce = true; pierceBuilding = true;
@@ -372,7 +372,7 @@ public class FRTranscendentUnits {
                     shootSound = shootSpectre;
                     bullet = new PointBulletType() {{
                         speed = 14; lifetime = 35; maxRange = 450;
-                        damage = 950; splashDamage = 950; splashDamageRadius = 30;
+                        damage = 1800; splashDamage = 1800; splashDamageRadius = 30;
                         trailEffect = instTrail; hitEffect = massiveExplosion;
                         shootEffect = instShoot;
                         pierce = true; pierceBuilding = true;
@@ -380,14 +380,13 @@ public class FRTranscendentUnits {
                 }}
             );
             abilities.addAll(
-                new UnitSpawnAbility(FRMothershipUnits.hiveAttack, 0, -20, 350),
-                new ForceFieldAbility(130f, 6f, 30000f, 800f)
+                new ForceFieldAbility(130f, 6f, 45000f, 800f)
             );
         }};
 
         medusae = new UnitType("medusae") {{
             constructor = LegsUnit::create; localizedName = "Medusae"; hovering = true;
-            speed = 0.55f; health = 32000; armor = 20; hitSize = 60;
+            speed = 0.55f; health = 48000; armor = 40; hitSize = 60;
             rotateSpeed = 0.55f;
             legCount = 8; legMoveSpace = 0.9f; legPairOffset = 2; legLength = 100;
             legExtension = -20; legBaseOffset = 10; stepShake = 6; legLengthScl = 0.93f;
@@ -405,7 +404,7 @@ public class FRTranscendentUnits {
                     shootSound = shootLaser; chargeSound = Sounds.chargeLancer;
                     soundPitchMin = 1.1f; continuous = true;
                     bullet = new LaserBulletType() {{
-                        width = 40; damage = 140; length = 250; lifetime = 120;
+                        width = 40; damage = 250; length = 250; lifetime = 120;
                         largeHit = true;
                         lightColor = Color.valueOf("66ffcc"); lightningColor = Color.valueOf("66ffcc");
                         healPercent = 35; collidesTeam = true;
@@ -420,7 +419,7 @@ public class FRTranscendentUnits {
                     shootSound = shootLaser; chargeSound = Sounds.chargeLancer;
                     soundPitchMin = 1.1f; continuous = true;
                     bullet = new LaserBulletType() {{
-                        width = 40; damage = 140; length = 250; lifetime = 120;
+                        width = 40; damage = 250; length = 250; lifetime = 120;
                         largeHit = true;
                         lightColor = Color.valueOf("66ffcc"); lightningColor = Color.valueOf("66ffcc");
                         healPercent = 35; collidesTeam = true;
@@ -438,7 +437,7 @@ public class FRTranscendentUnits {
                     shootStatus = StatusEffects.unmoving; shootStatusDuration = 180;
                     parentizeEffects = true;
                     bullet = new LaserBulletType() {{
-                        length = 650; damage = 1400; width = 100; lifetime = 120;
+                        length = 800; damage = 2500; width = 150; lifetime = 120;
                         lightningSpacing = 35; lightningLength = 15; lightningDelay = 1.1f;
                         lightningLengthRand = 18; lightningDamage = 90; lightningAngleRand = 40;
                         largeHit = true;
@@ -454,7 +453,7 @@ public class FRTranscendentUnits {
 
         nivosa = new UnitType("nivosa") {{
             constructor = UnitWaterMove::create; localizedName = "Nivosa";
-            health = 36000; armor = 22; speed = 0.85f; hitSize = 68;
+            health = 52000; armor = 38; speed = 0.85f; hitSize = 68;
             drag = 0.15f; accel = 0.28f; rotateSpeed = 1.8f;
             faceTarget = false; buildSpeed = 4.5f;
             trailLength = 100; trailScl = 6; waveTrailX = 32; waveTrailY = -44;
@@ -464,7 +463,7 @@ public class FRTranscendentUnits {
                     reload = 4; targetInterval = 4; targetSwitchInterval = 6;
                     bullet = new BulletType() {{
                         shootEffect = sparkShoot; hitEffect = pointHit;
-                        maxRange = 280; damage = 45;
+                        maxRange = 280; damage = 80;
                     }};
                 }},
                 new PointDefenseWeapon("point-defense-mount") {{
@@ -472,7 +471,7 @@ public class FRTranscendentUnits {
                     reload = 5; targetInterval = 5; targetSwitchInterval = 8;
                     bullet = new BulletType() {{
                         shootEffect = sparkShoot; hitEffect = pointHit;
-                        maxRange = 280; damage = 50;
+                        maxRange = 280; damage = 90;
                     }};
                 }},
                 new Weapon("nothing") {{
@@ -481,13 +480,13 @@ public class FRTranscendentUnits {
                     rotate = false; controllable = true; autoTarget = true;
                     continuous = true; cooldownTime = 170; ignoreRotation = true;
                     shootSound = shootLaser;
-                    bullet = new ContinuousLaserBulletType(45f) {{
+                    bullet = new ContinuousLaserBulletType(70f) {{
                         maxRange = 280; length = 300; lifetime = 170;
                         hitEffect = hitMeltHeal; drawSize = 520; shake = 1.5f;
                         shootEffect = shootHeal; smokeEffect = Fx.none;
                         width = 8; largeHit = true;
                         incendSpread = 0; incendChance = 0; incendAmount = 0;
-                        healPercent = 0.8f; collidesTeam = true;
+                        healPercent = 2f; collidesTeam = true;
                         colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
                     }};
                 }},
@@ -516,7 +515,7 @@ public class FRTranscendentUnits {
                 }}
             );
             abilities.addAll(
-                new EnergyFieldAbility(25f, 14f, 280f) {{
+                new EnergyFieldAbility(50f, 14f, 280f) {{
                     color = Color.valueOf("66ffcc");
                     healPercent = 1.5f; hitBuildings = true; hitUnits = true;
                     maxTargets = 16; rotateSpeed = 1.4f;

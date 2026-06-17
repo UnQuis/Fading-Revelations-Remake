@@ -28,9 +28,6 @@ public class FRT3Units {
             speed = 0.8f; drag = 0.17f; accel = 0.3f; rotateSpeed = 1.8f;
             faceTarget = false;
             trailLength = 40; trailColor = Color.valueOf("ffffff");
-            abilities.add(
-                new UnitSpawnAbility(FRT1Units.alba, 600f, 0f, 0f)
-            );
             weapons.add(
                 new Weapon("heal-shotgun-weapon") {{
                     x = 0; y = -15; mirror = false; rotate = true;
