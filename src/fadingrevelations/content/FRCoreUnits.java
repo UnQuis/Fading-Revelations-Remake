@@ -139,7 +139,6 @@ public class FRCoreUnits {
                 }}
             );
             abilities.addAll(
-                new UnitSpawnAbility(UnitTypes.mono, 0, -2, 600),
                 new EnergyFieldAbility(20f, 12f, 120f) {{ color = Color.valueOf("dcc6c6");
                     healPercent = 4; hitBuildings = false; hitUnits = true;
                     maxTargets = 8; sectors = 4;
