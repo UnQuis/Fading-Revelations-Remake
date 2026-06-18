@@ -15,6 +15,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.type.weapons.*;
 
+import static fadingrevelations.content.FRFx.*;
 import static mindustry.content.Fx.*;
 
 public class FRT2Units {
@@ -56,6 +57,10 @@ public class FRT2Units {
                     bullet = new LaserBulletType() {{
                         damage = 20; speed = 10; pierce = true; pierceCap = 6;
                         width = 4; length = 100; lifetime = 15;
+                        colors = new Color[]{Color.valueOf("9e78dc"), Color.valueOf("e2b3ff"), Color.white};
+                        shootEffect = bezierArcPurple;
+                        smokeEffect = smokeBezierPurple;
+                        hitEffect = hitBezierPurple;
                     }};
                 }}
             );
@@ -80,6 +85,12 @@ public class FRT2Units {
                         splashDamage = 8; splashDamageRadius = 16;
                         homingRange = 90; lifetime = 90;
                         pierce = true; pierceCap = 1;
+                        trailColor = Color.valueOf("87ceeb"); trailWidth = 2.5f; trailLength = 10; trailChance = -1;
+                        frontColor = Color.valueOf("c0ecff"); backColor = Color.valueOf("87ceeb");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcCyan);
+                        smokeEffect = smokeBezierCyan;
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierBurstCyan);
+                        despawnEffect = bezierRingCyan;
                     }};
                 }},
                 new Weapon("king-heal") {{
@@ -98,8 +109,12 @@ public class FRT2Units {
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                         chargeEffect = new MultiEffect(
                             new WaveEffect() {{ sizeFrom = 0; sizeTo = 20; interp = Interp.pow2Out; }},
-                            new WaveEffect() {{ sizeFrom = 22; sizeTo = 2; interp = Interp.pow2Out; }}
+                            new WaveEffect() {{ sizeFrom = 22; sizeTo = 2; interp = Interp.pow2Out; }},
+                            chargeBezierOrange
                         ) {{ followParent = true; lifetime = 45; }};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }}
             );
@@ -125,6 +140,12 @@ public class FRT2Units {
                         width = 8; height = 12;
                         splashDamage = 15; splashDamageRadius = 24;
                         speed = 4; lifetime = 60; pierce = true; pierceCap = 3; damage = 10;
+                        trailColor = Color.valueOf("ff9c5a"); trailWidth = 3; trailLength = 10; trailChance = -1;
+                        frontColor = Color.white; backColor = Color.valueOf("ff9c5a");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierBurstOrange);
+                        despawnEffect = bezierRingOrange;
                     }};
                 }},
                 new Weapon("dark-missiles-mount") {{
@@ -133,6 +154,9 @@ public class FRT2Units {
                     bullet = new LaserBulletType() {{
                         length = 240; damage = 110; lifetime = 60;
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }}
             );
@@ -169,6 +193,9 @@ public class FRT2Units {
                         damage = 5; healPercent = 12; length = 140;
                         colors = new Color[]{Color.valueOf("84f491"), Color.white, Color.valueOf("62ae7f")};
                         collidesTeam = true; collidesTiles = true; collidesAir = true;
+                        shootEffect = bezierArcGreen;
+                        smokeEffect = smokeBezierGreen;
+                        hitEffect = hitBezierGreen;
                     }};
                 }},
                 new Weapon() {{
@@ -194,7 +221,9 @@ public class FRT2Units {
                     bullet = new LiquidBulletType(Liquids.oil) {{
                         speed = 4; lifetime = 40; damage = 10;
                         status = StatusEffects.tarred; statusDuration = 120;
-                        shootEffect = shootSmall; hitEffect = hitBulletColor; smokeEffect = shootSmallSmoke;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcRed);
+                        hitEffect = hitBezierRed;
+                        smokeEffect = smokeBezierRed;
                     }};
                 }},
                 new Weapon("atrax-weapon") {{
@@ -237,8 +266,10 @@ public class FRT2Units {
                         pierceBuilding = true; laserAbsorb = false;
                         buildingDamageMultiplier = 1.9f;
                         hitColor = Color.valueOf("feb380");
-                        hitEffect = hitBulletColor; smokeEffect = shootSmallSmoke;
-                        shootEffect = lightningCharge;
+                        colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.white};
+                        hitEffect = new MultiEffect(hitBulletColor, hitBezierPurple);
+                        smokeEffect = new MultiEffect(shootSmallSmoke, smokeBezierPurple);
+                        shootEffect = new MultiEffect(lightningCharge, bezierArcPurple);
                     }};
                 }}
             );

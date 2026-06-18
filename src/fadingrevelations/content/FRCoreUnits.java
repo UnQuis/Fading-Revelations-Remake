@@ -9,6 +9,7 @@ import mindustry.type.*;
 import mindustry.gen.*;
 import mindustry.entities.abilities.*;
 
+import static fadingrevelations.content.FRFx.*;
 import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
@@ -52,9 +53,14 @@ public class FRCoreUnits {
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
                         splashDamage = 10; splashDamageRadius = 20; lifetime = 80;
-                        knockback = 0.8f; hitEffect = blastExplosion;
+                        knockback = 0.8f;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange);
+                        despawnEffect = new MultiEffect(bezierBurstOrange, bezierRingOrange);
                         width = 13; height = 13; collidesTiles = false;
                         frontColor = Color.valueOf("f8ad42"); backColor = Color.valueOf("f68021");
+                        trailColor = Color.valueOf("f8ad42"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
                     }};
                 }},
                 new Weapon("main-core-hail") {{
@@ -62,9 +68,14 @@ public class FRCoreUnits {
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
                         splashDamage = 10; splashDamageRadius = 20; lifetime = 80;
-                        knockback = 0.8f; hitEffect = blastExplosion;
+                        knockback = 0.8f;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange);
+                        despawnEffect = new MultiEffect(bezierBurstOrange, bezierRingOrange);
                         width = 13; height = 13; collidesTiles = false;
                         frontColor = Color.valueOf("f8ad42"); backColor = Color.valueOf("f68021");
+                        trailColor = Color.valueOf("f8ad42"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
                     }};
                 }},
                 new Weapon("main-core-hail") {{
@@ -72,9 +83,14 @@ public class FRCoreUnits {
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
                         splashDamage = 10; splashDamageRadius = 20; lifetime = 80;
-                        knockback = 0.8f; hitEffect = blastExplosion;
+                        knockback = 0.8f;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange);
+                        despawnEffect = new MultiEffect(bezierBurstOrange, bezierRingOrange);
                         width = 13; height = 13; collidesTiles = false;
                         frontColor = Color.valueOf("f8ad42"); backColor = Color.valueOf("f68021");
+                        trailColor = Color.valueOf("f8ad42"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
                     }};
                 }},
                 new Weapon("main-core-hail") {{
@@ -82,9 +98,14 @@ public class FRCoreUnits {
                     shootSound = Sounds.shoot; rotate = true; inaccuracy = 1;
                     bullet = new ArtilleryBulletType(3f, 10f) {{
                         splashDamage = 10; splashDamageRadius = 20; lifetime = 80;
-                        knockback = 0.8f; hitEffect = blastExplosion;
+                        knockback = 0.8f;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange);
+                        despawnEffect = new MultiEffect(bezierBurstOrange, bezierRingOrange);
                         width = 13; height = 13; collidesTiles = false;
                         frontColor = Color.valueOf("f8ad42"); backColor = Color.valueOf("f68021");
+                        trailColor = Color.valueOf("f8ad42"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
                     }};
                 }},
                 new Weapon() {{
@@ -106,8 +127,9 @@ public class FRCoreUnits {
                     rotate = false; baseRotation = 0; shootCone = 20; mirror = false;
                     shoot = new ShootSpread(3, 20);
                     bullet = new ShrapnelBulletType() {{
-                        damage = 20; shootEffect = thoriumShoot; smokeEffect = thoriumShoot;
+                        damage = 20; shootEffect = new MultiEffect(thoriumShoot, bezierArcPink); smokeEffect = thoriumShoot;
                         toColor = Color.valueOf("f9a3c7");
+                        hitEffect = new MultiEffect(hitBezierPink, bezierBurstPink);
                     }};
                 }},
                 new Weapon() {{
@@ -115,8 +137,9 @@ public class FRCoreUnits {
                     rotate = false; baseRotation = -90; mirror = false; shootCone = 20;
                     shoot = new ShootSpread(3, 20);
                     bullet = new ShrapnelBulletType() {{
-                        damage = 20; shootEffect = thoriumShoot; smokeEffect = thoriumShoot;
+                        damage = 20; shootEffect = new MultiEffect(thoriumShoot, bezierArcPink); smokeEffect = thoriumShoot;
                         toColor = Color.valueOf("f9a3c7");
+                        hitEffect = new MultiEffect(hitBezierPink, bezierBurstPink);
                     }};
                 }},
                 new Weapon() {{
@@ -124,8 +147,9 @@ public class FRCoreUnits {
                     rotate = false; baseRotation = 90; mirror = false; shootCone = 20;
                     shoot = new ShootSpread(3, 20);
                     bullet = new ShrapnelBulletType() {{
-                        damage = 20; shootEffect = thoriumShoot; smokeEffect = thoriumShoot;
+                        damage = 20; shootEffect = new MultiEffect(thoriumShoot, bezierArcPink); smokeEffect = thoriumShoot;
                         toColor = Color.valueOf("f9a3c7");
+                        hitEffect = new MultiEffect(hitBezierPink, bezierBurstPink);
                     }};
                 }},
                 new Weapon() {{
@@ -133,8 +157,9 @@ public class FRCoreUnits {
                     rotate = false; baseRotation = -180; mirror = false; shootCone = 20;
                     shoot = new ShootSpread(3, 20);
                     bullet = new ShrapnelBulletType() {{
-                        damage = 20; shootEffect = thoriumShoot; smokeEffect = thoriumShoot;
+                        damage = 20; shootEffect = new MultiEffect(thoriumShoot, bezierArcPink); smokeEffect = thoriumShoot;
                         toColor = Color.valueOf("f9a3c7");
+                        hitEffect = new MultiEffect(hitBezierPink, bezierBurstPink);
                     }};
                 }}
             );

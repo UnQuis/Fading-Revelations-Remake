@@ -15,6 +15,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.type.weapons.*;
 
+import static fadingrevelations.content.FRFx.*;
 import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
@@ -39,6 +40,11 @@ public class FRT3Units {
                         width = 4; height = 10;
                         frontColor = Color.valueOf("84f491"); backColor = Color.valueOf("62ae7f");
                         damage = 1; collidesTeam = true; healAmount = 5;
+                        trailColor = Color.valueOf("84f491"); trailWidth = 1.5f; trailLength = 5; trailChance = -1;
+                        shootEffect = new MultiEffect(bezierArcGreen, shootSmall);
+                        smokeEffect = smokeBezierGreen;
+                        hitEffect = new MultiEffect(hitBezierGreen, bezierRingGreen);
+                        trailEffect = trailBezierGreen;
                     }};
                 }}
             );
@@ -67,8 +73,12 @@ public class FRT3Units {
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                         chargeEffect = new MultiEffect(
                             new WaveEffect() {{ sizeFrom = 0; sizeTo = 20; interp = Interp.pow2Out; }},
-                            new WaveEffect() {{ sizeFrom = 22; sizeTo = 2; interp = Interp.pow2Out; }}
+                            new WaveEffect() {{ sizeFrom = 22; sizeTo = 2; interp = Interp.pow2Out; }},
+                            chargeBezierOrange
                         ) {{ followParent = true; lifetime = 45; }};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange, bezierBurstOrange);
                     }};
                 }},
                 new Weapon("king-heal") {{
@@ -85,6 +95,10 @@ public class FRT3Units {
                         trailLength = 12; trailWidth = 3;
                         sprite = "emp-bullet";
                         lightColor = Color.valueOf("ff9c5a"); lightOpacity = 0.7f; lightRadius = 40;
+                        shootEffect = new MultiEffect(shootBig, bezierArcOrange);
+                        smokeEffect = new MultiEffect(shootSmokeTitan, smokeBezierOrange);
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierBurstOrange);
                         trailEffect = new MultiEffect(
                             new ParticleEffect() {{
                                 colorFrom = Color.valueOf("ec7458aa"); colorTo = Color.valueOf("ff9c5a");
@@ -121,6 +135,9 @@ public class FRT3Units {
                     bullet = new LiquidBulletType(Liquids.water) {{
                         speed = 3; lifetime = 60; damage = 20;
                         pierce = true; status = StatusEffects.wet;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcCyan);
+                        smokeEffect = smokeBezierCyan;
+                        hitEffect = hitBezierCyan;
                     }};
                 }},
                 new Weapon("large-purple-mount") {{
@@ -129,6 +146,9 @@ public class FRT3Units {
                     bullet = new LiquidBulletType(Liquids.slag) {{
                         speed = 3; lifetime = 60; damage = 40;
                         status = StatusEffects.burning;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = hitBezierOrange;
                     }};
                 }},
                 new Weapon("reclusa-laser") {{
@@ -140,6 +160,10 @@ public class FRT3Units {
                         trailColor = Color.valueOf("d99f6b"); trailChance = -1; trailLength = 12; trailWidth = 3;
                         speed = 5; lifetime = 60; damage = 60;
                         pierce = true; pierceBuilding = true; pierceCap = 6;
+                        shootEffect = new MultiEffect(shootBig, bezierArcGold);
+                        smokeEffect = smokeBezierGold;
+                        hitEffect = new MultiEffect(hitBezierGold, bezierRingGold);
+                        despawnEffect = bezierBurstGold;
                     }};
                 }}
             );
@@ -165,6 +189,9 @@ public class FRT3Units {
                         width = 16; status = StatusEffects.shocked;
                         lightning = 3; lightningLength = 12; lightningDamage = 20; lightningColor = Color.valueOf("ff9c5a");
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("dark-large-bullet-mount") {{
@@ -176,6 +203,9 @@ public class FRT3Units {
                         width = 16; status = StatusEffects.shocked;
                         lightning = 3; lightningLength = 12; lightningDamage = 20; lightningColor = Color.valueOf("ff9c5a");
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("dark-large-laser-mount") {{
@@ -188,9 +218,13 @@ public class FRT3Units {
                         pierce = false; despawnHit = true;
                         weaveMag = 4; weaveScale = 4;
                         trailWidth = 10; trailLength = 40; trailChance = -1;
+                        trailColor = Color.valueOf("ff9c5a");
                         lightRadius = 40; lightOpacity = 0.7f;
                         fragBullets = 30; fragSpread = 18; fragRandomSpread = 0;
-                        hitEffect = hitMeltdown;
+                        hitEffect = new MultiEffect(hitMeltdown, hitBezierOrange, bezierBurstOrange);
+                        shootEffect = new MultiEffect(shootBig, bezierArcOrange);
+                        smokeEffect = new MultiEffect(shootSmokeTitan, smokeBezierOrange);
+                        frontColor = Color.white; backColor = Color.valueOf("ff9c5a");
                         fragBullet = new ShrapnelBulletType() {{
                             length = 80; width = 16; damage = 80; lifetime = 90;
                             hitLarge = true;
@@ -244,6 +278,9 @@ public class FRT3Units {
                         length = 200; damage = 40;
                         makeFire = true; status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("d06b53"), Color.valueOf("d18877"), Color.valueOf("ffa665")};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = hitBezierOrange;
                     }};
                 }}
             );
@@ -280,6 +317,9 @@ public class FRT3Units {
                         damage = 10; healPercent = 2; length = 260;
                         colors = new Color[]{Color.valueOf("84f491"), Color.white, Color.valueOf("62ae7f")};
                         collidesTeam = true; collidesTiles = true; collidesAir = true;
+                        shootEffect = bezierArcGreen;
+                        smokeEffect = smokeBezierGreen;
+                        hitEffect = hitBezierGreen;
                     }};
                 }},
                 new Weapon("heal-laser-mount") {{
@@ -324,8 +364,10 @@ public class FRT3Units {
                         backColor = Color.valueOf("ffa665"); trailColor = Color.valueOf("ffa665");
                         frontColor = Color.valueOf("ffffff");
                         trailWidth = 3.3f; trailLength = 9;
-                        hitEffect = blastExplosion; despawnEffect = blastExplosion;
-                        shootEffect = shootTitan; smokeEffect = shootSmokeTitan;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierBurstOrange);
+                        shootEffect = new MultiEffect(shootTitan, bezierArcOrange);
+                        smokeEffect = new MultiEffect(shootSmokeTitan, smokeBezierOrange);
                         splashDamageRadius = 24; splashDamage = 42;
                         fragOnHit = false;
                         fragRandomSpread = 0; fragSpread = 45;
@@ -339,7 +381,8 @@ public class FRT3Units {
                             hitColor = Color.valueOf("ffa665"); backColor = Color.valueOf("ffa665");
                             trailColor = Color.valueOf("ffa665"); frontColor = Color.valueOf("ffffff");
                             trailWidth = 2.6f; trailLength = 6;
-                            hitEffect = blastExplosion; splashDamageRadius = 16; splashDamage = 10;
+                            hitEffect = new MultiEffect(blastExplosion, hitBezierOrange);
+                            splashDamageRadius = 16; splashDamage = 10;
                             fragOnHit = false; fragRandomSpread = 0; fragSpread = 0;
                             fragBullets = 1; fragVelocityMin = 0; fragVelocityMax = 0;
                             despawnSound = explosionDull;
@@ -360,7 +403,11 @@ public class FRT3Units {
                         length = 120; width = 3; damage = 15; lifetime = 40;
                         buildingDamageMultiplier = 2.6f;
                         pierce = true;
-                        hitEffect = hitBulletColor; despawnEffect = hitBulletColor;
+                        colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                        hitEffect = new MultiEffect(hitBulletColor, hitBezierOrange);
+                        despawnEffect = hitBezierOrange;
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
                     }};
                 }},
                 new Weapon("springald-side-arm") {{
@@ -371,7 +418,11 @@ public class FRT3Units {
                         length = 140; width = 3; damage = 18; lifetime = 40;
                         buildingDamageMultiplier = 2.6f;
                         pierce = true;
-                        hitEffect = hitBulletColor; despawnEffect = hitBulletColor;
+                        colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
+                        hitEffect = new MultiEffect(hitBulletColor, hitBezierOrange);
+                        despawnEffect = hitBezierOrange;
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
                     }};
                 }}
             );
