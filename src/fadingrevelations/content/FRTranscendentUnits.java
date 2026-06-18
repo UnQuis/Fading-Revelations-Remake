@@ -360,10 +360,20 @@ public class FRTranscendentUnits {
                     shoot = new ShootPattern() {{ firstShotDelay = 90; }};
                     shootSound = shootLaser;
                     bullet = new ContinuousLaserBulletType(180f) {{
-                        length = 600; width = 20; lifetime = 300; fadeTime = 60;
+                        length = 600; width = 22; lifetime = 300; fadeTime = 60;
                         makeFire = false;
                         status = StatusEffects.melting; statusDuration = 600;
-                        hitEffect = new MultiEffect(blastExplosion, bezierBurstOrange, bezierRingOrange);
+                        colors = new Color[]{
+                            Color.valueOf("ff330022"), Color.valueOf("ff660066"),
+                            Color.valueOf("ff9c5a"), Color.valueOf("ffffff")
+                        };
+                        strokeFrom = 3f; strokeTo = 0.6f;
+                        oscScl = 1.2f; oscMag = 2.5f;
+                        divisions = 16; pointyScaling = 0.85f;
+                        backLength = 10f; frontLength = 40f;
+                        lightStroke = 55f; lightColor = Color.valueOf("ff9c5a"); lightOpacity = 0.85f;
+                        hitEffect = new MultiEffect(blastExplosion, bezierBurstOrange, bezierRingOrange, bezierRingRainbow);
+                        shootEffect = new MultiEffect(shootBigSmoke2, bezierArcOrange);
                     }};
                 }},
                 new Weapon("hive-mg") {{
@@ -373,7 +383,17 @@ public class FRTranscendentUnits {
                     bullet = new LaserBulletType() {{
                         damage = 280; length = 500;
                         status = StatusEffects.burning; statusDuration = 60;
-                        colors = new Color[]{Color.valueOf("ff6600"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
+                        colors = new Color[]{
+                            Color.valueOf("ff330066"), Color.valueOf("ff6600"),
+                            Color.valueOf("ffaa5f"), Color.valueOf("ffffff")
+                        };
+                        width = 18f; lengthFalloff = 0.4f;
+                        sideLength = 35f; sideWidth = 0.9f; sideAngle = 20f;
+                        lightningSpacing = 40; lightningLength = 12;
+                        lightningLengthRand = 8; lightningDamage = 40;
+                        lightningAngleRand = 25; lightningDelay = 0.08f;
+                        lightningColor = Color.valueOf("ffaa5f");
+                        largeHit = true;
                         shootEffect = bezierArcOrange;
                         smokeEffect = smokeBezierOrange;
                         hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
@@ -386,7 +406,17 @@ public class FRTranscendentUnits {
                     bullet = new LaserBulletType() {{
                         damage = 280; length = 500;
                         status = StatusEffects.burning; statusDuration = 60;
-                        colors = new Color[]{Color.valueOf("ff6600"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
+                        colors = new Color[]{
+                            Color.valueOf("ff330066"), Color.valueOf("ff6600"),
+                            Color.valueOf("ffaa5f"), Color.valueOf("ffffff")
+                        };
+                        width = 18f; lengthFalloff = 0.4f;
+                        sideLength = 35f; sideWidth = 0.9f; sideAngle = 20f;
+                        lightningSpacing = 40; lightningLength = 12;
+                        lightningLengthRand = 8; lightningDamage = 40;
+                        lightningAngleRand = 25; lightningDelay = 0.08f;
+                        lightningColor = Color.valueOf("ffaa5f");
+                        largeHit = true;
                         shootEffect = bezierArcOrange;
                         smokeEffect = smokeBezierOrange;
                         hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
@@ -400,9 +430,12 @@ public class FRTranscendentUnits {
                     bullet = new PointBulletType() {{
                         speed = 14; lifetime = 35; maxRange = 450;
                         damage = 1800; splashDamage = 1800; splashDamageRadius = 30;
-                        trailEffect = instTrail; hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange);
+                        trailEffect = instTrail;
+                        hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange, bezierRingRainbow);
                         shootEffect = new MultiEffect(instShoot, bezierArcOrange);
                         pierce = true; pierceBuilding = true;
+                        lightning = 8; lightningLength = 20; lightningDamage = 90;
+                        lightningColor = Color.valueOf("ff9c5a");
                     }};
                 }},
                 new Weapon("hive-laser") {{
@@ -413,9 +446,12 @@ public class FRTranscendentUnits {
                     bullet = new PointBulletType() {{
                         speed = 14; lifetime = 35; maxRange = 450;
                         damage = 1800; splashDamage = 1800; splashDamageRadius = 30;
-                        trailEffect = instTrail; hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange);
+                        trailEffect = instTrail;
+                        hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange, bezierRingRainbow);
                         shootEffect = new MultiEffect(instShoot, bezierArcOrange);
                         pierce = true; pierceBuilding = true;
+                        lightning = 8; lightningLength = 20; lightningDamage = 90;
+                        lightningColor = Color.valueOf("ff9c5a");
                     }};
                 }}
             );
