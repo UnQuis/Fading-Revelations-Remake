@@ -18,6 +18,7 @@ public class FRFx {
         bezierBurstGreen, bezierBurstOrange, bezierBurstCyan, bezierBurstPink,
 
         bezierArcGold, bezierArcPurple, bezierArcBlue, bezierArcRed, bezierArcGreen, bezierArcCyan,
+        bezierArcWhite, bezierArcOrange, bezierArcPink,
 
         bezierRingGold, bezierRingPurple, bezierRingBlue, bezierRingRed, bezierRingWhite,
         bezierRingGreen, bezierRingCyan, bezierRingOrange, bezierRingPink, bezierRingRainbow,
@@ -26,14 +27,13 @@ public class FRFx {
         chargeBezierGreen, chargeBezierCyan, chargeBezierOrange, chargeBezierWhite,
 
         hitBezierGold, hitBezierPurple, hitBezierBlue, hitBezierRed,
-        hitBezierWhite, hitBezierGreen, hitBezierCyan,
+        hitBezierWhite, hitBezierGreen, hitBezierCyan, hitBezierOrange, hitBezierPink,
 
         smokeBezierGold, smokeBezierPurple, smokeBezierBlue, smokeBezierRed, smokeBezierDark,
+        smokeBezierGreen, smokeBezierCyan, smokeBezierOrange, smokeBezierWhite,
 
         trailBezierGold, trailBezierPurple, trailBezierBlue, trailBezierRed, trailBezierGreen, trailBezierCyan,
-        trailBezierOrange, trailBezierPink,
-
-        hitBezierOrange;
+        trailBezierOrange, trailBezierPink, trailBezierWhite;
 
     public static Effect stasisWave;
 
@@ -54,6 +54,9 @@ public class FRFx {
         bezierArcRed = bezierArc(55, 4.5f, Color.valueOf("ff6666"), Color.valueOf("ffcccc"));
         bezierArcGreen = bezierArc(55, 4.5f, Color.valueOf("66ff66"), Color.valueOf("ccffcc"));
         bezierArcCyan = bezierArc(55, 4.5f, Color.valueOf("87ceeb"), Color.valueOf("c0ecff"));
+        bezierArcWhite = bezierArc(55, 4.5f, Color.white, Color.lightGray);
+        bezierArcOrange = bezierArc(55, 4.5f, Color.valueOf("ffaa5f"), Color.valueOf("ffd699"));
+        bezierArcPink = bezierArc(55, 4.5f, Color.valueOf("ff69b4"), Color.valueOf("ffb6d9"));
 
         bezierRingGold = bezierRing(8, 35, 2.5f, Pal.accent, Color.white);
         bezierRingPurple = bezierRing(8, 32, 2.5f, Color.valueOf("9e78dc"), Color.valueOf("e2b3ff"));
@@ -83,12 +86,17 @@ public class FRFx {
         hitBezierGreen = hitEffect(25, 22, 4.5f, Color.valueOf("66ff66"), Color.valueOf("ccffcc"));
         hitBezierCyan = hitEffect(25, 22, 4.5f, Color.valueOf("87ceeb"), Color.valueOf("c0ecff"));
         hitBezierOrange = hitEffect(25, 22, 4.5f, Color.valueOf("ffaa5f"), Color.valueOf("ffd699"));
+        hitBezierPink = hitEffect(25, 22, 4.5f, Color.valueOf("ff69b4"), Color.valueOf("ffb6d9"));
 
         smokeBezierGold = smokeEffect(45, 28, Pal.accent, Color.white);
         smokeBezierPurple = smokeEffect(45, 25, Color.valueOf("9e78dc"), Color.valueOf("6d0071"));
         smokeBezierBlue = smokeEffect(45, 25, Color.valueOf("66b1ff"), Color.valueOf("e4fdff"));
         smokeBezierRed = smokeEffect(45, 25, Color.valueOf("ff6666"), Color.valueOf("ffcccc"));
         smokeBezierDark = smokeEffect(45, 25, Color.valueOf("3a3a3a"), Color.valueOf("6e6e6e"));
+        smokeBezierGreen = smokeEffect(45, 25, Color.valueOf("66ff66"), Color.valueOf("ccffcc"));
+        smokeBezierCyan = smokeEffect(45, 25, Color.valueOf("87ceeb"), Color.valueOf("c0ecff"));
+        smokeBezierOrange = smokeEffect(45, 25, Color.valueOf("ffaa5f"), Color.valueOf("ffd699"));
+        smokeBezierWhite = smokeEffect(45, 25, Color.white, Color.lightGray);
 
         trailBezierGold = trailEffect(18, 5, Pal.accent, Color.white);
         trailBezierPurple = trailEffect(18, 5, Color.valueOf("9e78dc"), Color.valueOf("e2b3ff"));
@@ -98,6 +106,7 @@ public class FRFx {
         trailBezierCyan = trailEffect(18, 5, Color.valueOf("87ceeb"), Color.valueOf("c0ecff"));
         trailBezierOrange = trailEffect(18, 5, Color.valueOf("ffaa5f"), Color.valueOf("ffd699"));
         trailBezierPink = trailEffect(18, 5, Color.valueOf("ff69b4"), Color.valueOf("ffb6d9"));
+        trailBezierWhite = trailEffect(18, 5, Color.white, Color.lightGray);
 
         stasisWave = new Effect(50f, 1000f, e -> {
             float f = e.fin();

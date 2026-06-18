@@ -15,6 +15,9 @@ import mindustry.type.*;
 
 import mindustry.gen.Sounds;
 
+import static fadingrevelations.content.FRFx.*;
+import static mindustry.content.Fx.*;
+
 public class FRT1Units {
     public static UnitType alba, annax, apis, heliaca, lancerDrone, mela, sambuca, seed;
 
@@ -52,8 +55,11 @@ public class FRT1Units {
                     bullet = new LiquidBulletType(Liquids.slag) {{
                         speed = 4; lifetime = 40; damage = 3;
                         pierce = true; pierceCap = 2; buildingDamageMultiplier = 0.9f;
-                        chargeEffect = Fx.lightningCharge;
-                        shootEffect = Fx.shootSmall;
+                        chargeEffect = new MultiEffect(chargeBezierOrange, lightningCharge);
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = hitBezierOrange;
+                        despawnEffect = bezierBurstOrange;
                     }};
                 }}
             );
@@ -71,8 +77,11 @@ public class FRT1Units {
                     bullet = new PointBulletType() {{
                         speed = 8; lifetime = 20; damage = 0;
                         splashDamage = 170; splashDamageRadius = 32;
-                        hitEffect = Fx.instHit; despawnHit = true;
+                        hitEffect = new MultiEffect(instHit, bezierBurstGold, bezierRingGold);
+                        despawnHit = true;
                         pierce = true; buildingDamageMultiplier = 0.4f;
+                        shootEffect = new MultiEffect(bezierArcGold, shootSmall);
+                        smokeEffect = smokeBezierGold;
                     }};
                 }}
             );
@@ -92,7 +101,9 @@ public class FRT1Units {
                     reload = 90; shootSound = Sounds.shootLaser; alternate = true;
                     bullet = new LaserBulletType() {{
                         damage = 30; width = 15; length = 180;
-                        shootEffect = Fx.shockwave;
+                        shootEffect = new MultiEffect(shockwave, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = hitBezierOrange;
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.white};
                     }};
                 }}
@@ -107,10 +118,17 @@ public class FRT1Units {
             weapons.addAll(
                 new Weapon() {{
                     x = 0; y = 2; reload = 10; rotate = true; mirror = false;
-                    ejectEffect = Fx.casing1;
+                    ejectEffect = casing1;
                     bullet = new BasicBulletType() {{
                         speed = 2; damage = 15; pierce = true; pierceCap = 3;
                         width = 9; height = 11; lifetime = 80; ammoMultiplier = 6;
+                        frontColor = Color.valueOf("ccffcc"); backColor = Color.valueOf("66ff66");
+                        trailColor = Color.valueOf("66ff66"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcGreen);
+                        smokeEffect = smokeBezierGreen;
+                        hitEffect = hitBezierGreen;
+                        despawnEffect = bezierBurstGreen;
+                        trailEffect = trailBezierGreen;
                     }};
                 }},
                 new Weapon() {{
@@ -125,7 +143,8 @@ public class FRT1Units {
                             sprite = "lml-mine";
                             height = 12; width = 12; collidesAir = false; hitSize = 12;
                             damage = 5; frontColor = Color.valueOf("d99f6b"); shrinkX = 0; shrinkY = 0;
-                            despawnEffect = Fx.none; backColor = Color.valueOf("f3e979");
+                            despawnEffect = new MultiEffect(bezierRingGold, bezierBurstOrange);
+                            backColor = Color.valueOf("f3e979");
                             splashDamage = 25; splashDamageRadius = 32;
                             speed = 0; hittable = false; collides = true; pierce = false; lifetime = 720;
                         }};
@@ -148,6 +167,13 @@ public class FRT1Units {
                     bullet = new BasicBulletType() {{
                         width = 6; height = 10; speed = 3; lifetime = 40;
                         damage = 8; pierce = false; buildingDamageMultiplier = 2.8f;
+                        frontColor = Color.valueOf("e4fdff"); backColor = Color.valueOf("66b1ff");
+                        trailColor = Color.valueOf("66b1ff"); trailWidth = 2; trailLength = 6; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcBlue);
+                        smokeEffect = smokeBezierBlue;
+                        hitEffect = hitBezierBlue;
+                        despawnEffect = bezierBurstBlue;
+                        trailEffect = trailBezierBlue;
                     }};
                 }}
             );

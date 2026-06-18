@@ -13,8 +13,9 @@ sourceSets.main.java.srcDirs = ["src"]
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url "https://raw.githubusercontent.com/Anuken/MavenRepositories/master/repository" }
+    //maven { url "https://raw.githubusercontent.com/Anuken/MavenRepositories/master/repository" }
     maven { url "https://jitpack.io" }
+    maven { url "https://mirror.yandex.ru/mirrors/maven2/" }
 }
 
 ext {

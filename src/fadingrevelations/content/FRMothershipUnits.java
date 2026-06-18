@@ -15,6 +15,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.type.weapons.*;
 
+import static fadingrevelations.content.FRFx.*;
 import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
@@ -38,8 +39,10 @@ public class FRMothershipUnits {
                         serrationLenScl = 2; serrationSpaceOffset = 70; serrationFadeOffset = 0;
                         serrations = 8; serrationWidth = 7;
                         fromColor = Color.valueOf("c85c51"); toColor = Color.valueOf("ff795e");
-                        shootEffect = sparkShoot; smokeEffect = sparkShoot;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcOrange);
+                        smokeEffect = new MultiEffect(sparkShoot, smokeBezierOrange);
                         status = StatusEffects.melting; statusDuration = 30;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierBurstOrange);
                     }};
                 }}
             );
@@ -60,8 +63,10 @@ public class FRMothershipUnits {
                         serrationLenScl = 2; serrationSpaceOffset = 70; serrationFadeOffset = 0;
                         serrations = 8; serrationWidth = 7;
                         fromColor = Color.valueOf("6586b0"); toColor = Color.valueOf("87ceeb");
-                        shootEffect = sparkShoot; smokeEffect = sparkShoot;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcCyan);
+                        smokeEffect = new MultiEffect(sparkShoot, smokeBezierCyan);
                         status = StatusEffects.freezing; statusDuration = 30;
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierBurstCyan);
                     }};
                 }}
             );
@@ -79,6 +84,12 @@ public class FRMothershipUnits {
                         speed = 10; damage = 50;
                         pierce = true; pierceBuilding = true; pierceCap = 4;
                         homingPower = 0.0003f; homingRange = 25;
+                        trailColor = Color.valueOf("ff9c5a"); trailWidth = 3; trailLength = 12; trailChance = -1;
+                        frontColor = Color.white; backColor = Color.valueOf("ff9c5a");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
+                        despawnEffect = bezierBurstOrange;
                     }};
                 }}
             );
@@ -104,8 +115,10 @@ public class FRMothershipUnits {
                         serrationLenScl = 8; serrationSpaceOffset = 70; serrationFadeOffset = 0;
                         serrations = 18; serrationWidth = 7;
                         fromColor = Color.valueOf("6586b0"); toColor = Color.valueOf("87ceeb");
-                        shootEffect = sparkShoot; smokeEffect = sparkShoot;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcCyan);
+                        smokeEffect = new MultiEffect(sparkShoot, smokeBezierCyan);
                         status = StatusEffects.freezing; statusDuration = 30;
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierRingCyan);
                     }};
                 }},
                 new Weapon("reclusa-laser") {{
@@ -117,8 +130,10 @@ public class FRMothershipUnits {
                         serrationLenScl = 8; serrationSpaceOffset = 70; serrationFadeOffset = 0;
                         serrations = 18; serrationWidth = 7;
                         fromColor = Color.valueOf("c85c51"); toColor = Color.valueOf("ff795e");
-                        shootEffect = sparkShoot; smokeEffect = sparkShoot;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcOrange);
+                        smokeEffect = new MultiEffect(sparkShoot, smokeBezierOrange);
                         status = StatusEffects.melting; statusDuration = 30;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("reclusa-main") {{
@@ -132,9 +147,11 @@ public class FRMothershipUnits {
                         backColor = Color.valueOf("665c9f"); frontColor = Color.valueOf("bf92f9");
                         lightning = 6; lightningLength = 25; lightningDamage = 35;
                         lightningColor = Color.valueOf("bf92f9");
-                        smokeEffect = shootBigSmoke2; hitShake = 13;
+                        smokeEffect = new MultiEffect(shootBigSmoke2, smokeBezierPurple); hitShake = 13;
                         lightRadius = 50; lightColor = Color.valueOf("bf92f9"); lightOpacity = 0.6f;
                         status = FRStatus.sapped; statusDuration = 60;
+                        trailColor = Color.valueOf("bf92f9"); trailWidth = 5; trailLength = 20; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBigSmoke2, bezierArcPurple);
                         hitEffect = new MultiEffect(
                             new ParticleEffect() {{
                                 particles = 8; length = 20; sizeFrom = 8; sizeTo = 4;
@@ -144,8 +161,10 @@ public class FRMothershipUnits {
                             new WaveEffect() {{
                                 sizeFrom = 14; sizeTo = 0;
                                 colorFrom = Color.valueOf("bf92f9"); colorTo = Color.valueOf("665c9f");
-                            }}
+                            }},
+                            hitBezierPurple, bezierRingPurple
                         );
+                        despawnEffect = new MultiEffect(bezierBurstPurple, bezierRingPurple);
                         fragLifeMin = 0.4f; fragBullets = 9;
                         fragBullet = new ArtilleryBulletType() {{
                             damage = 40; lifetime = 140; width = 25; height = 25;
@@ -156,7 +175,8 @@ public class FRMothershipUnits {
                             lightning = 4; lightningLength = 7;
                             lightningColor = Color.valueOf("bf92f9");
                             smokeEffect = shootBigSmoke2; hitShake = 4;
-                            hitEffect = sapExplosion;
+                            hitEffect = new MultiEffect(sapExplosion, hitBezierPurple);
+                            despawnEffect = bezierBurstPurple;
                             lightRadius = 40; lightColor = Color.valueOf("bf92f9"); lightOpacity = 0.5f;
                             status = FRStatus.sapped; statusDuration = 60;
                         }};
@@ -177,6 +197,9 @@ public class FRMothershipUnits {
                     bullet = new LaserBulletType() {{
                         damage = 100; width = 6; length = 200;
                         colors = new Color[]{Color.valueOf("6586b0"), Color.valueOf("87ceeb"), Color.valueOf("c0ecff")};
+                        shootEffect = bezierArcCyan;
+                        smokeEffect = smokeBezierCyan;
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierRingCyan);
                     }};
                 }},
                 new Weapon("sps-air-fr") {{
@@ -185,6 +208,9 @@ public class FRMothershipUnits {
                     bullet = new LaserBulletType() {{
                         damage = 100; width = 6; length = 200;
                         colors = new Color[]{Color.valueOf("6586b0"), Color.valueOf("87ceeb"), Color.valueOf("c0ecff")};
+                        shootEffect = bezierArcCyan;
+                        smokeEffect = smokeBezierCyan;
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierRingCyan);
                     }};
                 }},
                 new Weapon("sps-lancer-left") {{
@@ -237,13 +263,15 @@ public class FRMothershipUnits {
                     bullet = new BasicBulletType() {{
                         width = 42; height = 42; hitSize = 32;
                         speed = 3; lifetime = 90;
-                        shootEffect = shootTitan; smokeEffect = shootSmokeTitan;
+                        shootEffect = new MultiEffect(shootTitan, bezierArcOrange);
+                        smokeEffect = new MultiEffect(shootSmokeTitan, smokeBezierOrange);
                         sprite = "large-orb";
                         frontColor = Color.valueOf("ffffff"); backColor = Color.valueOf("d06b53");
                         trailColor = Color.valueOf("d06b53"); hitColor = Color.valueOf("d06b53");
                         pierce = true; pierceBuilding = true;
                         trailWidth = 6; trailLength = 28;
-                        hitEffect = blastExplosion; despawnEffect = blastExplosion;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange, bezierBurstOrange);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierBurstOrange);
                         splashDamage = 64; splashDamageRadius = 64; damage = 192;
                         buildingDamageMultiplier = 2;
                         fragOnHit = false; fragRandomSpread = 0; fragSpread = 90;
@@ -257,7 +285,7 @@ public class FRMothershipUnits {
                             hitColor = Color.valueOf("d06b53"); backColor = Color.valueOf("d06b53");
                             frontColor = Color.valueOf("ffffff"); trailColor = Color.valueOf("d06b53");
                             trailWidth = 3.2f; trailLength = 8;
-                            hitEffect = blastExplosion;
+                            hitEffect = new MultiEffect(blastExplosion, hitBezierOrange);
                             splashDamageRadius = 24; splashDamage = 44;
                             fragBullets = 8; fragVelocityMin = 1; fragVelocityMax = 1;
                             fragRandomSpread = 0; fragSpread = 45;
@@ -269,7 +297,7 @@ public class FRMothershipUnits {
                                 hitColor = Color.valueOf("d06b53"); backColor = Color.valueOf("d06b53");
                                 frontColor = Color.valueOf("ffffff"); trailColor = Color.valueOf("d06b53");
                                 trailWidth = 3.2f; trailLength = 8;
-                                hitEffect = blastExplosion;
+                                hitEffect = new MultiEffect(blastExplosion, hitBezierOrange);
                                 splashDamageRadius = 24; splashDamage = 20;
                             }};
                         }};
@@ -285,7 +313,11 @@ public class FRMothershipUnits {
                         buildingDamageMultiplier = 2;
                         splashDamage = 8; splashDamageRadius = 16;
                         pierce = true; pierceCap = 3; pierceBuilding = true;
-                        shootEffect = shootSmall; smokeEffect = shootSmallSmoke;
+                        frontColor = Color.valueOf("ffd699"); backColor = Color.valueOf("ffaa5f");
+                        trailColor = Color.valueOf("ffaa5f"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierBurstOrange);
                     }};
                 }},
                 new Weapon("springald-side-arm") {{
@@ -298,7 +330,11 @@ public class FRMothershipUnits {
                         buildingDamageMultiplier = 2;
                         splashDamage = 8; splashDamageRadius = 16;
                         pierce = true; pierceCap = 3; pierceBuilding = true;
-                        shootEffect = shootSmall; smokeEffect = shootSmallSmoke;
+                        frontColor = Color.valueOf("ffd699"); backColor = Color.valueOf("ffaa5f");
+                        trailColor = Color.valueOf("ffaa5f"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierBurstOrange);
                     }};
                 }},
                 new Weapon("scorpio-weapon") {{
@@ -315,16 +351,23 @@ public class FRMothershipUnits {
                         trailLength = 12; trailWidth = 2.2f;
                         trailEffect = missileTrail; trailInterval = 3; trailParam = 4;
                         fragOnHit = false;
-                        shootEffect = shootTitan; smokeEffect = shootSmokeTitan;
+                        shootEffect = new MultiEffect(shootTitan, bezierArcOrange);
+                        smokeEffect = new MultiEffect(shootSmokeTitan, smokeBezierOrange);
                         sprite = "large-orb";
-                        hitEffect = new ExplosionEffect() {{
-                            waveColor = Color.valueOf("d06b53"); smokeColor = Color.valueOf("6e7080");
-                            sparkColor = Color.valueOf("7e6cba"); waveStroke = 4; waveRad = 40;
-                        }};
-                        despawnEffect = new ExplosionEffect() {{
-                            waveColor = Color.valueOf("d06b53"); smokeColor = Color.valueOf("6e7080");
-                            sparkColor = Color.valueOf("7e6cba"); waveStroke = 4; waveRad = 40;
-                        }};
+                        hitEffect = new MultiEffect(
+                            new ExplosionEffect() {{
+                                waveColor = Color.valueOf("d06b53"); smokeColor = Color.valueOf("6e7080");
+                                sparkColor = Color.valueOf("7e6cba"); waveStroke = 4; waveRad = 40;
+                            }},
+                            hitBezierOrange
+                        );
+                        despawnEffect = new MultiEffect(
+                            new ExplosionEffect() {{
+                                waveColor = Color.valueOf("d06b53"); smokeColor = Color.valueOf("6e7080");
+                                sparkColor = Color.valueOf("7e6cba"); waveStroke = 4; waveRad = 40;
+                            }},
+                            bezierBurstOrange
+                        );
                         despawnSound = explosionDull;
                         fragBullets = 10; fragVelocityMin = 0.5f; fragVelocityMax = 1.5f; fragLifeMin = 0.5f;
                         fragBullet = new BasicBulletType() {{
@@ -420,7 +463,11 @@ public class FRMothershipUnits {
                         sprite = "shell";
                         frontColor = Color.valueOf("f8ae4b"); backColor = Color.valueOf("e9901a");
                         status = StatusEffects.burning; statusDuration = 180;
-                        shootEffect = shootBig; smokeEffect = shootSmallSmoke;
+                        trailColor = Color.valueOf("f8ae4b"); trailWidth = 2.5f; trailLength = 10; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBig, bezierArcOrange);
+                        smokeEffect = new MultiEffect(shootSmallSmoke, smokeBezierOrange);
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
+                        despawnEffect = bezierBurstOrange;
                     }};
                 }},
                 new Weapon("japonica-air") {{
@@ -437,7 +484,11 @@ public class FRMothershipUnits {
                         sprite = "shell";
                         frontColor = Color.valueOf("f8ae4b"); backColor = Color.valueOf("e9901a");
                         status = StatusEffects.burning; statusDuration = 180;
-                        shootEffect = shootBig; smokeEffect = shootSmallSmoke;
+                        trailColor = Color.valueOf("f8ae4b"); trailWidth = 2.5f; trailLength = 10; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBig, bezierArcOrange);
+                        smokeEffect = new MultiEffect(shootSmallSmoke, smokeBezierOrange);
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
+                        despawnEffect = bezierBurstOrange;
                     }};
                 }}
             );
@@ -452,7 +503,7 @@ public class FRMothershipUnits {
                     status = FRStatus.japonicaWeakened; statusDuration = 60;
                     x = 0; y = 40;
                 }}
-                
+
             );
         }};
 
@@ -492,7 +543,8 @@ public class FRMothershipUnits {
                             new WaveEffect() {{ sizeFrom = 32; sizeTo = 22; colorFrom = Color.valueOf("ec7458aa"); colorTo = Color.valueOf("ff9c5a"); lifetime = 120; }},
                             new WaveEffect() {{ sizeFrom = 22; sizeTo = 32; colorFrom = Color.valueOf("ec7458aa"); colorTo = Color.valueOf("ff9c5a"); lifetime = 120; }},
                             new ParticleEffect() {{ particles = 8; length = 35; colorFrom = Color.valueOf("ec7458aa"); colorTo = Color.valueOf("ff9c5a"); lifetime = 420; }},
-                            new ParticleEffect() {{ particles = 8; length = 35; colorFrom = Color.valueOf("ec7458aa"); colorTo = Color.valueOf("ff9c5a"); lifetime = 420; }}
+                            new ParticleEffect() {{ particles = 8; length = 35; colorFrom = Color.valueOf("ec7458aa"); colorTo = Color.valueOf("ff9c5a"); lifetime = 420; }},
+                            bezierBurstOrange, bezierRingOrange
                         );
                     }};
                 }},
@@ -504,6 +556,9 @@ public class FRMothershipUnits {
                         damage = 108; length = 460;
                         status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("hive-mg") {{
@@ -514,6 +569,9 @@ public class FRMothershipUnits {
                         damage = 92; length = 460;
                         status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("ec7458aa"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("hive-laser") {{
@@ -524,8 +582,8 @@ public class FRMothershipUnits {
                     bullet = new PointBulletType() {{
                         speed = 12; lifetime = 30; maxRange = 400;
                         damage = 740; splashDamage = 740; splashDamageRadius = 24;
-                        trailEffect = instTrail; hitEffect = massiveExplosion;
-                        shootEffect = instShoot;
+                        trailEffect = instTrail; hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange);
+                        shootEffect = new MultiEffect(instShoot, bezierArcOrange);
                         pierce = true; pierceBuilding = true;
                     }};
                 }},
@@ -537,8 +595,8 @@ public class FRMothershipUnits {
                     bullet = new PointBulletType() {{
                         speed = 12; lifetime = 30; maxRange = 400;
                         damage = 720; splashDamage = 720; splashDamageRadius = 24;
-                        trailEffect = instTrail; hitEffect = massiveExplosion;
-                        shootEffect = instShoot;
+                        trailEffect = instTrail; hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange);
+                        shootEffect = new MultiEffect(instShoot, bezierArcOrange);
                         pierce = true; pierceBuilding = true;
                     }};
                 }}
@@ -573,6 +631,9 @@ public class FRMothershipUnits {
                         lightColor = Color.valueOf("92e02f"); lightningColor = Color.valueOf("92e02f");
                         healPercent = 30; collidesTeam = true;
                         colors = new Color[]{Color.valueOf("6fa629"), Color.valueOf("92e02f"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcGreen;
+                        smokeEffect = smokeBezierGreen;
+                        hitEffect = new MultiEffect(hitBezierGreen, bezierRingGreen);
                     }};
                 }},
                 new Weapon("heal-laser-mount") {{
@@ -588,6 +649,9 @@ public class FRMothershipUnits {
                         lightColor = Color.valueOf("92e02f"); lightningColor = Color.valueOf("92e02f");
                         healPercent = 30; collidesTeam = true;
                         colors = new Color[]{Color.valueOf("6fa629"), Color.valueOf("92e02f"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcGreen;
+                        smokeEffect = smokeBezierGreen;
+                        hitEffect = new MultiEffect(hitBezierGreen, bezierRingGreen);
                     }};
                 }},
                 new Weapon("nothing") {{
@@ -609,7 +673,7 @@ public class FRMothershipUnits {
                         healPercent = 30; collidesTeam = true;
                         sideAngle = 15; sideWidth = 0; sideLength = 0;
                         colors = new Color[]{Color.valueOf("6fa629"), Color.valueOf("92e02f"), Color.valueOf("ffffff")};
-                        chargeEffect = Fx.greenLaserCharge;
+                        chargeEffect = new MultiEffect(Fx.greenLaserCharge, chargeBezierGreen);
                     }};
                 }}
             );
@@ -626,7 +690,7 @@ public class FRMothershipUnits {
                     x = -25; y = 20; mirror = true;
                     reload = 5; targetInterval = 5; targetSwitchInterval = 8;
                     bullet = new BulletType() {{
-                        shootEffect = sparkShoot; hitEffect = pointHit;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcGreen); hitEffect = new MultiEffect(pointHit, hitBezierGreen);
                         maxRange = 240; damage = 30;
                     }};
                 }},
@@ -634,7 +698,7 @@ public class FRMothershipUnits {
                     x = -25; y = -30; mirror = true;
                     reload = 7; targetInterval = 7; targetSwitchInterval = 10;
                     bullet = new BulletType() {{
-                        shootEffect = sparkShoot; hitEffect = pointHit;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcGreen); hitEffect = new MultiEffect(pointHit, hitBezierGreen);
                         maxRange = 240; damage = 35;
                     }};
                 }},
@@ -646,8 +710,8 @@ public class FRMothershipUnits {
                     shootSound = shootLaser;
                     bullet = new ContinuousLaserBulletType(30f) {{
                         maxRange = 220; length = 240; lifetime = 155;
-                        hitEffect = hitMeltHeal; drawSize = 460; shake = 1;
-                        shootEffect = shootHeal; smokeEffect = Fx.none;
+                        hitEffect = new MultiEffect(hitMeltHeal, hitBezierGreen); drawSize = 460; shake = 1;
+                        shootEffect = new MultiEffect(shootHeal, bezierArcGreen); smokeEffect = Fx.none;
                         width = 6; largeHit = true;
                         incendSpread = 0; incendChance = 0; incendAmount = 0;
                         healPercent = 0.5f; collidesTeam = true;
@@ -679,7 +743,7 @@ public class FRMothershipUnits {
                 }}
             );
             abilities.addAll(
-                
+
                 new EnergyFieldAbility(20f, 12f, 240f) {{
                     color = Color.valueOf("84f491");
                     healPercent = 1; hitBuildings = true; hitUnits = true;

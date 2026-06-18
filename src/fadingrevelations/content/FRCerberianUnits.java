@@ -11,6 +11,7 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 
+import static fadingrevelations.content.FRFx.*;
 import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
@@ -33,9 +34,13 @@ public class FRCerberianUnits {
                     bullet = new MissileBulletType() {{
                         speed = 2.7f; damage = 26; width = 8; height = 8;
                         shrinkY = 0; drag = -0.01f; splashDamageRadius = 20;
-                        splashDamage = 30; lifetime = 50; hitEffect = blastExplosion;
-                        despawnEffect = blastExplosion; trailColor = Color.valueOf("5461c5");
+                        splashDamage = 30; lifetime = 50;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierBlue);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierBurstBlue);
+                        trailColor = Color.valueOf("5461c5"); trailWidth = 2.5f; trailLength = 10; trailChance = -1;
                         frontColor = Color.valueOf("6d7dff"); backColor = Color.valueOf("5461c5");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcBlue);
+                        smokeEffect = smokeBezierBlue;
                         status = StatusEffects.blasted; statusDuration = 60;
                     }};
                 }},
@@ -46,9 +51,13 @@ public class FRCerberianUnits {
                     bullet = new MissileBulletType() {{
                         speed = 2.7f; damage = 26; width = 8; height = 8;
                         shrinkY = 0; drag = -0.01f; splashDamageRadius = 20;
-                        splashDamage = 30; lifetime = 50; hitEffect = blastExplosion;
-                        despawnEffect = blastExplosion; trailColor = Color.valueOf("5461c5");
+                        splashDamage = 30; lifetime = 50;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierBlue);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierBurstBlue);
+                        trailColor = Color.valueOf("5461c5"); trailWidth = 2.5f; trailLength = 10; trailChance = -1;
                         frontColor = Color.valueOf("6d7dff"); backColor = Color.valueOf("5461c5");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcBlue);
+                        smokeEffect = smokeBezierBlue;
                         status = StatusEffects.blasted; statusDuration = 60;
                     }};
                 }},
@@ -59,6 +68,9 @@ public class FRCerberianUnits {
                         pierce = false; damage = 300; width = 12; lifetime = 25;
                         colors = new Color[]{Color.valueOf("5461c5"), Color.valueOf("99a4ff"), Color.white};
                         pierceCap = 1; pierceBuilding = false;
+                        shootEffect = bezierArcBlue;
+                        smokeEffect = smokeBezierBlue;
+                        hitEffect = new MultiEffect(hitBezierBlue, bezierRingBlue);
                     }};
                 }}
             );
@@ -79,12 +91,16 @@ public class FRCerberianUnits {
                     ejectEffect = Fx.none; x = 7; shootSound = shootFlame;
                     bullet = new LiquidBulletType(Liquids.slag) {{
                         damage = 30; drag = 0.009f; speed = 2.5f;
-                        shootEffect = shootSmall; lifetime = 57; collidesAir = false;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        lifetime = 57; collidesAir = false;
                         fragBullets = 2; status = StatusEffects.burning; statusDuration = 120;
+                        hitEffect = hitBezierOrange;
                         fragBullet = new LiquidBulletType(Liquids.slag) {{
                             knockback = 1.6f; speed = 1; damage = 8;
                             lifetime = 40; collidesAir = false;
                             status = StatusEffects.melting; statusDuration = 60;
+                            hitEffect = hitBezierOrange;
                         }};
                     }};
                 }}
@@ -108,7 +124,8 @@ public class FRCerberianUnits {
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
                         sapStrength = 0.9f; length = 55; damage = 40;
-                        shootEffect = shootSmall; hitColor = Color.valueOf("bf92f9");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcPurple);
+                        hitColor = Color.valueOf("bf92f9");
                         despawnEffect = Fx.none; width = 0.56f;
                         lifetime = 30; knockback = -1;
                     }};
@@ -118,7 +135,8 @@ public class FRCerberianUnits {
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
                         sapStrength = 0.9f; length = 55; damage = 40;
-                        shootEffect = shootSmall; hitColor = Color.valueOf("bf92f9");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcPurple);
+                        hitColor = Color.valueOf("bf92f9");
                         despawnEffect = Fx.none; width = 0.56f;
                         lifetime = 30; knockback = -1;
                     }};
@@ -128,7 +146,8 @@ public class FRCerberianUnits {
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
                         sapStrength = 0.9f; length = 55; damage = 40;
-                        shootEffect = shootSmall; hitColor = Color.valueOf("bf92f9");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcPurple);
+                        hitColor = Color.valueOf("bf92f9");
                         despawnEffect = Fx.none; width = 0.56f;
                         lifetime = 30; knockback = -1;
                     }};
@@ -141,13 +160,18 @@ public class FRCerberianUnits {
                         speed = 2; damage = 0; splashDamage = 42;
                         splashDamageRadius = 70; orbSize = 4; fragBullets = 4;
                         lifetime = 70; status = StatusEffects.melting; fragLifeMin = 0.3f;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                         fragBullet = new LiquidBulletType(Liquids.oil) {{
                             speed = 2; orbSize = 3; damage = 0;
                             splashDamage = 7; splashDamageRadius = 70; status = StatusEffects.tarred;
                             fragBullets = 3; lifetime = 55; fragLifeMin = 0.3f;
+                            hitEffect = hitBezierRed;
                             fragBullet = new LiquidBulletType(Liquids.cryofluid) {{
                                 speed = 2; lifetime = 30; damage = 0;
                                 splashDamage = 20; orbSize = 2; splashDamageRadius = 70;
+                                hitEffect = hitBezierCyan;
                             }};
                         }};
                     }};
@@ -181,10 +205,15 @@ public class FRCerberianUnits {
                     shake = 1; reload = 50; mirror = true; shootSound = shootArtillery;
                     bullet = new FlakBulletType(4f, 10f) {{
                         height = 12; width = 8;
-                        frontColor = Color.valueOf("a93e3e"); backColor = Color.valueOf("6f2626");
+                        frontColor = Color.valueOf("ff8080"); backColor = Color.valueOf("a93e3e");
                         pierce = true; pierceCap = 3; homingPower = 0.09f;
                         lifetime = 90; splashDamage = 10; splashDamageRadius = 12;
                         collidesAir = true; collidesGround = false; collidesTiles = false;
+                        trailColor = Color.valueOf("a93e3e"); trailWidth = 2; trailLength = 6; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcRed);
+                        smokeEffect = smokeBezierRed;
+                        hitEffect = new MultiEffect(hitBezierRed, bezierBurstRed);
+                        despawnEffect = bezierRingRed;
                     }};
                 }},
                 new Weapon("cerberian-flak-mount") {{
@@ -192,10 +221,15 @@ public class FRCerberianUnits {
                     rotateSpeed = 4; reload = 30; mirror = true; shootSound = shootArtillery;
                     bullet = new FlakBulletType(4f, 8f) {{
                         damage = 8; pierce = true; width = 12; height = 8;
-                        frontColor = Color.valueOf("a93e3e"); backColor = Color.valueOf("6f2626");
+                        frontColor = Color.valueOf("ff8080"); backColor = Color.valueOf("a93e3e");
                         pierceCap = 3; homingPower = 0.09f;
                         lifetime = 90; splashDamage = 8; splashDamageRadius = 12;
                         collidesAir = true; collidesGround = false; collidesTiles = false;
+                        trailColor = Color.valueOf("a93e3e"); trailWidth = 2; trailLength = 6; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcRed);
+                        smokeEffect = smokeBezierRed;
+                        hitEffect = new MultiEffect(hitBezierRed, bezierBurstRed);
+                        despawnEffect = bezierRingRed;
                     }};
                 }},
                 new Weapon("cerberian-laser-annihilator") {{
@@ -221,7 +255,8 @@ public class FRCerberianUnits {
                                 colorTo = Color.valueOf("6f2626"); length = 95;
                                 baseLength = -95; lifetime = 120; particles = 50;
                                 interp = Interp.exp5; sizeInterp = Interp.pow5Out;
-                            }}
+                            }},
+                            bezierRingRed
                         );
                         chargeEffect = new MultiEffect(
                             new ParticleEffect() {{ particles = 60; length = 100; baseLength = -100; lifetime = 200; layer = 106; interp = Interp.exp5; sizeFrom = 8; sizeTo = 3; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }},
@@ -235,7 +270,8 @@ public class FRCerberianUnits {
                             new ParticleEffect() {{ particles = 70; offset = 100; sizeFrom = 1; sizeTo = 6; length = 200; baseLength = -200; interp = Interp.pow3In; sizeInterp = Interp.pow5Out; lifetime = 300; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }},
                             new ParticleEffect() {{ particles = 120; offset = 100; sizeFrom = 1; sizeTo = 6; length = 250; baseLength = -250; interp = Interp.pow3In; sizeInterp = Interp.pow5Out; lifetime = 240; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }},
                             new ParticleEffect() {{ particles = 130; offset = 100; sizeFrom = 1; sizeTo = 6; length = 300; baseLength = -400; interp = Interp.pow3In; sizeInterp = Interp.pow5Out; lifetime = 400; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }},
-                            new ParticleEffect() {{ particles = 145; offset = 100; sizeFrom = 1; sizeTo = 6; length = 350; baseLength = -350; interp = Interp.pow3In; sizeInterp = Interp.pow5Out; lifetime = 420; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }}
+                            new ParticleEffect() {{ particles = 145; offset = 100; sizeFrom = 1; sizeTo = 6; length = 350; baseLength = -350; interp = Interp.pow3In; sizeInterp = Interp.pow5Out; lifetime = 420; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }},
+                            chargeBezierRed
                         );
                     }};
                 }},
@@ -244,33 +280,40 @@ public class FRCerberianUnits {
                     alternate = true; shootSound = shootArtillery; mirror = true;
                     rotate = false; top = false;
                     bullet = new BasicBulletType() {{
-                        sprite = "lycosid-bullet"; frontColor = Color.valueOf("a93e3e");
-                        hitSound = Sounds.shoot; hitShake = 9; hitEffect = instHit;
+                        sprite = "lycosid-bullet"; frontColor = Color.valueOf("ff8080");
+                        hitSound = Sounds.shoot; hitShake = 9; hitEffect = new MultiEffect(instHit, hitBezierRed, bezierRingRed);
                         backColor = Color.valueOf("6f2626"); width = 42; height = 42;
                         speed = 1.2f; lifetime = 360; scaleLife = true; damage = 60;
                         spin = 1.6f; pierce = true; pierceBuilding = true;
                         buildingDamageMultiplier = 0.75f;
+                        trailColor = Color.valueOf("a93e3e"); trailWidth = 4; trailLength = 16; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBig, bezierArcRed);
+                        smokeEffect = new MultiEffect(shootBigSmoke, smokeBezierRed);
                         lightning = 6; lightningColor = Color.valueOf("a93e3e");
                         lightningLength = 12; lightningDamage = 15; fragBullets = 6;
                         fragBullet = new ArtilleryBulletType(1f, 35f) {{
-                            hitShake = 6; hitEffect = hitMeltdown;
+                            hitShake = 6; hitEffect = new MultiEffect(hitMeltdown, hitBezierRed);
                             hitSound = Sounds.explosion; sprite = "lycosid-bullet";
-                            frontColor = Color.valueOf("a93e3e"); backColor = Color.valueOf("6f2626");
+                            frontColor = Color.valueOf("ff8080"); backColor = Color.valueOf("6f2626");
                             width = 38; height = 38; speed = 1; lifetime = 60;
                             lightning = 3; lightningLength = 9; lightningDamage = 12;
+                            trailColor = Color.valueOf("a93e3e"); trailWidth = 3; trailLength = 10; trailChance = -1;
                             fragBullets = 12;
                             fragBullet = new BombBulletType() {{
                                 hitShake = 3; splashDamageRadius = 70;
                                 sprite = "lml-mine"; hitSound = Sounds.explosion;
                                 width = 12; height = 12;
-                                hitEffect = new WaveEffect() {{ sizeFrom = 0; sizeTo = 18; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }};
+                                hitEffect = new MultiEffect(
+                                    new WaveEffect() {{ sizeFrom = 0; sizeTo = 18; colorFrom = Color.valueOf("a93e3e"); colorTo = Color.valueOf("6f2626"); }},
+                                    hitBezierRed
+                                );
                                 splashDamage = 30; speed = 0.5f; lifetime = 60;
                                 fragBullets = 1;
                                 fragBullet = new MissileBulletType() {{
                                     hitShake = 1; speed = 1.5f; lifetime = 40;
                                     height = 16; width = 10; damage = 25;
                                     homingPower = 0.09f; homingRange = 160; homingDelay = 60;
-                                    hitEffect = blastExplosion;
+                                    hitEffect = new MultiEffect(blastExplosion, hitBezierRed);
                                     lightning = 2; lightningLength = 6; lightningDamage = 4;
                                 }};
                             }};
@@ -286,7 +329,7 @@ public class FRCerberianUnits {
                     bullet = new LaserBulletType() {{
                         damage = 240; length = 360; width = 26;
                         collidesAir = true; collidesGround = true;
-                        hitSound = shockBullet; hitEffect = instHit;
+                        hitSound = shockBullet; hitEffect = new MultiEffect(instHit, hitBezierRed);
                         colors = new Color[]{Color.valueOf("a93e3e"), Color.valueOf("6f2626"), Color.white};
                     }};
                 }}
@@ -312,7 +355,8 @@ public class FRCerberianUnits {
                     bullet = new BulletType() {{
                         collides = false; collidesTiles = false;
                         hitSound = Sounds.explosion; rangeOverride = 30;
-                        hitEffect = pulverize; speed = 0;
+                        hitEffect = new MultiEffect(pulverize, bezierBurstRed, bezierRingRed);
+                        speed = 0;
                         splashDamageRadius = 55; instantDisappear = true;
                         splashDamage = 105; killShooter = true;
                         hittable = false; collidesAir = true; damage = 0;
@@ -332,18 +376,22 @@ public class FRCerberianUnits {
                     bullet = new MissileBulletType() {{
                         speed = 2.5f; damage = 11; lifetime = 90;
                         homingPower = 0.2f; weaveMag = 4; weaveScale = 4;
-                        shootEffect = shootSmall; frontColor = Color.valueOf("ffffff");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcBlue);
+                        frontColor = Color.valueOf("ffffff");
                         hitSound = Sounds.none; width = 7; height = 9;
                         lightColor = Color.valueOf("8ca9e8"); trailColor = Color.valueOf("8ca9e8");
                         backColor = Color.valueOf("8ca9e8"); lightRadius = 40; lightOpacity = 0.7f;
                         trailWidth = 2.2f; trailLength = 18; trailChance = -1;
                         despawnEffect = Fx.none; despawnHit = true;
-                        hitEffect = new ExplosionEffect() {{
-                            lifetime = 20; waveStroke = 1.2f; waveColor = Color.valueOf("8ca9e8");
-                            sparkColor = Color.valueOf("8ca9e8"); waveRad = 12;
-                            smokeSize = 0; smokeSizeBase = 0; sparks = 8;
-                            sparkRad = 35; sparkLen = 3; sparkStroke = 1.2f;
-                        }};
+                        hitEffect = new MultiEffect(
+                            new ExplosionEffect() {{
+                                lifetime = 20; waveStroke = 1.2f; waveColor = Color.valueOf("8ca9e8");
+                                sparkColor = Color.valueOf("8ca9e8"); waveRad = 12;
+                                smokeSize = 0; smokeSizeBase = 0; sparks = 8;
+                                sparkRad = 35; sparkLen = 3; sparkStroke = 1.2f;
+                            }},
+                            hitBezierBlue
+                        );
                     }};
                 }}
             );
@@ -363,8 +411,9 @@ public class FRCerberianUnits {
                     bullet = new LaserBulletType() {{
                         damage = 300; sideAngle = 20; sideWidth = 1.5f;
                         sideLength = 80; width = 25; length = 230;
-                        shootEffect = shockwave;
+                        shootEffect = new MultiEffect(shockwave, bezierArcBlue);
                         colors = new Color[]{Color.valueOf("5461c5"), Color.valueOf("99a4ff"), Color.white};
+                        hitEffect = new MultiEffect(hitBezierBlue, bezierRingBlue);
                     }};
                 }},
                 new Weapon("cerberian-large-artillery") {{
@@ -375,18 +424,23 @@ public class FRCerberianUnits {
                         splashDamageRadius = 25; collidesGround = true; lifetime = 47;
                         status = StatusEffects.blasted; statusDuration = 60;
                         homingPower = 0.2f; weaveMag = 4; weaveScale = 4;
-                        shootEffect = shootBig2; frontColor = Color.valueOf("ffffff");
+                        shootEffect = new MultiEffect(shootBig2, bezierArcBlue);
+                        frontColor = Color.valueOf("ffffff");
                         hitSound = Sounds.none; width = 10; height = 10;
                         lightColor = Color.valueOf("8ca9e8"); trailColor = Color.valueOf("8ca9e8");
                         backColor = Color.valueOf("8ca9e8"); lightRadius = 40; lightOpacity = 0.7f;
                         trailWidth = 2.8f; trailLength = 20; trailChance = -1;
-                        despawnSound = explosionDull; despawnEffect = Fx.none;
-                        hitEffect = new ExplosionEffect() {{
-                            lifetime = 20; waveStroke = 2; waveColor = Color.valueOf("8ca9e8");
-                            sparkColor = Color.valueOf("8ca9e8"); waveRad = 12;
-                            smokeSize = 0; smokeSizeBase = 0; sparks = 10;
-                            sparkRad = 35; sparkLen = 4; sparkStroke = 1.5f;
-                        }};
+                        despawnSound = explosionDull;
+                        hitEffect = new MultiEffect(
+                            new ExplosionEffect() {{
+                                lifetime = 20; waveStroke = 2; waveColor = Color.valueOf("8ca9e8");
+                                sparkColor = Color.valueOf("8ca9e8"); waveRad = 12;
+                                smokeSize = 0; smokeSizeBase = 0; sparks = 10;
+                                sparkRad = 35; sparkLen = 4; sparkStroke = 1.5f;
+                            }},
+                            hitBezierBlue
+                        );
+                        despawnEffect = bezierBurstBlue;
                     }};
                 }},
                 new Weapon("cerberian-large-artillery") {{
@@ -397,18 +451,23 @@ public class FRCerberianUnits {
                         splashDamageRadius = 25; collidesGround = true; lifetime = 47;
                         status = StatusEffects.blasted; statusDuration = 60;
                         homingPower = 0.2f; weaveMag = 4; weaveScale = 4;
-                        shootEffect = shootBig2; frontColor = Color.valueOf("ffffff");
+                        shootEffect = new MultiEffect(shootBig2, bezierArcBlue);
+                        frontColor = Color.valueOf("ffffff");
                         hitSound = Sounds.none; width = 10; height = 10;
                         lightColor = Color.valueOf("8ca9e8"); trailColor = Color.valueOf("8ca9e8");
                         backColor = Color.valueOf("8ca9e8"); lightRadius = 40; lightOpacity = 0.7f;
                         trailWidth = 2.8f; trailLength = 20; trailChance = -1;
-                        despawnSound = explosionDull; despawnEffect = Fx.none;
-                        hitEffect = new ExplosionEffect() {{
-                            lifetime = 20; waveStroke = 2; waveColor = Color.valueOf("8ca9e8");
-                            sparkColor = Color.valueOf("8ca9e8"); waveRad = 12;
-                            smokeSize = 0; smokeSizeBase = 0; sparks = 10;
-                            sparkRad = 35; sparkLen = 4; sparkStroke = 1.5f;
-                        }};
+                        despawnSound = explosionDull;
+                        hitEffect = new MultiEffect(
+                            new ExplosionEffect() {{
+                                lifetime = 20; waveStroke = 2; waveColor = Color.valueOf("8ca9e8");
+                                sparkColor = Color.valueOf("8ca9e8"); waveRad = 12;
+                                smokeSize = 0; smokeSizeBase = 0; sparks = 10;
+                                sparkRad = 35; sparkLen = 4; sparkStroke = 1.5f;
+                            }},
+                            hitBezierBlue
+                        );
+                        despawnEffect = bezierBurstBlue;
                     }};
                 }}
             );
@@ -425,8 +484,11 @@ public class FRCerberianUnits {
                     shootSound = Sounds.shoot;
                     bullet = new BasicBulletType(2.5f, 11f) {{
                         width = 7; height = 9; lifetime = 45;
-                        shootEffect = shootSmall; smokeEffect = shootSmallSmoke;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcBlue);
+                        smokeEffect = smokeBezierBlue;
+                        hitEffect = hitBezierBlue;
                         frontColor = Color.valueOf("6d7dff"); backColor = Color.valueOf("5461c5");
+                        trailColor = Color.valueOf("6d7dff"); trailWidth = 1.8f; trailLength = 5; trailChance = -1;
                     }};
                 }}
             );
@@ -443,11 +505,15 @@ public class FRCerberianUnits {
                     recoil = 3; shake = 2; ejectEffect = casing2;
                     shootSound = shootArtillery;
                     bullet = new ArtilleryBulletType(2.2f, 28f) {{
-                        hitEffect = blastExplosion; knockback = 0.8f;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierBlue); knockback = 0.8f;
                         lifetime = 140; sprite = "shell"; width = 14; height = 14;
                         collides = true; collidesTiles = true;
                         splashDamageRadius = 42; splashDamage = 85;
                         backColor = Color.valueOf("5461c5"); frontColor = Color.valueOf("6d7dff");
+                        trailColor = Color.valueOf("6d7dff"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBigSmoke, bezierArcBlue);
+                        smokeEffect = new MultiEffect(shootSmallSmoke, smokeBezierBlue);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierRingBlue);
                     }};
                 }}
             );
@@ -466,7 +532,8 @@ public class FRCerberianUnits {
                     reload = 12; ignoreRotation = true; shootSound = Sounds.none;
                     bullet = new BombBulletType() {{
                         splashDamageRadius = 25; splashDamage = 30;
-                        width = 10; height = 14; hitEffect = flakExplosion;
+                        width = 10; height = 14;
+                        hitEffect = new MultiEffect(flakExplosion, bezierBurstBlue);
                         shootEffect = Fx.none; smokeEffect = Fx.none;
                         status = StatusEffects.blasted; statusDuration = 60;
                         fragBullets = 2;
@@ -512,7 +579,8 @@ public class FRCerberianUnits {
                     bullet = new ShrapnelBulletType() {{
                         damage = 240; toColor = Color.valueOf("6d7dff"); fromColor = Color.valueOf("5461c5");
                         pierce = true; pierceCap = 13;
-                        hitEffect = blastExplosion; shootEffect = shootBig;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierBlue, bezierRingBlue);
+                        shootEffect = new MultiEffect(shootBig, bezierArcBlue);
                         length = 280; width = 18;
                         serrationLenScl = 3; serrationSpaceOffset = 50;
                         serrations = 40; serrationWidth = 4;
@@ -537,9 +605,12 @@ public class FRCerberianUnits {
                         shrinkY = 0; drag = -0.003f; homingRange = 60;
                         keepVelocity = false; splashDamageRadius = 28;
                         splashDamage = 16; lifetime = 50;
-                        trailColor = Color.valueOf("5461c5"); backColor = Color.valueOf("5461c5");
-                        frontColor = Color.valueOf("6d7dff");
-                        hitEffect = blastExplosion; despawnEffect = blastExplosion;
+                        trailColor = Color.valueOf("5461c5"); trailWidth = 2; trailLength = 8; trailChance = -1;
+                        backColor = Color.valueOf("5461c5"); frontColor = Color.valueOf("6d7dff");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcBlue);
+                        smokeEffect = smokeBezierBlue;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierBlue);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierBurstBlue);
                         weaveScale = 6; weaveMag = 1;
                     }};
                 }}
@@ -561,7 +632,8 @@ public class FRCerberianUnits {
                     x = 8.5f; y = -1.5f;
                     bullet = new SapBulletType() {{
                         sapStrength = 0.59f; length = 80; damage = 24;
-                        shootEffect = shootSmall; hitColor = Color.valueOf("bf92f9");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcPurple);
+                        hitColor = Color.valueOf("bf92f9");
                         despawnEffect = Fx.none; width = 0.55f;
                         lifetime = 35; knockback = -1.24f;
                     }};
@@ -571,7 +643,8 @@ public class FRCerberianUnits {
                     shootSound = shootSap;
                     bullet = new SapBulletType() {{
                         sapStrength = 0.86f; length = 40; damage = 18;
-                        shootEffect = shootSmall; hitColor = Color.valueOf("bf92f9");
+                        shootEffect = new MultiEffect(shootSmall, bezierArcPurple);
+                        hitColor = Color.valueOf("bf92f9");
                         despawnEffect = Fx.none; width = 0.4f;
                         lifetime = 25; knockback = -0.65f;
                     }};
@@ -598,7 +671,8 @@ public class FRCerberianUnits {
                     shoot = new ShootSpread(2, 17) {{ shotDelay = 8; }};
                     bullet = new SapBulletType() {{
                         sapStrength = 0.1f; length = 90; damage = 180;
-                        width = 0.7f; shootEffect = shootSmall;
+                        width = 0.7f; shootEffect = new MultiEffect(shootSmall, bezierArcPurple);
+                        hitColor = Color.valueOf("bf92f9");
                         knockback = -1.4f; lifetime = 45;
                     }};
                 }},
@@ -609,23 +683,27 @@ public class FRCerberianUnits {
                     shootSound = shootArtillery; ejectEffect = casing3;
                     rotationLimit = 80;
                     bullet = new ArtilleryBulletType(3f, 18f) {{
-                        hitEffect = sapExplosion; knockback = 2; lifetime = 80;
+                        hitEffect = new MultiEffect(sapExplosion, hitBezierPurple); knockback = 2; lifetime = 80;
                         width = 25; height = 25; collidesTiles = true; collides = true;
                         splashDamageRadius = 80; splashDamage = 24;
                         backColor = Color.valueOf("6d56bf"); frontColor = Color.valueOf("bf92f9");
                         lightning = 5; lightningLength = 20;
-                        smokeEffect = shootBigSmoke; hitShake = 10;
+                        smokeEffect = new MultiEffect(shootBigSmoke, smokeBezierPurple); hitShake = 10;
                         lightRadius = 40; lightColor = Color.valueOf("665c9f"); lightOpacity = 0.6f;
+                        trailColor = Color.valueOf("bf92f9"); trailWidth = 3; trailLength = 12; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBigSmoke, bezierArcPurple);
+                        despawnEffect = new MultiEffect(bezierBurstPurple, bezierRingPurple);
                         status = FRStatus.sapped; statusDuration = 600;
                         fragLifeMin = 0.3f; fragBullets = 9;
                         fragBullet = new ArtilleryBulletType(2.3f, 4f) {{
-                            hitEffect = sapExplosion; knockback = 0.8f; lifetime = 90;
+                            hitEffect = new MultiEffect(sapExplosion, hitBezierPurple); knockback = 0.8f; lifetime = 90;
                             width = 20; height = 20; collidesTiles = false;
                             splashDamageRadius = 70; splashDamage = 8;
                             backColor = Color.valueOf("6d56bf"); frontColor = Color.valueOf("bf92f9");
                             lightning = 2; lightningLength = 5;
                             smokeEffect = shootBigSmoke; hitShake = 5;
                             lightRadius = 30; lightColor = Color.valueOf("665c9f"); lightOpacity = 0.5f;
+                            despawnEffect = bezierBurstPurple;
                             status = FRStatus.sapped; statusDuration = 600;
                         }};
                     }};
@@ -646,7 +724,11 @@ public class FRCerberianUnits {
                     shoot = new ShootPattern() {{ shots = 3; shotDelay = 4; }};
                     bullet = new BasicBulletType(7f, 60f) {{
                         width = 11; height = 20; lifetime = 25;
-                        shootEffect = shootBig;
+                        shootEffect = new MultiEffect(shootBig, bezierArcBlue);
+                        smokeEffect = smokeBezierBlue;
+                        hitEffect = new MultiEffect(hitBezierBlue, bezierRingBlue);
+                        frontColor = Color.valueOf("99a4ff"); backColor = Color.valueOf("5461c5");
+                        trailColor = Color.valueOf("6d7dff"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
                         lightning = 2; lightningLength = 7;
                         lightningColor = Color.valueOf("6d7dff"); lightningDamage = 22;
                     }};
@@ -661,7 +743,14 @@ public class FRCerberianUnits {
                 new Weapon("cerberian-mount-weapon") {{
                     reload = 16; x = 8.5f; y = -7; rotate = true;
                     ejectEffect = casing1;
-                    bullet = new BasicBulletType(3f, 14f) {{ lifetime = 50; width = 7; height = 9; }};
+                    bullet = new BasicBulletType(3f, 14f) {{
+                        lifetime = 50; width = 7; height = 9;
+                        frontColor = Color.valueOf("99a4ff"); backColor = Color.valueOf("5461c5");
+                        trailColor = Color.valueOf("6d7dff"); trailWidth = 1.8f; trailLength = 5; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcBlue);
+                        smokeEffect = smokeBezierBlue;
+                        hitEffect = hitBezierBlue;
+                    }};
                 }}
             );
         }};

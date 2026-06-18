@@ -15,6 +15,7 @@ import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.type.weapons.*;
 
+import static fadingrevelations.content.FRFx.*;
 import static mindustry.content.Fx.*;
 import static mindustry.gen.Sounds.*;
 
@@ -42,8 +43,10 @@ public class FRTranscendentUnits {
                         serrationLenScl = 10; serrationSpaceOffset = 70; serrationFadeOffset = 0;
                         serrations = 22; serrationWidth = 9;
                         fromColor = Color.valueOf("8a2be2"); toColor = Color.valueOf("bf92f9");
-                        shootEffect = sparkShoot; smokeEffect = sparkShoot;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcPurple);
+                        smokeEffect = new MultiEffect(sparkShoot, smokeBezierPurple);
                         status = FRStatus.sapped; statusDuration = 60;
+                        hitEffect = new MultiEffect(hitBezierPurple, bezierRingPurple);
                     }};
                 }},
                 new Weapon("reclusa-main") {{
@@ -57,9 +60,14 @@ public class FRTranscendentUnits {
                         backColor = Color.valueOf("8a2be2"); frontColor = Color.valueOf("bf92f9");
                         lightning = 10; lightningLength = 30; lightningDamage = 50;
                         lightningColor = Color.valueOf("bf92f9");
-                        smokeEffect = shootBigSmoke2; hitShake = 15;
+                        smokeEffect = new MultiEffect(shootBigSmoke2, smokeBezierPurple);
+                        hitShake = 15;
                         lightRadius = 60; lightColor = Color.valueOf("bf92f9"); lightOpacity = 0.6f;
                         status = FRStatus.sapped; statusDuration = 90;
+                        shootEffect = new MultiEffect(shootBigSmoke2, bezierArcPurple);
+                        hitEffect = new MultiEffect(hitBezierPurple, bezierRingRainbow, bezierBurstPurple);
+                        despawnEffect = new MultiEffect(bezierBurstPurple, bezierRingPurple);
+                        trailColor = Color.valueOf("bf92f9"); trailWidth = 5; trailLength = 20; trailChance = -1;
                         fragLifeMin = 0.4f; fragBullets = 12;
                         fragBullet = new ArtilleryBulletType() {{
                             damage = 100; lifetime = 150; width = 30; height = 30;
@@ -72,6 +80,8 @@ public class FRTranscendentUnits {
                             smokeEffect = shootBigSmoke2; hitShake = 6;
                             lightRadius = 50; lightColor = Color.valueOf("bf92f9"); lightOpacity = 0.5f;
                             status = FRStatus.sapped; statusDuration = 90;
+                            hitEffect = new MultiEffect(sapExplosion, hitBezierPurple);
+                            despawnEffect = bezierBurstPurple;
                         }};
                     }};
                 }}
@@ -93,6 +103,9 @@ public class FRTranscendentUnits {
                     bullet = new LaserBulletType() {{
                         damage = 350; width = 8; length = 250;
                         colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.valueOf("e0c0ff")};
+                        shootEffect = bezierArcPurple;
+                        smokeEffect = smokeBezierPurple;
+                        hitEffect = new MultiEffect(hitBezierPurple, bezierRingPurple);
                     }};
                 }},
                 new Weapon("sps-air-fr") {{
@@ -101,6 +114,9 @@ public class FRTranscendentUnits {
                     bullet = new LaserBulletType() {{
                         damage = 350; width = 8; length = 250;
                         colors = new Color[]{Color.valueOf("8a2be2"), Color.valueOf("bf92f9"), Color.valueOf("e0c0ff")};
+                        shootEffect = bezierArcPurple;
+                        smokeEffect = smokeBezierPurple;
+                        hitEffect = new MultiEffect(hitBezierPurple, bezierRingPurple);
                     }};
                 }},
                 new Weapon("sps-lancer-left") {{
@@ -153,13 +169,15 @@ public class FRTranscendentUnits {
                     bullet = new BasicBulletType() {{
                         width = 48; height = 48; hitSize = 36;
                         speed = 3.5f; lifetime = 100;
-                        shootEffect = shootTitan; smokeEffect = shootSmokeTitan;
+                        shootEffect = new MultiEffect(shootTitan, bezierArcGold);
+                        smokeEffect = new MultiEffect(shootSmokeTitan, smokeBezierGold);
                         sprite = "large-orb";
                         frontColor = Color.valueOf("ffffff"); backColor = Color.valueOf("f0d000");
                         trailColor = Color.valueOf("f0d000"); hitColor = Color.valueOf("f0d000");
                         pierce = true; pierceBuilding = true;
                         trailWidth = 8; trailLength = 32;
-                        hitEffect = blastExplosion; despawnEffect = blastExplosion;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierGold, bezierRingGold, bezierBurstGold);
+                        despawnEffect = new MultiEffect(blastExplosion, bezierBurstGold);
                         splashDamage = 250; splashDamageRadius = 80; damage = 500;
                         buildingDamageMultiplier = 2.5f;
                         fragOnHit = false; fragRandomSpread = 0; fragSpread = 90;
@@ -173,7 +191,7 @@ public class FRTranscendentUnits {
                             hitColor = Color.valueOf("f0d000"); backColor = Color.valueOf("f0d000");
                             frontColor = Color.valueOf("ffffff"); trailColor = Color.valueOf("f0d000");
                             trailWidth = 4f; trailLength = 10;
-                            hitEffect = blastExplosion;
+                            hitEffect = new MultiEffect(blastExplosion, hitBezierGold);
                             splashDamageRadius = 30; splashDamage = 60;
                             fragBullets = 10; fragVelocityMin = 1; fragVelocityMax = 1;
                             fragRandomSpread = 0; fragSpread = 45;
@@ -185,7 +203,7 @@ public class FRTranscendentUnits {
                                 hitColor = Color.valueOf("f0d000"); backColor = Color.valueOf("f0d000");
                                 frontColor = Color.valueOf("ffffff"); trailColor = Color.valueOf("f0d000");
                                 trailWidth = 4f; trailLength = 10;
-                                hitEffect = blastExplosion;
+                                hitEffect = new MultiEffect(blastExplosion, hitBezierGold);
                                 splashDamageRadius = 30; splashDamage = 30;
                             }};
                         }};
@@ -201,7 +219,11 @@ public class FRTranscendentUnits {
                         buildingDamageMultiplier = 2.5f;
                         splashDamage = 12; splashDamageRadius = 20;
                         pierce = true; pierceCap = 4; pierceBuilding = true;
-                        shootEffect = shootSmall; smokeEffect = shootSmallSmoke;
+                        frontColor = Color.valueOf("ffd699"); backColor = Color.valueOf("ffaa5f");
+                        trailColor = Color.valueOf("ffaa5f"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierBurstOrange);
                     }};
                 }},
                 new Weapon("springald-side-arm") {{
@@ -214,7 +236,11 @@ public class FRTranscendentUnits {
                         buildingDamageMultiplier = 2.5f;
                         splashDamage = 12; splashDamageRadius = 20;
                         pierce = true; pierceCap = 4; pierceBuilding = true;
-                        shootEffect = shootSmall; smokeEffect = shootSmallSmoke;
+                        frontColor = Color.valueOf("ffd699"); backColor = Color.valueOf("ffaa5f");
+                        trailColor = Color.valueOf("ffaa5f"); trailWidth = 2.5f; trailLength = 8; trailChance = -1;
+                        shootEffect = new MultiEffect(shootSmall, bezierArcOrange);
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierBurstOrange);
                     }};
                 }}
             );
@@ -262,7 +288,11 @@ public class FRTranscendentUnits {
                         sprite = "shell";
                         frontColor = Color.valueOf("66ffcc"); backColor = Color.valueOf("20b2aa");
                         status = FRStatus.sapped; statusDuration = 120;
-                        shootEffect = shootBig; smokeEffect = shootSmallSmoke;
+                        trailColor = Color.valueOf("66ffcc"); trailWidth = 3; trailLength = 10; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBig, bezierArcCyan);
+                        smokeEffect = new MultiEffect(shootSmallSmoke, smokeBezierCyan);
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierRingCyan, bezierBurstCyan);
+                        despawnEffect = bezierBurstCyan;
                     }};
                 }},
                 new Weapon("japonica-air") {{
@@ -279,7 +309,11 @@ public class FRTranscendentUnits {
                         sprite = "shell";
                         frontColor = Color.valueOf("66ffcc"); backColor = Color.valueOf("20b2aa");
                         status = FRStatus.sapped; statusDuration = 120;
-                        shootEffect = shootBig; smokeEffect = shootSmallSmoke;
+                        trailColor = Color.valueOf("66ffcc"); trailWidth = 3; trailLength = 10; trailChance = -1;
+                        shootEffect = new MultiEffect(shootBig, bezierArcCyan);
+                        smokeEffect = new MultiEffect(shootSmallSmoke, smokeBezierCyan);
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierRingCyan, bezierBurstCyan);
+                        despawnEffect = bezierBurstCyan;
                     }};
                 }}
             );
@@ -329,7 +363,7 @@ public class FRTranscendentUnits {
                         length = 600; width = 20; lifetime = 300; fadeTime = 60;
                         makeFire = false;
                         status = StatusEffects.melting; statusDuration = 600;
-                        hitEffect = blastExplosion;
+                        hitEffect = new MultiEffect(blastExplosion, bezierBurstOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("hive-mg") {{
@@ -340,6 +374,9 @@ public class FRTranscendentUnits {
                         damage = 280; length = 500;
                         status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("ff6600"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("hive-mg") {{
@@ -350,6 +387,9 @@ public class FRTranscendentUnits {
                         damage = 280; length = 500;
                         status = StatusEffects.burning; statusDuration = 60;
                         colors = new Color[]{Color.valueOf("ff6600"), Color.valueOf("ff9c5a"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcOrange;
+                        smokeEffect = smokeBezierOrange;
+                        hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("hive-laser") {{
@@ -360,8 +400,8 @@ public class FRTranscendentUnits {
                     bullet = new PointBulletType() {{
                         speed = 14; lifetime = 35; maxRange = 450;
                         damage = 1800; splashDamage = 1800; splashDamageRadius = 30;
-                        trailEffect = instTrail; hitEffect = massiveExplosion;
-                        shootEffect = instShoot;
+                        trailEffect = instTrail; hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange);
+                        shootEffect = new MultiEffect(instShoot, bezierArcOrange);
                         pierce = true; pierceBuilding = true;
                     }};
                 }},
@@ -373,8 +413,8 @@ public class FRTranscendentUnits {
                     bullet = new PointBulletType() {{
                         speed = 14; lifetime = 35; maxRange = 450;
                         damage = 1800; splashDamage = 1800; splashDamageRadius = 30;
-                        trailEffect = instTrail; hitEffect = massiveExplosion;
-                        shootEffect = instShoot;
+                        trailEffect = instTrail; hitEffect = new MultiEffect(massiveExplosion, bezierBurstOrange, bezierRingOrange);
+                        shootEffect = new MultiEffect(instShoot, bezierArcOrange);
                         pierce = true; pierceBuilding = true;
                     }};
                 }}
@@ -409,6 +449,9 @@ public class FRTranscendentUnits {
                         lightColor = Color.valueOf("66ffcc"); lightningColor = Color.valueOf("66ffcc");
                         healPercent = 35; collidesTeam = true;
                         colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcCyan;
+                        smokeEffect = smokeBezierCyan;
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierRingCyan);
                     }};
                 }},
                 new Weapon("heal-laser-mount") {{
@@ -424,6 +467,9 @@ public class FRTranscendentUnits {
                         lightColor = Color.valueOf("66ffcc"); lightningColor = Color.valueOf("66ffcc");
                         healPercent = 35; collidesTeam = true;
                         colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
+                        shootEffect = bezierArcCyan;
+                        smokeEffect = smokeBezierCyan;
+                        hitEffect = new MultiEffect(hitBezierCyan, bezierRingCyan);
                     }};
                 }},
                 new Weapon("nothing") {{
@@ -445,7 +491,7 @@ public class FRTranscendentUnits {
                         healPercent = 35; collidesTeam = true;
                         sideAngle = 15; sideWidth = 0; sideLength = 0;
                         colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
-                        chargeEffect = Fx.greenLaserCharge;
+                        chargeEffect = new MultiEffect(Fx.greenLaserCharge, chargeBezierCyan);
                     }};
                 }}
             );
@@ -462,7 +508,7 @@ public class FRTranscendentUnits {
                     x = -30; y = 24; mirror = true;
                     reload = 4; targetInterval = 4; targetSwitchInterval = 6;
                     bullet = new BulletType() {{
-                        shootEffect = sparkShoot; hitEffect = pointHit;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcCyan); hitEffect = new MultiEffect(pointHit, hitBezierCyan);
                         maxRange = 280; damage = 80;
                     }};
                 }},
@@ -470,7 +516,7 @@ public class FRTranscendentUnits {
                     x = -30; y = -36; mirror = true;
                     reload = 5; targetInterval = 5; targetSwitchInterval = 8;
                     bullet = new BulletType() {{
-                        shootEffect = sparkShoot; hitEffect = pointHit;
+                        shootEffect = new MultiEffect(sparkShoot, bezierArcCyan); hitEffect = new MultiEffect(pointHit, hitBezierCyan);
                         maxRange = 280; damage = 90;
                     }};
                 }},
@@ -482,8 +528,8 @@ public class FRTranscendentUnits {
                     shootSound = shootLaser;
                     bullet = new ContinuousLaserBulletType(70f) {{
                         maxRange = 280; length = 300; lifetime = 170;
-                        hitEffect = hitMeltHeal; drawSize = 520; shake = 1.5f;
-                        shootEffect = shootHeal; smokeEffect = Fx.none;
+                        hitEffect = new MultiEffect(hitMeltHeal, hitBezierCyan); drawSize = 520; shake = 1.5f;
+                        shootEffect = new MultiEffect(shootHeal, bezierArcCyan); smokeEffect = Fx.none;
                         width = 8; largeHit = true;
                         incendSpread = 0; incendChance = 0; incendAmount = 0;
                         healPercent = 2f; collidesTeam = true;
