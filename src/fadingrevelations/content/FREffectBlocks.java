@@ -10,6 +10,8 @@ import mindustry.world.blocks.storage.Unloader;
 import mindustry.world.blocks.campaign.LaunchPad;
 import mindustry.content.UnitTypes;
 import mindustry.gen.Sounds;
+import fadingrevelations.worlds.blocks.effect.Outpost;
+import fadingrevelations.worlds.blocks.storage.FRCoreBlock;
 
 public class FREffectBlocks {
     public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, forceDome, forceField,

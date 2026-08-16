@@ -19,8 +19,8 @@ repositories {
 }
 
 ext {
-    mindustryVersion = "v158.1"
-    arcVersion = "v158.1"
+    mindustryVersion = "v159.7"
+    arcVersion = "v159.7"
 }
 
 configurations.all {
@@ -37,7 +37,7 @@ configurations.all {
 allprojects {
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-        options.compilerArgs.addAll(["--release", "8"])
+        options.compilerArgs.addAll(["--release", "17"])
     }
 }
 
