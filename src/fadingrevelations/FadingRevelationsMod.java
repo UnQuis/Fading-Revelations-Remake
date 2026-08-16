@@ -38,6 +38,7 @@ public class FadingRevelationsMod extends Mod {
 
     @Override
     public void init() {
+        FROldContent.init();
         FRSettings.init();
         if (FRSettings.mixTech) {
             FROverride.mixTech();
