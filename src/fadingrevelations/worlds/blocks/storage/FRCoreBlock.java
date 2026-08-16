@@ -1,4 +1,4 @@
-package fadingrevelations.content;
+package fadingrevelations.worlds.blocks.storage;
 
 import arc.Core;
 import arc.graphics.Color;
