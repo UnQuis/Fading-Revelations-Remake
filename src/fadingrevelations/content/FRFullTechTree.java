@@ -303,7 +303,7 @@ public class FRFullTechTree {
         addBlock(FRItems.cryogenicAlloy, FRItems.optiCrystal);
         addBlock(FRItems.optiCrystal, FRItems.energyCell);
         addBlock(FRItems.energyCell, FRItems.nanoFabric);
-        addBlock(FRItems.nanoFabric, FRItems.bioMatter);
+        addBlock(bioRefinery, FRItems.bioMatter);
 
         
         addBlock(modGateItems, FRItems.nuke);
