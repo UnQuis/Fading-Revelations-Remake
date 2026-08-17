@@ -192,24 +192,28 @@ public class FRFullTechTree {
 
             node(titaniumJunction, () -> {
                 node(titaniumRouter, () -> {
-                    node(titaniumBridgeConveyor, () -> {
-                        node(kineticConveyor, () -> {
-                            node(surgeBridgeConveyor, () -> {
-                                node(bioBridgeConveyor);
-                            });
-                            node(amalgamConveyor, () -> {
-                                node(fusionConveyor);
-                            });
-                            node(bioConveyor);
+                    node(titaniumDistributor, () -> {
+                        node(kineticDistributor, () -> {
+                            node(bioDistributor);
                         });
                     });
-                    node(kineticRouter);
-                    node(bioRouter);
+                    node(kineticRouter, () -> {
+                        node(bioRouter);
+                    });
+                    node(titaniumBridgeConveyor, () -> {
+                        node(surgeBridgeConveyor, () -> {
+                            node(bioBridgeConveyor);
+                        });
+                    });
+                    node(kineticConveyor, () -> {
+                        node(amalgamConveyor, () -> {
+                            node(fusionConveyor);
+                        });
+                        node(bioConveyor);
+                    });
                 });
-                node(kineticJunction);
-                node(titaniumDistributor, () -> {
-                    node(kineticDistributor);
-                    node(bioDistributor);
+                node(kineticJunction, () -> {
+                    node(bioJunction);
                 });
             });
 
@@ -276,7 +280,11 @@ public class FRFullTechTree {
                                                 node(bigPhaseWeaver, () -> {
                                                     node(advancedSeparator);
                                                 });
-                                                node(uraniumrodCrafter);
+                                                node(uraniumrodCrafter, () -> {
+                                                    node(nukeCrafter, () -> {
+                                                        nodeProduce(FRItems.nuke);
+                                                    });
+                                                });
                                             });
                                             node(surgeOvenBig, () -> {
                                                 node(amalgamSmelter, () -> {
@@ -326,16 +334,67 @@ public class FRFullTechTree {
                     });
                 });
             });
-            nodeProduce(FRItems.nuke);
             nodeProduce(FREnvironment.steelSedimentation, () -> {
                 nodeProduce(FREnvironment.oreGraphite);
             });
 
             node(primaryFactory, () -> {
+                node(FRT1Units.seed, () -> {
+                    node(FRT2Units.sapling, () -> {
+                        node(FRT3Units.plant, () -> {
+                            node(FRMothershipUnits.corax);
+                        });
+                    });
+                });
+                node(FRT1Units.lancerDrone, () -> {
+                    node(FRT2Units.alopex, () -> {
+                        node(FRT3Units.kestrel, () -> {
+                            node(FRMothershipUnits.strahl);
+                        });
+                    });
+                });
+                node(FRT1Units.mela, () -> {
+                    node(FRT2Units.cromis, () -> {
+                        node(FRT3Units.arnux, () -> {
+                            node(FRMothershipUnits.japonica);
+                        });
+                    });
+                });
+                node(FRT1Units.apis, () -> {
+                    node(FRT2Units.procer, () -> {
+                        node(FRT3Units.ducalis, () -> {
+                            node(FRMothershipUnits.hive);
+                        });
+                    });
+                });
+                node(FRT1Units.alba, () -> {
+                    node(FRT2Units.arvens, () -> {
+                        node(FRT3Units.aestiva, () -> {
+                            node(FRMothershipUnits.altaic);
+                        });
+                    });
+                });
+                node(FRT1Units.annax, () -> {
+                    node(FRT2Units.scofra, () -> {
+                        node(FRT3Units.auratus, () -> {
+                            node(FRMothershipUnits.lycosid);
+                        });
+                    });
+                });
+                node(FRT1Units.sambuca, () -> {
+                    node(FRT2Units.scorpio, () -> {
+                        node(FRT3Units.springald, () -> {
+                            node(FRMothershipUnits.onager);
+                        });
+                    });
+                });
                 node(basicReassembly, () -> {
                     node(advancedReassembly, () -> {
                         node(progressiveAssembly, () -> {
                             node(ascendedFactory, () -> {
+                                node(FRMothershipUnits.hiveAttack);
+                                node(FRMothershipUnits.toruct);
+                                node(FRMothershipUnits.reduct);
                                 node(FRTranscendentUnits.mygale);
                                 node(FRTranscendentUnits.scepter);
                                 node(FRTranscendentUnits.mangonel);
@@ -351,48 +410,12 @@ public class FRFullTechTree {
             });
 
             node(FRT1Units.heliaca);
-            node(FRT1Units.apis, () -> {
-                node(FRT2Units.procer, () -> {
-                    node(FRT3Units.ducalis, () -> {
-                        node(FRMothershipUnits.hive);
-                    });
-                });
-            });
-            node(FRT1Units.seed, () -> {
-                node(FRT2Units.sapling, () -> {
-                    node(FRT3Units.plant, () -> {
-                        node(FRMothershipUnits.corax);
-                    });
-                });
-            });
-            node(FRT1Units.lancerDrone, () -> {
-                node(FRT2Units.alopex, () -> {
-                    node(FRT3Units.kestrel, () -> {
-                        node(FRMothershipUnits.strahl);
-                    });
-                });
-            });
             node(FRCerberianUnits.spark, () -> {
                 node(FRCerberianUnits.vista, () -> {
                     node(FRCerberianUnits.summit, () -> {
                         node(FRCerberianUnits.penumbra, () -> {
                             node(FRCerberianUnits.veil);
                         });
-                    });
-                });
-            });
-
-            node(FRT1Units.annax, () -> {
-                node(FRT2Units.scofra, () -> {
-                    node(FRT3Units.auratus, () -> {
-                        node(FRMothershipUnits.lycosid);
-                    });
-                });
-            });
-            node(FRT1Units.sambuca, () -> {
-                node(FRT2Units.scorpio, () -> {
-                    node(FRT3Units.springald, () -> {
-                        node(FRMothershipUnits.onager);
                     });
                 });
             });
@@ -416,21 +439,6 @@ public class FRFullTechTree {
                                 });
                             });
                         });
-                    });
-                });
-            });
-
-            node(FRT1Units.alba, () -> {
-                node(FRT2Units.arvens, () -> {
-                    node(FRT3Units.aestiva, () -> {
-                        node(FRMothershipUnits.altaic);
-                    });
-                });
-            });
-            node(FRT1Units.mela, () -> {
-                node(FRT2Units.cromis, () -> {
-                    node(FRT3Units.arnux, () -> {
-                        node(FRMothershipUnits.japonica);
                     });
                 });
             });
