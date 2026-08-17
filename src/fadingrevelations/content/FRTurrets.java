@@ -41,7 +41,7 @@ public class FRTurrets {
         uhlan, megaMeltdown, lightningChaingun, kugelblitz, diffract, cavalry,
         bigSegment, bigScatter, bigParallax, bigArc, airArc, absole, statusWave,
     
-        zephyr, weave, sprunkler, batter,
+        batter,
     
         constructionPylon;
 
@@ -824,6 +824,7 @@ public class FRTurrets {
             requirements(Category.turret, with(copper, 50, graphite, 44));
             size = 2; health = 800; reload = 6f; range = 112f;
             targetAir = false; shootCone = 30f; rotateSpeed = 10f; recoil = 0f;
+            shootSound = Sounds.shootFlame;
             ammoTypes = ObjectMap.of(
                 Items.coal, new BulletType(14f, 15f) {{
                     lifetime = 8f;
@@ -834,12 +835,15 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(20f, 100f, e -> {
-                        color(Pal.lightPyraFlame, Pal.darkPyraFlame, Color.gray, e.fin());
-                        randLenVectors(e.id, 13, e.finpow() * 88f, e.rotation, 10f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.65f + e.fout() * 1.6f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(20f, 100f, e -> {
+                            color(Pal.lightPyraFlame, Pal.darkPyraFlame, Color.gray, e.fin());
+                            randLenVectors(e.id, 20, e.finpow() * 120f, e.rotation, 10f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 6; cone = 12f; length = 45f; colorFrom = Color.valueOf("ff8c00"); colorTo = Color.valueOf("ff4500"); lifetime = 15f; }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 3; lifetime = 10; sizeFrom = 3;
@@ -855,12 +859,15 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(20f, 120f, e -> {
-                        color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
-                        randLenVectors(e.id, 14, e.finpow() * 100f, e.rotation, 12f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.7f + e.fout() * 1.8f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(20f, 120f, e -> {
+                            color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
+                            randLenVectors(e.id, 22, e.finpow() * 140f, e.rotation, 12f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 0.9f + e.fout() * 2.2f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 8; cone = 12f; length = 55f; colorFrom = Color.valueOf("ff8c00"); colorTo = Color.valueOf("ff3300"); lifetime = 18f; }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 4; lifetime = 12; sizeFrom = 4;
@@ -876,12 +883,15 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(20f, 120f, e -> {
-                        color(Color.valueOf("8c0291"), Color.valueOf("5c0170"), Color.gray, e.fin());
-                        randLenVectors(e.id, 14, e.finpow() * 100f, e.rotation, 12f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.7f + e.fout() * 1.8f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(20f, 120f, e -> {
+                            color(Color.valueOf("8c0291"), Color.valueOf("5c0170"), Color.gray, e.fin());
+                            randLenVectors(e.id, 22, e.finpow() * 140f, e.rotation, 12f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 0.9f + e.fout() * 2.2f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 8; cone = 12f; length = 55f; colorFrom = Color.valueOf("8c0291"); colorTo = Color.valueOf("5c0170"); lifetime = 18f; }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 4; lifetime = 12; sizeFrom = 4;
@@ -947,6 +957,7 @@ public class FRTurrets {
             requirements(Category.turret, with(copper, 2000, lead, 3000, graphite, 2000, titanium, 1500, plastanium, 600, FRItems.steelAlloy, 400));
             size = 4; health = 1720; reload = 5f; range = 150f;
             targetAir = false; shootCone = 30f; rotateSpeed = 10f; recoil = 0f;
+            shootSound = Sounds.shootFlamePlasma;
             ammoTypes = ObjectMap.of(
                 Items.coal, new BulletType(4f, 20f) {{
                     lifetime = 37.5f;
@@ -957,12 +968,16 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(25f, 180f, e -> {
-                        color(Pal.lightPyraFlame, Pal.darkPyraFlame, Color.gray, e.fin());
-                        randLenVectors(e.id, 16, e.finpow() * 140f, e.rotation, 10f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.7f + e.fout() * 2f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(25f, 180f, e -> {
+                            color(Pal.lightPyraFlame, Pal.darkPyraFlame, Color.gray, e.fin());
+                            randLenVectors(e.id, 26, e.finpow() * 190f, e.rotation, 10f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 0.9f + e.fout() * 2.5f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 10; cone = 10f; length = 65f; colorFrom = Color.valueOf("ff8c00"); colorTo = Color.valueOf("ff4500"); lifetime = 20f; }},
+                        new WaveEffect() {{ sizeFrom = 0f; sizeTo = 18f; colorFrom = Color.valueOf("ff8c00"); colorTo = Color.valueOf("ff4500"); }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 4; lifetime = 10; sizeFrom = 3;
@@ -978,12 +993,16 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(25f, 200f, e -> {
-                        color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
-                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(25f, 200f, e -> {
+                            color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
+                            randLenVectors(e.id, 28, e.finpow() * 220f, e.rotation, 12f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 1f + e.fout() * 2.8f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 12; cone = 10f; length = 80f; colorFrom = Color.valueOf("ff8c00"); colorTo = Color.valueOf("ff3300"); lifetime = 22f; }},
+                        new WaveEffect() {{ sizeFrom = 0f; sizeTo = 22f; colorFrom = Color.valueOf("ff6633"); colorTo = Color.valueOf("cc3300"); }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 5; lifetime = 12; sizeFrom = 4;
@@ -999,12 +1018,16 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(25f, 200f, e -> {
-                        color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
-                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(25f, 200f, e -> {
+                            color(Color.valueOf("ff6633"), Color.valueOf("cc3300"), Color.gray, e.fin());
+                            randLenVectors(e.id, 28, e.finpow() * 220f, e.rotation, 12f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 1f + e.fout() * 2.8f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 12; cone = 10f; length = 80f; colorFrom = Color.valueOf("ff8c00"); colorTo = Color.valueOf("ff3300"); lifetime = 22f; }},
+                        new WaveEffect() {{ sizeFrom = 0f; sizeTo = 22f; colorFrom = Color.valueOf("ff6633"); colorTo = Color.valueOf("cc3300"); }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 5; lifetime = 14; sizeFrom = 4;
@@ -1020,12 +1043,16 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(25f, 200f, e -> {
-                        color(Color.valueOf("8c0291"), Color.valueOf("5c0170"), Color.gray, e.fin());
-                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(25f, 200f, e -> {
+                            color(Color.valueOf("8c0291"), Color.valueOf("5c0170"), Color.gray, e.fin());
+                            randLenVectors(e.id, 28, e.finpow() * 220f, e.rotation, 12f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 1f + e.fout() * 2.8f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 12; cone = 10f; length = 80f; colorFrom = Color.valueOf("8c0291"); colorTo = Color.valueOf("5c0170"); lifetime = 22f; }},
+                        new WaveEffect() {{ sizeFrom = 0f; sizeTo = 22f; colorFrom = Color.valueOf("8c0291"); colorTo = Color.valueOf("5c0170"); }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 5; lifetime = 12; sizeFrom = 4;
@@ -1041,12 +1068,16 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(25f, 200f, e -> {
-                        color(Color.valueOf("dbaf85"), Color.valueOf("ba6a83"), Color.gray, e.fin());
-                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(25f, 200f, e -> {
+                            color(Color.valueOf("dbaf85"), Color.valueOf("ba6a83"), Color.gray, e.fin());
+                            randLenVectors(e.id, 28, e.finpow() * 220f, e.rotation, 12f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 1f + e.fout() * 2.8f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 12; cone = 10f; length = 80f; colorFrom = Color.valueOf("d99f6b"); colorTo = Color.valueOf("ba6a83"); lifetime = 22f; }},
+                        new WaveEffect() {{ sizeFrom = 0f; sizeTo = 22f; colorFrom = Color.valueOf("d99f6b"); colorTo = Color.valueOf("ba6a83"); }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 5; lifetime = 12; sizeFrom = 4;
@@ -1062,12 +1093,16 @@ public class FRTurrets {
                     hittable = false; absorbable = false; reflectable = false;
                     collidesAir = false;
                     status = StatusEffects.burning;
-                    shootEffect = new Effect(25f, 200f, e -> {
-                        color(Color.valueOf("66cc00"), Color.valueOf("2d6b00"), Color.gray, e.fin());
-                        randLenVectors(e.id, 18, e.finpow() * 160f, e.rotation, 12f, (x, y) -> {
-                            Fill.circle(e.x + x, e.y + y, 0.8f + e.fout() * 2.2f);
-                        });
-                    });
+                    shootEffect = new MultiEffect(
+                        new Effect(25f, 200f, e -> {
+                            color(Color.valueOf("66cc00"), Color.valueOf("2d6b00"), Color.gray, e.fin());
+                            randLenVectors(e.id, 28, e.finpow() * 220f, e.rotation, 12f, (x, y) -> {
+                                Fill.circle(e.x + x, e.y + y, 1f + e.fout() * 2.8f);
+                            });
+                        }),
+                        new ParticleEffect() {{ particles = 12; cone = 10f; length = 80f; colorFrom = Color.valueOf("66cc00"); colorTo = Color.valueOf("2d6b00"); lifetime = 22f; }},
+                        new WaveEffect() {{ sizeFrom = 0f; sizeTo = 22f; colorFrom = Color.valueOf("66cc00"); colorTo = Color.valueOf("2d6b00"); }}
+                    );
                     hitEffect = Fx.hitFlameSmall;
                     despawnEffect = new ParticleEffect() {{
                         particles = 5; lifetime = 12; sizeFrom = 4;
@@ -1131,7 +1166,10 @@ public class FRTurrets {
             consumePower(80f);
             consumeCoolant(2f);
             coolantMultiplier = 0.1f;
-            shoot = new ShootAlternate(2f) {{ shots = 14; shotDelay = 8f; }};
+            shoot = new ShootBarrel() {{
+                barrels = new float[]{-18f, 0f, 0f, 18f, 0f, 0f};
+                shots = 14; shotDelay = 8f;
+            }};
             shootType = new BasicBulletType() {{
                 width = 12f; height = 72f; speed = 16f; lifetime = 25f; damage = 120f;
                 pierce = true; pierceBuilding = true;
@@ -1174,7 +1212,14 @@ public class FRTurrets {
                         new WaveEffect() {{ sizeFrom = 0f; sizeTo = 15f; colorFrom = Color.valueOf("7575c8"); colorTo = Color.valueOf("a4b8fa"); }},
                         new WaveEffect() {{ sizeFrom = 0f; sizeTo = 25f; colorFrom = Color.valueOf("a4b8fa"); colorTo = Color.valueOf("7575c8"); }}
                     );
-                    shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
+                    shootEffect = new MultiEffect(
+                        bezierBurstBlue,
+                        new ParticleEffect() {{ particles = 12; cone = 360f; length = 55f; colorFrom = Color.valueOf("7575c8"); colorTo = Color.valueOf("a4b8fa"); lifetime = 20f; }},
+                        new WaveEffect() {{ sizeFrom = 6f; sizeTo = 26f; colorFrom = Color.valueOf("7575c8"); colorTo = Color.valueOf("a4b8fa"); }},
+                        new WaveEffect() {{ sizeFrom = 4f; sizeTo = 18f; colorFrom = Color.valueOf("a4b8fa"); colorTo = Color.valueOf("7575c8"); }}
+                    );
+                    smokeEffect = smokeBezierBlue;
+                    hitEffect = hitBezierBlue;
                 }},
                 Items.plastanium, new BasicBulletType() {{
                     sprite = "large-orb"; speed = 0.5f; lifetime = 420f; damage = 14f;
@@ -1189,7 +1234,14 @@ public class FRTurrets {
                         new WaveEffect() {{ sizeFrom = 0f; sizeTo = 15f; colorFrom = Color.valueOf("edf3a9"); colorTo = Color.valueOf("9cb664"); }},
                         new WaveEffect() {{ sizeFrom = 0f; sizeTo = 25f; colorFrom = Color.valueOf("9cb664"); colorTo = Color.valueOf("edf3a9"); }}
                     );
-                    shootEffect = bezierBurstGreen; hitEffect = hitBezierGreen;
+                    shootEffect = new MultiEffect(
+                        bezierBurstGreen,
+                        new ParticleEffect() {{ particles = 12; cone = 360f; length = 55f; colorFrom = Color.valueOf("edf3a9"); colorTo = Color.valueOf("9cb664"); lifetime = 20f; }},
+                        new WaveEffect() {{ sizeFrom = 6f; sizeTo = 26f; colorFrom = Color.valueOf("edf3a9"); colorTo = Color.valueOf("9cb664"); }},
+                        new WaveEffect() {{ sizeFrom = 4f; sizeTo = 18f; colorFrom = Color.valueOf("9cb664"); colorTo = Color.valueOf("edf3a9"); }}
+                    );
+                    smokeEffect = smokeBezierGreen;
+                    hitEffect = hitBezierGreen;
                 }},
                 Items.surgeAlloy, new BasicBulletType() {{
                     sprite = "large-orb"; speed = 0.5f; lifetime = 420f; damage = 14f;
@@ -1204,7 +1256,14 @@ public class FRTurrets {
                         new WaveEffect() {{ sizeFrom = 0f; sizeTo = 15f; colorFrom = Color.valueOf("f3e979"); colorTo = Color.white; }},
                         new WaveEffect() {{ sizeFrom = 0f; sizeTo = 25f; colorFrom = Color.white; colorTo = Color.valueOf("f3e979"); }}
                     );
-                    shootEffect = bezierBurstGold; hitEffect = hitBezierGold;
+                    shootEffect = new MultiEffect(
+                        bezierBurstGold,
+                        new ParticleEffect() {{ particles = 12; cone = 360f; length = 55f; colorFrom = Color.valueOf("f3e979"); colorTo = Color.white; lifetime = 20f; }},
+                        new WaveEffect() {{ sizeFrom = 6f; sizeTo = 26f; colorFrom = Color.valueOf("f3e979"); colorTo = Color.white; }},
+                        new WaveEffect() {{ sizeFrom = 4f; sizeTo = 18f; colorFrom = Color.white; colorTo = Color.valueOf("f3e979"); }}
+                    );
+                    smokeEffect = smokeBezierGold;
+                    hitEffect = hitBezierGold;
                 }}
             );
         }};
@@ -1217,7 +1276,7 @@ public class FRTurrets {
             consumePower(8f); consumeCoolant(1f); coolantMultiplier = 0.25f;
             ammoTypes = ObjectMap.of(
                 Items.titanium, new BasicBulletType() {{
-                    speed = 3f; lifetime = 25f; damage = 50f;
+                    speed = 3f; lifetime = 100f; damage = 50f;
                     pierce = true; pierceBuilding = true; pierceCap = 3;
                     width = 22f; height = 28f;
                     homingPower = 0.03f;
@@ -1238,7 +1297,7 @@ public class FRTurrets {
                     chargeEffect = chargeBezierBlue;
                 }},
                 Items.surgeAlloy, new BasicBulletType() {{
-                    speed = 3f; lifetime = 20f; damage = 70f;
+                    speed = 3f; lifetime = 100f; damage = 70f;
                     pierce = true; pierceBuilding = true; pierceCap = 3;
                     width = 22f; height = 28f;
                     trailColor = Color.valueOf("d99f6b"); backColor = Color.valueOf("d99f6b"); frontColor = Color.white;
@@ -1258,7 +1317,7 @@ public class FRTurrets {
                     chargeEffect = chargeBezierGold;
                 }},
                 FRItems.cryogenicAlloy, new BasicBulletType() {{
-                    speed = 3f; lifetime = 25f; damage = 90f;
+                    speed = 3f; lifetime = 100f; damage = 90f;
                     pierce = true; pierceBuilding = true; pierceCap = 3;
                     width = 22f; height = 28f;
                     trailColor = Color.valueOf("218b8f");
@@ -1274,7 +1333,7 @@ public class FRTurrets {
                     chargeEffect = chargeBezierCyan;
                 }},
                 FRItems.nanoFabric, new BasicBulletType() {{
-                    speed = 4f; lifetime = 28f; damage = 110f;
+                    speed = 4f; lifetime = 100f; damage = 110f;
                     pierce = true; pierceBuilding = true; pierceCap = 4;
                     width = 24f; height = 30f;
                     trailColor = Color.valueOf("20b2aa");
@@ -1314,26 +1373,30 @@ public class FRTurrets {
             consumePower(32f);
             shoot = new ShootPattern() {{ firstShotDelay = 120f; }};
             shootEffect = new MultiEffect(
-                new WaveEffect() {{ sizeFrom = 0f; sizeTo = 25f; colorFrom = Color.valueOf("66b1ff"); colorTo = Color.valueOf("e4fdff"); }}
+                new WaveEffect() {{ sizeFrom = 0f; sizeTo = 25f; colorFrom = Color.valueOf("66b1ff"); colorTo = Color.valueOf("e4fdff"); }},
+                new ParticleEffect() {{ particles = 14; cone = 15f; length = 70f; colorFrom = Color.valueOf("e4fdff"); colorTo = Color.valueOf("66b1ff"); lifetime = 25f; }}
             );
             shootType = new BasicBulletType() {{
-                sprite = "large-orb"; width = 0.001f; height = 0.001f; hitSize = 32f;
+                sprite = "large-orb"; width = 22f; height = 22f; hitSize = 32f;
                 speed = 3f; lifetime = 80f; damage = 880f; spin = 9f;
                 pierce = true;
-                trailColor = Color.valueOf("66b1ff"); backColor = Color.valueOf("66b1ff"); frontColor = Color.valueOf("e4fdff");
-                trailLength = 50; trailWidth = 18; trailChance = -1;
+                trailColor = Color.valueOf("e4fdff"); backColor = Color.valueOf("66b1ff"); frontColor = Color.valueOf("e4fdff");
+                mixColorFrom = Color.valueOf("66b1ff"); mixColorTo = Color.valueOf("e4fdff");
+                trailLength = 60; trailWidth = 24; trailChance = -1;
                 despawnHit = true;
-                fragBullets = 5; fragSpread = 72f;
+                fragBullets = 6; fragSpread = 60f;
                 fragBullet = new LaserBulletType() {{
-                    length = 80f; width = 16f; damage = 60f;
-                    colors = new Color[]{Color.valueOf("66b1ff"), Color.valueOf("e4fdff"), Color.white};
+                    length = 110f; width = 22f; damage = 60f;
+                    colors = new Color[]{Color.valueOf("66b1ff"), Color.valueOf("91f7ff"), Color.valueOf("e4fdff"), Color.white};
+                    sideAngle = 90f; sideWidth = 8f; sideLength = 40f;
+                    shootEffect = new ParticleEffect() {{ particles = 5; cone = 10f; length = 25f; colorFrom = Color.valueOf("91f7ff"); colorTo = Color.valueOf("e4fdff"); lifetime = 12f; }};
                 }};
                 intervalBullets = 8; intervalSpread = 45f; bulletInterval = 10f;
                 intervalBullet = new ContinuousLaserBulletType() {{
-                    length = 100f; width = 4f; damage = 75f; damageInterval = 8f;
-                    colors = new Color[]{Color.valueOf("66b1ff"), Color.valueOf("e4fdff"), Color.valueOf("56b1d7"), Color.valueOf("91f7ff"), Color.white};
+                    length = 130f; width = 7f; damage = 75f; damageInterval = 8f;
+                    colors = new Color[]{Color.valueOf("66b1ff"), Color.valueOf("91f7ff"), Color.valueOf("e4fdff"), Color.white};
                 }};
-                lightning = 6; lightningCone = 360f; lightningLength = 6; lightningDamage = 145f;
+                lightning = 8; lightningCone = 360f; lightningLength = 8; lightningDamage = 145f; lightningColor = Color.valueOf("91f7ff");
                 trailEffect = trailBezierBlue;
                 chargeEffect = new MultiEffect(
                     new ParticleEffect() {{ particles = 12; length = 50f; cone = 360f; colorFrom = Color.valueOf("66b1ff"); colorTo = Color.valueOf("e4fdff"); lifetime = 30f; }},
@@ -1464,83 +1527,6 @@ public class FRTurrets {
         }};
 
         
-
-        zephyr = new LiquidTurret("zephyr") {{
-            localizedName = "Zephyr";
-            requirements(Category.turret, with(copper, 80, lead, 70));
-            size = 2; liquidCapacity = 30f;
-            reload = 40f; ammoPerShot = 27;
-            targetAir = true;
-            ammoTypes = ObjectMap.of(
-                FRLiquids.steam, new BasicBulletType() {{
-                    sprite = "wind-blade"; lifetime = 72f; speed = 3f;
-                    damage = 0f; knockback = 15f; buildingDamageMultiplier = 0f;
-                    status = StatusEffects.wet;
-                    width = 26f; height = 10f;
-                    homingPower = 0.01f;
-                    frontColor = Color.white; lightColor = Color.valueOf("cfcfcf");
-                    trailColor = Color.valueOf("cfcfcf"); backColor = Color.valueOf("cfcfcf");
-                    trailWidth = 8f; trailLength = 16; trailChance = -1;
-                    shootEffect = new ParticleEffect() {{ particles = 9; cone = 25f; colorFrom = Color.white; colorTo = Color.valueOf("c1c3d4"); lifetime = 20f; }};
-                    hitEffect = hitBezierCyan;
-                    trailEffect = trailBezierCyan;
-                }}
-            );
-            drawer = new DrawTurret() {{
-                parts = Seq.with(
-                    new RegionPart() {{
-                        suffix = "-front"; progress = PartProgress.recoil;
-                        mirror = true; under = true;
-                        moveX = -0.24f; moveY = 0.6f; moveRot = -18f;
-                        moves = Seq.with( new DrawPart.PartMove() {{ progress = PartProgress.recoil; moveRot = -32f; moveY = -2f; }} );
-                    }}
-                );
-            }};
-        }};
-
-        weave = new LiquidTurret("weave") {{
-            localizedName = "Weave";
-            requirements(Category.turret, with(copper, 40, lead, 35, graphite, 25));
-            size = 2; health = 450; range = 160f;
-            reload = 33f; rotateSpeed = 2.6f;
-            consumePower(0.75f); consumeCoolant(0.1f);
-            shoot = new ShootSpread(2, 8f);
-            ammoTypes = ObjectMap.of(
-                Liquids.water, new BasicBulletType() {{
-                    sprite = "particle"; width = 18f; height = 18f;
-                    damage = 10f; splashDamage = 10f; splashDamageRadius = 16f;
-                    speed = 3f; lifetime = 55f;
-                    status = StatusEffects.wet;
-                    frontColor = Color.valueOf("7090ea"); backColor = Color.valueOf("363f9a");
-                    weaveMag = 5f; weaveScale = 4f;
-                    trailChance = -1;
-                    trailEffect = new ParticleEffect() {{ particles = 1; colorFrom = Color.valueOf("7090ea"); colorTo = Color.valueOf("363f9a"); lifetime = 15f; }};
-                    hitEffect = new WaveEffect() {{ sizeFrom = 0f; sizeTo = 18f; colorFrom = Color.valueOf("7090ea"); colorTo = Color.valueOf("363f9a"); }};
-                    despawnHit = true;
-                }}
-            );
-            drawer = new DrawTurret() {{
-                parts = Seq.with(
-                    new RegionPart() {{ suffix = "-body"; progress = PartProgress.warmup; mirror = true; moveX = 1.5f; }}
-                );
-            }};
-        }};
-
-        sprunkler = new LiquidTurret("sprunkler") {{
-            localizedName = "Sprinkler";
-            requirements(Category.turret, with(copper, 50, graphite, 20, metaglass, 15));
-            size = 3; health = 200; range = 200f;
-            reload = 1f; shootCone = 360f; rotateSpeed = 200f;
-            targetAir = true;
-            shoot = new ShootSpread(120, 6f);
-            ammoTypes = ObjectMap.of(
-                Liquids.water, new LiquidBulletType() {{
-                    damage = 0f; lifetime = 57f; knockback = 0f;
-                    liquid = Liquids.water;
-                    shootEffect = new ParticleEffect() {{ particles = 6; cone = 360f; length = 40f; colorFrom = Color.valueOf("0053e8"); colorTo = Color.valueOf("0046c2"); lifetime = 50f; }};
-                }}
-            );
-        }};
 
         batter = new LiquidTurret("batter") {{
             localizedName = "Batter";

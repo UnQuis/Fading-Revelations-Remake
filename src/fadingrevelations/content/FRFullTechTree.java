@@ -180,10 +180,7 @@ public class FRFullTechTree {
         addBlock(modGateTurrets, caats);
 
         
-        addBlock(modGateTurrets, zephyr);
-        addBlock(zephyr, weave);
-        addBlock(zephyr, sprunkler);
-        addBlock(sprunkler, batter);
+        addBlock(modGateTurrets, batter);
 
         
         addBlock(modGateTurrets, airArc);
