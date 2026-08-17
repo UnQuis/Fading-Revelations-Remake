@@ -515,7 +515,7 @@ public class FRTurrets {
             shoot = new ShootPattern() {{ firstShotDelay = 101f; }};
             ammoTypes = ObjectMap.of(
                 Items.surgeAlloy, new BasicBulletType() {{
-                    damage = 0f; speed = 0f; spawnUnit = FRTurrets.unit("surge-missile");
+                    damage = 0f; speed = 0f; spawnUnit = FRMissiles.surgeMissile;
                     shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
                     chargeEffect = new MultiEffect(
                         bezierRingGold, bezierRingGold, bezierRingGold,
@@ -525,7 +525,7 @@ public class FRTurrets {
                     );
                 }},
                 Items.plastanium, new BasicBulletType() {{
-                    damage = 0f; speed = 0f; spawnUnit = FRTurrets.unit("plast-missile");
+                    damage = 0f; speed = 0f; spawnUnit = FRMissiles.plastMissile;
                     shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
                     chargeEffect = new MultiEffect(
                         bezierRingGreen, bezierRingGreen, bezierRingGreen,
@@ -534,7 +534,7 @@ public class FRTurrets {
                     );
                 }},
                 Items.phaseFabric, new BasicBulletType() {{
-                    damage = 0f; speed = 0f; spawnUnit = FRTurrets.unit("phase-missile");
+                    damage = 0f; speed = 0f; spawnUnit = FRMissiles.phaseMissile;
                     shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
                     chargeEffect = new MultiEffect(
                         bezierRingPurple, bezierRingPurple, bezierRingPurple,
@@ -544,7 +544,7 @@ public class FRTurrets {
                     );
                 }},
                 FRItems.energyCell, new BasicBulletType() {{
-                    damage = 0f; speed = 0f; spawnUnit = FRTurrets.unit("energy-missile");
+                    damage = 0f; speed = 0f; spawnUnit = FRMissiles.energyMissile;
                     shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
                     chargeEffect = new MultiEffect(
                         bezierRingGold, bezierRingGold, bezierRingGold,
@@ -615,19 +615,19 @@ public class FRTurrets {
                 Items.pyratite, new BasicBulletType() {{
                     damage = 0f; speed = 0f; instantDisappear = true;
                     ammoMultiplier = 7f; rangeChange = -16f;
-                    spawnUnit = FRTurrets.unit("tiny-missile");
+                    spawnUnit = FRMissiles.tinyMissile;
                     shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
                 }},
                 Items.blastCompound, new BasicBulletType() {{
                     damage = 0f; speed = 0f; instantDisappear = true;
                     ammoMultiplier = 10f;
-                    spawnUnit = FRTurrets.unit("tiny-missile-3");
+                    spawnUnit = FRMissiles.tinyMissile3;
                     shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
                 }},
                 Items.plastanium, new BasicBulletType() {{
                     damage = 0f; speed = 0f; instantDisappear = true;
                     ammoMultiplier = 15f; rangeChange = 16f;
-                    spawnUnit = FRTurrets.unit("tiny-missile-2");
+                    spawnUnit = FRMissiles.tinyMissile2;
                     shootEffect = Fx.shootBig; smokeEffect = Fx.shootSmokeMissile;
                 }}
             );
@@ -652,7 +652,7 @@ public class FRTurrets {
             ammoTypes = ObjectMap.of(
                 FRItems.nuke, new BasicBulletType() {{
                     damage = 0f; speed = 0f; instantDisappear = true;
-                    spawnUnit = FRTurrets.unit("nuke-missile");
+                    spawnUnit = FRMissiles.nukeMissile;
                     shootEffect = new ParticleEffect() {{
                         particles = 1; spin = 60f; lifetime = 600f;
                         colorFrom = Color.valueOf("c80000"); colorTo = Color.valueOf("ff2424");
@@ -1592,10 +1592,5 @@ public class FRTurrets {
             moveX = x; moveY = y; moveRot = rot;
             moves = Seq.with( new DrawPart.PartMove() {{ progress = PartProgress.recoil; moveY = -4f; }} );
         }};
-    }
-
-    
-    private static UnitType unit(String name) {
-        return Vars.content.getByName(ContentType.unit, name);
     }
 }
