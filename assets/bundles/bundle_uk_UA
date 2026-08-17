@@ -524,8 +524,6 @@ block.sunflare.description = Der letzte Turm in der Familie des Flammenwerfers. 
 block.trio.name = Trio
 block.trio.description = Wie ein Duo aber schießt aus 3 anstatt nur 2 Rohren.
 
-block.upgrade-turret.name = Von Turmheim
-block.upgrade-turret.description = Ein Turm, dessen Schüsse verschiedene Effekte haben, basierend auf der genutzen Munitionsart.
 
 block.big-scatter.name = Shatter
 block.big-scatter.description = Eine bessere Version des Luftgeschützes.

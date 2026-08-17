@@ -36,7 +36,7 @@ public class FRTurrets {
     public static Block
         accel, bigSwarmer, caats, corruptedCyclone, gattling, ignitor, interitus,
         mineLauncher, missileBattery, missileSilo, mortar, oreTurret, ringTurret,
-        sear, shotgun, sniper, sunflare, trio, upgradeTurret,
+        sear, shotgun, sniper, sunflare, trio,
     
         uhlan, megaMeltdown, lightningChaingun, kugelblitz, diffract, cavalry,
         bigSegment, bigScatter, bigParallax, bigArc, airArc, absole, statusWave,
@@ -290,43 +290,6 @@ public class FRTurrets {
                 );
             }};
         }};
-
-        upgradeTurret = new ItemTurret("upgrade-turret") {{
-            localizedName = "Van Turretheim";
-            requirements(Category.turret, with(copper, 400, lead, 300, titanium, 200, plastanium, 100));
-            size = 2;
-            health = 900;
-            reload = 72f;
-            range = 200f;
-            inaccuracy = 6f;
-            maxAmmo = 600;
-            ammoPerShot = 1;
-            targetAir = true;
-            targetGround = true;
-            targetHealing = true;
-            shoot = new ShootPattern() {{ shots = 3; }};
-
-            ammoTypes = ObjectMap.of(
-                FRItems.livingSteel, new BasicBulletType() {{
-                    damage = 40f; speed = 8f;
-                    splashDamage = 8f; splashDamageRadius = 10f;
-                    status = StatusEffects.slow; statusDuration = 20f;
-                    shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
-                }},
-                FRItems.steelAlloy, new BasicBulletType() {{
-                    damage = 61f; speed = 10f;
-                    splashDamage = 12f; splashDamageRadius = 14f;
-                    ammoMultiplier = 5f;
-                    lightning = 3; lightningLength = 4; lightningDamage = 9f;
-                    shootEffect = Fx.shootBig; hitEffect = hitBezierGold;
-                    trailEffect = trailBezierGold;
-                }}
-            );
-        }};
-
-        
-        
-        
 
         bigSwarmer = new ItemTurret("big-swarmer") {{
             localizedName = "Assail";
@@ -599,27 +562,39 @@ public class FRTurrets {
             size = 3; health = 800; reload = 300f; range = 200f;
             minWarmup = 0.8f; shootWarmupSpeed = 0.08f;
             targetAir = false;
+            rotateSpeed = 5f; recoil = 1f;
+            shootSound = Sounds.shootMissile;
             shootEffect = Fx.shootTitan; smokeEffect = Fx.shootSmokeTitan;
             ammoTypes = ObjectMap.of(
                 Items.blastCompound, new BasicBulletType() {{
                     damage = 0f; speed = 3f; lifetime = 40f;
+                    ammoMultiplier = 3f; width = 16f; height = 16f;
+                    sprite = "large-orb"; hittable = false; knockback = 8f;
                     fragBullets = 3; fragSpread = 45f;
                     fragBullet = new BasicBulletType() {{
                         speed = 18f; lifetime = 2f; damage = 0f;
+                        width = 0f; height = 0f; collides = false;
+                        despawnEffect = Fx.none; hitEffect = Fx.none;
+                        fragLifeMin = 1f; fragVelocityMin = 1f;
                         fragBullets = 1;
                         fragBullet = new BasicBulletType() {{
                             damage = 75f; speed = 0f; lifetime = 720f;
                             splashDamage = 75f; splashDamageRadius = 45f;
                             sprite = "lml-mine";
+                            width = 16f; height = 16f; hitSize = 32f;
+                            shrinkX = 0f; shrinkY = 0f;
+                            frontColor = Color.valueOf("d99f6b"); backColor = Color.valueOf("f3e979");
+                            hittable = false; collidesAir = false;
+                            despawnEffect = Fx.none; hitEffect = Fx.blastExplosion;
                             status = StatusEffects.melting; statusDuration = 240f;
-                            shootEffect = bezierBurstRed; hitEffect = hitBezierRed;
+                            shootEffect = bezierBurstRed; hitEffect = Fx.blastExplosion;
                         }};
                     }};
                 }}
             );
             drawer = new DrawTurret() {{
                 parts = Seq.with(
-                    new RegionPart() {{ suffix = "-body"; progress = PartProgress.warmup; moveX = 2f; moveY = 1.1f; }}
+                    new RegionPart() {{ suffix = "-body"; mirror = true; progress = PartProgress.warmup; moveX = 2f; moveY = 1.1f; }}
                 );
             }};
         }};
@@ -629,8 +604,12 @@ public class FRTurrets {
             requirements(Category.turret, with(lead, 260, metaglass, 200, titanium, 110));
             size = 3; scaledHealth = 110; reload = 570f; range = 304f;
             targetAir = false;
+            moveWhileCharging = false;
+            recoil = 7f;
+            shootSound = Sounds.shootMissileLarge; chargeSound = Sounds.chargeLancer;
             shoot = new ShootBarrel() {{
-                barrels = new float[15]; shots = 15; shotDelay = 6f; firstShotDelay = 120f;
+                barrels = new float[]{0f, 8f, 0f, 20f, 0f, 20f, 30f, 7f, 25f, -20f, 0f, -20f, -30f, 7f, -25f};
+                shots = 15; shotDelay = 6f; firstShotDelay = 120f;
             }};
             ammoTypes = ObjectMap.of(
                 Items.pyratite, new BasicBulletType() {{

@@ -168,7 +168,6 @@ public class FRFullTechTree {
         addBlock(gattling, lightningChaingun);
         addBlock(trio, shotgun);
         addBlock(shotgun, sniper);
-        addBlock(shotgun, upgradeTurret);
         addBlock(shotgun, oreTurret);
         addBlock(oreTurret, mineLauncher);
         addBlock(mineLauncher, mortar);
