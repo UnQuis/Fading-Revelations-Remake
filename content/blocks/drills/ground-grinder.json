@@ -1,0 +1,40 @@
+{
+  "type": "GenericCrafter",
+  "name": "Ground Grinder",
+  "description": "Slowly grinds up the ground it sits on to produce sand. Requires power.",
+  "size": 1,
+  "hasPower": true,
+  "hasItems": true,
+  "hasLiquids": false,
+  "loopSound": "crush",
+  "loopSoundVolume": 1,
+  "craftTime": 60,
+  "itemCapacity": 15,
+  "craftEffect": {
+    "type": "WaveEffect",
+    "colorFrom": "f7cba4",
+    "colorTo": "d3ae8d",
+    "lifetime": 45,
+    "sizeFrom": 4,
+    "sizeTo": 0
+  },
+  "consumes": {
+    "power": 1,
+  },
+  "requirements": [
+    {
+      "item": "copper",
+      "amount": 60
+    },
+    {
+      "item": "lead",
+      "amount": 30
+    }
+  ],
+  "category": "production",
+  "research": "mod-gate-drills",
+  "outputItem": {
+    "item": "sand",
+    "amount": 2
+  }
+}
