@@ -1,6 +1,8 @@
 package fadingrevelations;
 
 import fadingrevelations.content.*;
+import fadingrevelations.ui.FRResearchDialog;
+import mindustry.Vars;
 import mindustry.mod.Mod;
 
 public class FadingRevelationsMod extends Mod {
@@ -46,6 +48,9 @@ public class FadingRevelationsMod extends Mod {
         FROverride.hardcore();
         FROverride.noCoreBurn();
         FRMusic.load();
+        if (!Vars.headless && Vars.ui != null) {
+            FRResearchDialog.init();
+        }
     }
 }
 //I'm so fucking tired

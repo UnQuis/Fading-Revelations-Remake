@@ -25,12 +25,13 @@ import static mindustry.content.TechTree.*;
 
 public class FRFullTechTree {
     private static TechNode context;
+    public static TechNode rootNode;
 
     public static void load() {
         ObjectFloatMap<Item> costMultipliers = new ObjectFloatMap<>();
         for(Item item : Vars.content.items()) costMultipliers.put(item, 0.5f);
 
-        nodeRoot("fading-revelations", modGateMain, false, () -> {
+        rootNode = nodeRoot("fading-revelations", modGateMain, false, () -> {
             context().researchCostMultipliers = costMultipliers;
 
             node(coreLevel4, () -> {
@@ -454,6 +455,9 @@ public class FRFullTechTree {
             });
         });
 
+        FRPlanets.cerbero.techTree = rootNode;
+        FRPlanets.cangirus.techTree = rootNode;
+
         addToNode(largePlasmaBore, () -> node(plasmaArcBore));
         addToNode(impactDrill, () -> node(percussionDrill));
         addToNode(cliffCrusher, () -> node(cliffGrinder, () -> node(cliffMiller)));
@@ -487,12 +491,13 @@ public class FRFullTechTree {
     }
 
     private static void node(UnlockableContent content, ItemStack[] requirements, Seq<Objectives.Objective> objectives, Runnable children) {
-        TechNode node = new TechNode(context, content, requirements);
+        TechNode parent = context != null ? context : TechTree.context();
+        TechNode node = new TechNode(parent, content, requirements);
         if(objectives != null){
             node.objectives.addAll(objectives);
         }
-        if(context != null && context.content != content){
-            node.objectives.add(new Objectives.Research(context.content));
+        if(parent != null && parent.content != content){
+            node.objectives.add(new Objectives.Research(parent.content));
         }
         TechNode prev = context;
         context = node;
