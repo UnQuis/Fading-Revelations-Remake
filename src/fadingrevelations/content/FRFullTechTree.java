@@ -1,9 +1,13 @@
 package fadingrevelations.content;
 
-import arc.struct.ObjectMap;
+import arc.struct.ObjectFloatMap;
+import arc.struct.Seq;
+import mindustry.Vars;
 import mindustry.content.TechTree;
+import mindustry.content.TechTree.TechNode;
 import mindustry.ctype.UnlockableContent;
-import mindustry.game.Objectives.Research;
+import mindustry.game.Objectives;
+import mindustry.type.Item;
 import mindustry.type.ItemStack;
 
 import static fadingrevelations.content.FREffectBlocks.*;
@@ -15,270 +19,456 @@ import static fadingrevelations.content.FRPowerNodes.*;
 import static fadingrevelations.content.FRLiquidsBlocks.*;
 import static fadingrevelations.content.FRGates.*;
 import static fadingrevelations.content.FRProduction.*;
-import fadingrevelations.content.FRItems;
-import fadingrevelations.content.FREnvironment;
+import static fadingrevelations.content.FRSectorPresets.*;
 import static mindustry.content.Blocks.*;
+import static mindustry.content.TechTree.*;
 
 public class FRFullTechTree {
-    private static final ObjectMap<UnlockableContent, TechTree.TechNode> nodes = new ObjectMap<>();
+    private static TechNode context;
 
     public static void load() {
-        TechTree.TechNode root = TechTree.nodeRoot("fading-revelations", modGateMain, false, () -> {});
-        nodes.put(modGateMain, root);
+        ObjectFloatMap<Item> costMultipliers = new ObjectFloatMap<>();
+        for(Item item : Vars.content.items()) costMultipliers.put(item, 0.5f);
 
-        
-        addBlock(modGateMain, modGateBlocks);
+        nodeRoot("fading-revelations", modGateMain, false, () -> {
+            context().researchCostMultipliers = costMultipliers;
 
-        
-        addBlock(modGateBlocks, modGateLiquids);
-        addBlock(modGateLiquids, steelTank);
-        addBlock(steelTank, steelPump);
-        addBlock(steelPump, kineticConduit);
-        addBlock(kineticConduit, kineticLiquidRouter);
-        addBlock(kineticConduit, kineticLiquidBridge);
-        addBlock(steelTank, bioLiquidContainer);
-        addBlock(kineticLiquidRouter, liquidUnloader);
+            node(coreLevel4, () -> {
+                node(coreLevel5, () -> {
+                    node(mainCore, () -> {
+                        node(corePrime, () -> {
+                            node(FRCoreUnits.delta, () -> {
+                                node(FRCoreUnits.epsilon, () -> {
+                                    node(FRCoreUnits.coreTurretUnit);
+                                });
+                            });
+                        });
+                    });
+                });
+            });
 
-        
-        addBlock(modGateBlocks, modGateDistribution);
-        addBlock(modGateDistribution, titaniumJunction);
-        addBlock(titaniumJunction, titaniumRouter);
-        addBlock(titaniumRouter, titaniumBridgeConveyor);
-        addBlock(titaniumRouter, titaniumDistributor);
-        addBlock(titaniumBridgeConveyor, kineticConveyor);
-        addBlock(kineticConveyor, surgeBridgeConveyor);
-        addBlock(kineticConveyor, amalgamConveyor);
-        addBlock(amalgamConveyor, fusionConveyor);
-        addBlock(titaniumRouter, kineticRouter);
-        addBlock(titaniumJunction, kineticJunction);
-        addBlock(titaniumDistributor, kineticDistributor);
-        addBlock(kineticConveyor, bioConveyor);
-        addBlock(surgeBridgeConveyor, bioBridgeConveyor);
-        addBlock(titaniumRouter, bioRouter);
-        addBlock(titaniumJunction, bioJunction);
-        addBlock(titaniumDistributor, bioDistributor);
+            node(livingSteelWall, () -> {
+                node(livingSteelWallLarge, () -> {
+                    node(steelAlloyWallSmall, () -> {
+                        node(steelAlloyWallLarge);
+                    });
+                });
+            });
+            node(copperWall2, () -> {
+                node(copperWall3, () -> {
+                    node(titaniumWall2, () -> {
+                        node(titaniumWall3);
+                        node(thoriumWall2, () -> {
+                            node(thoriumWall3);
+                        });
+                        node(plastaniumWall2, () -> {
+                            node(plastaniumWall3);
+                        });
+                        node(surgeAlloyWall2, () -> {
+                            node(surgeAlloyWall3);
+                            node(phaseFabricWall2, () -> {
+                                node(phaseFabricWall3, () -> {
+                                    node(nanoOpticWall, () -> {
+                                        node(nanoOpticWallLarge, () -> {
+                                            node(nanoOpticWallHuge, () -> {
+                                                node(nanoOpticWallGigantic);
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                        node(armoredDoor, () -> {
+                            node(doorHuge, () -> {
+                                node(doorGigantic);
+                            });
+                        });
+                    });
+                });
+            });
 
-        
-        
-        addBlock(modGateBlocks, modGateDrills);
-        addBlock(modGateDrills, tinyMechanicalDrill);
-        addBlock(tinyMechanicalDrill, tinyPneumaticDrill);
-        addBlock(tinyPneumaticDrill, titaniumDrill);
-        addBlock(titaniumDrill, compactLaserDrill);
-        addBlock(compactLaserDrill, hyperDrill);
-        addBlock(hyperDrill, cosmicDrill);
-        addBlock(cosmicDrill, omniDrill);
+            node(trio, () -> {
+                node(sear, () -> {
+                    node(sunflare);
+                    node(bigSwarmer, () -> {
+                        node(corruptedCyclone);
+                        node(gattling, () -> {
+                            node(lightningChaingun);
+                        });
+                    });
+                });
+                node(shotgun, () -> {
+                    node(sniper, () -> {
+                        node(ringTurret, () -> {
+                            node(ignitor);
+                            node(diffract);
+                        });
+                    });
+                    node(oreTurret, () -> {
+                        node(mineLauncher, () -> {
+                            node(mortar);
+                            node(missileBattery, () -> {
+                                node(interitus);
+                                node(missileSilo);
+                            });
+                        });
+                        node(bigScatter);
+                    });
+                });
+            });
+            node(caats);
+            node(batter);
+            node(airArc, () -> {
+                node(uhlan, () -> {
+                    node(kugelblitz, () -> {
+                        node(statusWave);
+                        node(cavalry);
+                    });
+                    node(accel, () -> {
+                        node(absole, () -> {
+                            node(megaMeltdown);
+                        });
+                    });
+                });
+                node(bigArc, () -> {
+                    node(bigParallax);
+                    node(bigSegment);
+                });
+            });
+
+            node(reinforcedPowerNode, () -> {
+                node(reinforcedLargePowerNode, () -> {
+                    node(powerReserve, () -> {
+                        node(crystalAccumulator);
+                    });
+                    node(advancedSurgeTower);
+                });
+            });
+            node(tinyThermalGen, () -> {
+                node(titaniumPanel, () -> {
+                    node(advancedSolarPanel, () -> {
+                        node(solarArray);
+                    });
+                });
+                node(steamTurbine, Seq.with(
+                    new Objectives.Research(steamGenerator),
+                    new Objectives.Research(FRItems.livingSteel)
+                ), () -> {});
+            });
+            node(slagGenerator, () -> {
+                node(pyratiteGenerator);
+            });
+            node(steelReactor, () -> {
+                node(plasmaReactor);
+            });
+            node(lsGen);
+
+            node(miniOd, () -> {
+                node(enhancedMendProjector, () -> {
+                    node(darkMender, () -> {
+                        node(nanoRepairField, () -> {
+                            node(forceDome, () -> {
+                                node(forceField);
+                            });
+                        });
+                    });
+                });
+                node(constructionPylon);
+            });
+            node(overdriveRelay, () -> {
+                node(overdriveBeacon);
+            });
+            node(fastUnloader, () -> {
+                node(tinyMd, () -> {
+                    node(massAccelerator);
+                });
+            });
+            node(depository, () -> {
+                node(FRDistribution.frReinforcedVault, () -> {
+                    node(FRDistribution.frQuantumVault);
+                });
+            });
+
+            node(titaniumJunction, () -> {
+                node(titaniumRouter, () -> {
+                    node(titaniumBridgeConveyor, () -> {
+                        node(kineticConveyor, () -> {
+                            node(surgeBridgeConveyor, () -> {
+                                node(bioBridgeConveyor);
+                            });
+                            node(amalgamConveyor, () -> {
+                                node(fusionConveyor);
+                            });
+                            node(bioConveyor);
+                        });
+                    });
+                    node(kineticRouter);
+                    node(bioRouter);
+                });
+                node(kineticJunction);
+                node(titaniumDistributor, () -> {
+                    node(kineticDistributor);
+                    node(bioDistributor);
+                });
+            });
+
+            node(steelTank, () -> {
+                node(steelPump);
+                node(bioLiquidContainer);
+                node(kineticConduit, () -> {
+                    node(kineticLiquidRouter, () -> {
+                        node(liquidUnloader);
+                    });
+                    node(kineticLiquidBridge);
+                });
+            });
+
+            node(tinyMechanicalDrill, () -> {
+                node(tinyPneumaticDrill, () -> {
+                    node(titaniumDrill, () -> {
+                        node(compactLaserDrill, () -> {
+                            node(hyperDrill, () -> {
+                                node(cosmicDrill, () -> {
+                                    node(omniDrill);
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+            node(groundGrinder, () -> {
+                node(groundMiller, () -> {
+                    node(groundCrusher, () -> {
+                        node(oilBore);
+                    });
+                });
+            });
+
+            node(steamCondenser, () -> {
+                node(dissolver, () -> {
+                    node(acidVat, () -> {
+                        node(acidEmulsifier);
+                    });
+                    node(advancedWaterExtractor, () -> {
+                        node(advancedCryofluidMixer);
+                        node(neutronBlender);
+                    });
+                });
+            });
+            node(livingSteelComplex);
+            node(livingSteelLiquifier, () -> {
+                node(livingSteelLiquifyingForge);
+            });
+            node(invertedPulverizer, () -> {
+                node(powderizer, () -> {
+                    node(inducedKiln, () -> {
+                        node(siliconForge, () -> {
+                            node(basicMultismelter);
+                        });
+                        node(greenhouse, () -> {
+                            node(sporeCrusher);
+                            node(enhancedPyratiteMixer, () -> {
+                                node(enhancedBlastMixer, () -> {
+                                    node(graphiteForge, () -> {
+                                        node(advancedCoalCentrifuge, () -> {
+                                            node(bigPlastaniumPress, () -> {
+                                                node(bigPhaseWeaver, () -> {
+                                                    node(advancedSeparator);
+                                                });
+                                                node(uraniumrodCrafter);
+                                            });
+                                            node(surgeOvenBig, () -> {
+                                                node(amalgamSmelter, () -> {
+                                                    node(amalgamForge);
+                                                });
+                                                node(cryogenicGelMixer, () -> {
+                                                    node(alloyCrafter, () -> {
+                                                        node(cryogenicAlloyAssembler, () -> {
+                                                            node(crystalSynthesizer, () -> {
+                                                                node(cellFabricator, () -> {
+                                                                    node(nanoWeaver, () -> {
+                                                                        node(fabricationNexus);
+                                                                    });
+                                                                });
+                                                            });
+                                                        });
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                            node(bioRefinery, () -> {
+                                nodeProduce(FRItems.bioMatter);
+                            });
+                        });
+                    });
+                });
+            });
+
+            nodeProduce(FRItems.livingSteel, () -> {
+                nodeProduce(FRItems.livingSteelHard);
+                nodeProduce(FRItems.steelAlloy, () -> {
+                    nodeProduce(FRItems.fuelRod, () -> {
+                        nodeProduce(FRItems.cryogenicGel, () -> {
+                            nodeProduce(FRItems.igneousAlloy, () -> {
+                                nodeProduce(FRItems.cryogenicAlloy, () -> {
+                                    nodeProduce(FRItems.optiCrystal, () -> {
+                                        nodeProduce(FRItems.energyCell, () -> {
+                                            nodeProduce(FRItems.nanoFabric);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+            nodeProduce(FRItems.nuke);
+            nodeProduce(FREnvironment.steelSedimentation, () -> {
+                nodeProduce(FREnvironment.oreGraphite);
+            });
+
+            node(primaryFactory, () -> {
+                node(basicReassembly, () -> {
+                    node(advancedReassembly, () -> {
+                        node(progressiveAssembly, () -> {
+                            node(ascendedFactory, () -> {
+                                node(FRTranscendentUnits.mygale);
+                                node(FRTranscendentUnits.scepter);
+                                node(FRTranscendentUnits.mangonel);
+                                node(FRTranscendentUnits.thalass);
+                                node(FRTranscendentUnits.vex);
+                                node(FRTranscendentUnits.medusae);
+                                node(FRTranscendentUnits.nivosa);
+                            });
+                        });
+                    });
+                });
+                node(regenerator);
+            });
+
+            node(FRT1Units.heliaca);
+            node(FRT1Units.apis, () -> {
+                node(FRT2Units.procer, () -> {
+                    node(FRT3Units.ducalis, () -> {
+                        node(FRMothershipUnits.hive);
+                    });
+                });
+            });
+            node(FRT1Units.seed, () -> {
+                node(FRT2Units.sapling, () -> {
+                    node(FRT3Units.plant, () -> {
+                        node(FRMothershipUnits.corax);
+                    });
+                });
+            });
+            node(FRT1Units.lancerDrone, () -> {
+                node(FRT2Units.alopex, () -> {
+                    node(FRT3Units.kestrel, () -> {
+                        node(FRMothershipUnits.strahl);
+                    });
+                });
+            });
+            node(FRCerberianUnits.spark, () -> {
+                node(FRCerberianUnits.vista, () -> {
+                    node(FRCerberianUnits.summit, () -> {
+                        node(FRCerberianUnits.penumbra, () -> {
+                            node(FRCerberianUnits.veil);
+                        });
+                    });
+                });
+            });
+
+            node(FRT1Units.annax, () -> {
+                node(FRT2Units.scofra, () -> {
+                    node(FRT3Units.auratus, () -> {
+                        node(FRMothershipUnits.lycosid);
+                    });
+                });
+            });
+            node(FRT1Units.sambuca, () -> {
+                node(FRT2Units.scorpio, () -> {
+                    node(FRT3Units.springald, () -> {
+                        node(FRMothershipUnits.onager);
+                    });
+                });
+            });
+            node(FRCerberianUnits.straggle, () -> {
+                node(FRCerberianUnits.bayonet, () -> {
+                    node(FRCerberianUnits.hexathelid, () -> {
+                        node(FRCerberianUnits.cudgel, () -> {
+                            node(FRCerberianUnits.citadel, () -> {
+                                node(FRCerberianUnits.nephila, () -> {
+                                    node(FRCerberianUnits.curtulus, () -> {
+                                        node(FRCerberianUnits.auctus, () -> {
+                                            node(FRCerberianUnits.baton, () -> {
+                                                node(FRCerberianUnits.kaiser, () -> {
+                                                    node(FRCerberianUnits.setosus, () -> {
+                                                        node(FRCerberianUnits.behemoth);
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+
+            node(FRT1Units.alba, () -> {
+                node(FRT2Units.arvens, () -> {
+                    node(FRT3Units.aestiva, () -> {
+                        node(FRMothershipUnits.altaic);
+                    });
+                });
+            });
+            node(FRT1Units.mela, () -> {
+                node(FRT2Units.cromis, () -> {
+                    node(FRT3Units.arnux, () -> {
+                        node(FRMothershipUnits.japonica);
+                    });
+                });
+            });
+
+            node(exordium, () -> {
+                node(dree, Seq.with(
+                    new Objectives.OnSector(exordium)
+                ), () -> {
+                    node(sporeDunes, Seq.with(
+                        new Objectives.SectorComplete(dree)
+                    ), () -> {
+                        node(abandonedBattlefield, Seq.with(
+                            new Objectives.SectorComplete(sporeDunes)
+                        ), () -> {});
+                    });
+                });
+            });
+            node(etnaticIsles, () -> {
+                node(carbonicDownpour, Seq.with(
+                    new Objectives.SectorComplete(etnaticIsles)
+                ), () -> {});
+            });
+        });
+
         addToNode(largePlasmaBore, () -> node(plasmaArcBore));
         addToNode(impactDrill, () -> node(percussionDrill));
-        
-        addBlock(modGateDrills, groundGrinder);
-        addBlock(groundGrinder, groundMiller);
-        addBlock(groundMiller, groundCrusher);
-        addBlock(groundCrusher, oilBore);
-        
         addToNode(cliffCrusher, () -> node(cliffGrinder, () -> node(cliffMiller)));
         addToNode(plasmaBore, () -> { node(tinyPlasmaBore); node(tungstenBore); });
         addToNode(ventCondenser, () -> node(ventConcentrator));
-
-        
-        addBlock(modGateBlocks, modGateWalls);
-        
-        addBlock(modGateWalls, livingSteelWall);
-        addBlock(livingSteelWall, livingSteelWallLarge);
-        addBlock(livingSteelWallLarge, steelAlloyWallSmall);
-        addBlock(steelAlloyWallSmall, steelAlloyWallLarge);
-        
-        addBlock(modGateWalls, copperWall2);
-        addBlock(copperWall2, copperWall3);
-        addBlock(copperWall3, titaniumWall2);
-        addBlock(titaniumWall2, titaniumWall3);
-        addBlock(titaniumWall2, thoriumWall2);
-        addBlock(thoriumWall2, thoriumWall3);
-        addBlock(titaniumWall2, plastaniumWall2);
-        addBlock(plastaniumWall2, plastaniumWall3);
-        addBlock(thoriumWall2, surgeAlloyWall2);
-        addBlock(surgeAlloyWall2, surgeAlloyWall3);
-        addBlock(surgeAlloyWall2, phaseFabricWall2);
-        addBlock(phaseFabricWall2, phaseFabricWall3);
-        addBlock(phaseFabricWall3, nanoOpticWall);
-        addBlock(nanoOpticWall, nanoOpticWallLarge);
-        addBlock(nanoOpticWallLarge, nanoOpticWallHuge);
-        addBlock(nanoOpticWallHuge, nanoOpticWallGigantic);
-        addBlock(titaniumWall2, armoredDoor);
-        addBlock(armoredDoor, doorHuge);
-        addBlock(doorHuge, doorGigantic);
-        
         addToNode(shieldedWall, () -> node(armoredWall));
         addToNode(berylliumWallLarge, () -> node(berylliumWallHuge, () -> node(berylliumWallGigantic)));
         addToNode(tungstenWallLarge, () -> node(tungstenWallHuge, () -> node(tungstenWallGigantic)));
         addToNode(carbideWallLarge, () -> node(carbideWallHuge, () -> node(carbideWallGigantic)));
         addToNode(reinforcedSurgeWallLarge, () -> node(reinforcedSurgeWallHuge, () -> node(reinforcedSurgeWallGigantic)));
-
-        
-        addBlock(modGateBlocks, modGatePower);
-
-        
-        addBlock(modGatePower, reinforcedPowerNode);
-        addBlock(reinforcedPowerNode, reinforcedLargePowerNode);
-        addBlock(reinforcedLargePowerNode, powerReserve);
-        addBlock(reinforcedLargePowerNode, advancedSurgeTower);
-        addBlock(powerReserve, crystalAccumulator);
-
-        
-        addBlock(modGatePower, tinyThermalGen);
-        addBlock(tinyThermalGen, titaniumPanel);
-        addBlock(titaniumPanel, advancedSolarPanel);
-        addBlock(advancedSolarPanel, solarArray);
-        addBlock(tinyThermalGen, steamTurbine);
-        addAdditionalObjectives(steamTurbine, steamGenerator, FRItems.livingSteel);
-        addBlock(modGatePower, slagGenerator);
-        addBlock(slagGenerator, pyratiteGenerator);
-        addBlock(steelReactor, plasmaReactor);
-        addBlock(modGatePower, lsGen);
-
-        
-        
-        addBlock(modGateBlocks, modGateEffect);
-        addBlock(modGateEffect, miniOd);
-        addBlock(miniOd, enhancedMendProjector);
-        addBlock(enhancedMendProjector, darkMender);
-        addBlock(darkMender, nanoRepairField);
-        addBlock(nanoRepairField, forceDome);
-        addBlock(forceDome, forceField);
-        addBlock(modGateEffect, overdriveRelay);
-        addBlock(overdriveRelay, overdriveBeacon);
-        addBlock(modGateEffect, fastUnloader);
-        addBlock(fastUnloader, tinyMd);
-        addBlock(tinyMd, massAccelerator);
-        addBlock(modGateEffect, depository);
-        addBlock(depository, FRDistribution.frReinforcedVault);
-        addBlock(FRDistribution.frReinforcedVault, FRDistribution.frQuantumVault);
-        addBlock(miniOd, constructionPylon);
-
-        
-        addBlock(modGateBlocks, modGateTurrets);
-
-        
-        addBlock(modGateTurrets, trio);
-        addBlock(trio, sear);
-        addBlock(sear, sunflare);
-        addBlock(sear, bigSwarmer);
-        addBlock(bigSwarmer, corruptedCyclone);
-        addBlock(bigSwarmer, gattling);
-        addBlock(gattling, lightningChaingun);
-        addBlock(trio, shotgun);
-        addBlock(shotgun, sniper);
-        addBlock(shotgun, oreTurret);
-        addBlock(oreTurret, mineLauncher);
-        addBlock(mineLauncher, mortar);
-        addBlock(mineLauncher, missileBattery);
-        addBlock(missileBattery, interitus);
-        addBlock(missileBattery, missileSilo);
-        addBlock(sniper, ringTurret);
-        addBlock(ringTurret, ignitor);
-        addBlock(modGateTurrets, caats);
-
-        
-        addBlock(modGateTurrets, batter);
-
-        
-        addBlock(modGateTurrets, airArc);
-        addBlock(airArc, uhlan);
-        addBlock(uhlan, kugelblitz);
-        addBlock(kugelblitz, statusWave);
-        addBlock(kugelblitz, cavalry);
-        addBlock(airArc, bigArc);
-        addBlock(bigArc, bigParallax);
-        addBlock(bigArc, bigSegment);
-        addBlock(uhlan, accel);
-        addBlock(accel, absole);
-        addBlock(absole, megaMeltdown);
-        
-        addBlock(ringTurret, diffract);
-        addBlock(oreTurret, bigScatter);
-
-        
-        addBlock(modGateBlocks, modGateCores);
-        addBlock(modGateCores, coreLevel4);
-        addBlock(coreLevel4, coreLevel5);
-        addBlock(coreLevel5, mainCore);
-        addBlock(mainCore, corePrime);
-
-        
-        
-        addBlock(modGateBlocks, modGateCrafters);
-
-        
-        
-        
-        
-        
-        addBlock(modGateCrafters, steamCondenser);
-        addBlock(steamCondenser, dissolver);
-        addBlock(dissolver, acidVat);
-        addBlock(acidVat, acidEmulsifier);
-        addBlock(dissolver, advancedWaterExtractor);
-        addBlock(advancedWaterExtractor, advancedCryofluidMixer);
-        addBlock(advancedWaterExtractor, neutronBlender);
-
-        
-        
-        
-        
-        addBlock(modGateCrafters, livingSteelComplex);
-        addBlock(modGateCrafters, livingSteelLiquifier);
-        addBlock(livingSteelLiquifier, livingSteelLiquifyingForge);
-
-        
-        
-        
-
-
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        addBlock(modGateCrafters, invertedPulverizer);
-        addBlock(invertedPulverizer, powderizer);
-        addBlock(powderizer, inducedKiln);
-        addBlock(inducedKiln, siliconForge);
-        addBlock(siliconForge, basicMultismelter);
-        addBlock(inducedKiln, greenhouse);
-        addBlock(greenhouse, sporeCrusher);
-        addBlock(greenhouse, enhancedPyratiteMixer);
-        addBlock(enhancedPyratiteMixer, enhancedBlastMixer);
-        addBlock(enhancedBlastMixer, graphiteForge);
-        addBlock(graphiteForge, advancedCoalCentrifuge);
-        addBlock(advancedCoalCentrifuge, bigPlastaniumPress);
-        addBlock(advancedCoalCentrifuge, surgeOvenBig);
-        addBlock(bigPlastaniumPress, bigPhaseWeaver);
-        addBlock(bigPlastaniumPress, uraniumrodCrafter);
-        addBlock(bigPhaseWeaver, advancedSeparator);
-        addBlock(surgeOvenBig, amalgamSmelter);
-        addBlock(surgeOvenBig, cryogenicGelMixer);
-        addBlock(amalgamSmelter, amalgamForge);
-        addBlock(cryogenicGelMixer, alloyCrafter);
-        addBlock(alloyCrafter, cryogenicAlloyAssembler);
-        addBlock(cryogenicAlloyAssembler, crystalSynthesizer);
-        addBlock(crystalSynthesizer, cellFabricator);
-        addBlock(cellFabricator, nanoWeaver);
-        addBlock(greenhouse, bioRefinery);
-        addBlock(nanoWeaver, fabricationNexus);
-
-        
         addToNode(siliconArcFurnace, () -> node(siliconArcForge));
         addToNode(surgeCrucible, () -> node(surgeMelter));
         addToNode(phaseSynthesizer, () -> node(phaseManufacturer));
         addToNode(atmosphericConcentrator, () -> node(atmosphericExtractor));
-        addToNode(electricHeater, () -> node(atmosphericHeatConcentrator));
-        addToNode(electricHeater, () -> node(heatDiverter));
+        addToNode(electricHeater, () -> { node(atmosphericHeatConcentrator); node(heatDiverter); });
         addToNode(heatRouter, () -> node(smallHeatRouter));
         addToNode(electrolyzer, () -> node(esterificationChamber));
         addToNode(cyanogenSynthesizer, () -> node(cyanogenFuser));
@@ -286,156 +476,25 @@ public class FRFullTechTree {
         addToNode(carbideCrucible, () -> node(carbideBasin));
         addToNode(ventCondenser, () -> node(slagReactor));
         addToNode(turbineCondenser, () -> node(turbineConcentrator));
-
-        
-        addBlock(modGateMain, modGateItems);
-        addBlock(modGateItems, FRItems.livingSteel);
-        addBlock(FRItems.livingSteel, FRItems.livingSteelHard);
-        addBlock(FRItems.livingSteel, FRItems.steelAlloy);
-        addBlock(FRItems.steelAlloy, FRItems.fuelRod);
-        addBlock(FRItems.fuelRod, FRItems.cryogenicGel);
-        addBlock(FRItems.cryogenicGel, FRItems.igneousAlloy);
-        addBlock(FRItems.igneousAlloy, FRItems.cryogenicAlloy);
-        addBlock(FRItems.cryogenicAlloy, FRItems.optiCrystal);
-        addBlock(FRItems.optiCrystal, FRItems.energyCell);
-        addBlock(FRItems.energyCell, FRItems.nanoFabric);
-        addBlock(bioRefinery, FRItems.bioMatter);
-
-        
-        addBlock(modGateItems, FRItems.nuke);
-
-        
-        addBlock(modGateItems, modGateResources);
-        addBlock(modGateResources, FREnvironment.steelSedimentation);
-        addBlock(FREnvironment.steelSedimentation, FREnvironment.oreGraphite);
-
-        
-        addBlock(modGateMain, modGateUnits);
-        addBlock(modGateUnits, modGateFactories);
-        addBlock(modGateFactories, primaryFactory);
-        addBlock(primaryFactory, basicReassembly);
-        addBlock(basicReassembly, advancedReassembly);
-        addBlock(advancedReassembly, progressiveAssembly);
-        addBlock(progressiveAssembly, ascendedFactory);
-        addBlock(modGateFactories, regenerator);
-        addBlock(modGateUnits, modGateFlying);
-        addBlock(modGateUnits, modGateLegs);
-        addBlock(modGateUnits, modGateNaval);
-        addBlock(modGateUnits, modGateCoreUnits);
-
-        
-        
-        addBlock(modGateFlying, FRT1Units.heliaca);
-
-        addBlock(modGateFlying, FRT1Units.apis);
-        addBlock(FRT1Units.apis, FRT2Units.procer);
-        addBlock(FRT2Units.procer, FRT3Units.ducalis);
-        
-        addBlock(modGateFlying, FRT1Units.seed);
-        addBlock(FRT1Units.seed, FRT2Units.sapling);
-        addBlock(FRT2Units.sapling, FRT3Units.plant);
-        
-        addBlock(modGateFlying, FRT1Units.lancerDrone);
-        addBlock(FRT1Units.lancerDrone, FRT2Units.alopex);
-        addBlock(FRT2Units.alopex, FRT3Units.kestrel);
-        
-        addBlock(modGateFlying, FRCerberianUnits.spark);
-        addBlock(FRCerberianUnits.spark, FRCerberianUnits.vista);
-        addBlock(FRCerberianUnits.vista, FRCerberianUnits.summit);
-        addBlock(FRCerberianUnits.summit, FRCerberianUnits.penumbra);
-        addBlock(FRCerberianUnits.penumbra, FRCerberianUnits.veil);
-        
-        addBlock(FRT3Units.kestrel, FRMothershipUnits.strahl);
-        addBlock(FRT3Units.ducalis, FRMothershipUnits.hive);
-
-        
-        
-        addBlock(modGateLegs, FRT1Units.annax);
-        addBlock(FRT1Units.annax, FRT2Units.scofra);
-        addBlock(FRT2Units.scofra, FRT3Units.auratus);
-        
-        addBlock(modGateLegs, FRT1Units.sambuca);
-        addBlock(FRT1Units.sambuca, FRT2Units.scorpio);
-        addBlock(FRT2Units.scorpio, FRT3Units.springald);
-        
-        addBlock(modGateLegs, FRCerberianUnits.straggle);
-        addBlock(FRCerberianUnits.straggle, FRCerberianUnits.bayonet);
-        addBlock(FRCerberianUnits.bayonet, FRCerberianUnits.hexathelid);
-        addBlock(FRCerberianUnits.hexathelid, FRCerberianUnits.cudgel);
-        addBlock(FRCerberianUnits.cudgel, FRCerberianUnits.citadel);
-        addBlock(FRCerberianUnits.citadel, FRCerberianUnits.nephila);
-        addBlock(FRCerberianUnits.nephila, FRCerberianUnits.curtulus);
-        addBlock(FRCerberianUnits.curtulus, FRCerberianUnits.auctus);
-        addBlock(FRCerberianUnits.auctus, FRCerberianUnits.baton);
-        addBlock(FRCerberianUnits.baton, FRCerberianUnits.kaiser);
-        addBlock(FRCerberianUnits.kaiser, FRCerberianUnits.setosus);
-        addBlock(FRCerberianUnits.setosus, FRCerberianUnits.behemoth);
-        
-        addBlock(FRT3Units.auratus, FRMothershipUnits.lycosid);
-        addBlock(FRT3Units.springald, FRMothershipUnits.onager);
-        addBlock(FRT3Units.plant, FRMothershipUnits.corax);
-
-        
-        
-        addBlock(modGateNaval, FRT1Units.alba);
-        addBlock(FRT1Units.alba, FRT2Units.arvens);
-        addBlock(FRT2Units.arvens, FRT3Units.aestiva);
-        
-        addBlock(modGateNaval, FRT1Units.mela);
-        addBlock(FRT1Units.mela, FRT2Units.cromis);
-        addBlock(FRT2Units.cromis, FRT3Units.arnux);
-        
-        addBlock(FRT3Units.arnux, FRMothershipUnits.japonica);
-        addBlock(FRT3Units.aestiva, FRMothershipUnits.altaic);
-
-        
-        addBlock(ascendedFactory, FRTranscendentUnits.mygale);
-        addBlock(ascendedFactory, FRTranscendentUnits.scepter);
-        addBlock(ascendedFactory, FRTranscendentUnits.mangonel);
-        addBlock(ascendedFactory, FRTranscendentUnits.thalass);
-        addBlock(ascendedFactory, FRTranscendentUnits.vex);
-        addBlock(ascendedFactory, FRTranscendentUnits.medusae);
-        addBlock(ascendedFactory, FRTranscendentUnits.nivosa);
-
-        
-        addBlock(modGateCoreUnits, FRCoreUnits.delta);
-        addBlock(FRCoreUnits.delta, FRCoreUnits.epsilon);
-        addBlock(FRCoreUnits.epsilon, FRCoreUnits.coreTurretUnit);
-
-        
-    }
-
-    private static void addBlock(UnlockableContent parent, UnlockableContent child) {
-        TechTree.TechNode parentNode = nodes.get(parent);
-        if (parentNode == null) return;
-
-        TechTree.TechNode node = new TechTree.TechNode(parentNode, child, child.researchRequirements());
-        nodes.put(child, node);
-
-        node.objectives.add(new Research(parent));
-    }
-
-    
-    private static TechTree.TechNode context;
-
-    private static void addToNode(UnlockableContent parent, Runnable children) {
-        context = TechTree.all.find(t -> t.content == parent);
-        if (context == null) {
-            for (TechTree.TechNode root : TechTree.roots) {
-                context = findInTree(root, parent);
-                if (context != null) break;
-            }
-        }
-        children.run();
     }
 
     private static void node(UnlockableContent content, Runnable children) {
-        node(content, content.researchRequirements(), children);
+        node(content, content.researchRequirements(), null, children);
     }
 
-    private static void node(UnlockableContent content, ItemStack[] requirements, Runnable children) {
-        TechTree.TechNode node = new TechTree.TechNode(context, content, requirements);
-        TechTree.TechNode prev = context;
+    private static void node(UnlockableContent content, Seq<Objectives.Objective> objectives, Runnable children) {
+        node(content, content.researchRequirements(), objectives, children);
+    }
+
+    private static void node(UnlockableContent content, ItemStack[] requirements, Seq<Objectives.Objective> objectives, Runnable children) {
+        TechNode node = new TechNode(context, content, requirements);
+        if(objectives != null){
+            node.objectives.addAll(objectives);
+        }
+        if(context != null && context.content != content){
+            node.objectives.add(new Objectives.Research(context.content));
+        }
+        TechNode prev = context;
         context = node;
         children.run();
         context = prev;
@@ -445,21 +504,33 @@ public class FRFullTechTree {
         node(content, () -> {});
     }
 
-    private static TechTree.TechNode findInTree(TechTree.TechNode node, UnlockableContent target) {
-        if (node.content == target) return node;
-        for (TechTree.TechNode child : node.children) {
-            TechTree.TechNode found = findInTree(child, target);
-            if (found != null) return found;
-        }
-        return null;
+    private static void nodeProduce(UnlockableContent content, Runnable children) {
+        node(content, content.researchRequirements(), Seq.with(new Objectives.Produce(content)), children);
     }
 
-    private static void addAdditionalObjectives(UnlockableContent target, UnlockableContent... objectives) {
-        TechTree.TechNode node = nodes.get(target);
-        if (node == null) node = TechTree.all.find(t -> t.content == target);
-        if (node == null) return;
-        for (UnlockableContent obj : objectives) {
-            node.objectives.add(new Research(obj));
+    private static void nodeProduce(UnlockableContent content) {
+        nodeProduce(content, () -> {});
+    }
+
+    private static void addToNode(UnlockableContent parent, Runnable children) {
+        context = TechTree.all.find(t -> t.content == parent);
+        if(context == null){
+            for(TechNode root : TechTree.roots){
+                context = findInTree(root, parent);
+                if(context != null) break;
+            }
         }
+        if(context != null){
+            children.run();
+        }
+    }
+
+    private static TechNode findInTree(TechNode node, UnlockableContent target) {
+        if(node.content == target) return node;
+        for(TechNode child : node.children){
+            TechNode found = findInTree(child, target);
+            if(found != null) return found;
+        }
+        return null;
     }
 }
