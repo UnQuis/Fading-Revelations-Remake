@@ -50,6 +50,8 @@ public class FROverride {
     public static void hardcore() {
         Events.on(EventType.WorldLoadEvent.class, event -> {
             if (!FRSettings.hardcore) return;
+            // Only affect campaign gameplay, not sandbox/editor/PvP.
+            if (!Vars.state.isCampaign()) return;
 
             mindustry.game.Rules.TeamRule enemyRules = Vars.state.rules.teams.get(Team.crux);
             enemyRules.unitHealthMultiplier = 5f;

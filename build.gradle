@@ -111,3 +111,71 @@ jar {
     from fileTree(framesBuildDir)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
+
+// --- Локальный запуск клиента для тестирования ---
+
+def runDir = file("run")
+def clientFile = new File(runDir, "client-${mindustryVersion}.jar")
+
+tasks.register("downloadClient") {
+    group = "mindustry"
+    description = "Download the Mindustry client jar into run/ (skipped if already present)"
+    outputs.file(clientFile)
+    onlyIf { !clientFile.exists() }
+    doLast {
+        runDir.mkdirs()
+        String url = "https://github.com/Anuken/Mindustry/releases/download/${mindustryVersion}/Mindustry.jar"
+        println "Downloading Mindustry ${mindustryVersion} -> ${clientFile}"
+        URLConnection connection = new URL(url).openConnection()
+        long contentLength = connection.contentLengthLong
+        InputStream input = connection.getInputStream()
+        FileOutputStream output = new FileOutputStream(clientFile)
+        byte[] buffer = new byte[8192]
+        long totalRead = 0
+        int bytesRead
+        int prevPercent = -1
+        while ((bytesRead = input.read(buffer)) != -1) {
+            output.write(buffer, 0, bytesRead)
+            totalRead += bytesRead
+            if (contentLength > 0) {
+                int percent = (int) ((totalRead * 100) / contentLength)
+                if (percent != prevPercent) {
+                    print "\r> Downloading: ${percent}%"
+                    System.out.flush()
+                    prevPercent = percent
+                }
+            }
+        }
+        input.close()
+        output.close()
+        println "\nSaved to '${clientFile}'"
+    }
+}
+
+tasks.register("installMod", DefaultTask) {
+    group = "mindustry"
+    description = "Copy the built mod jar into run/mods/"
+    dependsOn jar
+    inputs.file(jar.archiveFile)
+    outputs.dir(new File(runDir, "mods"))
+    doLast {
+        File modsDir = new File(runDir, "mods")
+        modsDir.mkdirs()
+        File dest = new File(modsDir, jar.archiveFileName.get())
+        if (dest.exists()) dest.delete()
+        java.nio.file.Files.copy(jar.archiveFile.get().asFile.toPath(), dest.toPath())
+        println "Copied '${dest.name}' to '${modsDir}'"
+    }
+}
+
+tasks.register("runClient", JavaExec) {
+    group = "mindustry"
+    description = "Run Mindustry client with the mod installed (isolated data dir in run/)"
+    dependsOn downloadClient, installMod
+    workingDir = runDir
+    classpath = files(clientFile)
+    mainClass = "mindustry.desktop.DesktopLauncher"
+    jvmArgs "-Xmx2g", "-Dfile.encoding=UTF-8"
+    environment "MINDUSTRY_DATA_DIR", runDir.absolutePath
+    environment "DEVELOPMENT", "true"
+}

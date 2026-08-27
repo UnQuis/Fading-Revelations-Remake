@@ -36,8 +36,8 @@ public class FREffectBlocks {
         overdriveRelay = new OverdriveProjector("overdrive-relay") {{
             localizedName = "Overdrive Relay";
             description = "A powerful overdrive relay that drastically increases the speed of nearby buildings. Boost with Phase Fabric for even greater effect.";
-            size = 2; range = 60; speedBoost = 6f; hasBoost = true; speedBoostPhase = 5f; phaseRangeBoost = 60;
-            consumePower(12f);
+            size = 2; range = 70; speedBoost = 2.2f; hasBoost = true; speedBoostPhase = 1.3f; phaseRangeBoost = 30;
+            consumePower(8f);
             consumeItem(Items.phaseFabric, 1).boost();
             requirements(Category.effect, ItemStack.with(Items.lead, 150, Items.silicon, 120, Items.titanium, 100, Items.phaseFabric, 40));
         }};
@@ -45,8 +45,8 @@ public class FREffectBlocks {
         overdriveBeacon = new OverdriveProjector("overdrive-beacon") {{
             localizedName = "Overdrive Beacon";
             description = "An advanced overdrive beacon that supercharges nearby buildings to extreme speeds. Nano Fabric boost provides an extraordinary effect.";
-            size = 3; range = 90; speedBoost = 13f; hasBoost = true; speedBoostPhase = 38f; phaseRangeBoost = 100;
-            consumePower(45f);
+            size = 3; range = 100; speedBoost = 3f; hasBoost = true; speedBoostPhase = 2f; phaseRangeBoost = 50;
+            consumePower(26f);
             consumeItem(FRItems.nanoFabric, 2).boost();
             requirements(Category.effect, ItemStack.with(Items.silicon, 350, Items.thorium, 250, Items.surgeAlloy, 150, Items.phaseFabric, 120, FRItems.steelAlloy, 80));
         }};
@@ -117,16 +117,16 @@ public class FREffectBlocks {
         coreLevel4 = new CoreBlock("core-level-4") {{
             localizedName = "Core: Atom";
             description = "Core of the base. Very well armored and stores a good amount of resources.";
-            size = 6; researchCostMultiplier = 0.5f; health = 80000; itemCapacity = 16000;
-            unitType = FRCoreUnits.delta; unitCapModifier = 32;
+            size = 6; researchCostMultiplier = 0.5f; health = 36000; itemCapacity = 14000;
+            unitType = FRCoreUnits.delta; unitCapModifier = 24;
             requirements(Category.effect, ItemStack.with(Items.copper, 10000, Items.lead, 10000, Items.silicon, 6000, Items.titanium, 8000, Items.thorium, 10000, Items.plastanium, 1000, Items.phaseFabric, 1000));
         }};
 
         coreLevel5 = new CoreBlock("core-level-5") {{
             localizedName = "Core: Element";
             description = "Core of the base. Extremely well armored and stores a huge amount of resources.";
-            size = 7; researchCostMultiplier = 0.5f; health = 95000; itemCapacity = 19000;
-            unitType = FRCoreUnits.epsilon; unitCapModifier = 42;
+            size = 7; researchCostMultiplier = 0.5f; health = 48000; itemCapacity = 17000;
+            unitType = FRCoreUnits.epsilon; unitCapModifier = 32;
             requirements(Category.effect, ItemStack.with(Items.copper, 13000, Items.lead, 13000, Items.silicon, 9000, Items.titanium, 11000, Items.thorium, 12000, Items.plastanium, 2000, Items.phaseFabric, 2500, Items.surgeAlloy, 1500));
         }};
 
@@ -134,8 +134,8 @@ public class FREffectBlocks {
             localizedName = "Main Core";
             description = "Core of the base. Unbelievably well armored and stores vast amounts of resources. Builds, mines and defends itself with powerful weapons.";
             details = "An intelligent core that commands all other cores and that has fought a fierce battle in the past...";
-            size = 8; researchCostMultiplier = 0.4f; health = 112000; itemCapacity = 22000;
-            unitType = FRCoreUnits.coreTurretUnit; unitCapModifier = 56;
+            size = 8; researchCostMultiplier = 0.4f; health = 62000; itemCapacity = 21000;
+            unitType = FRCoreUnits.coreTurretUnit; unitCapModifier = 40;
             buildRange = 800f; buildSpeedMultiplier = 5f;
             attackRange = 400f; turretReload = 20f;
             requirements(Category.effect, ItemStack.with(Items.copper, 18000, Items.lead, 18000, Items.silicon, 11000, Items.titanium, 13000, Items.thorium, 15000, Items.plastanium, 3600, Items.phaseFabric, 5200, Items.surgeAlloy, 2300));
@@ -144,8 +144,8 @@ public class FREffectBlocks {
         corePrime = new FRCoreBlock("core-prime") {{
             localizedName = "Core: Prime";
             description = "The ultimate core. Stores an astronomical amount of resources and defends itself with devastating weapons.";
-            size = 9; researchCostMultiplier = 0.3f; health = 140000; itemCapacity = 32000;
-            unitType = FRCoreUnits.coreTurretUnit; unitCapModifier = 72;
+            size = 9; researchCostMultiplier = 0.3f; health = 78000; itemCapacity = 28000;
+            unitType = FRCoreUnits.coreTurretUnit; unitCapModifier = 56;
             buildRange = 800f; buildSpeedMultiplier = 5f;
             attackRange = 400f; turretReload = 15f;
             requirements(Category.effect, ItemStack.with(Items.copper, 25000, Items.lead, 25000,

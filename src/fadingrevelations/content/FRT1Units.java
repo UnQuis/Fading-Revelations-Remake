@@ -88,8 +88,23 @@ public class FRT1Units {
         }};
 
         heliaca = new UnitType("heliaca") {{
-            constructor = UnitEntity::create; localizedName = "Heliaca"; flying = true;
-            health = 75; circleTarget = true; speed = 1.7f;
+            constructor = UnitEntity::create; localizedName = "Heliaca";
+            description = "An expendable dive-bomber drone. Swoops down on targets and detonates.";
+            flying = true; health = 90; hitSize = 7; speed = 2.4f; accel = 0.08f; drag = 0.04f;
+            engineSize = 1.8f; engineOffset = 4.5f;
+            outlineColor = Color.valueOf("191919");
+            circleTarget = true;
+            controller = u -> new mindustry.ai.types.SuicideAI();
+            weapons.add(
+                new Weapon() {{
+                    x = 0; y = 0; shootCone = 360; mirror = false;
+                    reload = 1f; shootOnDeath = true; shake = 1;
+                    bullet = new ExplosionBulletType(140f, 26f) {{
+                        buildingDamageMultiplier = 1.2f;
+                        hitEffect = new MultiEffect(instHit, bezierBurstOrange, bezierRingOrange);
+                    }};
+                }}
+            );
         }};
 
         lancerDrone = new UnitType("lancer-drone") {{

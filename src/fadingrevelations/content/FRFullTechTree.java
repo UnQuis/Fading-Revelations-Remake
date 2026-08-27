@@ -117,7 +117,6 @@ public class FRFullTechTree {
                     });
                 });
             });
-            node(caats);
             node(batter);
             node(airArc, () -> {
                 node(uhlan, () -> {

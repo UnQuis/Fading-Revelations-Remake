@@ -64,10 +64,9 @@ public class FRProduction {
 
         steamTurbine = new ConsumeGenerator("steam-turbine") {{
             localizedName = "Steam Turbine";
-            description = "A better version of the Steam Turbine built using Living Steel. Uses more water in exchange for greatly improved power output. Slowly produces steam and builds up pressure. Explodes when the pressure reaches a critical point.";
+            description = "A better version of the Steam Generator built using Living Steel. Uses more water in exchange for greatly improved power output.";
             size = 3; hasLiquids = true; liquidCapacity = 20;
-            outputLiquid = new LiquidStack(FRLiquids.steam, 0.05f);
-            explodeOnFull = true; powerProduction = 13.33333f; itemDuration = 120;
+            powerProduction = 13.33333f; itemDuration = 120;
             consumeLiquid(Liquids.water, 0.2f);
             consume(new ConsumeItemFlammable());
             consume(new ConsumeItemExplode());
@@ -267,17 +266,18 @@ public class FRProduction {
             description = "Uses a combination of smelting and compression procedures to mass produce basic resources.";
             size = 3;
             consumePower(1.2f); consumeItems(with(Items.lead, 1, Items.sand, 3, Items.coal, 4));
-            craftTime = 30;
+            craftTime = 45;
             outputItems = with(Items.graphite, 1, Items.silicon, 1, Items.metaglass, 1);
             requirements(Category.crafting, with(Items.copper, 100, Items.lead, 80, Items.graphite, 50));
         }};
 
         steamCondenser = new GenericCrafter("steam-condenser") {{
             localizedName = "Steam Condenser";
-            description = "Pulls water vapor from the atmosphere, condensing it into steam.";
+            description = "Pulls water vapor from the atmosphere and condenses it into pressurized steam. Can be stored or used as [accent]Batter[] ammunition.";
             size = 2; scaledHealth = 60;
-            craftTime = 300;
-            outputLiquid = new LiquidStack(FRLiquids.steam, 0.0125f);
+            craftTime = 120;
+            consumePower(0.6f);
+            outputLiquid = new LiquidStack(FRLiquids.steam, 0.8f);
             requirements(Category.crafting, with(Items.copper, 60, Items.lead, 35));
         }};
 
@@ -577,9 +577,9 @@ public class FRProduction {
             localizedName = "Advanced Separator";
             description = "Separates slag and scrap into their raw material components. High output.";
             size = 4; hasPower = true; solid = true; hasLiquids = true; hasItems = true;
-            liquidCapacity = 60; craftTime = 10; health = 690;
-            consumePower(5.4f); consumeLiquid(Liquids.slag, 0.1f); consumeItem(Items.scrap, 2);
-            results = with(Items.copper, 10, Items.lead, 10, Items.graphite, 6, Items.titanium, 6, Items.thorium, 4);
+            liquidCapacity = 60; craftTime = 100; health = 690;
+            consumePower(5.4f); consumeLiquid(Liquids.slag, 0.1f); consumeItem(Items.scrap, 3);
+            results = with(Items.copper, 3, Items.lead, 3, Items.graphite, 2, Items.titanium, 2, Items.thorium, 2);
             requirements(Category.crafting, with(Items.lead, 300, Items.graphite, 275, Items.titanium, 275, Items.plastanium, 30, Items.phaseFabric, 30, Items.surgeAlloy, 30));
         }};
 
@@ -871,6 +871,7 @@ public class FRProduction {
             plans = arc.struct.Seq.with(
                 new UnitPlan(FRT1Units.seed, 2400f, with(Items.lead, 30, Items.silicon, 30)),
                 new UnitPlan(FRT1Units.lancerDrone, 1200f, with(Items.lead, 15, Items.silicon, 15)),
+                new UnitPlan(FRT1Units.heliaca, 600f, with(Items.copper, 8, Items.lead, 6, Items.silicon, 5)),
                 new UnitPlan(FRT1Units.mela, 3000f, with(Items.silicon, 30, Items.metaglass, 45)),
                 new UnitPlan(FRT1Units.apis, 1200f, with(Items.lead, 15, Items.silicon, 15)),
                 new UnitPlan(FRT1Units.alba, 3600f, with(Items.silicon, 25, Items.metaglass, 30, Items.titanium, 25)),

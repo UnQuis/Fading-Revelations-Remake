@@ -644,7 +644,7 @@ public class FRTurrets {
         missileSilo = new ItemTurret("missile-silo") {{
             localizedName = "Nuclear Launch Silo";
             requirements(Category.turret, with(copper, 6000, lead, 5000, graphite, 4000, silicon, 3500, plastanium, 2400, FRItems.steelAlloy, 1800));
-            size = 3; health = 300; reload = 3600f; range = 1600f;
+            size = 3; health = 2600; reload = 3600f; range = 1600f;
             maxAmmo = 10;
             rotateSpeed = 0f; shootCone = 360f;
             targetAir = false;
@@ -1456,7 +1456,7 @@ public class FRTurrets {
             shootType = new BulletType() {{
                 instantDisappear = true; damage = 0f;
                 splashDamage = 1f; splashDamageRadius = 640f;
-                status = FRStatus.shockslowed; statusDuration = 60f;
+                status = FRStatus.shockslowed; statusDuration = 90f;
             }};
             requirements(Category.turret, ItemStack.with(Items.copper, 300, Items.lead, 250, Items.graphite, 200, Items.silicon, 150, FRItems.livingSteelHard, 100));
         }};
@@ -1521,6 +1521,14 @@ public class FRTurrets {
                     status = StatusEffects.wet;
                     backColor = Color.valueOf("486acd"); frontColor = Color.valueOf("7090ea");
                     shootEffect = bezierBurstBlue; hitEffect = hitBezierBlue;
+                }},
+                FRLiquids.steam, new BasicBulletType() {{
+                    sprite = "liquid-vortex"; spin = 8f; speed = 3.5f; lifetime = 80f;
+                    damage = 26f; knockback = 34f; pierceCap = 12;
+                    width = 18f; height = 18f; shrinkX = 0f; shrinkY = 0f;
+                    status = StatusEffects.wet; statusDuration = 120f;
+                    backColor = Color.valueOf("dadbdf"); frontColor = Color.valueOf("ffffff");
+                    shootEffect = bezierBurstWhite; hitEffect = hitBezierWhite;
                 }},
                 Liquids.cryofluid, new BasicBulletType() {{
                     sprite = "liquid-vortex"; spin = 6f; speed = 2f; lifetime = 100f;

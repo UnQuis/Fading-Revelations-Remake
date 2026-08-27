@@ -126,11 +126,6 @@ public class FRAscendedUnitFactory extends UnitFactory {
                     progress %= 1f;
 
                     Unit unit = plan.unit.create(team);
-                    if(unit.type != null) {
-                        Vec2 v = getUnitSpawn();
-                        float dst = v.dst(this);
-                        float a = angleTo(v);
-                    }
                     if(commandPos != null && unit.isCommandable()){
                         unit.command().commandPosition(commandPos);
                     }

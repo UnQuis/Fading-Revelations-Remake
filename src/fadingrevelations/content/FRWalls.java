@@ -74,7 +74,7 @@ public class FRWalls {
             description = "A wall made from living steel that heals itself slowly.";
             health = 960; size = 1; range = 1; itemCapacity = 0; hasItems = false; hasPower = false;
             baseColor = Color.valueOf("8c0291"); phaseColor = Color.valueOf("8c0291"); insulated = true;
-            reload = 2500; healPercent = 1;
+            reload = 300; healPercent = 3;
             envDisabled = Env.scorching;
             requirements(Category.defense, ItemStack.with(FRItems.livingSteelHard, 6));
         }};
@@ -83,7 +83,7 @@ public class FRWalls {
             placeableLiquid = true;
             localizedName = "Living Steel Wall Large";
             description = "A large wall made of Living Steel. Heals itself slowly.";
-            health = 3220; healPercent = 1; reload = 2500; insulated = true;
+            health = 3220; healPercent = 3; reload = 300; insulated = true;
             hasPower = false; range = 1; baseColor = Color.valueOf("8c0291"); phaseColor = Color.valueOf("8c0291");
             hasItems = false; itemCapacity = 0; size = 2;
             envDisabled = Env.scorching;

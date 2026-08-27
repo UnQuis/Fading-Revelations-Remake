@@ -1,13 +1,15 @@
-
+ 
 <div align = center>
     
-# This mod is no longer in development and will NOT receive updates!
+# Fading Revelations: Remake
+
+*Community continuation of the discontinued **[Fading Revelations]** mod.* <br>
+*Rebuilt for modern Mindustry versions with new content, balance passes and fixes.*
 
 <br>
 
-[![Badge Discord]][Discord]    
-[![Badge Commit]][Commits]    
-[![Badge Issues]][Issues]    
+[![Badge Commit]][Commits]    
+[![Badge Issues]][Issues]    
 [![Badge License]][License]
 
 <br>
@@ -33,7 +35,7 @@
 <br>
 <br>
 
-*Formerly **Mindustry Extended**, now **Fading Revelations**, <br>
+*Formerly **Mindustry Extended**, now **Fading Revelations: Remake**, <br>
 extends **[Mindustry]** in fun ways while keeping it balanced. <br>
     For a **preview** of this mod's content, scroll **further down**!*
 

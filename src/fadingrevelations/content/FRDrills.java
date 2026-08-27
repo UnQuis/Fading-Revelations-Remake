@@ -75,8 +75,8 @@ public class FRDrills {
 
         cosmicDrill = new Drill("cosmic-drill") {{
             localizedName = "Cosmic Drill";
-            description = "A drill that has reached the limits of physics. Mines at impossible speeds. Requires cryofluid.";
-            size = 4; drillTime = 3; tier = 25; itemCapacity = 500; liquidCapacity = 80;
+            description = "A drill that has reached the limits of physics. Mines at incredible speeds. Requires cryofluid.";
+            size = 4; drillTime = 10; tier = 9; itemCapacity = 150; liquidCapacity = 80;
             warmupSpeed = 0.01f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
             rotateSpeed = 20; liquidBoostIntensity = 2f; updateEffectChance = 0.2f; drawMineItem = false;
             consumePower(50f);
@@ -91,10 +91,10 @@ public class FRDrills {
         plasmaArcBore = new BeamDrill("plasma-arc-bore") {{
             localizedName = "Plasma Arc Bore";
             description = "An advanced Erekir plasma bore repurposed for planetary drilling. Burns through any material with a focused plasma beam.";
-            size = 4; tier = 25; range = 12; drillTime = 2; fogRadius = 4;
-            itemCapacity = 500; liquidCapacity = 80;
+            size = 4; tier = 9; range = 12; drillTime = 12; fogRadius = 4;
+            itemCapacity = 150; liquidCapacity = 80;
             hasPower = true; hasLiquids = true; hasItems = true;
-            consumePower(60f);
+            consumePower(50f);
             consumeLiquid(Liquids.hydrogen, 0.2f).boost();
             requirements(Category.production, ItemStack.with(
                 Items.copper, 500, Items.silicon, 400, Items.titanium, 300,
@@ -107,10 +107,10 @@ public class FRDrills {
         percussionDrill = new BurstDrill("percussion-drill") {{
             localizedName = "Percussion Drill";
             description = "A high-frequency percussion drill that pulverizes ore through sheer kinetic force. No coolant needed.";
-            size = 4; drillTime = 90; tier = 25; itemCapacity = 500; shake = 4f;
+            size = 4; drillTime = 240; tier = 9; itemCapacity = 150; shake = 4f;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasItems = true;
             rotateSpeed = 25; updateEffectChance = 0.3f; drawMineItem = false;
-            consumePower(40f);
+            consumePower(30f);
             requirements(Category.production, ItemStack.with(
                 Items.copper, 600, Items.lead, 500, Items.silicon, 400, Items.titanium, 300,
                 FRItems.livingSteelHard, 300, Items.plastanium, 250,
@@ -122,10 +122,10 @@ public class FRDrills {
         omniDrill = new Drill("omni-drill") {{
             localizedName = "Omni Drill";
             description = "The ultimate drilling machine. Tears through reality itself to extract ores. Consumes massive power.";
-            size = 5; drillTime = 0.5f; tier = 50; itemCapacity = 2000; liquidCapacity = 150;
+            size = 5; drillTime = 4; tier = 10; itemCapacity = 500; liquidCapacity = 150;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
             rotateSpeed = 30; liquidBoostIntensity = 3f; updateEffectChance = 0.3f; drawMineItem = false;
-            consumePower(200f);
+            consumePower(300f);
             consumeLiquid(Liquids.cryofluid, 1f);
             requirements(Category.production, ItemStack.with(
                 Items.copper, 2000, Items.lead, 1500, Items.silicon, 1000,

@@ -57,36 +57,31 @@ public class FRCoreBlock extends CoreBlock {
 
             if (dead || !isValid()) return;
 
-            if (player != null && !player.dead() && player.unit().type == ((FRCoreBlock) block).unitType) {
-                if (!Core.settings.getBool("detach-camera", false)) {
-                    Core.settings.put("detach-camera", true);
-                }
-            }
-
+            // Accelerate queued construction within range.
+            // Uses ConstructBuild.construct(), which pays items from the core
+            // progressively and finishes the block properly once complete.
             arc.struct.Queue<mindustry.game.Teams.BlockPlan> plans = team.data().plans;
+            CoreBuild core = team.core();
             for (int i = 0; i < plans.size; i++) {
                 mindustry.game.Teams.BlockPlan plan = plans.get(i);
                 if (plan == null || plan.removed) continue;
 
-                float planX = plan.x * 8f;
-                float planY = plan.y * 8f;
-                float dist = Mathf.dst(x, y, planX, planY);
+                float dist = Mathf.dst(x, y, plan.x * tilesize, plan.y * tilesize);
                 if (dist > buildRange) continue;
 
                 Building building = world.build(plan.x, plan.y);
-                if (building instanceof ConstructBuild) {
+                if (building instanceof ConstructBuild && ((ConstructBuild) building).team == team) {
                     ConstructBuild cons = (ConstructBuild) building;
-                    if (team.core() != null && team.core().items.has(cons.block.requirements)) {
-                        cons.progress += (edelta() / cons.buildCost) * buildSpeedMultiplier;
-                        cons.progress = Math.min(cons.progress, 1f);
+                    if (core != null && cons.buildCost > 0f) {
+                        cons.construct(null, core, edelta() * buildSpeedMultiplier / cons.buildCost, plan.config);
+                    }
 
-                        if (Mathf.chance(0.05)) {
-                            Fx.pointBeam.at(x, y, angleTo(cons.x, cons.y), Color.valueOf("f8ad42"));
-                        }
+                    if (Mathf.chance(0.05)) {
+                        Fx.pointBeam.at(x, y, angleTo(cons.x, cons.y), Color.valueOf("f8ad42"));
+                    }
 
-                        if (cons.progress >= 1f) {
-                            plan.removed = true;
-                        }
+                    if (cons.progress >= 1f || !(world.build(plan.x, plan.y) instanceof ConstructBuild)) {
+                        plan.removed = true;
                     }
                 }
             }

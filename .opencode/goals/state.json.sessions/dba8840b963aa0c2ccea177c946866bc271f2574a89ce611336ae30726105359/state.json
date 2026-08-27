@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "goals": [],
+  "results": [
+    {
+      "condition": "Провести полный аудит Mindustry-мода Fading-Revelations-Remake и довести его до максимально качественного, цельного и сбалансированного состояния (аудит, переработка контента/баланса/архитектуры, сборка, документирование в AGENTS.md)",
+      "state": "achieved",
+      "reason": "",
+      "evidence": "Summary: Проведён полный аудит мода Fading Revelations Remake (Mindustry v159.7): исправлено 13 багов (включая эксплойт бесплатного строительства ядра, перепутанную семантику Junction.speed, мёртвый пар-цикл, генераторы планет без руды), проведён баланс-пас относительно ванильных значений (овердрайвы, супер-буры, ядра, advancedSeparator), вычищены 594 устаревших ключа локализации, код освобождён от дублирования. Проект собирается (gradle clean jar → SUCCESSFUL). Все решения задокументированы в AGENTS.md.\nCriterion: Полный аудит мода завершён с изучением соседних модов и ванильных референсов | Evidence: Прочитаны все 30 content-файлов, core-классы, UI, настройки (~12k строк); Верифицирована семантика полей по исходникам ../Mindustry v159.7 (Junction.speed = кадры на проход, Router.itemCapacity=1, Conveyor.displayedSpeed ≈ speed×125); Изучены Aquarion (радиальное окно исследований), MultiCrafterLib (GPL-3 совместим)\nCriterion: Ключевые баги исправлены | Evidence: FRCoreBlock: ConstructBuild.construct(null, core, delta, config) вместо бесплатного инкремента progress; убран спам Core.settings.put каждый кадр; Junction-лестница titanium 18 < kinetic 14 < bio 10 (было bio=88 — медленнее медного в 3.4x); Router'ы очищены от itemCapacity=20; конвейеры: kinetic 0.11, bio 0.16, fusion 0.10; steamTurbine больше не взрывается из-за пара без потребителя; пар стал боеприпасом Batter; missileSilo 300→2600 HP; livingSteelWall ~6 HP/s регена; caats убран из техдерева; bundle_uk_UA.properties переименован; 594 устаревших/пустых ключа бандлов удалены; heliaca переработан в камикадзе-дрон и добавлен в primaryFactory; Генераторы Cerbero/Cangirus получили руды по паттерну SerpuloPlanetGenerator + кислотные озёра + деревья\nCriterion: Баланс приведён к ванильной шкале | Evidence: Overdrive relay 600%→220%, beacon 1300%→300% (ваниль 150/200%); Ядра: 80k→36k, 95k→48k, 112k→62k, 140k→78k HP; капы юнитов обрезаны; Супер-буры: omni 0.5→4, cosmic 3→10, plasmaArcBore 2→12, percussion 90→240 (tier ≤10); advancedSeparator: крафт 10→100 тиков, выдача {10,10,6,6,4}→{3,3,2,2,2} одного результата; steamCondenser: 0.0125→0.8 пара/крафт + энергопотребление — замкнут цикл пара\nCriterion: Проект собирается без ошибок | Evidence: ./gradlew clean jar → BUILD SUCCESSFUL; build/libs/FadingRevelations.jar 13.2MB содержит mod.hjson, 4 бандла, карты, GIF-кадры\nCriterion: Все мажорные изменения задокументированы | Evidence: AGENTS.md создан: 13 исправленных багов, балансовые решения, чистка кода, раздел «что сознательно НЕ менялось», практические заметки для будущих правок; README обновлён: снята плашка discontinued, добавлено описание ремейка\nCheck: ./gradlew compileJava --console=plain | passed | exit 0; Компиляция всех изменений против Mindustry v159.7 без ошибок\nCheck: ./gradlew clean jar --console=plain | passed | exit 0; Полная пересборка: BUILD SUCCESSFUL, jar 13.2MB, бандлы и GIF-кадры включены\nCheck: git diff --stat | passed | exit 0; 19 файлов изменено: +235/-918 строк (в основном удаление устаревших ключей бандлов)\nChanged files: AGENTS.md, README.md, assets/bundles/bundle_de.properties, assets/bundles/bundle_es.properties, assets/bundles/bundle_ru.properties, assets/bundles/bundle_uk_UA.properties, src/fadingrevelations/content/FRCoreUnits.java, src/fadingrevelations/content/FRDistribution.java, src/fadingrevelations/content/FRDrills.java, src/fadingrevelations/content/FREffectBlocks.java, src/fadingrevelations/content/FRFullTechTree.java, src/fadingrevelations/content/FROverride.java, src/fadingrevelations/content/FRPlanetGenerators.java, src/fadingrevelations/content/FRProduction.java, src/fadingrevelations/content/FRT1Units.java, src/fadingrevelations/content/FRTurrets.java, src/fadingrevelations/content/FRWalls.java, src/fadingrevelations/worlds/blocks/storage/FRCoreBlock.java, src/fadingrevelations/worlds/blocks/unit/FRAscendedUnitFactory.java",
+      "blockedReason": "",
+      "turnCount": 0,
+      "totalTokens": 228447,
+      "usage": {
+        "input": 378,
+        "output": 22,
+        "reasoning": 15,
+        "cacheRead": 228032,
+        "cacheWrite": 0,
+        "cost": 0,
+        "costKnown": true
+      },
+      "startedAt": 1787480311868,
+      "finishedAt": 1787480341050,
+      "lastStatus": "Goal completed.",
+      "lastCheckpoint": null,
+      "checkpoints": [],
+      "history": [
+        {
+          "type": "set",
+          "detail": "Goal created via agent tool with limits: 10 auto-continues, 900s, 200,000 context tokens.",
+          "timestamp": 1787478203642
+        },
+        {
+          "type": "paused",
+          "detail": "Paused after OpenCode reported that the active turn was aborted.",
+          "timestamp": 1787478321526
+        },
+        {
+          "type": "resumed",
+          "detail": "Resumed via agent tool with a fresh local budget window.",
+          "timestamp": 1787480311868
+        },
+        {
+          "type": "completed",
+          "detail": "Marked complete via tool: Summary: Проведён полный аудит мода Fading Revelations Remake (Mindustry v159.7): исправлено 13 багов (включая эксплойт бесплатного строительства ядра, перепутанную семантику Junction.speed, мёртвый пар-цикл, генераторы планет без руды), проведён баланс-пас относительно ванильных значений (овердрайвы, супер-буры, ядра, advancedSeparator), вычищены 594 устаревших ключа ло…",
+          "timestamp": 1787480341049
+        }
+      ],
+      "sessionID": "ses_fd20014d9ffewTh5z3v9ZaLPao"
+    }
+  ],
+  "archives": [
+    {
+      "sessionID": "ses_fd20014d9ffewTh5z3v9ZaLPao",
+      "results": [
+        {
+          "condition": "Провести полный аудит Mindustry-мода Fading-Revelations-Remake и довести его до максимально качественного, цельного и сбалансированного состояния (аудит, переработка контента/баланса/архитектуры, сборка, документирование в AGENTS.md)",
+          "state": "achieved",
+          "reason": "",
+          "evidence": "Summary: Проведён полный аудит мода Fading Revelations Remake (Mindustry v159.7): исправлено 13 багов (включая эксплойт бесплатного строительства ядра, перепутанную семантику Junction.speed, мёртвый пар-цикл, генераторы планет без руды), проведён баланс-пас относительно ванильных значений (овердрайвы, супер-буры, ядра, advancedSeparator), вычищены 594 устаревших ключа локализации, код освобождён от дублирования. Проект собирается (gradle clean jar → SUCCESSFUL). Все решения задокументированы в AGENTS.md.\nCriterion: Полный аудит мода завершён с изучением соседних модов и ванильных референсов | Evidence: Прочитаны все 30 content-файлов, core-классы, UI, настройки (~12k строк); Верифицирована семантика полей по исходникам ../Mindustry v159.7 (Junction.speed = кадры на проход, Router.itemCapacity=1, Conveyor.displayedSpeed ≈ speed×125); Изучены Aquarion (радиальное окно исследований), MultiCrafterLib (GPL-3 совместим)\nCriterion: Ключевые баги исправлены | Evidence: FRCoreBlock: ConstructBuild.construct(null, core, delta, config) вместо бесплатного инкремента progress; убран спам Core.settings.put каждый кадр; Junction-лестница titanium 18 < kinetic 14 < bio 10 (было bio=88 — медленнее медного в 3.4x); Router'ы очищены от itemCapacity=20; конвейеры: kinetic 0.11, bio 0.16, fusion 0.10; steamTurbine больше не взрывается из-за пара без потребителя; пар стал боеприпасом Batter; missileSilo 300→2600 HP; livingSteelWall ~6 HP/s регена; caats убран из техдерева; bundle_uk_UA.properties переименован; 594 устаревших/пустых ключа бандлов удалены; heliaca переработан в камикадзе-дрон и добавлен в primaryFactory; Генераторы Cerbero/Cangirus получили руды по паттерну SerpuloPlanetGenerator + кислотные озёра + деревья\nCriterion: Баланс приведён к ванильной шкале | Evidence: Overdrive relay 600%→220%, beacon 1300%→300% (ваниль 150/200%); Ядра: 80k→36k, 95k→48k, 112k→62k, 140k→78k HP; капы юнитов обрезаны; Супер-буры: omni 0.5→4, cosmic 3→10, plasmaArcBore 2→12, percussion 90→240 (tier ≤10); advancedSeparator: крафт 10→100 тиков, выдача {10,10,6,6,4}→{3,3,2,2,2} одного результата; steamCondenser: 0.0125→0.8 пара/крафт + энергопотребление — замкнут цикл пара\nCriterion: Проект собирается без ошибок | Evidence: ./gradlew clean jar → BUILD SUCCESSFUL; build/libs/FadingRevelations.jar 13.2MB содержит mod.hjson, 4 бандла, карты, GIF-кадры\nCriterion: Все мажорные изменения задокументированы | Evidence: AGENTS.md создан: 13 исправленных багов, балансовые решения, чистка кода, раздел «что сознательно НЕ менялось», практические заметки для будущих правок; README обновлён: снята плашка discontinued, добавлено описание ремейка\nCheck: ./gradlew compileJava --console=plain | passed | exit 0; Компиляция всех изменений против Mindustry v159.7 без ошибок\nCheck: ./gradlew clean jar --console=plain | passed | exit 0; Полная пересборка: BUILD SUCCESSFUL, jar 13.2MB, бандлы и GIF-кадры включены\nCheck: git diff --stat | passed | exit 0; 19 файлов изменено: +235/-918 строк (в основном удаление устаревших ключей бандлов)\nChanged files: AGENTS.md, README.md, assets/bundles/bundle_de.properties, assets/bundles/bundle_es.properties, assets/bundles/bundle_ru.properties, assets/bundles/bundle_uk_UA.properties, src/fadingrevelations/content/FRCoreUnits.java, src/fadingrevelations/content/FRDistribution.java, src/fadingrevelations/content/FRDrills.java, src/fadingrevelations/content/FREffectBlocks.java, src/fadingrevelations/content/FRFullTechTree.java, src/fadingrevelations/content/FROverride.java, src/fadingrevelations/content/FRPlanetGenerators.java, src/fadingrevelations/content/FRProduction.java, src/fadingrevelations/content/FRT1Units.java, src/fadingrevelations/content/FRTurrets.java, src/fadingrevelations/content/FRWalls.java, src/fadingrevelations/worlds/blocks/storage/FRCoreBlock.java, src/fadingrevelations/worlds/blocks/unit/FRAscendedUnitFactory.java",
+          "blockedReason": "",
+          "turnCount": 0,
+          "totalTokens": 228447,
+          "usage": {
+            "input": 378,
+            "output": 22,
+            "reasoning": 15,
+            "cacheRead": 228032,
+            "cacheWrite": 0,
+            "cost": 0,
+            "costKnown": true
+          },
+          "startedAt": 1787480311868,
+          "finishedAt": 1787480341050,
+          "lastStatus": "Goal completed.",
+          "lastCheckpoint": null,
+          "checkpoints": [],
+          "history": [
+            {
+              "type": "set",
+              "detail": "Goal created via agent tool with limits: 10 auto-continues, 900s, 200,000 context tokens.",
+              "timestamp": 1787478203642
+            },
+            {
+              "type": "paused",
+              "detail": "Paused after OpenCode reported that the active turn was aborted.",
+              "timestamp": 1787478321526
+            },
+            {
+              "type": "resumed",
+              "detail": "Resumed via agent tool with a fresh local budget window.",
+              "timestamp": 1787480311868
+            },
+            {
+              "type": "completed",
+              "detail": "Marked complete via tool: Summary: Проведён полный аудит мода Fading Revelations Remake (Mindustry v159.7): исправлено 13 багов (включая эксплойт бесплатного строительства ядра, перепутанную семантику Junction.speed, мёртвый пар-цикл, генераторы планет без руды), проведён баланс-пас относительно ванильных значений (овердрайвы, супер-буры, ядра, advancedSeparator), вычищены 594 устаревших ключа ло…",
+              "timestamp": 1787480341049
+            }
+          ],
+          "sessionID": "ses_fd20014d9ffewTh5z3v9ZaLPao"
+        }
+      ]
+    }
+  ],
+  "orderedSessions": []
+}
