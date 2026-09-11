@@ -132,7 +132,7 @@ public class FRFx {
             Lines.stroke(0.8f * fout);
             Lines.circle(e.x, e.y, 640f * f);
 
-            Angles.randLenVectors(e.id, 24, 640f * f, (x, y) -> {
+            Angles.randLenVectors(e.id, Math.max(1, (int)(24 * FRSettings.fxDetail)), 640f * f, (x, y) -> {
                 float len = Mathf.sqrt(x * x + y * y);
                 float alpha = fout * (1f - len / 700f);
                 if (alpha <= 0f) return;
@@ -148,9 +148,10 @@ public class FRFx {
 
     private static Effect bezierBurst(int curves, float length, float width, Color c1, Color c2) {
         return new Effect(30f, e -> {
+            int count = Math.max(1, (int)(curves * FRSettings.fxDetail));
             Draw.color(c1, c2, e.fin());
             Lines.stroke(e.fout() * width);
-            Angles.randLenVectors(e.id, curves, length * e.fin(), e.rotation, 25f, (x, y) -> {
+            Angles.randLenVectors(e.id, count, length * e.fin(), e.rotation, 25f, (x, y) -> {
                 Lines.lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fout() * length * 0.2f);
             });
             Fill.circle(e.x, e.y, e.fout() * width * 1.5f);
@@ -159,21 +160,24 @@ public class FRFx {
 
     private static Effect bezierArc(float length, float width, Color c1, Color c2) {
         return new Effect(24f, e -> {
+            int count = Math.max(1, Math.round(5 * FRSettings.fxDetail));
             Draw.color(c1, c2, e.fin());
             Lines.stroke(e.fout() * width);
-            for(int i = -2; i <= 2; i++) {
-                v1.trns(e.rotation + i * 15f, length * e.fin());
-                Lines.lineAngle(e.x + v1.x, e.y + v1.y, e.rotation + i * 15f, e.fout() * length * 0.3f);
+            for(int i = 0; i < count; i++) {
+                float ang = (i - (count - 1) / 2f) * 15f;
+                v1.trns(e.rotation + ang, length * e.fin());
+                Lines.lineAngle(e.x + v1.x, e.y + v1.y, e.rotation + ang, e.fout() * length * 0.3f);
             }
         });
     }
 
     private static Effect bezierRing(int curves, float radius, float width, Color c1, Color c2) {
         return new Effect(35f, e -> {
+            int count = Math.max(1, (int)(curves * FRSettings.fxDetail));
             Draw.color(c1, c2, e.fin());
             Lines.stroke(e.fout() * width);
             Lines.circle(e.x, e.y, radius * e.fin());
-            Angles.randLenVectors(e.id, curves, radius * 1.3f * e.fin(), (x, y) -> {
+            Angles.randLenVectors(e.id, count, radius * 1.3f * e.fin(), (x, y) -> {
                 Fill.circle(e.x + x, e.y + y, e.fout() * width * 0.8f);
             });
         });
@@ -193,11 +197,12 @@ public class FRFx {
 
     private static Effect chargeEffect(float lifetime, Color c1, Color c2) {
         return new Effect(lifetime, e -> {
+            int count = Math.max(1, (int)(8 * FRSettings.fxDetail));
             Draw.color(c1, c2, e.fin());
             Fill.circle(e.x, e.y, e.fin() * 5f);
             Lines.stroke(e.fin() * 2f);
             Lines.circle(e.x, e.y, 25f * e.fout());
-            Angles.randLenVectors(e.id, 8, 25f * e.fout(), (x, y) -> {
+            Angles.randLenVectors(e.id, count, 25f * e.fout(), (x, y) -> {
                 Fill.circle(e.x + x, e.y + y, e.fin() * 2f);
             });
         }).layer(Layer.bullet);
@@ -205,10 +210,11 @@ public class FRFx {
 
     private static Effect hitEffect(float lifetime, float length, float width, Color c1, Color c2) {
         return new Effect(lifetime, e -> {
+            int count = Math.max(1, (int)(6 * FRSettings.fxDetail));
             Draw.color(c1, c2, e.fin());
             Lines.stroke(e.fout() * width * 0.5f);
             Lines.circle(e.x, e.y, length * e.fin());
-            Angles.randLenVectors(e.id, 6, length * 1.2f * e.fin(), (x, y) -> {
+            Angles.randLenVectors(e.id, count, length * 1.2f * e.fin(), (x, y) -> {
                 Fill.circle(e.x + x, e.y + y, e.fout() * width * 0.6f);
             });
         });
@@ -216,8 +222,9 @@ public class FRFx {
 
     private static Effect smokeEffect(float lifetime, float length, Color c1, Color c2) {
         return new Effect(lifetime, e -> {
+            int count = Math.max(1, (int)(4 * FRSettings.fxDetail));
             Draw.color(c1, c2, e.fin());
-            Angles.randLenVectors(e.id, 4, length * e.fin(), e.rotation, 20f, (x, y) -> {
+            Angles.randLenVectors(e.id, count, length * e.fin(), e.rotation, 20f, (x, y) -> {
                 Fill.circle(e.x + x, e.y + y, e.fout() * 4f);
             });
         });

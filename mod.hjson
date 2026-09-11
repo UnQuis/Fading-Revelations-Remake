@@ -38,6 +38,14 @@
         A huge, fun & balanced content extension mod.
         Continuing the legacy of Fading Revelations with new content, fixes, and improvements.
         
+        Story: long ago a single Precursor faction
+        ruled this system. It split apart - and the
+        machines it left behind never received the
+        order to stop fighting. Three planets hold
+        three contradictory versions of what happened.
+        Recover them all, and learn what really ended
+        the Precursors.
+        
         Please note that the Serpulo research tree has
         been moved into it's own tree because it was
         too large.
@@ -68,7 +76,7 @@
         '''
 
     subtitle: "[accent]Alpha rebuild[]. Uses [#42a5f5]MultiCrafter Lib[] by Liplum & Jojo."
-    minGameVersion: "154"
-    version: "2.5.0"
+    minGameVersion: "160"
+    version: "2.6.0"
     java: true
 }

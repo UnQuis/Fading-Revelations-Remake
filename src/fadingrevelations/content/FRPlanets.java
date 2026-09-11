@@ -1,13 +1,18 @@
 package fadingrevelations.content;
 
 import arc.graphics.Color;
+import arc.math.geom.Mat3D;
 import arc.math.geom.Vec3;
 import mindustry.content.Blocks;
 import mindustry.content.Planets;
 import mindustry.type.Planet;
 import mindustry.type.Sector;
+import mindustry.graphics.g3d.GenericMesh;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
+import mindustry.graphics.g3d.PlanetParams;
+import fadingrevelations.graphics.FRAsteroidBeltMesh;
+import fadingrevelations.graphics.FROrbitalRingMesh;
 import static fadingrevelations.content.FRPlanetGenerators.*;
 
 public class FRPlanets {
@@ -16,14 +21,37 @@ public class FRPlanets {
     public static void load() {
         cerbero = new Planet("cerbero", Planets.sun, 1f, 2) {{
             localizedName = "Cerbero";
-            description = "A barren planet where tragedy struck long ago.";
+            description = "An almost dead world holding the oldest records of all - those written before the split, by those who saw how it truly began.";
             alwaysUnlocked = true;
             visible = true;
             accessible = true;
-            
-            meshLoader = () -> new HexMesh(this, 6);
+
+            //planet + its asteroid belt: debris from whatever happened here.
+            //purely visual - no extra Planet object, so orbits/sectors are untouched;
+            //the belt stays outside Hathor's orbit (2f + 0.4f radius)
+            meshLoader = () -> {
+                GenericMesh surface = new HexMesh(this, 6);
+                GenericMesh belt = new FRAsteroidBeltMesh(this) {{
+                    beltRadius = 3.4f;
+                    beltWidth = 0.5f;
+                    rockCount = 24;
+                }};
+                return new GenericMesh() {
+                    @Override
+                    public void render(PlanetParams params, Mat3D projection, Mat3D transform) {
+                        surface.render(params, projection, transform);
+                        belt.render(params, projection, transform);
+                    }
+
+                    @Override
+                    public void dispose() {
+                        surface.dispose();
+                        belt.dispose();
+                    }
+                };
+            };
             generator = new CerberoGenerator() {{ seed = 69; }};
-            
+
             radius = 1f;
             minZoom = 1.8f;
             drawOrbit = true;
@@ -34,6 +62,8 @@ public class FRPlanets {
             hasAtmosphere = true;
             atmosphereRadIn = 0.15f;
             atmosphereRadOut = 0.4f;
+            //keep the asteroid belt visible when the planet itself is off-screen
+            clipRadius = 4.2f;
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
             solarSystem = Planets.sun;
@@ -41,10 +71,10 @@ public class FRPlanets {
 
         hathor = new Planet("hathor", cerbero, 0.4f, 2) {{
             localizedName = "Hathor";
-            description = "A small moon of Cerbero.";
+            description = "A dead moon of ruins. The other side of the conflict kept its records here - if Cangirus lied, the truth starts on Hathor.";
             alwaysUnlocked = true;
             visible = true;
-            accessible = false;
+            accessible = true;
             
             meshLoader = () -> new HexMesh(this, 4);
             generator = new HathorGenerator() {{ seed = 69420; }};
@@ -67,15 +97,33 @@ public class FRPlanets {
 
         cangirus = new Planet("cangirus", Planets.sun, 1f, 2) {{
             localizedName = "Cangirus";
-            description = "A lush planet with land and water.";
+            description = "A lush world where the Precursors' automated systems never stopped fighting their old war. Every record here tells of treason.";
             alwaysUnlocked = true;
             visible = true;
             accessible = true;
-            
+
             meshLoader = () -> new HexMesh(this, 5);
-            cloudMeshLoader = () -> new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
+            //clouds + the Orbital Ring megastructure, which appears quadrant by
+            //quadrant as the Orbital Ring project progresses (FROrbitalRing)
+            cloudMeshLoader = () -> {
+                GenericMesh clouds = new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
+                GenericMesh ring = new FROrbitalRingMesh(this);
+                return new GenericMesh() {
+                    @Override
+                    public void render(PlanetParams params, Mat3D projection, Mat3D transform) {
+                        clouds.render(params, projection, transform);
+                        ring.render(params, projection, transform);
+                    }
+
+                    @Override
+                    public void dispose() {
+                        clouds.dispose();
+                        ring.dispose();
+                    }
+                };
+            };
             generator = new CangirusGenerator() {{ seed = 69; }};
-            
+
             radius = 1f;
             minZoom = 1.5f;
             drawOrbit = true;
@@ -86,6 +134,8 @@ public class FRPlanets {
             hasAtmosphere = true;
             atmosphereRadIn = 0.12f;
             atmosphereRadOut = 0.45f;
+            //keep the ring visible when the planet itself is off-screen
+            clipRadius = 2.2f;
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
             solarSystem = Planets.sun;
