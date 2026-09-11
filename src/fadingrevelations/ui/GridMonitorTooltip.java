@@ -27,8 +27,8 @@ public class GridMonitorTooltip extends Table {
     private final Table panel = new Table();
 
     public GridMonitorTooltip() {
-        setTouchable(Touchable.disabled);
-        setVisible(false);
+        touchable = Touchable.disabled;
+        visible = false;
         add(panel);
     }
 
@@ -73,20 +73,20 @@ public class GridMonitorTooltip extends Table {
             Mathf.clamp(x, 4f, Core.graphics.getWidth() - getWidth() - 4f),
             Mathf.clamp(y, 4f, Core.graphics.getHeight() - getHeight() - 4f)
         );
-        setVisible(true);
+        visible = true;
         toFront();
     }
 
     private void hide() {
         current = null;
-        setVisible(false);
+        visible = false;
     }
 
     private void rebuild() {
         panel.clear();
 
         panel.background(Styles.black6);
-        panel.touchable(Touchable.disabled);
+        panel.touchable = Touchable.disabled;
 
         panel.add("[accent]" + FRSettings.bundle("fr.monitor.title", "Power Grid Monitor") + "[]").pad(4f).row();
 

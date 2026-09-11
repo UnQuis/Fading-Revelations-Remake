@@ -13,6 +13,7 @@ import arc.util.io.Reads;
 import arc.util.io.Writes;
 import mindustry.Vars;
 import mindustry.core.UI;
+import mindustry.gen.Building;
 import mindustry.graphics.Pal;
 import mindustry.ui.Bar;
 import mindustry.ui.Fonts;
