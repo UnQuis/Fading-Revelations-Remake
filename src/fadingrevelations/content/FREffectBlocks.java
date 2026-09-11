@@ -11,10 +11,11 @@ import mindustry.world.blocks.campaign.LaunchPad;
 import mindustry.content.UnitTypes;
 import mindustry.gen.Sounds;
 import fadingrevelations.worlds.blocks.effect.Outpost;
+import fadingrevelations.worlds.blocks.effect.OverdriveHive;
 import fadingrevelations.worlds.blocks.storage.FRCoreBlock;
 
 public class FREffectBlocks {
-    public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, forceDome, forceField,
+    public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, overdriveHive, forceDome, forceField,
             fastUnloader, enhancedMendProjector, darkMender, nanoRepairField, bigLaunchPad,
             mainCore, coreLevel4, coreLevel5, corePrime;
     public static void load() {
@@ -36,8 +37,9 @@ public class FREffectBlocks {
         overdriveRelay = new OverdriveProjector("overdrive-relay") {{
             localizedName = "Overdrive Relay";
             description = "A powerful overdrive relay that drastically increases the speed of nearby buildings. Boost with Phase Fabric for even greater effect.";
-            size = 2; range = 70; speedBoost = 2.2f; hasBoost = true; speedBoostPhase = 1.3f; phaseRangeBoost = 30;
-            consumePower(8f);
+            size = 2; range = 90; speedBoost = 2.2f; hasBoost = true; speedBoostPhase = 1.3f; phaseRangeBoost = 30;
+            useTime = 300f;
+            consumePower(4f);
             consumeItem(Items.phaseFabric, 1).boost();
             requirements(Category.effect, ItemStack.with(Items.lead, 150, Items.silicon, 120, Items.titanium, 100, Items.phaseFabric, 40));
         }};
@@ -45,17 +47,32 @@ public class FREffectBlocks {
         overdriveBeacon = new OverdriveProjector("overdrive-beacon") {{
             localizedName = "Overdrive Beacon";
             description = "An advanced overdrive beacon that supercharges nearby buildings to extreme speeds. Nano Fabric boost provides an extraordinary effect.";
-            size = 3; range = 100; speedBoost = 3f; hasBoost = true; speedBoostPhase = 2f; phaseRangeBoost = 50;
-            consumePower(26f);
+            size = 3; range = 200; speedBoost = 3f; hasBoost = true; speedBoostPhase = 2f; phaseRangeBoost = 50;
+            useTime = 240f;
+            consumePower(18f);
             consumeItem(FRItems.nanoFabric, 2).boost();
             requirements(Category.effect, ItemStack.with(Items.silicon, 350, Items.thorium, 250, Items.surgeAlloy, 150, Items.phaseFabric, 120, FRItems.steelAlloy, 80));
+        }};
+
+        overdriveHive = new OverdriveHive("overdrive-hive") {{
+            localizedName = "Overdrive Hive";
+            description = "The pinnacle of overdrive technology. Supercharges every building in a huge radius and overclocks all friendly units that enter its field, making them faster, tougher and deadlier. Boost with Nano Fabric to extend both radii.";
+            size = 4; health = 1000; range = 260; speedBoost = 3.5f;
+            hasBoost = true; speedBoostPhase = 2.5f; phaseRangeBoost = 60;
+            useTime = 240f;
+            consumePower(45f);
+            consumeItem(FRItems.nanoFabric, 1).boost();
+            requirements(Category.effect, ItemStack.with(
+                Items.lead, 900, Items.silicon, 720, Items.thorium, 520, Items.surgeAlloy, 420,
+                Items.phaseFabric, 320, FRItems.livingSteelHard, 400,
+                FRItems.optiCrystal, 160, FRItems.nanoFabric, 200));
         }};
 
         forceDome = new ForceProjector("force-dome") {{
             localizedName = "Force Dome";
             description = "A better Force Projector with more range and shield health. Cannot be boosted with Phase Fabric.";
             size = 4; health = 500; radius = 210; shieldHealth = 1500;
-            cooldownNormal = 1.1f; cooldownBrokenBase = 0.9f;
+            cooldownNormal = 1.1f; cooldownBrokenBase = 0.35f;
             consumePower(5f);
             requirements(Category.effect, ItemStack.with(Items.lead, 300, Items.silicon, 265, Items.titanium, 150, Items.thorium, 200, Items.plastanium, 100));
         }};
@@ -64,7 +81,7 @@ public class FREffectBlocks {
             localizedName = "Force Field";
             description = "An extremely powerful shield projector capable of protecting massive areas. Cannot be boosted with Phase Fabric.";
             size = 6; health = 1200; radius = 350; shieldHealth = 4500;
-            cooldownNormal = 1.3f; cooldownBrokenBase = 0.7f;
+            cooldownNormal = 1.3f; cooldownBrokenBase = 0.3f;
             consumePower(18f);
             requirements(Category.effect, ItemStack.with(Items.lead, 800, Items.silicon, 650, Items.titanium, 500, Items.thorium, 400, Items.surgeAlloy, 300, FRItems.steelAlloy, 200));
         }};
@@ -98,7 +115,7 @@ public class FREffectBlocks {
         nanoRepairField = new MendProjector("nano-repair-field") {{
             localizedName = "Nano-Repair Field";
             description = "Projects a field of nanites that rapidly repairs nearby blocks. Boost with Nano Fabric to dramatically expand the repair radius.";
-            health = 1600; size = 3; range = 120; reload = 60; healPercent = 8;
+            health = 1600; size = 3; range = 120; reload = 45; healPercent = 8;
             consumePower(15f);
             consumeItem(FRItems.nanoFabric, 1).boost();
             requirements(Category.effect, ItemStack.with(Items.silicon, 400, Items.phaseFabric, 200, Items.surgeAlloy, 150, FRItems.nanoFabric, 150, FRItems.optiCrystal, 100, FRItems.livingSteelHard, 300));

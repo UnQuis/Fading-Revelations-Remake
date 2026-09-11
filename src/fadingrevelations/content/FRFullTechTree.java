@@ -23,6 +23,18 @@ import static fadingrevelations.content.FRSectorPresets.*;
 import static mindustry.content.Blocks.*;
 import static mindustry.content.TechTree.*;
 
+/**
+ * Organized tech tree layout:
+ *
+ * - Root ("fading-revelations") only carries the three main gates + campaign sectors.
+ * - modGateBlocks holds one sub-gate per block category (walls, turrets, distribution, ...).
+ * - modGateItems holds the item production chain and the resources gate.
+ * - modGateUnits holds unit factories and one sub-gate per locomotion type.
+ * - Long production/unit chains were split into parallel families instead of single snakes.
+ * - Erekir-tech blocks that are built from Erekir resources stay grafted onto the vanilla
+ *   Erekir tree (addToNode below), while FR-cost endgame drills (plasma arc bore, percussion
+ *   drill) are researchable directly from this tree.
+ */
 public class FRFullTechTree {
     private static TechNode context;
     public static TechNode rootNode;
@@ -34,297 +46,374 @@ public class FRFullTechTree {
         rootNode = nodeRoot("fading-revelations", modGateMain, false, () -> {
             context().researchCostMultipliers = costMultipliers;
 
-            node(coreLevel4, () -> {
-                node(coreLevel5, () -> {
-                    node(mainCore, () -> {
-                        node(corePrime, () -> {
-                            node(FRCoreUnits.delta, () -> {
-                                node(FRCoreUnits.epsilon, () -> {
-                                    node(FRCoreUnits.coreTurretUnit);
+            //============================================================
+            // BLOCKS
+            //============================================================
+            node(modGateBlocks, () -> {
+
+                //--------------------------------------------------------
+                // Walls
+                //--------------------------------------------------------
+                node(modGateWalls, () -> {
+                    node(livingSteelWall, () -> {
+                        node(livingSteelWallLarge, () -> {
+                            node(steelAlloyWallSmall, () -> {
+                                node(steelAlloyWallLarge);
+                            });
+                        });
+                    });
+
+                    node(copperWall2, () -> {
+                        node(copperWall3, () -> {
+                            node(titaniumWall2, () -> {
+                                node(titaniumWall3);
+                                node(thoriumWall2, () -> {
+                                    node(thoriumWall3);
                                 });
-                            });
-                        });
-                    });
-                });
-            });
-
-            node(livingSteelWall, () -> {
-                node(livingSteelWallLarge, () -> {
-                    node(steelAlloyWallSmall, () -> {
-                        node(steelAlloyWallLarge);
-                    });
-                });
-            });
-            node(copperWall2, () -> {
-                node(copperWall3, () -> {
-                    node(titaniumWall2, () -> {
-                        node(titaniumWall3);
-                        node(thoriumWall2, () -> {
-                            node(thoriumWall3);
-                        });
-                        node(plastaniumWall2, () -> {
-                            node(plastaniumWall3);
-                        });
-                        node(surgeAlloyWall2, () -> {
-                            node(surgeAlloyWall3);
-                            node(phaseFabricWall2, () -> {
-                                node(phaseFabricWall3, () -> {
-                                    node(nanoOpticWall, () -> {
-                                        node(nanoOpticWallLarge, () -> {
-                                            node(nanoOpticWallHuge, () -> {
-                                                node(nanoOpticWallGigantic);
-                                            });
-                                        });
-                                    });
+                                node(plastaniumWall2, () -> {
+                                    node(plastaniumWall3);
                                 });
-                            });
-                        });
-                        node(armoredDoor, () -> {
-                            node(doorHuge, () -> {
-                                node(doorGigantic);
-                            });
-                        });
-                    });
-                });
-            });
-
-            node(trio, () -> {
-                node(sear, () -> {
-                    node(sunflare);
-                    node(bigSwarmer, () -> {
-                        node(corruptedCyclone);
-                        node(gattling, () -> {
-                            node(lightningChaingun);
-                        });
-                    });
-                });
-                node(shotgun, () -> {
-                    node(sniper, () -> {
-                        node(ringTurret, () -> {
-                            node(ignitor);
-                            node(diffract);
-                        });
-                    });
-                    node(oreTurret, () -> {
-                        node(mineLauncher, () -> {
-                            node(mortar);
-                            node(missileBattery, () -> {
-                                node(interitus);
-                                node(missileSilo);
-                            });
-                        });
-                        node(bigScatter);
-                    });
-                });
-            });
-            node(batter);
-            node(airArc, () -> {
-                node(uhlan, () -> {
-                    node(kugelblitz, () -> {
-                        node(statusWave);
-                        node(cavalry);
-                    });
-                    node(accel, () -> {
-                        node(absole, () -> {
-                            node(megaMeltdown);
-                        });
-                    });
-                });
-                node(bigArc, () -> {
-                    node(bigParallax);
-                    node(bigSegment);
-                });
-            });
-
-            node(reinforcedPowerNode, () -> {
-                node(reinforcedLargePowerNode, () -> {
-                    node(powerReserve, () -> {
-                        node(crystalAccumulator);
-                    });
-                    node(advancedSurgeTower);
-                });
-            });
-            node(tinyThermalGen, () -> {
-                node(titaniumPanel, () -> {
-                    node(advancedSolarPanel, () -> {
-                        node(solarArray);
-                    });
-                });
-                node(steamTurbine, Seq.with(
-                    new Objectives.Research(steamGenerator),
-                    new Objectives.Research(FRItems.livingSteel)
-                ), () -> {});
-            });
-            node(slagGenerator, () -> {
-                node(pyratiteGenerator);
-            });
-            node(steelReactor, () -> {
-                node(plasmaReactor);
-            });
-            node(lsGen);
-
-            node(miniOd, () -> {
-                node(enhancedMendProjector, () -> {
-                    node(darkMender, () -> {
-                        node(nanoRepairField, () -> {
-                            node(forceDome, () -> {
-                                node(forceField);
-                            });
-                        });
-                    });
-                });
-                node(constructionPylon);
-            });
-            node(overdriveRelay, () -> {
-                node(overdriveBeacon);
-            });
-            node(fastUnloader, () -> {
-                node(tinyMd, () -> {
-                    node(massAccelerator);
-                });
-            });
-            node(depository, () -> {
-                node(FRDistribution.frReinforcedVault, () -> {
-                    node(FRDistribution.frQuantumVault);
-                });
-            });
-
-            node(titaniumJunction, () -> {
-                node(titaniumRouter, () -> {
-                    node(titaniumDistributor, () -> {
-                        node(kineticDistributor, () -> {
-                            node(bioDistributor);
-                        });
-                    });
-                    node(kineticRouter, () -> {
-                        node(bioRouter);
-                    });
-                    node(titaniumBridgeConveyor, () -> {
-                        node(surgeBridgeConveyor, () -> {
-                            node(bioBridgeConveyor);
-                        });
-                    });
-                    node(kineticConveyor, () -> {
-                        node(amalgamConveyor, () -> {
-                            node(fusionConveyor);
-                        });
-                        node(bioConveyor);
-                    });
-                });
-                node(kineticJunction, () -> {
-                    node(bioJunction);
-                });
-            });
-
-            node(steelTank, () -> {
-                node(steelPump);
-                node(bioLiquidContainer);
-                node(kineticConduit, () -> {
-                    node(kineticLiquidRouter, () -> {
-                        node(liquidUnloader);
-                    });
-                    node(kineticLiquidBridge);
-                });
-            });
-
-            node(tinyMechanicalDrill, () -> {
-                node(tinyPneumaticDrill, () -> {
-                    node(titaniumDrill, () -> {
-                        node(compactLaserDrill, () -> {
-                            node(hyperDrill, () -> {
-                                node(cosmicDrill, () -> {
-                                    node(omniDrill);
-                                });
-                            });
-                        });
-                    });
-                });
-            });
-            node(groundGrinder, () -> {
-                node(groundMiller, () -> {
-                    node(groundCrusher, () -> {
-                        node(oilBore);
-                    });
-                });
-            });
-
-            node(steamCondenser, () -> {
-                node(dissolver, () -> {
-                    node(acidVat, () -> {
-                        node(acidEmulsifier);
-                    });
-                    node(advancedWaterExtractor, () -> {
-                        node(advancedCryofluidMixer);
-                        node(neutronBlender);
-                    });
-                });
-            });
-            node(livingSteelComplex);
-            node(livingSteelLiquifier, () -> {
-                node(livingSteelLiquifyingForge);
-            });
-            node(invertedPulverizer, () -> {
-                node(powderizer, () -> {
-                    node(inducedKiln, () -> {
-                        node(siliconForge, () -> {
-                            node(basicMultismelter);
-                        });
-                        node(greenhouse, () -> {
-                            node(sporeCrusher);
-                            node(enhancedPyratiteMixer, () -> {
-                                node(enhancedBlastMixer, () -> {
-                                    node(graphiteForge, () -> {
-                                        node(advancedCoalCentrifuge, () -> {
-                                            node(bigPlastaniumPress, () -> {
-                                                node(bigPhaseWeaver, () -> {
-                                                    node(advancedSeparator);
-                                                });
-                                                node(uraniumrodCrafter, () -> {
-                                                    node(nukeCrafter, () -> {
-                                                        nodeProduce(FRItems.nuke);
-                                                    });
-                                                });
-                                            });
-                                            node(surgeOvenBig, () -> {
-                                                node(amalgamSmelter, () -> {
-                                                    node(amalgamForge);
-                                                });
-                                                node(cryogenicGelMixer, () -> {
-                                                    node(alloyCrafter, () -> {
-                                                        node(cryogenicAlloyAssembler, () -> {
-                                                            node(crystalSynthesizer, () -> {
-                                                                node(cellFabricator, () -> {
-                                                                    node(nanoWeaver, () -> {
-                                                                        node(fabricationNexus);
-                                                                    });
-                                                                });
-                                                            });
-                                                        });
+                                node(surgeAlloyWall2, () -> {
+                                    node(surgeAlloyWall3);
+                                    node(phaseFabricWall2, () -> {
+                                        node(phaseFabricWall3, () -> {
+                                            node(nanoOpticWall, () -> {
+                                                node(nanoOpticWallLarge, () -> {
+                                                    node(nanoOpticWallHuge, () -> {
+                                                        node(nanoOpticWallGigantic);
                                                     });
                                                 });
                                             });
                                         });
                                     });
                                 });
-                            });
-                            node(bioRefinery, () -> {
-                                nodeProduce(FRItems.bioMatter);
+                                node(armoredDoor, () -> {
+                                    node(doorHuge, () -> {
+                                        node(doorGigantic);
+                                    });
+                                });
                             });
                         });
                     });
                 });
+
+                //--------------------------------------------------------
+                // Turrets
+                //--------------------------------------------------------
+                node(modGateTurrets, () -> {
+                    node(trio, () -> {
+                        node(sear, () -> {
+                            node(sunflare);
+                            node(bigSwarmer, () -> {
+                                node(corruptedCyclone);
+                                node(gattling, () -> {
+                                    node(lightningChaingun);
+                                });
+                            });
+                        });
+                        node(shotgun, () -> {
+                            node(sniper, () -> {
+                                node(ringTurret, () -> {
+                                    node(ignitor);
+                                    node(diffract);
+                                });
+                            });
+                            node(oreTurret, () -> {
+                                node(mineLauncher, () -> {
+                                    node(mortar);
+                                    node(missileBattery, () -> {
+                                        node(interitus);
+                                        node(missileSilo);
+                                    });
+                                });
+                                node(bigScatter);
+                            });
+                        });
+                    });
+
+                    node(batter);
+
+                    node(airArc, () -> {
+                        node(uhlan, () -> {
+                            node(kugelblitz, () -> {
+                                node(statusWave);
+                                node(cavalry);
+                            });
+                            node(accel, () -> {
+                                node(absole, () -> {
+                                    node(megaMeltdown);
+                                });
+                            });
+                        });
+                        node(bigArc, () -> {
+                            node(bigParallax);
+                            node(bigSegment);
+                        });
+                    });
+                });
+
+                //--------------------------------------------------------
+                // Distribution
+                //--------------------------------------------------------
+                node(modGateDistribution, () -> {
+                    node(titaniumJunction, () -> {
+                        node(titaniumRouter, () -> {
+                            node(titaniumDistributor, () -> {
+                                node(kineticDistributor, () -> {
+                                    node(bioDistributor);
+                                });
+                            });
+                            node(kineticRouter, () -> {
+                                node(bioRouter);
+                            });
+                            node(titaniumBridgeConveyor, () -> {
+                                node(surgeBridgeConveyor, () -> {
+                                    node(bioBridgeConveyor);
+                                });
+                            });
+                            node(kineticConveyor, () -> {
+                                node(amalgamConveyor, () -> {
+                                    node(fusionConveyor);
+                                });
+                                node(bioConveyor);
+                            });
+                        });
+                        node(kineticJunction, () -> {
+                            node(bioJunction);
+                        });
+                    });
+
+                    node(depository, () -> {
+                        node(FRDistribution.frReinforcedVault, () -> {
+                            node(FRDistribution.frQuantumVault);
+                        });
+                    });
+
+                    node(fastUnloader, () -> {
+                        node(tinyMd, () -> {
+                            node(massAccelerator);
+                        });
+                    });
+                });
+
+                //--------------------------------------------------------
+                // Power
+                //--------------------------------------------------------
+                node(modGatePower, () -> {
+                    node(tinyThermalGen, () -> {
+                        node(titaniumPanel, () -> {
+                            node(advancedSolarPanel, () -> {
+                                node(solarArray);
+                            });
+                        });
+                    });
+                    node(steamTurbine, Seq.with(
+                        new Objectives.Research(steamGenerator),
+                        new Objectives.Research(FRItems.livingSteel)
+                    ), () -> {});
+                    node(slagGenerator, () -> {
+                        node(pyratiteGenerator);
+                    });
+                    node(steelReactor, () -> {
+                        node(plasmaReactor);
+                    });
+                    node(lsGen);
+                    node(reinforcedPowerNode, () -> {
+                        node(reinforcedLargePowerNode, () -> {
+                            node(powerReserve, () -> {
+                                node(crystalAccumulator);
+                            });
+                            node(advancedSurgeTower);
+                        });
+                    });
+                });
+
+                //--------------------------------------------------------
+                // Drills
+                //--------------------------------------------------------
+                node(modGateDrills, () -> {
+                    node(tinyMechanicalDrill, () -> {
+                        node(tinyPneumaticDrill, () -> {
+                            node(titaniumDrill, () -> {
+                                node(compactLaserDrill, () -> {
+                                    node(hyperDrill, () -> {
+                                        node(cosmicDrill, () -> {
+                                            node(omniDrill);
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+
+                    node(groundGrinder, () -> {
+                        node(groundMiller, () -> {
+                            node(groundCrusher, () -> {
+                                node(oilBore);
+                            });
+                        });
+                    });
+
+                    // Erekir-tech drills built from Serpulo resources:
+                    // researchable here, but still require their vanilla counterparts.
+                    node(plasmaArcBore, Seq.with(
+                        new Objectives.Research(largePlasmaBore)
+                    ), () -> {});
+                    node(percussionDrill, Seq.with(
+                        new Objectives.Research(impactDrill)
+                    ), () -> {});
+                });
+
+                //--------------------------------------------------------
+                // Liquids
+                //--------------------------------------------------------
+                node(modGateLiquids, () -> {
+                    node(steelTank, () -> {
+                        node(steelPump);
+                        node(bioLiquidContainer);
+                        node(kineticConduit, () -> {
+                            node(kineticLiquidRouter, () -> {
+                                node(liquidUnloader);
+                            });
+                            node(kineticLiquidBridge);
+                        });
+                    });
+
+                    node(steamCondenser, () -> {
+                        node(dissolver, () -> {
+                            node(acidVat, () -> {
+                                node(acidEmulsifier);
+                            });
+                            node(advancedWaterExtractor, () -> {
+                                node(advancedCryofluidMixer);
+                                node(neutronBlender);
+                            });
+                        });
+                    });
+                });
+
+                //--------------------------------------------------------
+                // Effect blocks
+                //--------------------------------------------------------
+                node(modGateEffect, () -> {
+                    node(miniOd, () -> {
+                        node(enhancedMendProjector, () -> {
+                            node(darkMender, () -> {
+                                node(nanoRepairField);
+                            });
+                        });
+                        node(constructionPylon);
+                    });
+
+                    node(overdriveRelay, () -> {
+                        node(overdriveBeacon, () -> {
+                            node(overdriveHive);
+                        });
+                    });
+
+                    node(forceDome, () -> {
+                        node(forceField);
+                    });
+
+                    node(outpost);
+                    node(bigLaunchPad);
+                });
+
+                //--------------------------------------------------------
+                // Cores
+                //--------------------------------------------------------
+                node(modGateCores, () -> {
+                    node(coreLevel4, () -> {
+                        node(coreLevel5, () -> {
+                            node(mainCore, () -> {
+                                node(corePrime);
+                            });
+                        });
+                    });
+                });
+
+                //--------------------------------------------------------
+                // Production / crafters
+                //--------------------------------------------------------
+                node(modGateCrafters, () -> {
+                    // Scrap & smelting
+                    node(invertedPulverizer, () -> {
+                        node(powderizer, () -> {
+                            node(inducedKiln);
+                        });
+                    });
+                    node(siliconForge, () -> {
+                        node(basicMultismelter);
+                    });
+
+                    // Organics & explosives
+                    node(greenhouse, () -> {
+                        node(sporeCrusher);
+                        node(bioRefinery, () -> {
+                            nodeProduce(FRItems.bioMatter);
+                        });
+                        node(enhancedPyratiteMixer, () -> {
+                            node(enhancedBlastMixer);
+                        });
+                    });
+
+                    // Coal, surge & the advanced material lines
+                    node(graphiteForge, () -> {
+                        node(advancedCoalCentrifuge, () -> {
+                            node(bigPlastaniumPress, () -> {
+                                node(bigPhaseWeaver, () -> {
+                                    node(advancedSeparator);
+                                });
+                                node(uraniumrodCrafter, () -> {
+                                    node(nukeCrafter, () -> {
+                                        nodeProduce(FRItems.nuke);
+                                    });
+                                });
+                            });
+                            node(surgeOvenBig, () -> {
+                                node(amalgamSmelter, () -> {
+                                    node(amalgamForge);
+                                });
+                                node(cryogenicGelMixer, () -> {
+                                    node(alloyCrafter, () -> {
+                                        node(cryogenicAlloyAssembler, () -> {
+                                            node(crystalSynthesizer, () -> {
+                                                node(cellFabricator, () -> {
+                                                    node(nanoWeaver, () -> {
+                                                        node(fabricationNexus);
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+
+                    // Living steel processing
+                    node(livingSteelComplex);
+                    node(livingSteelLiquifier, () -> {
+                        node(livingSteelLiquifyingForge);
+                    });
+                });
             });
 
-            nodeProduce(FRItems.livingSteel, () -> {
-                nodeProduce(FRItems.livingSteelHard);
-                nodeProduce(FRItems.steelAlloy, () -> {
-                    nodeProduce(FRItems.fuelRod, () -> {
-                        nodeProduce(FRItems.cryogenicGel, () -> {
-                            nodeProduce(FRItems.igneousAlloy, () -> {
-                                nodeProduce(FRItems.cryogenicAlloy, () -> {
-                                    nodeProduce(FRItems.optiCrystal, () -> {
-                                        nodeProduce(FRItems.energyCell, () -> {
-                                            nodeProduce(FRItems.nanoFabric);
+            //============================================================
+            // ITEMS
+            //============================================================
+            node(modGateItems, () -> {
+                nodeProduce(FRItems.livingSteel, () -> {
+                    nodeProduce(FRItems.livingSteelHard);
+                    nodeProduce(FRItems.steelAlloy, () -> {
+                        nodeProduce(FRItems.fuelRod, () -> {
+                            nodeProduce(FRItems.cryogenicGel, () -> {
+                                nodeProduce(FRItems.igneousAlloy, () -> {
+                                    nodeProduce(FRItems.cryogenicAlloy, () -> {
+                                        nodeProduce(FRItems.optiCrystal, () -> {
+                                            nodeProduce(FRItems.energyCell, () -> {
+                                                nodeProduce(FRItems.nanoFabric);
+                                            });
                                         });
                                     });
                                 });
@@ -332,116 +421,161 @@ public class FRFullTechTree {
                         });
                     });
                 });
-            });
-            nodeProduce(FREnvironment.steelSedimentation, () -> {
-                nodeProduce(FREnvironment.oreGraphite);
+
+                node(modGateResources, () -> {
+                    nodeProduce(FREnvironment.steelSedimentation, () -> {
+                        nodeProduce(FREnvironment.oreGraphite);
+                    });
+                });
             });
 
-            node(primaryFactory, () -> {
-                node(FRT1Units.seed, () -> {
-                    node(FRT2Units.sapling, () -> {
-                        node(FRT3Units.plant, () -> {
-                            node(FRMothershipUnits.corax);
-                        });
-                    });
-                });
-                node(FRT1Units.lancerDrone, () -> {
-                    node(FRT2Units.alopex, () -> {
-                        node(FRT3Units.kestrel, () -> {
-                            node(FRMothershipUnits.strahl);
-                        });
-                    });
-                });
-                node(FRT1Units.mela, () -> {
-                    node(FRT2Units.cromis, () -> {
-                        node(FRT3Units.arnux, () -> {
-                            node(FRMothershipUnits.japonica);
-                        });
-                    });
-                });
-                node(FRT1Units.apis, () -> {
-                    node(FRT2Units.procer, () -> {
-                        node(FRT3Units.ducalis, () -> {
-                            node(FRMothershipUnits.hive);
-                        });
-                    });
-                });
-                node(FRT1Units.alba, () -> {
-                    node(FRT2Units.arvens, () -> {
-                        node(FRT3Units.aestiva, () -> {
-                            node(FRMothershipUnits.altaic);
-                        });
-                    });
-                });
-                node(FRT1Units.annax, () -> {
-                    node(FRT2Units.scofra, () -> {
-                        node(FRT3Units.auratus, () -> {
-                            node(FRMothershipUnits.lycosid);
-                        });
-                    });
-                });
-                node(FRT1Units.sambuca, () -> {
-                    node(FRT2Units.scorpio, () -> {
-                        node(FRT3Units.springald, () -> {
-                            node(FRMothershipUnits.onager);
-                        });
-                    });
-                });
-                node(basicReassembly, () -> {
-                    node(advancedReassembly, () -> {
-                        node(progressiveAssembly, () -> {
-                            node(ascendedFactory, () -> {
-                                node(FRMothershipUnits.hiveAttack);
-                                node(FRMothershipUnits.toruct);
-                                node(FRMothershipUnits.reduct);
-                                node(FRTranscendentUnits.mygale);
-                                node(FRTranscendentUnits.scepter);
-                                node(FRTranscendentUnits.mangonel);
-                                node(FRTranscendentUnits.thalass);
-                                node(FRTranscendentUnits.vex);
-                                node(FRTranscendentUnits.medusae);
-                                node(FRTranscendentUnits.nivosa);
+            //============================================================
+            // UNITS
+            //============================================================
+            node(modGateUnits, () -> {
+
+                //--------------------------------------------------------
+                // Unit factories
+                //--------------------------------------------------------
+                node(modGateFactories, () -> {
+                    node(primaryFactory);
+                    node(regenerator);
+
+                    node(basicReassembly, () -> {
+                        node(advancedReassembly, () -> {
+                            node(progressiveAssembly, () -> {
+                                node(ascendedFactory, () -> {
+                                    node(FRMothershipUnits.hiveAttack);
+                                    node(FRMothershipUnits.toruct);
+                                    node(FRMothershipUnits.reduct);
+                                    node(FRTranscendentUnits.mygale);
+                                    node(FRTranscendentUnits.scepter);
+                                    node(FRTranscendentUnits.mangonel);
+                                    node(FRTranscendentUnits.thalass);
+                                    node(FRTranscendentUnits.vex);
+                                    node(FRTranscendentUnits.medusae);
+                                    node(FRTranscendentUnits.nivosa);
+                                });
                             });
                         });
                     });
                 });
-                node(regenerator);
-            });
 
-            node(FRT1Units.heliaca);
-            node(FRCerberianUnits.spark, () -> {
-                node(FRCerberianUnits.vista, () -> {
-                    node(FRCerberianUnits.summit, () -> {
-                        node(FRCerberianUnits.penumbra, () -> {
-                            node(FRCerberianUnits.veil);
+                //--------------------------------------------------------
+                // Flying units
+                //--------------------------------------------------------
+                node(modGateFlying, () -> {
+                    node(FRT1Units.lancerDrone, () -> {
+                        node(FRT2Units.alopex, () -> {
+                            node(FRT3Units.kestrel, () -> {
+                                node(FRMothershipUnits.strahl);
+                            });
+                        });
+                    });
+                    node(FRT1Units.apis, () -> {
+                        node(FRT2Units.procer, () -> {
+                            node(FRT3Units.ducalis, () -> {
+                                node(FRMothershipUnits.hive);
+                            });
+                        });
+                    });
+                    node(FRT1Units.heliaca);
+
+                    node(FRCerberianUnits.spark, () -> {
+                        node(FRCerberianUnits.vista, () -> {
+                            node(FRCerberianUnits.summit, () -> {
+                                node(FRCerberianUnits.penumbra, () -> {
+                                    node(FRCerberianUnits.veil);
+                                });
+                            });
                         });
                     });
                 });
-            });
-            node(FRCerberianUnits.straggle, () -> {
-                node(FRCerberianUnits.bayonet, () -> {
-                    node(FRCerberianUnits.hexathelid, () -> {
-                        node(FRCerberianUnits.cudgel, () -> {
-                            node(FRCerberianUnits.citadel, () -> {
+
+                //--------------------------------------------------------
+                // Ground units
+                //--------------------------------------------------------
+                node(modGateLegs, () -> {
+                    node(FRT1Units.seed, () -> {
+                        node(FRT2Units.sapling, () -> {
+                            node(FRT3Units.plant, () -> {
+                                node(FRMothershipUnits.corax);
+                            });
+                        });
+                    });
+                    node(FRT1Units.mela, () -> {
+                        node(FRT2Units.cromis, () -> {
+                            node(FRT3Units.arnux, () -> {
+                                node(FRMothershipUnits.japonica);
+                            });
+                        });
+                    });
+                    node(FRT1Units.sambuca, () -> {
+                        node(FRT2Units.scorpio, () -> {
+                            node(FRT3Units.springald, () -> {
+                                node(FRMothershipUnits.onager);
+                            });
+                        });
+                    });
+                    node(FRT1Units.annax, () -> {
+                        node(FRT2Units.scofra, () -> {
+                            node(FRT3Units.auratus, () -> {
+                                node(FRMothershipUnits.lycosid);
+                            });
+                        });
+                    });
+
+                    // Cerberian ground units, split by role instead of one long chain
+                    node(FRCerberianUnits.straggle, () -> {
+                        node(FRCerberianUnits.bayonet, () -> {
+                            node(FRCerberianUnits.cudgel, () -> {
+                                node(FRCerberianUnits.citadel);
+                            });
+                            node(FRCerberianUnits.hexathelid, () -> {
                                 node(FRCerberianUnits.nephila, () -> {
-                                    node(FRCerberianUnits.curtulus, () -> {
-                                        node(FRCerberianUnits.auctus, () -> {
-                                            node(FRCerberianUnits.baton, () -> {
-                                                node(FRCerberianUnits.kaiser, () -> {
-                                                    node(FRCerberianUnits.setosus, () -> {
-                                                        node(FRCerberianUnits.behemoth);
-                                                    });
-                                                });
-                                            });
-                                        });
+                                    node(FRCerberianUnits.curtulus);
+                                });
+                            });
+                            node(FRCerberianUnits.auctus);
+                            node(FRCerberianUnits.baton, () -> {
+                                node(FRCerberianUnits.kaiser, () -> {
+                                    node(FRCerberianUnits.setosus, () -> {
+                                        node(FRCerberianUnits.behemoth);
                                     });
                                 });
                             });
                         });
                     });
                 });
+
+                //--------------------------------------------------------
+                // Naval units
+                //--------------------------------------------------------
+                node(modGateNaval, () -> {
+                    node(FRT1Units.alba, () -> {
+                        node(FRT2Units.arvens, () -> {
+                            node(FRT3Units.aestiva, () -> {
+                                node(FRMothershipUnits.altaic);
+                            });
+                        });
+                    });
+                });
+
+                //--------------------------------------------------------
+                // Core units
+                //--------------------------------------------------------
+                node(modGateCoreUnits, () -> {
+                    node(FRCoreUnits.delta, () -> {
+                        node(FRCoreUnits.epsilon, () -> {
+                            node(FRCoreUnits.coreTurretUnit);
+                        });
+                    });
+                });
             });
 
+            //============================================================
+            // CAMPAIGN SECTORS
+            //============================================================
             node(exordium, () -> {
                 node(dree, Seq.with(
                     new Objectives.OnSector(exordium)
@@ -463,10 +597,11 @@ public class FRFullTechTree {
         });
 
         FRPlanets.cerbero.techTree = rootNode;
+        FRPlanets.hathor.techTree = rootNode;
         FRPlanets.cangirus.techTree = rootNode;
 
-        addToNode(largePlasmaBore, () -> node(plasmaArcBore));
-        addToNode(impactDrill, () -> node(percussionDrill));
+        // Erekir-resource blocks stay in the vanilla Erekir tree; researching them
+        // there unlocks them everywhere thanks to FRTechTree's global progress.
         addToNode(cliffCrusher, () -> node(cliffGrinder, () -> node(cliffMiller)));
         addToNode(plasmaBore, () -> { node(tinyPlasmaBore); node(tungstenBore); });
         addToNode(ventCondenser, () -> node(ventConcentrator));

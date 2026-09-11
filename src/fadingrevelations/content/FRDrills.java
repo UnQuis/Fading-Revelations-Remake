@@ -63,24 +63,30 @@ public class FRDrills {
 
         hyperDrill = new Drill("hyper-drill") {{
             localizedName = "Hyper Drill";
-            description = "The magnum opus of drill technology. Incapable of mining sand, but mines other ores at massive rates, consuming cryofluid in the process.";
+            description = "The magnum opus of drill technology. Incapable of mining sand, but mines other ores at massive rates. Can be boosted with cryofluid for even more speed.";
             blockedItem = Items.sand; updateEffectChance = 0.1f; drawMineItem = false;
-            warmupSpeed = 0.0025f; size = 5; hasPower = true; drawRim = false;
+            warmupSpeed = 0.02f; size = 5; hasPower = true; drawRim = false;
             hasLiquids = true; liquidCapacity = 40; hasItems = true; itemCapacity = 60;
-            tier = 8; drillTime = 30; rotateSpeed = 12; liquidBoostIntensity = 1.3f;
+            tier = 8; drillTime = 30; rotateSpeed = 12; liquidBoostIntensity = 1.5f;
+            dumpTime = 2.5f;
             consumePower(4f);
-            consumeLiquid(Liquids.cryofluid, 0.09f);
+            consumeLiquid(Liquids.cryofluid, 0.09f).boost();
             requirements(Category.production, ItemStack.with(Items.copper, 130, Items.silicon, 120, Items.titanium, 100, FRItems.livingSteel, 100, FRItems.livingSteelHard, 150, Items.plastanium, 75));
         }};
 
         cosmicDrill = new Drill("cosmic-drill") {{
             localizedName = "Cosmic Drill";
-            description = "A drill that has reached the limits of physics. Mines at incredible speeds. Requires cryofluid.";
-            size = 4; drillTime = 10; tier = 9; itemCapacity = 150; liquidCapacity = 80;
-            warmupSpeed = 0.01f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
+            description = "A drill that has reached the limits of physics. Common ores are mined at ridiculous efficiency. Can be boosted with cryofluid.";
+            size = 4; drillTime = 12; tier = 9; itemCapacity = 150; liquidCapacity = 80;
+            warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
             rotateSpeed = 20; liquidBoostIntensity = 2f; updateEffectChance = 0.2f; drawMineItem = false;
-            consumePower(50f);
-            consumeLiquid(Liquids.cryofluid, 0.3f);
+            dumpTime = 2.5f;
+            drillMultipliers.put(Items.copper, 2f);
+            drillMultipliers.put(Items.lead, 2f);
+            drillMultipliers.put(Items.titanium, 2f);
+            drillMultipliers.put(Items.thorium, 1.5f);
+            consumePower(18f);
+            consumeLiquid(Liquids.cryofluid, 0.2f).boost();
             requirements(Category.production, ItemStack.with(
                 Items.copper, 500, Items.silicon, 400, Items.titanium, 300,
                 FRItems.livingSteelHard, 300, Items.plastanium, 200,
@@ -94,7 +100,7 @@ public class FRDrills {
             size = 4; tier = 9; range = 12; drillTime = 12; fogRadius = 4;
             itemCapacity = 150; liquidCapacity = 80;
             hasPower = true; hasLiquids = true; hasItems = true;
-            consumePower(50f);
+            consumePower(20f);
             consumeLiquid(Liquids.hydrogen, 0.2f).boost();
             requirements(Category.production, ItemStack.with(
                 Items.copper, 500, Items.silicon, 400, Items.titanium, 300,
@@ -107,9 +113,10 @@ public class FRDrills {
         percussionDrill = new BurstDrill("percussion-drill") {{
             localizedName = "Percussion Drill";
             description = "A high-frequency percussion drill that pulverizes ore through sheer kinetic force. No coolant needed.";
-            size = 4; drillTime = 240; tier = 9; itemCapacity = 150; shake = 4f;
+            size = 4; drillTime = 140; tier = 9; itemCapacity = 150; shake = 4f;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasItems = true;
             rotateSpeed = 25; updateEffectChance = 0.3f; drawMineItem = false;
+            dumpTime = 2.5f;
             consumePower(30f);
             requirements(Category.production, ItemStack.with(
                 Items.copper, 600, Items.lead, 500, Items.silicon, 400, Items.titanium, 300,
@@ -121,12 +128,17 @@ public class FRDrills {
 
         omniDrill = new Drill("omni-drill") {{
             localizedName = "Omni Drill";
-            description = "The ultimate drilling machine. Tears through reality itself to extract ores. Consumes massive power.";
-            size = 5; drillTime = 4; tier = 10; itemCapacity = 500; liquidCapacity = 150;
+            description = "The ultimate drilling machine. Tears through reality itself to extract ores at absurd rates. Can be boosted with cryofluid.";
+            size = 5; drillTime = 6; tier = 10; itemCapacity = 500; liquidCapacity = 150;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
             rotateSpeed = 30; liquidBoostIntensity = 3f; updateEffectChance = 0.3f; drawMineItem = false;
-            consumePower(300f);
-            consumeLiquid(Liquids.cryofluid, 1f);
+            dumpTime = 2f;
+            drillMultipliers.put(Items.copper, 3f);
+            drillMultipliers.put(Items.lead, 3f);
+            drillMultipliers.put(Items.titanium, 2.5f);
+            drillMultipliers.put(Items.thorium, 2f);
+            consumePower(60f);
+            consumeLiquid(Liquids.cryofluid, 0.5f).boost();
             requirements(Category.production, ItemStack.with(
                 Items.copper, 2000, Items.lead, 1500, Items.silicon, 1000,
                 Items.titanium, 1000, Items.thorium, 500, Items.plastanium, 500,
