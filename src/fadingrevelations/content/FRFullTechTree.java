@@ -311,6 +311,8 @@ public class FRFullTechTree {
                         });
                     });
 
+                    node(jumpGate);
+
                     node(forceDome, () -> {
                         node(forceField);
                     });
@@ -330,6 +332,7 @@ public class FRFullTechTree {
                             });
                         });
                     });
+                    node(orbitalRingStation);
                 });
 
                 //--------------------------------------------------------

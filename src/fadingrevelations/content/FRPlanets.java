@@ -1,13 +1,17 @@
 package fadingrevelations.content;
 
 import arc.graphics.Color;
+import arc.math.geom.Mat3D;
 import arc.math.geom.Vec3;
 import mindustry.content.Blocks;
 import mindustry.content.Planets;
 import mindustry.type.Planet;
 import mindustry.type.Sector;
+import mindustry.graphics.g3d.GenericMesh;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
+import mindustry.graphics.g3d.PlanetParams;
+import fadingrevelations.graphics.FROrbitalRingMesh;
 import static fadingrevelations.content.FRPlanetGenerators.*;
 
 public class FRPlanets {
@@ -71,11 +75,29 @@ public class FRPlanets {
             alwaysUnlocked = true;
             visible = true;
             accessible = true;
-            
+
             meshLoader = () -> new HexMesh(this, 5);
-            cloudMeshLoader = () -> new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
+            //clouds + the Orbital Ring megastructure, which appears quadrant by
+            //quadrant as the Orbital Ring project progresses (FROrbitalRing)
+            cloudMeshLoader = () -> {
+                GenericMesh clouds = new HexSkyMesh(this, 15, 0.32f, 0.08f, 6, Color.valueOf("eafffd7e"), 3, 0.7f, 1f, 0.6f);
+                GenericMesh ring = new FROrbitalRingMesh(this);
+                return new GenericMesh() {
+                    @Override
+                    public void render(PlanetParams params, Mat3D projection, Mat3D transform) {
+                        clouds.render(params, projection, transform);
+                        ring.render(params, projection, transform);
+                    }
+
+                    @Override
+                    public void dispose() {
+                        clouds.dispose();
+                        ring.dispose();
+                    }
+                };
+            };
             generator = new CangirusGenerator() {{ seed = 69; }};
-            
+
             radius = 1f;
             minZoom = 1.5f;
             drawOrbit = true;
@@ -86,6 +108,8 @@ public class FRPlanets {
             hasAtmosphere = true;
             atmosphereRadIn = 0.12f;
             atmosphereRadOut = 0.45f;
+            //keep the ring visible when the planet itself is off-screen
+            clipRadius = 2.2f;
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
             solarSystem = Planets.sun;

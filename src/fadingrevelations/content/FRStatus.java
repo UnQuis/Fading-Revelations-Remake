@@ -9,9 +9,17 @@ import mindustry.type.StatusEffect;
 public class FRStatus {
     public static StatusEffect acidicBurn, constructionShock, emp, hastened, highEnergyBurn,
             japonicaWeakened, mediumDowndraft, minimalDowndraft, neutronFrozen,
-            polymorphousBuilding, powerfulDowndraft, radiated, sapped, shockslowed, slightDowndraft, superHastened;
+            polymorphousBuilding, powerfulDowndraft, radiated, sapped, shockslowed, slightDowndraft, superHastened,
+            jumpSickness;
 
     public static void load() {
+        jumpSickness = new StatusEffect("jump-sickness") {{
+            color = Color.valueOf("aa44ff");
+            localizedName = "Phase Fatigue";
+            description = "This unit just jumped through a gate and cannot jump again yet.";
+            show = false;
+            effect = Fx.none;
+        }};
         acidicBurn = new StatusEffect("acidic-burn") {{
             color = Color.valueOf("cde03a");
             localizedName = "Acidic Burn";

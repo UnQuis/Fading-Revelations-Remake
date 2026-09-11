@@ -10,6 +10,8 @@ import mindustry.world.blocks.storage.Unloader;
 import mindustry.world.blocks.campaign.LaunchPad;
 import mindustry.content.UnitTypes;
 import mindustry.gen.Sounds;
+import fadingrevelations.worlds.blocks.campaign.OrbitalRingStation;
+import fadingrevelations.worlds.blocks.effect.JumpGate;
 import fadingrevelations.worlds.blocks.effect.Outpost;
 import fadingrevelations.worlds.blocks.effect.OverdriveHive;
 import fadingrevelations.worlds.blocks.storage.FRCoreBlock;
@@ -17,6 +19,7 @@ import fadingrevelations.worlds.blocks.storage.FRCoreBlock;
 public class FREffectBlocks {
     public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, overdriveHive, forceDome, forceField,
             fastUnloader, enhancedMendProjector, darkMender, nanoRepairField, bigLaunchPad,
+            jumpGate, orbitalRingStation,
             mainCore, coreLevel4, coreLevel5, corePrime;
     public static void load() {
         outpost = new Outpost("outpost") {{
@@ -84,6 +87,25 @@ public class FREffectBlocks {
             cooldownNormal = 1.3f; cooldownBrokenBase = 0.3f;
             consumePower(18f);
             requirements(Category.effect, ItemStack.with(Items.lead, 800, Items.silicon, 650, Items.titanium, 500, Items.thorium, 400, Items.surgeAlloy, 300, FRItems.steelAlloy, 200));
+        }};
+
+        jumpGate = new JumpGate("jump-gate") {{
+            localizedName = "Jump Gate";
+            description = "A pair-linked teleporter for units. Link two gates together: units entering this gate are instantly moved to its destination. Each link is one-way - build a link back for two-way travel. Does not move naval units. Requires power.";
+            size = 3; health = 900; radius = 56f;
+            teleportInterval = 12f; arrivalRadius = 36f;
+            requirements(Category.effect, ItemStack.with(
+                Items.silicon, 300, Items.titanium, 250, Items.phaseFabric, 120,
+                FRItems.livingSteelHard, 150, FRItems.optiCrystal, 60));
+        }};
+
+        orbitalRingStation = new OrbitalRingStation("orbital-ring-station") {{
+            localizedName = "Orbital Ring Station";
+            description = "A launch complex for the Cangirus Orbital Ring project. Can only be built on Cangirus. Feed it the resources the current construction stage demands - progress is shared across the whole planet. Each completed stage adds another quadrant to the ring around Cangirus and grants a permanent campaign bonus.";
+            size = 3; health = 1600;
+            requirements(Category.effect, ItemStack.with(
+                Items.copper, 800, Items.lead, 800, Items.silicon, 600,
+                Items.titanium, 500, Items.surgeAlloy, 200, Items.phaseFabric, 100));
         }};
 
         fastUnloader = new Unloader("fast-unloader") {{
