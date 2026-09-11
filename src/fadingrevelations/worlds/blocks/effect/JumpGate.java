@@ -2,6 +2,7 @@ package fadingrevelations.worlds.blocks.effect;
 
 import arc.Core;
 import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
 import arc.util.Time;
@@ -72,13 +73,13 @@ public class JumpGate extends Block {
     @Override
     public void setStats() {
         super.setStats();
-        stats.add(Stat.range, radius / tilesize, StatUnit.blocks);
+        stats.add(Stat.range, radius / Vars.tilesize, StatUnit.blocks);
     }
 
     @Override
     public void drawPlace(int x, int y, int rotation, boolean valid) {
         super.drawPlace(x, y, rotation, valid);
-        Drawf.dashCircle(x * tilesize + offset, y * tilesize + offset, radius, portalColor);
+        Drawf.dashCircle(x * Vars.tilesize + offset, y * Vars.tilesize + offset, radius, portalColor);
     }
 
     public static boolean linkValid(Building from, Building to) {

@@ -5,7 +5,7 @@ import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.util.Time;
 import mindustry.content.StatusEffects;
-import mindustry.gen.Units;
+import mindustry.entities.Units;
 import mindustry.graphics.Drawf;
 import mindustry.type.StatusEffect;
 import mindustry.world.blocks.defense.OverdriveProjector;

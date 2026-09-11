@@ -68,7 +68,7 @@ public class FRDrills {
             warmupSpeed = 0.02f; size = 5; hasPower = true; drawRim = false;
             hasLiquids = true; liquidCapacity = 40; hasItems = true; itemCapacity = 60;
             tier = 8; drillTime = 30; rotateSpeed = 12; liquidBoostIntensity = 1.5f;
-            dumpTime = 2.5f;
+            dumpTime = 2;
             consumePower(4f);
             consumeLiquid(Liquids.cryofluid, 0.09f).boost();
             requirements(Category.production, ItemStack.with(Items.copper, 130, Items.silicon, 120, Items.titanium, 100, FRItems.livingSteel, 100, FRItems.livingSteelHard, 150, Items.plastanium, 75));
@@ -80,7 +80,7 @@ public class FRDrills {
             size = 4; drillTime = 12; tier = 9; itemCapacity = 150; liquidCapacity = 80;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
             rotateSpeed = 20; liquidBoostIntensity = 2f; updateEffectChance = 0.2f; drawMineItem = false;
-            dumpTime = 2.5f;
+            dumpTime = 2;
             drillMultipliers.put(Items.copper, 2f);
             drillMultipliers.put(Items.lead, 2f);
             drillMultipliers.put(Items.titanium, 2f);
@@ -116,7 +116,7 @@ public class FRDrills {
             size = 4; drillTime = 140; tier = 9; itemCapacity = 150; shake = 4f;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasItems = true;
             rotateSpeed = 25; updateEffectChance = 0.3f; drawMineItem = false;
-            dumpTime = 2.5f;
+            dumpTime = 2;
             consumePower(30f);
             requirements(Category.production, ItemStack.with(
                 Items.copper, 600, Items.lead, 500, Items.silicon, 400, Items.titanium, 300,
@@ -132,7 +132,7 @@ public class FRDrills {
             size = 5; drillTime = 6; tier = 10; itemCapacity = 500; liquidCapacity = 150;
             warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasLiquids = true; hasItems = true;
             rotateSpeed = 30; liquidBoostIntensity = 3f; updateEffectChance = 0.3f; drawMineItem = false;
-            dumpTime = 2f;
+            dumpTime = 2;
             drillMultipliers.put(Items.copper, 3f);
             drillMultipliers.put(Items.lead, 3f);
             drillMultipliers.put(Items.titanium, 2.5f);
