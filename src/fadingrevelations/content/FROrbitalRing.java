@@ -176,7 +176,7 @@ public class FROrbitalRing {
         boostTimer = 0;
 
         var team = Vars.state.rules.defaultTeam;
-        for (var build : mindustry.entities.Groups.build) {
+        for (var build : mindustry.gen.Groups.build) {
             if (build.team == team && build.block.canOverdrive) {
                 build.applyBoost(BOOST_MULTIPLIER, BOOST_DURATION);
             }

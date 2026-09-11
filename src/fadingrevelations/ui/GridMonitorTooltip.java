@@ -2,13 +2,11 @@ package fadingrevelations.ui;
 
 import arc.Core;
 import arc.math.Mathf;
-import arc.scene.Table;
-import arc.scene.style.Drawable;
-import arc.scene.ui.Touchable;
+import arc.scene.event.Touchable;
+import arc.scene.ui.layout.Table;
 import mindustry.Vars;
 import mindustry.core.UI;
 import mindustry.gen.Building;
-import mindustry.graphics.Pal;
 import mindustry.ui.Styles;
 
 import fadingrevelations.content.FRSettings;
@@ -86,9 +84,8 @@ public class GridMonitorTooltip extends Table {
 
     private void rebuild() {
         panel.clear();
-        Drawable background = Styles.black6;
 
-        panel.background(background);
+        panel.background(Styles.black6);
         panel.touchable(Touchable.disabled);
 
         panel.add("[accent]" + FRSettings.bundle("fr.monitor.title", "Power Grid Monitor") + "[]").pad(4f).row();
