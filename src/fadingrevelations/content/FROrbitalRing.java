@@ -61,6 +61,8 @@ public class FROrbitalRing {
         loadProgress();
 
         Events.on(EventType.WorldLoadEvent.class, event -> applyBonuses());
+        //stage 4: the finished ring overclocks the whole planet (see updateOrbitalBoost)
+        Events.run(EventType.Trigger.update, FROrbitalRing::updateOrbitalBoost);
     }
 
     //region progress
@@ -143,6 +145,42 @@ public class FROrbitalRing {
         }
         applyBonuses();
         saveProgress(true);
+    }
+
+    //endregion
+
+    //region orbital boost
+
+    /** Stage 4 bonus: +200% speed for every overdrivable block on the planet. */
+    public static final float BOOST_MULTIPLIER = 3f;
+    /** Boost refresh period & duration, in ticks. */
+    private static final float BOOST_DURATION = 120f;
+    private static int boostTimer = 0;
+
+    /** Whether the finished-ring planet-wide overdrive is currently active here. */
+    public static boolean boostActive() {
+        return stage >= STAGES
+            && Vars.state.isCampaign()
+            && Vars.state.rules.sector != null
+            && Vars.state.rules.sector.planet == FRPlanets.cangirus;
+    }
+
+    /**
+     * The completed Orbital Ring acts as a planet-wide overdrive: every
+     * overdrivable building of the player's team works at +200% speed
+     * (same mechanism as the vanilla Overdrive Projector - applyBoost).
+     */
+    private static void updateOrbitalBoost() {
+        if (!boostActive()) return;
+        if (++boostTimer < 60) return; //refresh once a second; duration keeps it smooth
+        boostTimer = 0;
+
+        var team = Vars.state.rules.defaultTeam;
+        for (var build : mindustry.entities.Groups.build) {
+            if (build.team == team && build.block.canOverdrive) {
+                build.applyBoost(BOOST_MULTIPLIER, BOOST_DURATION);
+            }
+        }
     }
 
     //endregion

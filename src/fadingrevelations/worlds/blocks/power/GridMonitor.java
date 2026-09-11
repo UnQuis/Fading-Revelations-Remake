@@ -18,6 +18,7 @@ import mindustry.ui.Bar;
 import mindustry.ui.Fonts;
 import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
+import mindustry.world.blocks.power.PowerGenerator;
 import mindustry.world.blocks.power.PowerNode;
 
 import fadingrevelations.content.FRSettings;
@@ -132,6 +133,21 @@ public class GridMonitor extends PowerNode {
         }
         public float getCapacity() {
             return power != null && power.graph != null ? power.graph.getTotalBatteryCapacity() : 0f;
+        }
+        public float getSatisfaction() {
+            return power != null && power.graph != null ? power.graph.getSatisfaction() : 1f;
+        }
+
+        /** Sum of every producer's nameplate output (Satisfactory-style 'capacity'). */
+        public float getMaxOutput() {
+            if (power == null || power.graph == null) return 0f;
+            float sum = 0f;
+            for (Building p : power.graph.producers) {
+                if (p.block instanceof PowerGenerator) {
+                    sum += ((PowerGenerator)p.block).powerProduction * p.timeScale();
+                }
+            }
+            return sum;
         }
 
         /** Max of production/consumption across history, for chart scaling. */

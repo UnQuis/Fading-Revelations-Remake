@@ -1,16 +1,19 @@
- 
 <div align = center>
-    
+
 # Fading Revelations: Remake
 
 *Community continuation of the discontinued **[Fading Revelations]** mod.* <br>
-*Rebuilt for modern Mindustry versions with new content, balance passes and fixes.*
+*Rebuilt for modern Mindustry - now with a campaign, a story, and megastructures.*
 
 <br>
 
-[![Badge Commit]][Commits]    
-[![Badge Issues]][Issues]    
-[![Badge License]][License]
+[![Badge Build]][Build] 
+[![Badge Commit]][Commits] 
+[![Badge Stars]][Stargazers] 
+[![Badge Issues]][Issues] 
+[![Badge PRs]][Pulls] 
+[![Badge License]][License] 
+[![Badge Mindustry]][Mindustry] 
 
 <br>
 <br>
@@ -19,111 +22,117 @@
 
 <br>
 
-![Item Unit Blocks]  
-![Item Production]  
-![Item Distribution]  
-![Item Effect Blocks]  
-![Item Turrets]
-
-![Item Liquids]  
-![Item Drills]  
-![Item Walls]  
-![Item Items]  
-![Item Power]  
-![Item Units]  
-
-<br>
-<br>
-
-*Formerly **Mindustry Extended**, now **Fading Revelations: Remake**, <br>
-extends **[Mindustry]** in fun ways while keeping it balanced. <br>
-    For a **preview** of this mod's content, scroll **further down**!*
-
-<br>
-<br>
-
-**[Fading Revelations Wiki!]**
-
 </div>
+
+## The Story
+
+Long ago a single **Precursor** faction ruled this system - a civilization far
+beyond anything the **Shards** (you) have ever built. Then it split apart.
+Nobody knows why. The Precursors themselves are gone; only their ruins,
+their technologies and their automated war machines remain, still following
+orders nobody can revoke.
+
+The expedition lands on three worlds, and each tells a different story:
+
+| Planet | What you find |
+| --- | --- |
+| **Cangirus** | The only world where Precursor systems still run - and still fight. Its records claim the split was a **treason**. |
+| **Hathor** | Ruins holding the *other* side's records. No treason - one side was trying to **prevent a catastrophe**. |
+| **Cerbero** | A dead world with the oldest records of all, written *before* the split: the conflict grew from a **technology** one side wanted destroyed and the other wanted to control. |
+
+All three versions are convincing. All three contradict each other. Recover
+every archive entry from the **Precursor Terminals** hidden across the
+sectors, and the truth - about the war, and about what you are really here
+to finish - finally converges.
 
 ## Features
 
-A huge content extension mod!
+**Campaign & world**
+- `3` planets - Cangirus, Cerbero and its dead moon Hathor - with `7` campaign sectors
+- A **lore system**: ancient terminals restore archive entries per planet,
+  with a finale that unlocks when all three chains are complete
+- An **asteroid belt** of Precursor debris around Cerbero
 
--   `180+`  Blocks
+**Megastructures**
+- The **Orbital Ring**: a 4-stage, planet-wide Cangirus project. Feed
+  Orbital Ring Stations, watch the ring grow quadrant by quadrant around the
+  planet, and earn permanent campaign bonuses - mining speed, build speed,
+  health, damage, unit cap. Finish it, and every block on Cangirus gets
+  **Orbital Boost: +200%**
 
--   Custom Schematics
+**Late-game logistics & QoL**
+- **Jump Gates**: pair-linked unit teleporters with phase-fatigue cooldowns
+- **Grid Monitor**: a power node with a Satisfactory-style live chart -
+  hover it to watch production, consumption, max output and battery charge
+  over the last minutes
+- Rebuilt **tech tree** with category gates, deep chains untangled
 
--   A trading system using gold as currency
-
--   Distribute items across the map with <br>
-    little effort using the outpost block.
-
--   Lots of units
-
--   `2`  Larger Core Blocks
-
-    *+ Fitting Drones*
-
--   `7`  Ammo Types
-
+**Content**
+- `200+` blocks, `59` units, custom items and liquids
+- Endgame drills, overdrives, cores and turret reworks - strictly better
+  than their vanilla counterparts, balanced around them
+- New Horizon-inspired extras: categorized mod settings, spin-up turrets,
+  ramp-up unit abilities
 
 <br>
+
+## Installing
+
+Java mod - works on Desktop and Android (not iOS):
+
+1. **In-game**: Mods → Browse Mods → search `Fading Revelations: Remake` → Install → restart
+2. **From releases**: download the latest `FadingRevelations.jar` from
+   [releases], drop it into your mods folder:
+   - Windows: `%APPDATA%\Mindustry\mods\`
+   - Linux: `~/.local/share/Mindustry/mods/`
+   - Mac: `~/Library/Application Support/Mindustry/mods/`
+
+## Building
+
+Requires JDK 17+.
+
+```bash
+./gradlew build
+# -> build/libs/FadingRevelations.jar
+```
+
 <br>
 
 ## Acknowledgment
 
-*Software used for the project.*
+- Based on the original **[Fading Revelations]** by Fresh791 and contributors
+- *Software used for the project*: sprites made with **[Piskel]**, badges by **[Shield.io]**,
+  sound effects mostly from **[Pixabay]**
+- Jump gate & ring concepts adapted from the **[New Horizon]** mod (GPL-3);
+  asteroid belt mesh structure adapted from **[Omaloon]** (GPL-3);
+  power-chart idea inspired by **MI2-Utilities**
 
--   Sprites were made with **[Piskel]**.
-
--   **[Shield.io]** was used for badges.
-
--   The mod was made in **[VSCode]**.
-
--   Sound Effects mostly from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=5981">Pixabay</a>
-
-<br>
-
-<div align = center>
-
-Note: Previews are being re-done right now!
-
-<!----------------------------------------------------------------------------->
+<!------------------------------------------------------------------------->
 
 [Mindustry]: https://github.com/Anuken/Mindustry
+[New Horizon]: https://github.com/Yuria-Shikibe/NewHorizonMod
+[Omaloon]: https://github.com/stabu-dev/Omaloon
 [Shield.io]: https://shields.io
-[Discord]: https://discord.gg/YB3ky9tJR4
-[Commits]: https://github.com/Fresh791/Fading-Revelations/commits/main
-[Issues]: https://github.com/Fresh791/Fading-Revelations/issues
-[VSCode]: https://code.visualstudio.com/
 [Piskel]: https://www.piskelapp.com/
-
+[Pixabay]: https://pixabay.com
+[Fading Revelations]: https://github.com/Fresh791/Fading-Revelations
+[releases]: https://github.com/UnQuis/Fading-Revelations-Remake/releases
 [Fading Revelations Wiki!]: https://fadingrevelations.miraheze.org/wiki/Main_Page
 
+[Stargazers]: https://github.com/UnQuis/Fading-Revelations-Remake/stargazers
+[Commits]: https://github.com/UnQuis/Fading-Revelations-Remake/commits
+[Issues]: https://github.com/UnQuis/Fading-Revelations-Remake/issues
+[Pulls]: https://github.com/UnQuis/Fading-Revelations-Remake/pulls
+[Build]: https://github.com/UnQuis/Fading-Revelations-Remake/actions/workflows/build.yml
 [License]: LICENSE
 [Logo]: github/Banner.png
 
-<!----------------------------------[ Badges ]--------------------------------->
+<!----------------------------------[ Badges ]------------------------------->
 
-[Badge License]: https://img.shields.io/badge/License-GPL_3-0369a3.svg?style=for-the-badge&labelColor=blue&logoColor=white&logo=GNU
-[Badge Discord]: https://img.shields.io/discord/815981543624933396?labelColor=5865F2&label=Discord&logoColor=white&logo=Discord&style=for-the-badge&color=4852bf
-[Badge Commit]: https://img.shields.io/github/last-commit/Fresh791/Fading-Revelations?labelColor=F64935&label=Commit&logoColor=white&logo=GitExtensions&style=for-the-badge&color=cb3c2c
-[Badge Issues]: https://img.shields.io/github/issues/Fresh791/Fading-Revelations?labelColor=ED1965&label=Issues&logoColor=white&logo=Pinboard&style=for-the-badge&color=bb124e
-
-
-[Item Unit Blocks]: https://img.shields.io/badge/dynamic/yaml?query=%24.unit_blocks&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Unit%20Blocks&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Production]: https://img.shields.io/badge/dynamic/yaml?query=%24.production&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Crafters&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Distribution]: https://img.shields.io/badge/dynamic/yaml?query=%24.distribution&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Distribution&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Effect Blocks]: https://img.shields.io/badge/dynamic/yaml?query=%24.effects&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Effect%20Blocks&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Liquids]: https://img.shields.io/badge/dynamic/yaml?query=%24.liquids&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Liquids&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Turrets]: https://img.shields.io/badge/dynamic/yaml?query=%24.turrets&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Turrets&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Drills]: https://img.shields.io/badge/dynamic/yaml?query=%24.drills&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Production&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Walls]: https://img.shields.io/badge/dynamic/yaml?query=%24.walls&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Walls&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Items]: https://img.shields.io/badge/dynamic/yaml?query=%24.items&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Items&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Power]: https://img.shields.io/badge/dynamic/yaml?query=%24.power&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Power&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Units]: https://img.shields.io/badge/dynamic/yaml?query=%24.units&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Units&style=flat-square&labelColor=ffd37f&color=d3816b
-[Item Zones]: https://img.shields.io/badge/dynamic/yaml?query=%24.zones&url=https%3A%2F%2Fraw.githubusercontent.com%2FFresh791%2FFading-Revelations%2Fmain%2F.github%2FStatistics.yaml&label=Zones&style=flat-square&labelColor=ffd37f&color=d3816b
-
-
-<!---------------------------------[ Buttons ]--------------------------------->
+[Badge Build]: https://img.shields.io/github/actions/workflow/status/UnQuis/Fading-Revelations-Remake/build.yml?style=for-the-badge&label=Build&color=2ea043&logo=githubactions&logoColor=white
+[Badge Commit]: https://img.shields.io/github/last-commit/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=Last%20Commit&color=42a5f5&logo=git&logoColor=white
+[Badge Stars]: https://img.shields.io/github/stars/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=Stars&color=ffd37f&logo=apachespark&logoColor=black
+[Badge Issues]: https://img.shields.io/github/issues/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=Issues&color=e05f5f&logo=github&logoColor=white
+[Badge PRs]: https://img.shields.io/github/issues-pr/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=Pull%20Requests&color=8a6fd1&logo=github&logoColor=white
+[Badge License]: https://img.shields.io/github/license/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=License&color=0369a3&logo=gnu&logoColor=white
+[Badge Mindustry]: https://img.shields.io/badge/Mindustry-v160.1-0369a3?style=for-the-badge&labelColor=2f6fdb&logo=mindustry&logoColor=white

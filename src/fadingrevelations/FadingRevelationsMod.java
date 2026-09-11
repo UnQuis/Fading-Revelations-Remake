@@ -52,6 +52,10 @@ public class FadingRevelationsMod extends Mod {
         FRMusic.load();
         if (!Vars.headless && Vars.ui != null) {
             FRResearchDialog.init();
+            //Satisfactory-style hover chart for the grid monitor
+            new fadingrevelations.ui.GridMonitorTooltip().register();
+            //block info UIs show the Orbital Ring's planet-wide boost as its own line
+            Vars.ui.content = new fadingrevelations.ui.FRContentInfoDialog();
         }
     }
 }
