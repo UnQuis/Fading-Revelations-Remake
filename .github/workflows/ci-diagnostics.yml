@@ -53,6 +53,10 @@ jobs:
           code=$?
           echo "" >> /tmp/build_output.txt
           echo "GRADLE_EXIT_CODE=$code" >> /tmp/build_output.txt
+          #verify mod assets actually made it into the jar
+          echo "" >> /tmp/build_output.txt
+          echo "=== jar contents (shaders/new sprites) ===" >> /tmp/build_output.txt
+          unzip -l build/libs/FadingRevelations.jar | grep -E "shaders/|grid-monitor|jump-gate|orbital-ring-station" >> /tmp/build_output.txt 2>&1 || echo "JAR CHECK FAILED" >> /tmp/build_output.txt
           exit 0
 
       - name: Post result to PR

@@ -219,6 +219,7 @@ public class FRFullTechTree {
                     });
                     node(lsGen);
                     node(reinforcedPowerNode, () -> {
+                        node(gridMonitor);
                         node(reinforcedLargePowerNode, () -> {
                             node(powerReserve, () -> {
                                 node(crystalAccumulator);

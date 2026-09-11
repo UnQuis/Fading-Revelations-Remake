@@ -5,9 +5,10 @@ import mindustry.content.*;
 import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.world.blocks.power.*;
+import fadingrevelations.worlds.blocks.power.GridMonitor;
 
 public class FRPowerNodes {
-    public static Block reinforcedPowerNode, reinforcedLargePowerNode, powerReserve, advancedSurgeTower, crystalAccumulator;
+    public static Block reinforcedPowerNode, reinforcedLargePowerNode, powerReserve, advancedSurgeTower, crystalAccumulator, gridMonitor;
 
     public static void load() {
         reinforcedPowerNode = new PowerNode("reinforced-power-node") {{
@@ -46,6 +47,12 @@ public class FRPowerNodes {
             size = 5; health = 2200;
             consumePowerBuffered(5000000f);
             requirements(Category.power, ItemStack.with(Items.lead, 600, Items.silicon, 500, Items.titanium, 400, Items.surgeAlloy, 300, Items.phaseFabric, 200, FRItems.optiCrystal, 200, FRItems.energyCell, 150, FRItems.nanoFabric, 100, FRItems.livingSteelHard, 250));
+        }};
+
+        gridMonitor = new GridMonitor("grid-monitor") {{
+            localizedName = "Grid Monitor";
+            description = "A power node with a live graph of its grid: production, consumption and battery storage over the last minutes. Tap it to open the chart, link it like any other node.";
+            requirements(Category.power, ItemStack.with(Items.copper, 5, Items.lead, 10, Items.silicon, 20, Items.graphite, 5));
         }};
     }
 }

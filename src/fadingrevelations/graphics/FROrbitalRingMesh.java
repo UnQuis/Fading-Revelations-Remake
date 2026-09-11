@@ -24,6 +24,11 @@ import fadingrevelations.content.FROrbitalRing;
  * soft glow band when fully built. Geometry is static; visibility is decided
  * per frame from {@link FROrbitalRing#stage}, so stage-ups are reflected
  * immediately without rebuilding the mesh.
+ *
+ * All GPU resources (shader + meshes) are created lazily on the first
+ * {@link #render} call: planet mesh loaders run on an async loader thread
+ * with no GL context, where shader compilation fails (Omaloon does the same
+ * via Core.app.post; New Horizon creates its shaders in loadContent).
  */
 public class FROrbitalRingMesh implements GenericMesh {
     private static final Mat3D mat = new Mat3D();
@@ -44,18 +49,33 @@ public class FROrbitalRingMesh implements GenericMesh {
     public Color blueprintColor = Color.valueOf("6fb7ff");
     public Color glowColor = Color.valueOf("c99bff");
 
-    protected final Mesh[] arcs = new Mesh[4];
+    protected Mesh[] arcs;
     protected Mesh blueprint, glow;
+    protected boolean built = false;
 
     public FROrbitalRingMesh(Planet planet) {
         this.planet = planet;
-        FRRingShader.init();
+        //NOTE: no GL work here - see the class javadoc
+    }
 
-        for (int i = 0; i < 4; i++) {
-            arcs[i] = buildArc(i);
+    /** Builds shader and meshes. Called from render() only, i.e. on the GL thread. */
+    protected void build() {
+        built = true;
+        if (!FRRingShader.ensureLoaded()) return;
+
+        try {
+            arcs = new Mesh[4];
+            for (int i = 0; i < 4; i++) {
+                arcs[i] = buildArc(i);
+            }
+            blueprint = buildBand(0f, 360f, midRadius() - 0.012f, midRadius() + 0.012f, c(blueprintColor, 0.16f), 64);
+            glow = buildBand(0f, 360f, outerRadius, outerRadius + 0.06f, c(glowColor, 0.35f), 64);
+        } catch (Throwable t) {
+            arc.util.Log.err("Fading Revelations: failed to build the orbital ring mesh, ring disabled", t);
+            dispose();
+            arcs = null;
+            blueprint = glow = null;
         }
-        blueprint = buildBand(0f, 360f, midRadius() - 0.012f, midRadius() + 0.012f, c(blueprintColor, 0.16f), 64);
-        glow = buildBand(0f, 360f, outerRadius, outerRadius + 0.06f, c(glowColor, 0.35f), 64);
     }
 
     private float midRadius() {
@@ -68,8 +88,10 @@ public class FROrbitalRingMesh implements GenericMesh {
 
     @Override
     public void render(PlanetParams params, Mat3D projection, Mat3D transform) {
+        if (!built) build();
+
         Shader shader = FRRingShader.ring;
-        if (shader == null) return;
+        if (shader == null || arcs == null) return;
 
         //hide the ring in the zoomed-in surface view, like vanilla clouds
         if (params.planet == planet && Mathf.zero(1f - params.uiAlpha, 0.01f)) return;
@@ -103,7 +125,7 @@ public class FROrbitalRingMesh implements GenericMesh {
 
     @Override
     public void dispose() {
-        for (Mesh m : arcs) if (m != null) m.dispose();
+        if (arcs != null) for (Mesh m : arcs) if (m != null) m.dispose();
         if (blueprint != null) blueprint.dispose();
         if (glow != null) glow.dispose();
     }

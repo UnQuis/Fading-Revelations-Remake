@@ -11,6 +11,7 @@ import mindustry.graphics.g3d.GenericMesh;
 import mindustry.graphics.g3d.HexMesh;
 import mindustry.graphics.g3d.HexSkyMesh;
 import mindustry.graphics.g3d.PlanetParams;
+import fadingrevelations.graphics.FRAsteroidBeltMesh;
 import fadingrevelations.graphics.FROrbitalRingMesh;
 import static fadingrevelations.content.FRPlanetGenerators.*;
 
@@ -24,10 +25,33 @@ public class FRPlanets {
             alwaysUnlocked = true;
             visible = true;
             accessible = true;
-            
-            meshLoader = () -> new HexMesh(this, 6);
+
+            //planet + its asteroid belt: debris from whatever happened here.
+            //purely visual - no extra Planet object, so orbits/sectors are untouched;
+            //the belt stays outside Hathor's orbit (2f + 0.4f radius)
+            meshLoader = () -> {
+                GenericMesh surface = new HexMesh(this, 6);
+                GenericMesh belt = new FRAsteroidBeltMesh(this) {{
+                    beltRadius = 3.4f;
+                    beltWidth = 0.5f;
+                    rockCount = 24;
+                }};
+                return new GenericMesh() {
+                    @Override
+                    public void render(PlanetParams params, Mat3D projection, Mat3D transform) {
+                        surface.render(params, projection, transform);
+                        belt.render(params, projection, transform);
+                    }
+
+                    @Override
+                    public void dispose() {
+                        surface.dispose();
+                        belt.dispose();
+                    }
+                };
+            };
             generator = new CerberoGenerator() {{ seed = 69; }};
-            
+
             radius = 1f;
             minZoom = 1.8f;
             drawOrbit = true;
@@ -38,6 +62,8 @@ public class FRPlanets {
             hasAtmosphere = true;
             atmosphereRadIn = 0.15f;
             atmosphereRadOut = 0.4f;
+            //keep the asteroid belt visible when the planet itself is off-screen
+            clipRadius = 4.2f;
             defaultCore = Blocks.coreShard;
             parent = Planets.sun;
             solarSystem = Planets.sun;
