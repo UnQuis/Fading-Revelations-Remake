@@ -78,3 +78,7 @@ jobs:
           echo '```' >> /tmp/comment.md
           echo '</details>' >> /tmp/comment.md
           gh pr comment 3 --body-file /tmp/comment.md
+
+      - name: Fail if the build failed
+        run: |
+          grep -q "GRADLE_EXIT_CODE=0" /tmp/build_output.txt

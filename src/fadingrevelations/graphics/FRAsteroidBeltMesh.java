@@ -2,10 +2,10 @@ package fadingrevelations.graphics;
 
 import arc.graphics.Color;
 import arc.math.Mathf;
+import arc.math.Rand;
 import arc.math.geom.Mat3D;
 import arc.math.geom.Vec3;
 import arc.struct.Seq;
-import arc.util.Rand;
 import arc.util.Time;
 import mindustry.graphics.g3d.GenericMesh;
 import mindustry.graphics.g3d.MatMesh;

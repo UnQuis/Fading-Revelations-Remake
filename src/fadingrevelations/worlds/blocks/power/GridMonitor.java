@@ -13,9 +13,9 @@ import arc.util.io.Reads;
 import arc.util.io.Writes;
 import mindustry.Vars;
 import mindustry.core.UI;
-import mindustry.graphics.Fonts;
 import mindustry.graphics.Pal;
 import mindustry.ui.Bar;
+import mindustry.ui.Fonts;
 import mindustry.ui.Styles;
 import mindustry.ui.dialogs.BaseDialog;
 import mindustry.world.blocks.power.PowerNode;
@@ -244,7 +244,7 @@ public class GridMonitor extends PowerNode {
                 scratch.add(px, py);
             }
 
-            Lines.color(color);
+            Draw.color(color);
             Lines.polyline(scratch, false);
         }
     }
