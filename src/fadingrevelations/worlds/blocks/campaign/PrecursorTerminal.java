@@ -67,7 +67,7 @@ public class PrecursorTerminal extends Block {
             FRLore.LoreEntry next = nextEntry();
             if (next != null) {
                 FRLore.discover(next);
-                Sounds.unlock.at(x, y);
+                Sounds.uiUnlock.at(x, y);
                 showEntry(next, true);
             } else {
                 showArchive();
