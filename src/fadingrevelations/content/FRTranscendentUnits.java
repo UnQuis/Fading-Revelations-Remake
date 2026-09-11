@@ -14,6 +14,7 @@ import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.type.weapons.*;
+import fadingrevelations.worlds.abilities.RampUpAbility;
 
 import static fadingrevelations.content.FRFx.*;
 import static mindustry.content.Fx.*;
@@ -149,7 +150,8 @@ public class FRTranscendentUnits {
                 }}
             );
             abilities.addAll(
-                new ForceFieldAbility(130f, 6f, 20000f, 700f)
+                new ForceFieldAbility(130f, 6f, 20000f, 700f),
+                new RampUpAbility(2f, 0.25f, 2f)
             );
         }};
 
@@ -243,6 +245,9 @@ public class FRTranscendentUnits {
                         hitEffect = new MultiEffect(hitBezierOrange, bezierBurstOrange);
                     }};
                 }}
+            );
+            abilities.addAll(
+                new RampUpAbility(1.75f, 0.15f, 1.5f)
             );
         }};
 

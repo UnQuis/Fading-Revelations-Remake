@@ -20,6 +20,7 @@ import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.blocks.defense.turrets.*;
 import mindustry.world.consumers.*;
+import fadingrevelations.worlds.blocks.turrets.SpinUpTurret;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 
@@ -1137,14 +1138,22 @@ public class FRTurrets {
             }};
         }};
 
-        lightningChaingun = new PowerTurret("lightning-chaingun") {{
+        lightningChaingun = new SpinUpTurret("lightning-chaingun") {{
             localizedName = "Lightning Chaingun";
+            description = "A colossal rotary cannon. The longer it keeps firing, the faster its barrels spin - up to double fire rate - before overheating and needing a full cooldown.";
             requirements(Category.turret, with(copper, 2400, graphite, 1950, silicon, 1800, FRItems.cryogenicAlloy, 500));
             size = 6; health = 5400; reload = 6f; range = 400f;
             minWarmup = 0.75f; shootWarmupSpeed = 0.005f; warmupMaintainTime = 60f;
             consumePower(80f);
             consumeCoolant(2f);
             coolantMultiplier = 0.1f;
+            //spin-up & overheat mechanics
+            maxSpeedupScl = 0.75f;
+            speedupPerShoot = 0.06f;
+            overheatTime = 600f;
+            overheatCoolAmount = 1.25f;
+            slowDownReloadTime = 180f;
+            inaccuracyUp = 3f;
             shoot = new ShootBarrel() {{
                 barrels = new float[]{-18f, 0f, 0f, 18f, 0f, 0f};
                 shots = 14; shotDelay = 8f;
