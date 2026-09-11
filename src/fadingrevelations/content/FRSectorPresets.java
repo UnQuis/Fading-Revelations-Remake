@@ -5,6 +5,7 @@ import mindustry.type.SectorPreset;
 public class FRSectorPresets {
     public static SectorPreset
         exordium, dree, sporeDunes, abandonedBattlefield,
+        silentRuins,
         etnaticIsles, carbonicDownpour;
 
     public static void load() {
@@ -46,6 +47,17 @@ public class FRSectorPresets {
             isLastSector = true;
             allowLaunchLoadout = true;
             addStartingItems = true;
+        }};
+
+        silentRuins = new SectorPreset("silent-ruins", FRPlanets.hathor, 0) {{
+            localizedName = "Silent Ruins";
+            description = "A detour to Cerbero's dead moon. Nothing fights back here - nothing is left to fight. Search the ruins: the other side of the war kept its records on Hathor.";
+            alwaysUnlocked = true;
+            addStartingItems = true;
+            difficulty = 1;
+            captureWave = 5;
+            allowLaunchLoadout = true;
+            startWaveTimeMultiplier = 3f;
         }};
 
         etnaticIsles = new SectorPreset("etnatic-isles", FRPlanets.cangirus, 0) {{

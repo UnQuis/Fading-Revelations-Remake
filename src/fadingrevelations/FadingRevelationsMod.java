@@ -43,6 +43,7 @@ public class FadingRevelationsMod extends Mod {
         FROldContent.init();
         FRSettings.init();
         FROrbitalRing.load();
+        FRLore.load();
         if (FRSettings.mixTech) {
             FROverride.mixTech();
         }

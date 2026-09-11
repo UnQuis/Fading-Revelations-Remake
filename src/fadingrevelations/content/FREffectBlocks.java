@@ -11,6 +11,7 @@ import mindustry.world.blocks.campaign.LaunchPad;
 import mindustry.content.UnitTypes;
 import mindustry.gen.Sounds;
 import fadingrevelations.worlds.blocks.campaign.OrbitalRingStation;
+import fadingrevelations.worlds.blocks.campaign.PrecursorTerminal;
 import fadingrevelations.worlds.blocks.effect.JumpGate;
 import fadingrevelations.worlds.blocks.effect.Outpost;
 import fadingrevelations.worlds.blocks.effect.OverdriveHive;
@@ -19,7 +20,7 @@ import fadingrevelations.worlds.blocks.storage.FRCoreBlock;
 public class FREffectBlocks {
     public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, overdriveHive, forceDome, forceField,
             fastUnloader, enhancedMendProjector, darkMender, nanoRepairField, bigLaunchPad,
-            jumpGate, orbitalRingStation,
+            jumpGate, orbitalRingStation, precursorTerminal,
             mainCore, coreLevel4, coreLevel5, corePrime;
     public static void load() {
         outpost = new Outpost("outpost") {{
@@ -106,6 +107,13 @@ public class FREffectBlocks {
             requirements(Category.effect, ItemStack.with(
                 Items.copper, 800, Items.lead, 800, Items.silicon, 600,
                 Items.titanium, 500, Items.surgeAlloy, 200, Items.phaseFabric, 100));
+        }};
+
+        //lore terminal - placed automatically in campaign sectors by FRLore,
+        //never appears in the build menu (no requirements + hidden visibility)
+        precursorTerminal = new PrecursorTerminal("precursor-terminal") {{
+            localizedName = "Precursor Terminal";
+            description = "An ancient data terminal of the Precursors. Tapping it restores another fragment of their records. Every fragment is stored in the archive and can be re-read at any terminal.";
         }};
 
         fastUnloader = new Unloader("fast-unloader") {{

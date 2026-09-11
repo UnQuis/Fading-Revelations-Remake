@@ -21,7 +21,7 @@ public class FRPlanets {
     public static void load() {
         cerbero = new Planet("cerbero", Planets.sun, 1f, 2) {{
             localizedName = "Cerbero";
-            description = "A barren planet where tragedy struck long ago.";
+            description = "An almost dead world holding the oldest records of all - those written before the split, by those who saw how it truly began.";
             alwaysUnlocked = true;
             visible = true;
             accessible = true;
@@ -71,10 +71,10 @@ public class FRPlanets {
 
         hathor = new Planet("hathor", cerbero, 0.4f, 2) {{
             localizedName = "Hathor";
-            description = "A small moon of Cerbero.";
+            description = "A dead moon of ruins. The other side of the conflict kept its records here - if Cangirus lied, the truth starts on Hathor.";
             alwaysUnlocked = true;
             visible = true;
-            accessible = false;
+            accessible = true;
             
             meshLoader = () -> new HexMesh(this, 4);
             generator = new HathorGenerator() {{ seed = 69420; }};
@@ -97,7 +97,7 @@ public class FRPlanets {
 
         cangirus = new Planet("cangirus", Planets.sun, 1f, 2) {{
             localizedName = "Cangirus";
-            description = "A lush planet with land and water.";
+            description = "A lush world where the Precursors' automated systems never stopped fighting their old war. Every record here tells of treason.";
             alwaysUnlocked = true;
             visible = true;
             accessible = true;
