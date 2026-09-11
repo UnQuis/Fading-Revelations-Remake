@@ -22,6 +22,30 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Wait for jitpack artifacts (fresh release)
+        timeout-minutes: 40
+        run: |
+          mods="arc-core flabel freetype g3d fx arcnet"
+          ready() {
+            for mod in $mods; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" "https://jitpack.io/com/github/Anuken/Arc/$mod/v160.1/$mod-v160.1.pom")
+              [ "$code" != "200" ] && return 1
+            done
+            code=$(curl -s -o /dev/null -w "%{http_code}" "https://jitpack.io/com/github/Anuken/Mindustry/core/v160.1/core-v160.1.pom")
+            [ "$code" = "200" ]
+          }
+          i=0
+          until ready; do
+            i=$((i+1))
+            if [ $i -gt 60 ]; then
+              echo "jitpack artifacts still missing after 30 min, continuing anyway"
+              break
+            fi
+            echo "waiting for jitpack (attempt $i)..."
+            sleep 30
+          done
+          echo "jitpack status: $(curl -s -o /dev/null -w '%{http_code}' https://jitpack.io/com/github/Anuken/Mindustry/core/v160.1/core-v160.1.pom)"
+
       - name: Gradle build (capture output)
         run: |
           set +e
@@ -41,7 +65,7 @@ jobs:
             echo '```'
           } > /tmp/comment.md
           # javac errors first (compact), then the tail for context
-          grep -n -E "error:|warning:|FAILURE|BUILD SUCCESSFUL|What went wrong|\.java:[0-9]+" /tmp/build_output.txt | head -120 >> /tmp/comment.md || true
+          grep -n -E "error:|warning:|FAILURE|BUILD SUCCESSFUL|What went wrong|\.java:[0-9]+|Could not resolve" /tmp/build_output.txt | head -120 >> /tmp/comment.md || true
           echo '```' >> /tmp/comment.md
           echo '<details><summary>last 200 lines of output</summary>' >> /tmp/comment.md
           echo '' >> /tmp/comment.md
