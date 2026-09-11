@@ -1,0 +1,52 @@
+name: CI diagnostics
+
+# Temporary workflow: runs ./gradlew build and posts the output as a PR
+# comment (log downloads are not accessible from the agent's sandbox).
+on:
+  workflow_dispatch:
+  push:
+    branches: [arena/01a089ed-fading-revelations-remake]
+
+jobs:
+  build-diag:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Gradle build (capture output)
+        run: |
+          set +e
+          ./gradlew build --no-daemon --stacktrace > /tmp/build_output.txt 2>&1
+          code=$?
+          echo "" >> /tmp/build_output.txt
+          echo "GRADLE_EXIT_CODE=$code" >> /tmp/build_output.txt
+          exit 0
+
+      - name: Post result to PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "### CI diagnostics: \`./gradlew build\` @ $(git rev-parse --short HEAD)"
+            echo
+            echo '```'
+          } > /tmp/comment.md
+          # javac errors first (compact), then the tail for context
+          grep -n -E "error:|warning:|FAILURE|BUILD SUCCESSFUL|What went wrong|\.java:[0-9]+" /tmp/build_output.txt | head -120 >> /tmp/comment.md || true
+          echo '```' >> /tmp/comment.md
+          echo '<details><summary>last 200 lines of output</summary>' >> /tmp/comment.md
+          echo '' >> /tmp/comment.md
+          echo '```' >> /tmp/comment.md
+          tail -n 200 /tmp/build_output.txt >> /tmp/comment.md
+          echo '```' >> /tmp/comment.md
+          echo '</details>' >> /tmp/comment.md
+          gh pr comment 3 --body-file /tmp/comment.md
