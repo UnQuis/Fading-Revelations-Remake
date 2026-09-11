@@ -7,7 +7,7 @@ plugins {
     id "java"
 }
 
-version = "2.5.0"
+version = "2.6.0"
 sourceSets.main.java.srcDirs = ["src"]
 
 repositories {
@@ -19,8 +19,8 @@ repositories {
 }
 
 ext {
-    mindustryVersion = "v159.7"
-    arcVersion = "v159.7"
+    mindustryVersion = "v160.1"
+    arcVersion = "v160.1"
 }
 
 configurations.all {
