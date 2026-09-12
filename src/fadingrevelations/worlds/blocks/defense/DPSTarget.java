@@ -7,6 +7,8 @@ import arc.util.Time;
 import mindustry.Vars;
 import mindustry.gen.Building;
 import mindustry.graphics.Drawf;
+import mindustry.type.Category;
+import mindustry.type.ItemStack;
 import mindustry.ui.Bar;
 import mindustry.world.blocks.defense.Wall;
 import mindustry.world.meta.BuildVisibility;
@@ -28,7 +30,7 @@ public class DPSTarget extends Wall {
         solid = true;
         inEditor = true;
         // only visible in sandbox (infinite resources) — never in campaign/survival
-        requirements(Category.defense, BuildVisibility.sandboxOnly, new mindustry.type.ItemStack[0]);
+        requirements(Category.defense, BuildVisibility.sandboxOnly, ItemStack.with());
     }
 
     @Override
