@@ -128,9 +128,13 @@ public class DPSTarget extends Wall {
         if (dps <= 0f) return Color.green;
         // Mathf.log(base, value) = log_base(value); normalize to [0,1]
         float t = Mathf.clamp(Mathf.log(10f, dps + 1f) / 3f);
+        // two-phase lerp: green→yellow (0..0.5), yellow→red (0.5..1)
+        Color c = new Color(Color.green);
         if (t < 0.5f) {
-            return new Color().lerp(Color.green, Color.yellow, t * 2f);
+            c.lerp(Color.yellow, t * 2f);
+        } else {
+            c.set(Color.yellow).lerp(Color.red, (t - 0.5f) * 2f);
         }
-        return new Color().lerp(Color.yellow, Color.red, (t - 0.5f) * 2f);
+        return c;
     }
 }
