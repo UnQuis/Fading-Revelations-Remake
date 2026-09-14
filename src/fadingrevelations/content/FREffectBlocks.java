@@ -12,7 +12,6 @@ import mindustry.content.UnitTypes;
 import mindustry.gen.Sounds;
 import fadingrevelations.worlds.blocks.campaign.OrbitalRingStation;
 import fadingrevelations.worlds.blocks.campaign.PrecursorTerminal;
-import fadingrevelations.worlds.blocks.defense.DPSTarget;
 import fadingrevelations.worlds.blocks.effect.JumpGate;
 import fadingrevelations.worlds.blocks.effect.Outpost;
 import fadingrevelations.worlds.blocks.effect.OverdriveHive;
@@ -22,8 +21,7 @@ public class FREffectBlocks {
     public static Block outpost, miniOd, overdriveRelay, overdriveBeacon, overdriveHive, forceDome, forceField,
             fastUnloader, enhancedMendProjector, darkMender, nanoRepairField, bigLaunchPad,
             jumpGate, orbitalRingStation, precursorTerminal,
-            mainCore, coreLevel4, coreLevel5, corePrime,
-            dpsTarget;
+            mainCore, coreLevel4, coreLevel5, corePrime;
     public static void load() {
         outpost = new Outpost("outpost") {{
             localizedName = "Outpost";
@@ -202,13 +200,6 @@ public class FREffectBlocks {
                 Items.plastanium, 5000, Items.phaseFabric, 7000, Items.surgeAlloy, 3500,
                 FRItems.livingSteel, 2000,
                 FRItems.optiCrystal, 300, FRItems.energyCell, 300, FRItems.nanoFabric, 200, FRItems.bioMatter, 500));
-        }};
-
-        // sandbox/debug-only DPS target — never appears in campaign or survival
-        dpsTarget = new DPSTarget("dps-target") {{
-            localizedName = "DPS Target";
-            description = "An invincible wall for testing turret DPS. Tracks damage received and displays rolling DPS. Tap to reset counters. Sandbox only.";
-            size = 2; health = 1_000_000;
         }};
     }
 }
