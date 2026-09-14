@@ -3,6 +3,7 @@ package fadingrevelations.worlds.blocks.effect;
 import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Lines;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
 import arc.util.Time;
@@ -14,6 +15,7 @@ import mindustry.gen.Building;
 import mindustry.gen.Sounds;
 import mindustry.gen.Unit;
 import mindustry.graphics.Drawf;
+import mindustry.graphics.Layer;
 import mindustry.graphics.Pal;
 import mindustry.Vars;
 import mindustry.world.Block;
@@ -94,10 +96,13 @@ public class JumpGate extends Block {
         public int link = -1;
         protected float teleTimer = 0f;
         protected float warmup = 0f;
+        /** Brightness pulse when a unit was just teleported from/to this gate. */
+        protected float flash = 0f;
 
         @Override
         public void updateTile() {
             warmup = Mathf.approachDelta(warmup, efficiency > 0 ? 1f : 0f, 0.05f);
+            flash = Mathf.lerpDelta(flash, 0f, 0.06f);
 
             if (efficiency <= 0) return;
 
@@ -123,10 +128,14 @@ public class JumpGate extends Block {
                     float dstX = dst.x + Mathf.cosDeg(ang) * arrivalRadius * Mathf.random();
                     float dstY = dst.y + Mathf.sinDeg(ang) * arrivalRadius * Mathf.random();
 
-                    departEffect.at(unit.x, unit.y);
-                    arriveEffect.at(dstX, dstY);
-                    Sounds.coreLaunch.at(unit.x, unit.y, 2f, 0.2f);
-                    Sounds.padLaunch.at(dstX, dstY, 1.6f, 0.25f);
+                    departEffect.at(unit.x, unit.y, 0f, portalColor);
+                    arriveEffect.at(dstX, dstY, 0f, portalColor);
+                    Sounds.coreLaunch.at(unit.x, unit.y, 2f, 0.3f);
+                    Sounds.padLaunch.at(dstX, dstY, 1.6f, 0.3f);
+
+                    // flash both gates
+                    flash = 1f;
+                    if (dst instanceof JumpGateBuild jg) jg.flash = 1f;
 
                     unit.set(dstX, dstY);
                     unit.snapInterpolation();
@@ -145,13 +154,37 @@ public class JumpGate extends Block {
         @Override
         public void draw() {
             super.draw();
-            Draw.rect(topRegion, x, y, Time.time * 0.9f * warmup);
+
+            float w = warmup;
+            if (w < 0.01f) return;
+
+            // spinning inner ring (portal vortex)
+            Draw.z(Layer.blockOver);
+            float r = size * Vars.tilesize / 2f;
+            float spin = Time.time * 1.5f * w;
+
+            // outer glow ring
+            Draw.color(portalColor, Color.white, flash * 0.5f);
+            Draw.alpha(0.35f * w + flash * 0.5f);
+            Lines.stroke(2f * w);
+            Lines.circle(x, y, r * 0.85f);
+
+            // inner rotating segments
+            Draw.alpha(0.55f * w + flash * 0.4f);
+            Lines.stroke(3f * w);
+            for (int i = 0; i < 4; i++) {
+                float a = spin + i * 90f;
+                Lines.arc(x, y, r * 0.6f, 0.18f, a);
+            }
+
+            Draw.reset();
+            Draw.rect(topRegion, x, y, spin * 0.9f);
         }
 
         @Override
         public void drawLight() {
             super.drawLight();
-            Drawf.light(x, y, lightRadius * warmup, portalColor, 0.7f * warmup);
+            Drawf.light(x, y, lightRadius * (warmup + flash * 0.5f), portalColor, 0.7f * (warmup + flash * 0.3f));
         }
 
         @Override

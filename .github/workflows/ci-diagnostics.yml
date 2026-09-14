@@ -5,7 +5,7 @@ name: CI diagnostics
 on:
   workflow_dispatch:
   push:
-    branches: [arena/01a089ed-fading-revelations-remake]
+    branches: [arena/01a093cb-fading-revelations-remake]
 
 jobs:
   build-diag:
@@ -77,7 +77,12 @@ jobs:
           tail -n 200 /tmp/build_output.txt >> /tmp/comment.md
           echo '```' >> /tmp/comment.md
           echo '</details>' >> /tmp/comment.md
-          gh pr comment 3 --body-file /tmp/comment.md
+          PR_NUM=$(gh pr list --head "$GITHUB_REF_NAME" --json number -q '.[0].number' 2>/dev/null || echo "")
+          if [ -z "$PR_NUM" ]; then
+            echo "::warning::Could not find PR for branch $GITHUB_REF_NAME — skipping comment"
+            exit 0
+          fi
+          gh pr comment "$PR_NUM" --body-file /tmp/comment.md
 
       - name: Fail if the build failed
         run: |
