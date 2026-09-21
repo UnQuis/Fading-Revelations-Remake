@@ -20,6 +20,44 @@ jobs:
           java-version: 17
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+      #jitpack builds tags on demand, so the very first build after a Mindustry release
+      #can take several minutes. Warm the cache up front instead of letting Gradle time out.
+      - name: Wait for jitpack artifacts
+        timeout-minutes: 40
+        run: |
+          MV=$(grep -E '^mindustryVersion' gradle.properties | sed 's/.*=[[:space:]]*//' | tr -d '[:space:]')
+          AV=$(grep -E '^arcVersion' gradle.properties | sed 's/.*=[[:space:]]*//' | tr -d '[:space:]')
+          echo "mindustryVersion=$MV arcVersion=$AV"
+          if [ -z "$MV" ] || [ -z "$AV" ]; then
+            echo "::error::could not resolve versions from gradle.properties"
+            exit 1
+          fi
+
+          mods="arc-core flabel freetype g3d fx arcnet"
+          arc_pom() { curl -s -o /dev/null -w "%{http_code}" "https://jitpack.io/com/github/Anuken/Arc/$1/$AV/$1-$AV.pom"; }
+          mind_pom() { curl -s -o /dev/null -w "%{http_code}" "https://jitpack.io/com/github/Anuken/Mindustry/core/$MV/core-$MV.pom"; }
+
+          #the first request is what makes jitpack start building the tag
+          for mod in $mods; do arc_pom "$mod" > /dev/null; done
+          mind_pom > /dev/null
+
+          ready() {
+            for mod in $mods; do
+              [ "$(arc_pom "$mod")" = "200" ] || return 1
+            done
+            [ "$(mind_pom)" = "200" ]
+          }
+          i=0
+          until ready; do
+            i=$((i+1))
+            if [ $i -gt 60 ]; then
+              echo "::warning::jitpack artifacts still missing after 30 min, continuing anyway"
+              break
+            fi
+            echo "waiting for jitpack (attempt $i)..."
+            sleep 30
+          done
+          echo "jitpack status: mindustry/core/$MV=$(mind_pom) arc-core/$AV=$(arc_pom arc-core)"
       - name: Build with Gradle
         run: ./gradlew build
       - name: Upload JAR

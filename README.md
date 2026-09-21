@@ -135,4 +135,4 @@ Requires JDK 17+.
 [Badge Issues]: https://img.shields.io/github/issues/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=Issues&color=e05f5f&logo=github&logoColor=white
 [Badge PRs]: https://img.shields.io/github/issues-pr/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=Pull%20Requests&color=8a6fd1&logo=github&logoColor=white
 [Badge License]: https://img.shields.io/github/license/UnQuis/Fading-Revelations-Remake?style=for-the-badge&label=License&color=0369a3&logo=gnu&logoColor=white
-[Badge Mindustry]: https://img.shields.io/badge/Mindustry-v160.1-0369a3?style=for-the-badge&labelColor=2f6fdb&logo=mindustry&logoColor=white
+[Badge Mindustry]: https://img.shields.io/badge/Mindustry-v160.5-0369a3?style=for-the-badge&labelColor=2f6fdb&logo=mindustry&logoColor=white
