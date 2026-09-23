@@ -7,7 +7,7 @@ plugins {
     id "java"
 }
 
-version = "2.6.0"
+version = "2.6.1"
 sourceSets.main.java.srcDirs = ["src"]
 
 repositories {
@@ -19,8 +19,9 @@ repositories {
 }
 
 ext {
-    mindustryVersion = "v160.1"
-    arcVersion = "v160.1"
+    //Single source of truth: gradle.properties. Falls back to the pinned build if unset.
+    mindustryVersion = project.findProperty("mindustryVersion") ?: "v160.5"
+    arcVersion = project.findProperty("arcVersion") ?: "v160.5"
 }
 
 configurations.all {

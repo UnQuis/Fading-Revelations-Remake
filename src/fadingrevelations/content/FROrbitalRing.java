@@ -107,6 +107,15 @@ public class FROrbitalRing {
      * @return how many items were actually consumed.
      */
     public static int contribute(Item item, int amount) {
+        return contribute(item, amount, 0f, 0f);
+    }
+
+    /**
+     * Contributes resources from a station at the given world position.
+     * The position is used for the stage-completion cutscene camera pan.
+     * @return how many items were actually consumed.
+     */
+    public static int contribute(Item item, int amount, float stationX, float stationY) {
         int accepted = 0;
 
         while (amount > 0 && stage < STAGES) {
@@ -119,7 +128,7 @@ public class FROrbitalRing {
             amount -= used;
 
             if (remaining(item) <= 0 && stageComplete()) {
-                completeStage();
+                completeStage(stationX, stationY);
             }
         }
 
@@ -135,16 +144,41 @@ public class FROrbitalRing {
         return true;
     }
 
-    private static void completeStage() {
+    /** Called when a stage completes. If wx/wy are given, triggers a camera cutscene. */
+    private static void completeStage(float wx, float wy) {
         stageProgress.clear();
         stage++;
 
         if (!Vars.headless && Vars.ui != null) {
             String stageName = FRSettings.bundle("fr.ring.stage." + stage, "Stage " + stage);
-            Vars.ui.showInfoToast(FRSettings.bundle("fr.ring.stage-complete", "Orbital Ring stage complete") + ":\n" + stageName, 8f);
+            String msg = FRSettings.bundle("fr.ring.stage-complete", "Orbital Ring stage complete") + ":\n" + stageName;
+
+            // cutscene: pan camera to the station and zoom in
+            if (wx != 0f || wy != 0f) {
+                var input = Vars.control.input;
+                input.logicCutscene = true;
+                input.logicCamPan.set(wx, wy);
+                input.logicCamSpeed = 3f;
+                input.logicCutsceneZoom = 0.6f; // zoom in a bit
+
+                Vars.ui.showInfoToast(msg, 6f);
+
+                // restore camera after 5 seconds
+                arc.util.Time.run(5f * 60f, () -> {
+                    if (Vars.control.input.logicCutscene) {
+                        Vars.control.input.logicCutscene = false;
+                    }
+                });
+            } else {
+                Vars.ui.showInfoToast(msg, 8f);
+            }
         }
         applyBonuses();
         saveProgress(true);
+    }
+
+    private static void completeStage() {
+        completeStage(0f, 0f);
     }
 
     //endregion

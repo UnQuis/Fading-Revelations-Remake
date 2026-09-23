@@ -424,6 +424,24 @@ public class MultiCrafter extends PayloadBlock {
                 commandPos = TypeIO.readVecNullable(read);
         }
 
+        /**
+         * Bumped from the inherited 0 so that write() and read() agree on commandPos.
+         * <p>
+         * write() stores commandPos whenever the active recipe outputs payloads, but the
+         * read above is guarded on {@code revision >= 1}. Building.version() returns 0 by
+         * default, so the guard could never pass: the two sides disagreed by 8 bytes for
+         * any payload-output recipe, and since the map/save loader does not enforce the
+         * entity chunk length, that silently desyncs the tile RLE stream and crashes map
+         * loading. No recipe in this mod outputs payloads today, so this is preventative.
+         * <p>
+         * Revision 0 chunks are still read correctly - they predate the guard and simply
+         * carry no commandPos.
+         */
+        @Override
+        public byte version() {
+            return 1;
+        }
+
         public float warmupTarget() {
             Recipe cur = getCurRecipe();
             if (isConsumeHeat && cur.isConsumeHeat()) return Mathf.clamp(heat / cur.input.heat);
