@@ -20,6 +20,12 @@ jobs:
           java-version: 17
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+      #Shipped campaign maps embed building state inline in the tile RLE stream. If a
+      #block's Java class changes shape without the maps being updated, the loader
+      #desyncs and crashes with "Index N out of bounds for length N" on sector load.
+      #This fails the build instead of shipping a broken map.
+      - name: Verify map building serialization
+        run: python3 scripts/repair_multicrafter_maps.py
       #jitpack builds tags on demand, so the very first build after a Mindustry release
       #can take several minutes. Warm the cache up front instead of letting Gradle time out.
       - name: Wait for jitpack artifacts
