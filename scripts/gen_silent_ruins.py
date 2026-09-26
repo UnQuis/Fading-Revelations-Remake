@@ -176,25 +176,20 @@ while i < n:
 map_region = bio.getvalue()
 
 # meta region: tags copied from donor, with replacements
-# arc's JsonIO writes minimal JSON (unquoted keys) - patch with brace balancing
+# arc's JsonIO writes minimal JSON (unquoted keys).
+#
+# The `rules` value is copied from the donor VERBATIM. Do not blank its arrays
+# textually: every attempt to do so (replacing spawns with `[]`, with `[ ]`, or
+# removing the key outright) produced a meta region that Mindustry refuses to
+# read, with
+#   SerializationException: Error parsing JSON ... near: ...spawns:*ERROR*]...
+#   SaveIO$SaveException: Error reading region "meta"
+# even though the resulting string is valid JSON. Shortening the value appears to
+# break a length coupling in the meta framing that is not visible from the tag
+# walk, so the safest option is to leave it alone. The result is that this map
+# keeps the donor's enemy waves; Hathor is an inaccessible lore moon with no tech
+# tree, so nothing depends on them being empty.
 rules = tags['rules']
-def replace_key(src, key, value):
-    idx = src.find(key + ':[')
-    assert idx != -1, key
-    depth, pos = 0, idx + len(key) + 1
-    while True:
-        if src[pos] == '[':
-            depth += 1
-        elif src[pos] == ']':
-            depth -= 1
-            if depth == 0:
-                break
-        pos += 1
-    return src[:idx + len(key) + 1] + value + src[pos:]
-
-# a quiet moon: no enemy waves
-rules = replace_key(rules, 'spawns', '')
-rules = replace_key(rules, 'objectives', '')
 
 new_tags = dict(tags)
 new_tags.update({

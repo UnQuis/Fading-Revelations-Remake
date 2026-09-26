@@ -23,9 +23,16 @@ jobs:
       #Shipped campaign maps embed building state inline in the tile RLE stream. If a
       #block's Java class changes shape without the maps being updated, the loader
       #desyncs and crashes with "Index N out of bounds for length N" on sector load.
-      #This fails the build instead of shipping a broken map.
+      #This check verifies every building's stored byte length against what its current
+      #class reads, and that the tile RLE covers exactly width*height.
+      #scripts/check_maps_live.sh goes further and actually loads every map in a real
+      #headless dedicated server; it needs run/server-*.jar, so it is not run here.
       - name: Verify map building serialization
         run: python3 scripts/repair_multicrafter_maps.py
+      #Legacy `me-*` names resolve to nothing (a block becomes Blocks.air). Substitution is a
+      #judgement call, so this only reports; review the inventory when it changes.
+      - name: Report legacy map names
+        run: python3 scripts/fix_legacy_map_names.py
       #Mindustry prefixes mod content names with the mod id and looks bundle keys up by the
       #prefixed name, so an unprefixed key is a dead key. This catches that, plus keys that
       #name content which no longer exists.
