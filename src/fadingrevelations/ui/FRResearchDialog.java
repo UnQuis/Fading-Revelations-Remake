@@ -83,6 +83,7 @@ public class FRResearchDialog extends BaseDialog {
     public ItemSeq items;
 
     private final Seq<Planet> rootPlanets = new Seq<>(false, 4);
+    private BaseDialog techSelectDialog;
     private boolean showTechSelect;
     private boolean needsRebuild;
 
@@ -92,6 +93,28 @@ public class FRResearchDialog extends BaseDialog {
 
     public FRResearchDialog() {
         super("");
+        // was created inline on every click, so each visit stacked another dialog in the scene
+        techSelectDialog = new BaseDialog("@techtree.select") {{
+            cont.pane(t -> t.table(Tex.button, in -> {
+                in.defaults().width(300f).height(60f);
+                for (TechNode node : TechTree.roots) {
+                    if (node.requiresUnlock && !node.content.unlockedHost() && node != getPrefRoot()) continue;
+
+                    in.button(node.localizedName(), node.icon(), Styles.flatTogglet, iconMed, () -> {
+                        if (node == lastNode) {
+                            return;
+                        }
+
+                        rebuildTree(node);
+                        hide();
+                        techSelectDialog.hide();
+                    }).marginLeft(12f).checked(node == lastNode).row();
+                }
+            }));
+
+            addCloseButton();
+        }};
+
         Vars.ui.research.fill(t -> t.update(() -> {
             if (Vars.ui.research.root.node == FRFullTechTree.rootNode) {
                 Vars.ui.research.hide(Actions.fadeOut(0f));
@@ -125,26 +148,7 @@ public class FRResearchDialog extends BaseDialog {
             b.label(() -> root.node.localizedName()).color(Pal.accent);
             b.add().growX();
             b.add().size(iconMed);
-        }, () -> new BaseDialog("@techtree.select") {{
-            cont.pane(t -> t.table(Tex.button, in -> {
-                in.defaults().width(300f).height(60f);
-                for (TechNode node : TechTree.roots) {
-                    if (node.requiresUnlock && !node.content.unlockedHost() && node != getPrefRoot()) continue;
-
-                    //TODO toggle
-                    in.button(node.localizedName(), node.icon(), Styles.flatTogglet, iconMed, () -> {
-                        if (node == lastNode) {
-                            return;
-                        }
-
-                        rebuildTree(node);
-                        hide();
-                    }).marginLeft(12f).checked(node == lastNode).row();
-                }
-            }));
-
-            addCloseButton();
-        }}.show()).visible(() -> showTechSelect = TechTree.roots.count(node -> !(node.requiresUnlock && !node.content.unlockedHost())) > 1).minWidth(300f);
+        }, () -> techSelectDialog.show()).visible(() -> showTechSelect = TechTree.roots.count(node -> !(node.requiresUnlock && !node.content.unlockedHost())) > 1).minWidth(300f);
 
         margin(0f).marginBottom(8);
         cont.stack(titleTable, view = new View(), itemDisplay = new ItemsDisplay()).grow();
@@ -162,7 +166,7 @@ public class FRResearchDialog extends BaseDialog {
 
             Planet currPlanet = ui.planet.isShown() ?
                     ui.planet.state.planet :
-                    state.isCampaign() ? state.rules.sector.planet : null;
+                    state.isCampaign() && state.rules.sector != null ? state.rules.sector.planet : null;
 
             if (currPlanet != null && currPlanet.techTree != null) {
                 switchTree(currPlanet.techTree);

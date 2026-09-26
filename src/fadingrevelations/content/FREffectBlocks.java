@@ -26,7 +26,9 @@ public class FREffectBlocks {
         outpost = new Outpost("outpost") {{
             localizedName = "Outpost";
             description = "An outpost that can be built anywhere on the map and transfers all items that are inputted directly to the main core.";
-            health = 1200; size = 3; itemCapacity = 5;
+            health = 1200; size = 3;
+            // Outpost's own ctor sets itemCapacity = 10000; the 5 here silently capped intake
+            itemCapacity = 10000;
             requirements(Category.effect, ItemStack.with(Items.copper, 3000, Items.lead, 2500, Items.silicon, 2200, Items.titanium, 2000, FRItems.livingSteelHard, 1000, Items.surgeAlloy, 600, FRItems.steelAlloy, 500));
         }};
 

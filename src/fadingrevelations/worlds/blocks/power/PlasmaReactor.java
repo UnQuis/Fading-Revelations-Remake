@@ -57,7 +57,9 @@ public class PlasmaReactor extends NuclearReactor {
             }
 
             heat = Mathf.clamp(heat);
-            heatProgress = heatOutput > 0f ? Mathf.approachDelta(heatProgress, heat * heatOutput * (enabled ? 1f : 0f), heatWarmupRate * delta()) : 0f;
+            // matches vanilla NuclearReactorBuild: gate on productionEfficiency too, otherwise a
+            // fuel-less but enabled reactor keeps driving heatProgress
+            heatProgress = heatOutput > 0f ? Mathf.approachDelta(heatProgress, heat * heatOutput * ((enabled && productionEfficiency > 0f) ? 1f : 0f), heatWarmupRate * delta()) : 0f;
 
             if (heat >= 0.999f) {
                 Events.fire(Trigger.thoriumReactorOverheat);

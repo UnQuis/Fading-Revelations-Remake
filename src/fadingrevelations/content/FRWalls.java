@@ -37,7 +37,8 @@ public class FRWalls {
             hasItems = false; hasPower = false; hasLiquids = false; canOverdrive = false;
             size = 1; recoil = 0f; health = 1200; rotate = false; rotateSpeed = 0f; shootY = 0f;
             shootCone = 360; range = 30; targetAir = false; targetGround = true; reload = 90;
-            consume(new ConsumePower(0.2f, 0f, true));
+            consumePower(0.2f); // was ConsumePower(0.2f, 0f, true): the 3-arg ctor is a *battery*,
+                                 // capacity 0 made requestedPower() return 0 -> a free, unlinked turret.
             shoot = new ShootSpread(8, 60);
             shootType = new LightningBulletType() {{
                 lightningLength = 7; damage = 3; lightningColor = Color.valueOf("bd7374");
@@ -56,7 +57,7 @@ public class FRWalls {
             hasItems = false; hasPower = false; hasLiquids = false; canOverdrive = false;
             size = 2; recoil = 0f; health = 4200; rotate = false; rotateSpeed = 0f; shootY = 0f;
             shootCone = 360; range = 60; targetAir = false; targetGround = true; reload = 90;
-            consume(new ConsumePower(0.3f, 0f, true));
+            consumePower(0.3f); // see steelAlloyWallSmall
             shoot = new ShootSpread(12, 50);
             shootType = new LightningBulletType() {{
                 lightningLength = 10; damage = 4; lightningColor = Color.valueOf("bd7374");

@@ -290,8 +290,9 @@ public class FRT3Units {
             constructor = PayloadUnit::create; localizedName = "Plant";
             flying = true; lowAltitude = true;
             health = 7100; armor = 8; itemCapacity = 160; speed = 1.9f;
-            canHeal = true; drawBuildBeam = true; mineHardnessScaling = true;
-            mineSpeed = 4; mineTier = 4; canAttack = false; buildSpeed = 3;
+            drawBuildBeam = true; mineHardnessScaling = true;
+            // see seed: canHeal/canAttack in the initializer are overwritten by UnitType.init()
+            mineSpeed = 4; mineTier = 4; buildSpeed = 3;
             engineColor = Color.valueOf("84f491"); engineColorInner = Color.valueOf("62ae7f");
             payloadCapacity = 1024; hitSize = 30;
             controller = u -> new RepairAI();
@@ -325,6 +326,9 @@ public class FRT3Units {
                 new Weapon("heal-laser-mount") {{
                     x = 0; y = 5; mirror = false; rotate = false;
                     reload = 240; continuous = true;
+                    // without this, canAttack was recomputed to true and a support unit fired
+                    // its heal beam at enemies
+                    noAttack = true;
                     shootSound = shootLaser;
                     bullet = new ContinuousLaserBulletType(2f) {{
                         length = 250; width = 2;

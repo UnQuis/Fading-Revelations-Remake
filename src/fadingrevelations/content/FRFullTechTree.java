@@ -1,6 +1,7 @@
 package fadingrevelations.content;
 
 import arc.struct.ObjectFloatMap;
+import arc.util.Log;
 import arc.struct.Seq;
 import mindustry.Vars;
 import mindustry.content.TechTree;
@@ -671,9 +672,16 @@ public class FRFullTechTree {
                 if(context != null) break;
             }
         }
-        if(context != null){
-            children.run();
+        if(context == null){
+            // used to fail silently, orphaning the whole branch on a vanilla rename
+            Log.warn("FRFullTechTree: no tech node found for @ - skipping {} child node(s)", parent.name);
+            return;
         }
+        // `context` is static, so it must be restored or the next top-level node(...) call would
+        // silently re-parent under this subtree
+        TechNode prev = context;
+        children.run();
+        context = prev;
     }
 
     private static TechNode findInTree(TechNode node, UnlockableContent target) {

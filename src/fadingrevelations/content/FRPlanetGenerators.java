@@ -73,7 +73,12 @@ public class FRPlanetGenerators {
 
         /** Ore distribution adapted from the vanilla Serpulo generator, plus mod ores. */
         private void genOres() {
-            Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead, FREnvironment.oreGraphite);
+            // Base ores are unconditional: graphite (-> silicon) and steel sedimentation
+            // (-> living steel) are hard requirements for the whole mid/late tree (silicon forge,
+            // basic multismelter, mainCore/corePrime, overdriveBeacon, all nano optic walls), so
+            // gating them behind noise made a large share of sectors unwinnable.
+            Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead, FREnvironment.oreGraphite,
+                FREnvironment.steelSedimentation);
             float poles = Math.abs(sector.tile.v.y);
             float nmag = 0.5f;
             float scl = 1f;
@@ -87,7 +92,6 @@ public class FRPlanetGenerators {
             }
             if (Simplex.noise3d(seed, 2, 0.5f, scl, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z) * nmag + poles > 0.7f * addscl) {
                 ores.add(Blocks.oreThorium);
-                ores.add(FREnvironment.steelSedimentation);
             }
             if (rand.chance(0.25)) {
                 ores.add(Blocks.oreScrap);
@@ -148,7 +152,51 @@ public class FRPlanetGenerators {
         protected void generate() {
             distort(4, 6);
             median(2);
+            pass((x, y) -> {
+                if (noise(x, y, 20f, 0.6f) > 0.88f && floor.asFloor().hasSurface()) {
+                    block = floor.asFloor().wall;
+                }
+            });
+            // previously missing entirely: Hathor sectors contained no ore at all, which would make
+            // the planet unwinnable the moment accessible is turned on
+            genOres();
             Schematics.placeLaunchLoadout(width / 2, height / 2);
+        }
+
+        /** Moon-sized ore set: no thorium, no living steel sedimentation. */
+        private void genOres() {
+            Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead, FREnvironment.oreGraphite);
+            float poles = Math.abs(sector.tile.v.y);
+
+            if (Simplex.noise3d(seed, 2, 0.5f, 1f, sector.tile.v.x, sector.tile.v.y, sector.tile.v.z) * 0.5f + poles > 0.3f) {
+                ores.add(Blocks.oreCoal);
+            }
+            if (Simplex.noise3d(seed, 2, 0.5f, 1f, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z) * 0.5f + poles > 0.62f) {
+                ores.add(Blocks.oreTitanium);
+            }
+            if (rand.chance(0.2f)) {
+                ores.add(Blocks.oreScrap);
+            }
+
+            FloatSeq frequencies = new FloatSeq();
+            for (int i = 0; i < ores.size; i++) {
+                frequencies.add(rand.random(-0.1f, 0.01f) - i * 0.01f + poles * 0.04f);
+            }
+
+            pass((x, y) -> {
+                if (!floor.asFloor().hasSurface()) return;
+
+                int offsetX = x - 4, offsetY = y + 23;
+                for (int i = ores.size - 1; i >= 0; i--) {
+                    Block entry = ores.get(i);
+                    float freq = frequencies.get(i);
+                    if (Math.abs(0.5f - noise(offsetX, offsetY + i * 999, 2, 0.7f, (40 + i * 2))) > 0.22f + i * 0.01 &&
+                        Math.abs(0.5f - noise(offsetX, offsetY - i * 999, 1, 1, (30 + i * 4))) > 0.37f + freq) {
+                        ore = entry;
+                        break;
+                    }
+                }
+            });
         }
     }
 
@@ -214,7 +262,10 @@ public class FRPlanetGenerators {
 
         /** Ore distribution adapted from the vanilla Serpulo generator. */
         private void genOres() {
-            Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead);
+            // see CerberoGenerator.genOres(): graphite (-> silicon) and steel sedimentation
+            // (-> living steel) must always be present or the sector cannot be finished
+            Seq<Block> ores = Seq.with(Blocks.oreCopper, Blocks.oreLead, FREnvironment.oreGraphite,
+                FREnvironment.steelSedimentation);
             float poles = Math.abs(sector.tile.v.y);
             float nmag = 0.5f;
             float scl = 1f;
@@ -225,13 +276,12 @@ public class FRPlanetGenerators {
             }
             if (Simplex.noise3d(seed, 2, 0.5f, scl, sector.tile.v.x + 1, sector.tile.v.y, sector.tile.v.z) * nmag + poles > 0.5f * addscl) {
                 ores.add(Blocks.oreTitanium);
-                ores.add(FREnvironment.oreGraphite);
             }
             if (Simplex.noise3d(seed, 2, 0.5f, scl, sector.tile.v.x + 2, sector.tile.v.y, sector.tile.v.z) * nmag + poles > 0.7f * addscl) {
                 ores.add(Blocks.oreThorium);
             }
             if (rand.chance(0.3)) {
-                ores.add(FREnvironment.steelSedimentation);
+                ores.add(Blocks.oreScrap);
             }
 
             FloatSeq frequencies = new FloatSeq();

@@ -75,7 +75,7 @@
         for more information!
         '''
 
-    subtitle: "[accent]Alpha rebuild[]. Uses [#42a5f5]MultiCrafter Lib[] by Liplum & Jojo."
+    subtitle: "[accent]Alpha rebuild[] - MultiCrafter is vendored (GPL-3), no external dependency required."
     minGameVersion: "160"
     version: "2.6.1"
     java: true

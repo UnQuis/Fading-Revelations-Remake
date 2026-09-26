@@ -33,7 +33,12 @@ public class FRLiquidsBlocks {
             localizedName = "Kinetic Conduit";
             description = "A high-pressure conduit reinforced with surge alloy for rapid liquid transport.";
             placeableLiquid = true;
-            health = 300; liquidPressure = 4;
+            health = 300;
+            // liquidPressure is a *source-side* backpressure multiplier
+            // (BuildingComp.moveLiquid: fract = amount / liquidCapacity * liquidPressure).
+            // It was 4, which drained 4x faster than any vanilla conduit (max is 1.03) - a pasted
+            // power/usage value. Paced after vanilla pulseConduit (40 cap / 1.025).
+            liquidCapacity = 40f; liquidPressure = 1.025f; underBullets = true;
             requirements(Category.liquid, ItemStack.with(Items.metaglass, 2, Items.surgeAlloy, 2, Items.silicon, 1));
         }};
 
@@ -41,6 +46,8 @@ public class FRLiquidsBlocks {
             localizedName = "Kinetic Liquid Router";
             description = "Distributes liquids to up to 3 output directions equally. Built with surge alloy for high throughput.";
             placeableLiquid = true;
+            // vanilla liquidRouter is explicitly not solid and lets bullets through
+            solid = false; underBullets = true;
             size = 1; health = 200; liquidCapacity = 60;
             requirements(Category.liquid, ItemStack.with(Items.metaglass, 5, Items.surgeAlloy, 4, Items.silicon, 3));
         }};
@@ -49,6 +56,9 @@ public class FRLiquidsBlocks {
             localizedName = "Kinetic Liquid Bridge";
             description = "Transports liquids over terrain or buildings. Built with surge alloy for fast transfer.";
             placeableLiquid = true;
+            // LiquidBridge does not default this, unlike Conduit/LiquidRouter; without it the bridge
+            // cannot be placed across gaps, which is the whole point of a bridge.
+            floating = true;
             health = 250; range = 8; liquidCapacity = 40;
             consumePower(0.3f);
             requirements(Category.liquid, ItemStack.with(Items.metaglass, 10, Items.surgeAlloy, 6, Items.silicon, 5));

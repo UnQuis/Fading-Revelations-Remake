@@ -68,7 +68,7 @@ public class FRTurrets {
             cooldownTime = 300f;
             ammoPerShot = 2;
             maxAmmo = 20;
-            scaledHealth = 140;
+            health = 2240; // was scaledHealth = 140 (4x4 -> 140*16); kept as explicit total
             ammoTypes = ObjectMap.of(
                 Items.surgeAlloy, new MissileBulletType() {{
                     speed = 6f; lifetime = 72f; damage = 900f;
@@ -423,25 +423,29 @@ public class FRTurrets {
                     shootEffect = bezierBurstCyan; hitEffect = hitBezierCyan;
                 }},
                 Items.blastCompound, new FlakBulletType() {{
-                    damage = 14f; splashDamage = 46f; splashDamageRadius = 60f;
+                    damage = 14f; speed = 4f; lifetime = 55f; collidesGround = true;
+                    splashDamage = 46f; splashDamageRadius = 60f;
                     ammoMultiplier = 5f; status = StatusEffects.blasted;
                     shootEffect = bezierBurstOrange; hitEffect = hitBezierOrange;
                 }},
                 Items.plastanium, new FlakBulletType() {{
-                    damage = 28f; splashDamage = 68f; splashDamageRadius = 40f;
+                    damage = 28f; speed = 4f; lifetime = 55f; collidesGround = true;
+                    splashDamage = 68f; splashDamageRadius = 40f;
                     fragBullets = 6;
                     fragBullet = new BasicBulletType() {{ damage = 8f; speed = 3f; lifetime = 20f; }};
                     hitEffect = Fx.plasticExplosion;
                     shootEffect = bezierBurstGold;
                 }},
                 Items.surgeAlloy, new FlakBulletType() {{
-                    damage = 18f; splashDamage = 82f; splashDamageRadius = 38f;
+                    damage = 18f; speed = 4f; lifetime = 55f; collidesGround = true;
+                    splashDamage = 82f; splashDamageRadius = 38f;
                     ammoMultiplier = 5f;
                     lightning = 2; lightningLength = 7; lightningDamage = 15f;
                     shootEffect = bezierBurstGold; hitEffect = hitBezierGold;
                 }},
                 FRItems.steelAlloy, new FlakBulletType() {{
-                    damage = 25f; splashDamage = 91f; splashDamageRadius = 38f;
+                    damage = 25f; speed = 4f; lifetime = 55f; collidesGround = true;
+                    splashDamage = 91f; splashDamageRadius = 38f;
                     ammoMultiplier = 5f;
                     lightning = 3; lightningLength = 9; lightningDamage = 19f;
                     shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
@@ -456,7 +460,6 @@ public class FRTurrets {
             maxAmmo = 600; ammoPerShot = 1;
             inaccuracy = 10f;
             targetAir = false;
-            hasLiquids = true; liquidCapacity = 20f;
             ammoTypes = ObjectMap.of(
                 FRItems.livingSteel, new BasicBulletType() {{
                     damage = 30f; speed = 12f;
@@ -603,7 +606,8 @@ public class FRTurrets {
         missileBattery = new ItemTurret("missile-battery") {{
             localizedName = "Missile Battery";
             requirements(Category.turret, with(lead, 260, metaglass, 200, titanium, 110));
-            size = 3; scaledHealth = 110; reload = 570f; range = 304f;
+            size = 3; health = 990; reload = 570f; range = 304f; // was scaledHealth = 110 (3x3)
+            maxAmmo = 40; // default 30 / ammoMultiplier 15 gave only 2 salvos per fill
             targetAir = false;
             moveWhileCharging = false;
             recoil = 7f;
@@ -665,7 +669,7 @@ public class FRTurrets {
         mortar = new ItemTurret("mortar") {{
             localizedName = "Mortar";
             requirements(Category.turret, with(copper, 120, lead, 100, graphite, 50, metaglass, 65, titanium, 50));
-            size = 3; scaledHealth = 110; reload = 360f; range = 320f; minRange = 64f;
+            size = 3; health = 990; reload = 360f; range = 320f; minRange = 64f; // was scaledHealth = 110 (3x3)
             inaccuracy = 4f; velocityRnd = 0.2f;
             targetAir = false;
             itemCapacity = 20;
@@ -766,7 +770,9 @@ public class FRTurrets {
             size = 4; health = 1000; reload = 240f; range = 293f;
             inaccuracy = 0f; recoil = 6f;
             targetAir = true;
-            shoot = new ShootPattern() {{ shots = 21; }};
+            // plain ShootPattern always passes a rotation offset of 0, so all 21 missiles used to
+            // leave in a single co-linear stream; circle(21) spreads them over a full ring.
+            shoot = ShootSpread.circle(21);
             ammoTypes = ObjectMap.of(
                 FRItems.livingSteel, new MissileBulletType() {{
                     speed = 2f; lifetime = 140f; damage = 30f;
@@ -915,14 +921,15 @@ public class FRTurrets {
             consumeCoolant(0.8f);
             ammoTypes = ObjectMap.of(
                 FRItems.livingSteel, new PointBulletType() {{
-                    damage = 600f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
+                    // PointBulletType is collides = false and removes itself after one hit -> no pierce.
+                    damage = 600f; speed = 12f; buildingDamageMultiplier = 0.2f;
                     splashDamage = 600f; splashDamageRadius = 24f;
                     status = StatusEffects.slow; statusDuration = 250f; ammoMultiplier = 2f;
                     shootEffect = bezierBurstPurple; hitEffect = hitBezierPurple;
                     trailEffect = new ParticleEffect() {{ particles = 16; line = true; colorFrom = Color.valueOf("9e78dc"); colorTo = Color.valueOf("6d0071"); lifetime = 15f; }};
                 }},
                 FRItems.steelAlloy, new PointBulletType() {{
-                    damage = 800f; speed = 12f; pierce = true; buildingDamageMultiplier = 0.2f;
+                    damage = 800f; speed = 12f; buildingDamageMultiplier = 0.2f;
                     splashDamage = 800f; splashDamageRadius = 24f;
                     lightning = 3; lightningLength = 6; lightningDamage = 20f;
                     status = StatusEffects.shocked; ammoMultiplier = 2f;
@@ -1140,9 +1147,13 @@ public class FRTurrets {
 
         lightningChaingun = new SpinUpTurret("lightning-chaingun") {{
             localizedName = "Lightning Chaingun";
-            description = "A colossal rotary cannon. The longer it keeps firing, the faster its barrels spin - up to double fire rate - before overheating and needing a full cooldown.";
+            description = "A colossal rotary cannon. The longer it keeps firing, the faster its barrels spin - up to 75% faster fire rate - before it overheats and needs a full cooldown.";
             requirements(Category.turret, with(copper, 2400, graphite, 1950, silicon, 1800, FRItems.cryogenicAlloy, 500));
-            size = 6; health = 5400; reload = 6f; range = 400f;
+            size = 6; health = 5400; range = 400f;
+            // `reload` is the COLD burst interval; SpinUpTurret divides it by (1 + speedupScl) as
+            // the barrels wind up. One burst is 14 shots spaced 8 ticks apart, so the shot queue
+            // drains over 112 ticks and that is the hard floor on burst rate.
+            reload = 210f;
             minWarmup = 0.75f; shootWarmupSpeed = 0.005f; warmupMaintainTime = 60f;
             consumePower(80f);
             consumeCoolant(2f);
@@ -1157,6 +1168,10 @@ public class FRTurrets {
             shoot = new ShootBarrel() {{
                 barrels = new float[]{-18f, 0f, 0f, 18f, 0f, 0f};
                 shots = 14; shotDelay = 8f;
+                // required: without a positive firstShotDelay, TurretBuild.charging() stays false
+                // and updateShooting() re-fires a full burst every `reload` ticks regardless of
+                // the queued shots (originally reload was 6 -> ~19x intended fire rate).
+                firstShotDelay = 8f;
             }};
             shootType = new BasicBulletType() {{
                 width = 12f; height = 72f; speed = 16f; lifetime = 25f; damage = 120f;
@@ -1177,12 +1192,13 @@ public class FRTurrets {
                     new RegionPart() {{ suffix = "-wing-2"; mirror = true; under = true; progress = PartProgress.warmup; moveRot = 40f; moveX = 10f; }}
                 );
             }};
+
         }};
 
         kugelblitz = new ItemTurret("kugelblitz") {{
             localizedName = "Kugelblitz";
             requirements(Category.turret, with(copper, 210, lead, 180, graphite, 110, metaglass, 90, silicon, 80, titanium, 65));
-            size = 3; scaledHealth = 125; reload = 600f; range = 208f;
+            size = 3; health = 1125; reload = 600f; range = 208f; // was scaledHealth = 125 (3x3)
             hasPower = true; targetAir = false;
             consumePower(7f); consumeCoolant(0.3f);
             shoot = new ShootPattern() {{ firstShotDelay = 120f; }};
@@ -1259,7 +1275,7 @@ public class FRTurrets {
         diffract = new ItemTurret("diffract") {{
             localizedName = "Diffract";
             requirements(Category.turret, with(lead, 700, graphite, 560, titanium, 320, FRItems.cryogenicAlloy, 105));
-            size = 4; scaledHealth = 210; reload = 240f; range = 300f;
+            size = 4; health = 3360; reload = 240f; range = 300f; // was scaledHealth = 210 (4x4)
             shake = 5f; shootWarmupSpeed = 0.07f; minWarmup = 0.76f; warmupMaintainTime = 90f;
             consumePower(8f); consumeCoolant(1f); coolantMultiplier = 0.25f;
             ammoTypes = ObjectMap.of(
@@ -1417,9 +1433,9 @@ public class FRTurrets {
             ammoTypes = ObjectMap.of(
                 Items.scrap, new FlakBulletType() {{ speed = 4f; damage = 10f; splashDamage = 15f; splashDamageRadius = 24f; ammoMultiplier = 5f; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstWhite; }},
                 Items.lead, new FlakBulletType() {{ speed = 4.2f; damage = 14f; splashDamage = 17f; splashDamageRadius = 16f; ammoMultiplier = 4f; frontColor = Color.valueOf("83008b"); backColor = Color.valueOf("7e7e7e"); hitEffect = Fx.flakExplosion; shootEffect = bezierBurstPurple; }},
-                Items.metaglass, new FlakBulletType() {{ damage = 14f; splashDamage = 25f; splashDamageRadius = 22f; ammoMultiplier = 5f; fragBullets = 3; fragBullet = new FlakBulletType() {{ damage = 8f; splashDamage = 8f; splashDamageRadius = 5f; }}; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstCyan; }},
-                Items.pyratite, new FlakBulletType() {{ damage = 22f; splashDamage = 29f; splashDamageRadius = 28f; ammoMultiplier = 5f; status = StatusEffects.burning; fragBullets = 2; fragBullet = new FlakBulletType() {{ damage = 14f; splashDamage = 4f; }}; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstRed; }},
-                FRItems.livingSteel, new FlakBulletType() {{ damage = 18f; splashDamage = 17f; splashDamageRadius = 32f; status = StatusEffects.slow; statusDuration = 30f; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstPurple; }}
+                Items.metaglass, new FlakBulletType() {{ speed = 4f; damage = 14f; splashDamage = 25f; splashDamageRadius = 22f; ammoMultiplier = 5f; fragBullets = 3; fragBullet = new FlakBulletType() {{ speed = 4f; damage = 8f; splashDamage = 8f; splashDamageRadius = 5f; }}; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstCyan; }},
+                Items.pyratite, new FlakBulletType() {{ speed = 4f; damage = 22f; splashDamage = 29f; splashDamageRadius = 28f; ammoMultiplier = 5f; status = StatusEffects.burning; fragBullets = 2; fragBullet = new FlakBulletType() {{ speed = 4f; damage = 14f; splashDamage = 4f; }}; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstRed; }},
+                FRItems.livingSteel, new FlakBulletType() {{ speed = 4f; damage = 18f; splashDamage = 17f; splashDamageRadius = 32f; status = StatusEffects.slow; statusDuration = 30f; hitEffect = Fx.flakExplosion; shootEffect = bezierBurstPurple; }}
             );
             drawer = new DrawTurret() {{
                 parts = Seq.with(
@@ -1432,7 +1448,9 @@ public class FRTurrets {
             localizedName = "Deracination";
             requirements(Category.turret, with(graphite, 90, silicon, 210, titanium, 270));
             size = 3; health = 780; range = 256f;
-            force = 20f; scaledForce = 10f; damage = 0.6f;
+            // impulse = force + (1 - dist/range) * scaledForce, so scaledForce < force made the
+            // beam weakest point-blank. Vanilla parallax is 30 + 140 (strongest at max range).
+            force = 20f; scaledForce = 40f; damage = 0.6f;
             targetAir = true; targetGround = false;
             consumePower(4f);
         }};
@@ -1452,6 +1470,7 @@ public class FRTurrets {
             localizedName = "Stasis Field";
             description = "Shoots out shockwaves that deal damage and shock enemies, slowing them down strongly.";
             size = 3;
+            health = 1200;
             range = 640f;
             canOverdrive = false;
             shootY = 0f;
@@ -1475,7 +1494,7 @@ public class FRTurrets {
             requirements(Category.turret, with(copper, 150, lead, 150, graphite, 20));
             size = 1; health = 320; reload = 20f; range = 130f;
             shootCone = 30f; rotateSpeed = 100f;
-            targetAir = true;
+            targetAir = true; targetGround = false;
             consumePower(3.5f); consumeCoolant(0.1f);
             shootType = new LightningBulletType() {{ lightningLength = 16; damage = 10f; }};
             shootEffect = bezierBurstBlue;
@@ -1484,7 +1503,7 @@ public class FRTurrets {
         absole = new LaserTurret("absole") {{
             localizedName = "Absole";
             requirements(Category.turret, with(copper, 800, metaglass, 500, silicon, 500, titanium, 700, plastanium, 110, Items.surgeAlloy, 150));
-            size = 4; scaledHealth = 210; reload = 120f; range = 350f;
+            size = 4; health = 3360; reload = 120f; range = 350f; // was scaledHealth = 210 (4x4)
             shootDuration = 240f;
             shootWarmupSpeed = 0.025f; minWarmup = 0.99f; warmupMaintainTime = 300f;
             consumePower(8f);

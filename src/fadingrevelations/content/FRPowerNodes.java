@@ -15,6 +15,9 @@ public class FRPowerNodes {
             localizedName = "Reinforced Power Node";
             description = "A power node reinforced using titanium. Is a lot more durable than a regular beam node while also maintaining slightly more range.";
             size = 1; health = 120; laserRange = 8; maxNodes = 10;
+            // PowerNode extends PowerBlock, not BeamNode, so it does not inherit BeamNode's
+            // underBullets = true - vanilla powerNode has to set it explicitly.
+            underBullets = true; crushFragile = true;
             requirements(Category.power, ItemStack.with(Items.copper, 1, Items.lead, 2, Items.titanium, 1));
         }};
 
@@ -22,6 +25,7 @@ public class FRPowerNodes {
             localizedName = "Reinforced Large Power Node";
             description = "A large power node reinforced using titanium. Is a lot more durable than a regular beam node while also maintaining slightly more range.";
             size = 2; health = 480; laserRange = 18; maxNodes = 15;
+            underBullets = true; crushFragile = true;
             requirements(Category.power, ItemStack.with(Items.lead, 12, Items.silicon, 5, Items.titanium, 6));
         }};
 

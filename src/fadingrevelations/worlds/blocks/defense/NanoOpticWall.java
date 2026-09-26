@@ -14,13 +14,19 @@ public class NanoOpticWall extends Wall {
 
     public NanoOpticWall(String name) {
         super(name);
+        // Wall's constructor sets buildType = WallBuild::new. Without this the subclass build is
+        // never instantiated, so handleDamage/drawSelect and every Wall mechanic were dead code.
+        buildType = NanoOpticWallBuild::new;
     }
 
     private boolean linkValid(Building root, Building build) {
         return build instanceof NanoOpticWallBuild && Mathf.dstm(root.tileX(), root.tileY(), build.tileX(), build.tileY()) <= maxShareStep;
     }
 
-    public class NanoOpticWallBuild extends Building {
+    // must extend Wall.WallBuild: flashHit / lightningChance / lightningDamage / lightningLength /
+    // chanceDeflect are only implemented in WallBuild.collision(Bullet). Extending plain Building
+    // silently disabled all of them.
+    public class NanoOpticWallBuild extends WallBuild {
         private final Seq<Building> toDamage = new Seq<>();
         private final Queue<Building> queue = new Queue<>();
 

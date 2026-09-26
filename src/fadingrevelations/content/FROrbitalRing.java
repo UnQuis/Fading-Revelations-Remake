@@ -103,16 +103,8 @@ public class FROrbitalRing {
     }
 
     /**
-     * Contributes resources from a station. Handles stage rollover.
-     * @return how many items were actually consumed.
-     */
-    public static int contribute(Item item, int amount) {
-        return contribute(item, amount, 0f, 0f);
-    }
-
-    /**
      * Contributes resources from a station at the given world position.
-     * The position is used for the stage-completion cutscene camera pan.
+     * The position is used for the stage-completion cutscene camera pan; pass 0, 0 to skip it.
      * @return how many items were actually consumed.
      */
     public static int contribute(Item item, int amount, float stationX, float stationY) {
@@ -135,6 +127,9 @@ public class FROrbitalRing {
         if (accepted > 0) saveProgress(false);
         return accepted;
     }
+
+    /** Identifies the most recently started camera cutscene so its timer only cancels its own. */
+    private static int cutsceneToken = 0;
 
     private static boolean stageComplete() {
         if (stage >= STAGES) return false;
@@ -163,9 +158,13 @@ public class FROrbitalRing {
 
                 Vars.ui.showInfoToast(msg, 6f);
 
-                // restore camera after 5 seconds
-                arc.util.Time.run(5f * 60f, () -> {
-                    if (Vars.control.input.logicCutscene) {
+                // Time.run's argument is in SECONDS (Time.update does `delay -= Time.delta`), so
+                // 5f * 60f would have held the camera hostage for five minutes. It is also guarded
+                // by a token rather than by reading the global flag, so a second cutscene starting
+                // in the meantime is not cancelled by the first one's timer.
+                int token = ++cutsceneToken;
+                arc.util.Time.run(5f, () -> {
+                    if (cutsceneToken == token && Vars.control != null) {
                         Vars.control.input.logicCutscene = false;
                     }
                 });
@@ -177,15 +176,22 @@ public class FROrbitalRing {
         saveProgress(true);
     }
 
-    private static void completeStage() {
-        completeStage(0f, 0f);
-    }
-
     //endregion
 
     //region orbital boost
 
     /** Stage 4 bonus: +200% speed for every overdrivable block on the planet. */
+    // Stage bonuses, as multipliers. The station UI reads these instead of hardcoding the
+    // percentages, so changing a bonus can never leave the display lying.
+    /** Stage 1: mining speed. */
+    public static final float miningBonus = 1.15f;
+    /** Stage 2: build speed. */
+    public static final float buildBonus = 1.2f;
+    /** Stage 3: unit and block health. */
+    public static final float healthBonus = 1.12f;
+    /** Stage 4: unit damage. */
+    public static final float damageBonus = 1.15f;
+
     public static final float BOOST_MULTIPLIER = 3f;
     /** Boost refresh period & duration, in ticks. */
     private static final float BOOST_DURATION = 120f;
@@ -231,13 +237,13 @@ public class FROrbitalRing {
         //set (not multiply): campaign base values are the defaults, and setting
         //fixed targets keeps this idempotent - a sector that saved with the
         //bonuses already baked into its rules never stacks them on re-entry
-        team.unitMineSpeedMultiplier = stage >= 1 ? 1.15f : 1f;
-        team.buildSpeedMultiplier = stage >= 2 ? 1.2f : 1f;
+        team.unitMineSpeedMultiplier = stage >= 1 ? miningBonus : 1f;
+        team.buildSpeedMultiplier = stage >= 2 ? buildBonus : 1f;
         if (stage >= 3) {
-            team.unitHealthMultiplier = 1.12f;
-            team.blockHealthMultiplier = 1.12f;
+            team.unitHealthMultiplier = healthBonus;
+            team.blockHealthMultiplier = healthBonus;
         }
-        team.unitDamageMultiplier = stage >= 4 ? 1.15f : 1f;
+        team.unitDamageMultiplier = stage >= 4 ? damageBonus : 1f;
         if (stage >= 4) {
             //on top of the core-based cap (unitCapVariable campaign rules)
             rules.unitCap = Math.max(rules.unitCap, 16);

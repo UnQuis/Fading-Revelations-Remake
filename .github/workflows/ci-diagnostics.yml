@@ -5,7 +5,7 @@ name: CI diagnostics
 on:
   workflow_dispatch:
   push:
-    branches: [arena/01a093cb-fading-revelations-remake]
+    branches: ["arena/**"]
 
 jobs:
   build-diag:

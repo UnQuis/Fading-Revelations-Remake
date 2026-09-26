@@ -12,6 +12,7 @@ import mindustry.entities.effect.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
 import mindustry.type.*;
+import mindustry.type.weapons.*;
 
 import mindustry.gen.Sounds;
 
@@ -176,7 +177,7 @@ public class FRT1Units {
             singleTarget = true; omniMovement = false;
             rotateSpeed = 2; faceTarget = false; range = 120;
             weapons.add(
-                new Weapon() {{
+                new Weapon("sambuca-weapon") {{   // unnamed weapon left the TankUnit cannon invisible
                     x = 0; y = -1; reload = 18; mirror = false; rotate = true;
                     shoot = new ShootPattern() {{ shots = 2; shotDelay = 2; }};
                     bullet = new BasicBulletType() {{
@@ -197,11 +198,17 @@ public class FRT1Units {
         seed = new UnitType("seed") {{
             constructor = UnitEntity::create; localizedName = "Seed"; flying = true;
             health = 250; armor = 0; itemCapacity = 25; speed = 1.6f;
-            canHeal = true; drawBuildBeam = true; mineHardnessScaling = true;
-            mineSpeed = 2; mineTier = 1; canAttack = false; buildSpeed = 0.2f;
+            drawBuildBeam = true; mineHardnessScaling = true;
+            // canHeal/canAttack are recomputed in UnitType.init() from the weapon list, so setting
+            // them here was a no-op. A BuildWeapon (noAttack = true) is what actually makes the
+            // unit build; without one buildSpeed/drawBuildBeam did nothing.
+            mineSpeed = 2; mineTier = 1; buildSpeed = 0.2f;
             engineColor = Color.valueOf("84f491"); engineColorInner = Color.valueOf("62ae7f");
             controller = u -> new MinerAI();
             hitSize = 8;
+            weapons.add(new BuildWeapon("seed-build-weapon"){{
+                rotate = true; rotateSpeed = 7f; layerOffset = -0.001f;
+            }});
             abilities.add(new RepairFieldAbility(2f, 60f, 40f) {{
                 activeEffect = new WaveEffect() {{
                     sizeFrom = 0; sizeTo = 60;

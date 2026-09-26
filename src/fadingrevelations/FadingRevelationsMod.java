@@ -24,7 +24,6 @@ public class FadingRevelationsMod extends Mod {
         FREffectBlocks.load();
         FRPlanets.load();
         FRSectorPresets.load();
-        FRTechTree.load();
         FRMissiles.load();
         FRTurrets.load();
         FRT1Units.load();
@@ -34,6 +33,10 @@ public class FadingRevelationsMod extends Mod {
         FRMothershipUnits.load();
         FRTranscendentUnits.load();
         FRProduction.load();
+
+        // MUST be last: load() restores saved research via Vars.content.getByName(), so any content
+        // class that had not been loaded yet would silently lose its researched entry on startup.
+        FRTechTree.load();
 
         FRFullTechTree.load();
     }
@@ -56,7 +59,7 @@ public class FadingRevelationsMod extends Mod {
             new fadingrevelations.ui.GridMonitorTooltip().register();
             //block info UIs show the Orbital Ring's planet-wide boost as its own line
             Vars.ui.content = new fadingrevelations.ui.FRContentInfoDialog();
+            FRSettings.buildVersionOverlay();
         }
     }
 }
-//I'm so fucking tired

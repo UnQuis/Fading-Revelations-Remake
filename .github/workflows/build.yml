@@ -26,6 +26,11 @@ jobs:
       #This fails the build instead of shipping a broken map.
       - name: Verify map building serialization
         run: python3 scripts/repair_multicrafter_maps.py
+      #Mindustry prefixes mod content names with the mod id and looks bundle keys up by the
+      #prefixed name, so an unprefixed key is a dead key. This catches that, plus keys that
+      #name content which no longer exists.
+      - name: Verify bundle keys
+        run: python3 scripts/prefix_bundle_keys.py --check
       #jitpack builds tags on demand, so the very first build after a Mindustry release
       #can take several minutes. Warm the cache up front instead of letting Gradle time out.
       - name: Wait for jitpack artifacts

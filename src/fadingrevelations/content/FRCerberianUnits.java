@@ -27,7 +27,7 @@ public class FRCerberianUnits {
             localizedName = "Penumbra";
             description = "A unit with technology similar to that of the Serpulo Antumbra but the main cannons shoot a laser instead of regular bullets.";
             weapons.addAll(
-                new Weapon("cerberian-missile-mount") {{
+                new Weapon("cerberian-missiles-mount") {{
                     y = 8; x = 17; reload = 20; ejectEffect = casing1;
                     rotateSpeed = 8; shootSound = shootMissile; rotate = true;
                     shoot = new ShootPattern() {{ shots = 2; shotDelay = 7; }};
@@ -44,7 +44,7 @@ public class FRCerberianUnits {
                         status = StatusEffects.blasted; statusDuration = 60;
                     }};
                 }},
-                new Weapon("cerberian-missile-mount") {{
+                new Weapon("cerberian-missiles-mount") {{
                     y = -8; x = 17; reload = 35; ejectEffect = casing1;
                     rotateSpeed = 8; shootSound = shootMissile; rotate = true;
                     shoot = new ShootPattern() {{ shots = 2; shotDelay = 7; }};

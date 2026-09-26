@@ -59,7 +59,15 @@ Rewrites only those entity chunks:
     all zeroed: no payload, zeroed crafting time / warmup / heat, recipe 0.
 
 The file is re-emitted as MSAV version 7 with the same chunk layout and the
-same zlib level, so the diff is confined to the map chunk.
+same zlib level, so only the `map` chunk differs.
+
+NOTE ON REPRODUCIBILITY: the *content* is byte-for-byte reproducible (this
+script's output matches the committed maps chunk for chunk), but the compressed
+byte stream is not - the committed .msav files were emitted by a different zlib
+build than the one running here, and at the same level it produces a slightly
+smaller stream. Re-running --write on a machine with a different zlib will
+therefore show a large binary diff even when nothing semantic changed. Compare
+the decompressed chunks, not the files, when reviewing.
 
 Usage:
     python3 scripts/repair_multicrafter_maps.py           # dry run, report only

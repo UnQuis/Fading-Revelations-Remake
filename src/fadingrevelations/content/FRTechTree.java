@@ -25,18 +25,23 @@ public class FRTechTree {
             if (researched.add(name)) {
                 saveGlobalProgress();
             }
-            
+
             unlockOnAllPlanets(event.content);
-            Log.info("FRTechTree: Unlocked @ on all planets", name);
+            // Arc's Log uses Strings.format(), whose placeholder is {} - not @.
+            Log.info("FRTechTree: Unlocked [{}] on all planets", name);
         });
     }
 
     private static void unlockOnAllPlanets(UnlockableContent content) {
         if (content == null) return;
-        
+
         content.unlock();
-        
-        if (Vars.state.isCampaign()) {
+
+        // ResearchEvent is fired client-side from the research dialog. Mutating rules.researched here
+        // only changes the local copy: the server never learns about it and the next sync overwrites
+        // it, so in multiplayer the content would look researched locally but be rejected by the host.
+        // ResearchEvent never fires on a dedicated server, so global unlock has to be client-local.
+        if (Vars.state.isCampaign() && !Vars.net.client()) {
             try {
                 mindustry.game.Rules rules = Vars.state.rules;
                 if (rules != null && rules.researched != null && !rules.researched.contains(content)) {
@@ -69,7 +74,7 @@ public class FRTechTree {
             }
 
             if (!researched.isEmpty()) {
-                Log.info("FRTechTree: Loaded @ researched items", researched.size());
+                Log.info("FRTechTree: Loaded {} researched items", researched.size());
             }
         } catch (Throwable t) {
             Log.err("FRTechTree: Error loading progress", t);

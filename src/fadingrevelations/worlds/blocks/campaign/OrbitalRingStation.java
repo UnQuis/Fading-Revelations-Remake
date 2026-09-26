@@ -140,6 +140,11 @@ public class OrbitalRingStation extends Block {
             Drawf.light(x, y, (lightRadius + contributionPulse * 40f) * warmup, beaconColor, (0.5f + contributionPulse * 0.4f) * warmup);
         }
 
+        /** "+15%", "+20%", ... from a multiplier, so the UI cannot drift from the real bonus. */
+        private String pct(float multiplier){
+            return "+" + (int)Mathf.round((multiplier - 1f) * 100f) + "%";
+        }
+
         @Override
         public void drawSelect() {
             super.drawSelect();
@@ -148,24 +153,24 @@ public class OrbitalRingStation extends Block {
 
             if (FROrbitalRing.stage >= FROrbitalRing.STAGES) {
                 Drawf.text(FRSettings.bundle("fr.ring.complete", "The Orbital Ring is complete"), x, y + offY + 14f, Pal.accent);
-                // show active boost breakdown
+                // percentages come from the same constants applyBonuses() uses
                 float baseY = y + offY;
-                Drawf.text(FRSettings.bundle("fr.ring.boost-mining", "Mining Speed") + ": +15%", x, baseY, Color.valueOf("84f491"));
-                Drawf.text(FRSettings.bundle("fr.ring.boost-build", "Build Speed") + ": +20%", x, baseY - 14f, Color.valueOf("84f491"));
-                Drawf.text(FRSettings.bundle("fr.ring.boost-health", "Unit & Block HP") + ": +12%", x, baseY - 28f, Color.valueOf("84f491"));
-                Drawf.text(FRSettings.bundle("fr.ring.boost-damage", "Unit Damage") + ": +15%", x, baseY - 42f, Color.valueOf("84f491"));
-                Drawf.text(FRSettings.bundle("fr.ring.boost-overdrive", "Overdrive") + ": +200% " + FRSettings.bundle("fr.ring.planet-wide", "(planet-wide)"), x, baseY - 56f, Color.valueOf("ffd37f"));
+                Drawf.text(FRSettings.bundle("fr.ring.boost-mining", "Mining Speed") + ": " + pct(FROrbitalRing.miningBonus), x, baseY, Color.valueOf("84f491"));
+                Drawf.text(FRSettings.bundle("fr.ring.boost-build", "Build Speed") + ": " + pct(FROrbitalRing.buildBonus), x, baseY - 14f, Color.valueOf("84f491"));
+                Drawf.text(FRSettings.bundle("fr.ring.boost-health", "Unit & Block HP") + ": " + pct(FROrbitalRing.healthBonus), x, baseY - 28f, Color.valueOf("84f491"));
+                Drawf.text(FRSettings.bundle("fr.ring.boost-damage", "Unit Damage") + ": " + pct(FROrbitalRing.damageBonus), x, baseY - 42f, Color.valueOf("84f491"));
+                Drawf.text(FRSettings.bundle("fr.ring.boost-overdrive", "Overdrive") + ": +" + (int)((FROrbitalRing.BOOST_MULTIPLIER - 1f) * 100f) + "% " + FRSettings.bundle("fr.ring.planet-wide", "(planet-wide)"), x, baseY - 56f, Color.valueOf("ffd37f"));
             } else {
                 // partial bonuses for completed stages
                 int s = FROrbitalRing.stage;
                 float baseY = y + offY;
                 int line = 0;
-                if (s >= 1) Drawf.text(FRSettings.bundle("fr.ring.boost-mining", "Mining Speed") + ": +15%", x, baseY - line++ * 14f, Color.valueOf("84f491"));
-                if (s >= 2) Drawf.text(FRSettings.bundle("fr.ring.boost-build", "Build Speed") + ": +20%", x, baseY - line++ * 14f, Color.valueOf("84f491"));
-                if (s >= 3) Drawf.text(FRSettings.bundle("fr.ring.boost-health", "Unit & Block HP") + ": +12%", x, baseY - line++ * 14f, Color.valueOf("84f491"));
+                if (s >= 1) Drawf.text(FRSettings.bundle("fr.ring.boost-mining", "Mining Speed") + ": " + pct(FROrbitalRing.miningBonus), x, baseY - line++ * 14f, Color.valueOf("84f491"));
+                if (s >= 2) Drawf.text(FRSettings.bundle("fr.ring.boost-build", "Build Speed") + ": " + pct(FROrbitalRing.buildBonus), x, baseY - line++ * 14f, Color.valueOf("84f491"));
+                if (s >= 3) Drawf.text(FRSettings.bundle("fr.ring.boost-health", "Unit & Block HP") + ": " + pct(FROrbitalRing.healthBonus), x, baseY - line++ * 14f, Color.valueOf("84f491"));
                 if (s >= 4) {
-                    Drawf.text(FRSettings.bundle("fr.ring.boost-damage", "Unit Damage") + ": +15%", x, baseY - line++ * 14f, Color.valueOf("84f491"));
-                    Drawf.text(FRSettings.bundle("fr.ring.boost-overdrive", "Overdrive") + ": +200% " + FRSettings.bundle("fr.ring.planet-wide", "(planet-wide)"), x, baseY - line * 14f, Color.valueOf("ffd37f"));
+                    Drawf.text(FRSettings.bundle("fr.ring.boost-damage", "Unit Damage") + ": " + pct(FROrbitalRing.damageBonus), x, baseY - line++ * 14f, Color.valueOf("84f491"));
+                    Drawf.text(FRSettings.bundle("fr.ring.boost-overdrive", "Overdrive") + ": +" + (int)((FROrbitalRing.BOOST_MULTIPLIER - 1f) * 100f) + "% " + FRSettings.bundle("fr.ring.planet-wide", "(planet-wide)"), x, baseY - line * 14f, Color.valueOf("ffd37f"));
                 }
             }
         }

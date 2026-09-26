@@ -2,6 +2,7 @@ package fadingrevelations.worlds.blocks.unit;
 
 import arc.Core;
 import arc.Events;
+import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.Lines;
@@ -145,6 +146,12 @@ public class FRAscendedUnitFactory extends UnitFactory {
         public void draw() {
             Draw.rect(region, x, y);
             Draw.rect(outRegion, x, y, rotdeg());
+
+            // vanilla UnitFactoryBuild draws the stored payload here (payRotation + drawPayload)
+            // before topRegion; skipping it made a finished unit invisible in the factory
+            payRotation = rotdeg();
+            drawPayload();
+
             Draw.rect(topRegion, x, y);
 
             Vec2 v = getUnitSpawn();
@@ -186,14 +193,13 @@ public class FRAscendedUnitFactory extends UnitFactory {
                             float ay = v.y + Angles.trnsy(rot, plan.unit.hitSize * 1.1f);
                             for(int a = 0; a < 3; a++){
                                 float sin = Math.max(0, Mathf.sin(time + a * 60f, 55f, 1f)) * speedScl;
-                                Draw.rect(
-                                        Core.atlas.find("fading-revelations-aim-shoot"),
-                                        ax + Angles.trnsx(rot + 180, -4) * (tilesize / 2f + a * 2.8f),
-                                        ay + Angles.trnsy(rot + 180, -4) * (tilesize / 2f + a * 2.8f),
-                                        45f * sin,
-                                        45f * sin,
-                                        rot + 90
-                                );
+                                // no "aim-shoot" asset exists anywhere in the mod; atlas.find
+                                // returned the missing-texture region, so 6 magenta boxes were drawn
+                                // per factory per frame. Lines.stroke draws a cheap muzzle flash.
+                                float off = tilesize / 2f + a * 2.8f;
+                                Lines.stroke(sin * 2f, Color.valueOf("f8ad42"));
+                                Lines.line(ax + Angles.trnsx(rot + 180, -4) * off, ay + Angles.trnsy(rot + 180, -4) * off,
+                                    ax + Angles.trnsx(rot, 4) * off, ay + Angles.trnsy(rot, 4) * off);
                             }
                         }
                     }

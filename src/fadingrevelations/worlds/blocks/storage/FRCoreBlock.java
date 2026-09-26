@@ -50,6 +50,8 @@ public class FRCoreBlock extends CoreBlock {
     public class FRCoreBuild extends CoreBuild {
         public float turretRotation;
         public float reloadTimer;
+        /** Unspawned placeholder handed to ConstructBuild.construct(); see useBuildHelper(). */
+        private transient Unit buildHelper;
 
         @Override
         public void updateTile() {
@@ -73,7 +75,7 @@ public class FRCoreBlock extends CoreBlock {
                 if (building instanceof ConstructBuild && ((ConstructBuild) building).team == team) {
                     ConstructBuild cons = (ConstructBuild) building;
                     if (core != null && cons.buildCost > 0f) {
-                        cons.construct(null, core, edelta() * buildSpeedMultiplier / cons.buildCost, plan.config);
+                        cons.construct(useBuildHelper(), core, edelta() * buildSpeedMultiplier / cons.buildCost, plan.config);
                     }
 
                     if (Mathf.chance(0.05)) {
@@ -101,6 +103,20 @@ public class FRCoreBlock extends CoreBlock {
             } else {
                 turretRotation = Mathf.slerpDelta(turretRotation, 90f, 0.05f);
             }
+        }
+
+        /**
+         * ConstructBuild.construct(Unit builder, ...) dereferences {@code builder} unconditionally
+         * ({@code if(builder.isPlayer())}), so passing null threw an NPE on the first tick any plan
+         * was in range. It only uses the argument for lastBuilder bookkeeping, and isPlayer() is
+         * {@code controller instanceof Player}, so one unspawned vanilla unit per core is a safe,
+         * allocation-free stand-in. UnitType.create() does not insert anything into the world.
+         */
+        private Unit useBuildHelper(){
+            if (buildHelper == null || buildHelper.team() != team) {
+                buildHelper = mindustry.content.UnitTypes.dagger.create(team);
+            }
+            return buildHelper;
         }
 
         @Override

@@ -113,8 +113,12 @@ public class FRDrills {
         percussionDrill = new BurstDrill("percussion-drill") {{
             localizedName = "Percussion Drill";
             description = "A high-frequency percussion drill that pulverizes ore through sheer kinetic force. No coolant needed.";
+            // drillTime is ticks per item, and BurstDrill offloads all `dominantItems` (up to 8)
+            // at once when the run completes, so effective rate is dominantItems / drillTime:
+            // 8/140 = 3.4 items/s, between hyperDrill's 2.0 and cosmicDrill's 5.0.
+            // drawRim is a no-op here - BurstDrillBuild.draw() never draws rimRegion.
             size = 4; drillTime = 140; tier = 9; itemCapacity = 150; shake = 4f;
-            warmupSpeed = 0.02f; drawRim = true; hasPower = true; hasItems = true;
+            warmupSpeed = 0.02f; hasPower = true; hasItems = true;
             rotateSpeed = 25; updateEffectChance = 0.3f; drawMineItem = false;
             dumpTime = 2;
             consumePower(30f);

@@ -166,8 +166,9 @@ public class FRT2Units {
             constructor = PayloadUnit::create; localizedName = "Sapling";
             flying = true; lowAltitude = true;
             health = 680; armor = 3; itemCapacity = 75; speed = 2.7f;
-            canHeal = true; drawBuildBeam = true; mineHardnessScaling = true;
-            mineSpeed = 4; mineTier = 3; canAttack = false; buildSpeed = 3.2f;
+            drawBuildBeam = true; mineHardnessScaling = true;
+            // see seed: canHeal/canAttack in the initializer are overwritten by UnitType.init()
+            mineSpeed = 4; mineTier = 3; buildSpeed = 3.2f;
             engineColor = Color.valueOf("84f491"); engineColorInner = Color.valueOf("62ae7f");
             payloadCapacity = 512; hitSize = 14;
             controller = u -> new RepairAI();

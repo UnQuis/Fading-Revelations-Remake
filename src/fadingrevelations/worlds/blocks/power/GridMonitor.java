@@ -49,7 +49,11 @@ public class GridMonitor extends PowerNode {
     public GridMonitor(String name) {
         super(name);
         update = true; //PowerNode disables updates by default; sampling needs them
-        configurable = false; //disable PowerNode's link UI — tapping shows the power graph
+        // Do NOT set `configurable = false`. PowerNode's link UI runs through
+        // PowerNodeBuild.onConfigureBuildTapped, and InputHandler gates that call on
+        // block.configurable - so turning it off means the monitor's power links can never be
+        // changed again after placement. (Dropping super.tapped() in the build is harmless by
+        // comparison: Building.tapped() is an empty method in v160.5.)
         maxNodes = 2;
         laserRange = 9f;
         emitLight = true;

@@ -143,12 +143,19 @@ public class SpinUpTurret extends PowerTurret {
 
         @Override
         protected void updateShooting() {
-            if (reloadCounter >= reload) {
+            // the vanilla gate is reloadCounter >= reload && !charging() && shootWarmup >= minWarmup.
+            // Without !charging() a multi-shot pattern (ShootBarrel with shotDelay) starts a full
+            // burst every `reload` ticks while the previous one is still queued - and without the
+            // warmup check the turret can fire before it is spun up.
+            if (reloadCounter >= reload && !charging() && shootWarmup >= minWarmup) {
                 BulletType type = peekAmmo();
 
                 shoot(type);
 
-                reloadCounter = 0f;
+                // vanilla does `reloadCounter -= reload`; clamp so the residue cannot grow without
+                // bound once the shot queue, not reload, is what limits the burst rate (status()
+                // and logic sensors read reloadCounter directly).
+                reloadCounter = Mathf.clamp(reloadCounter - reload, 0f, reload);
             } else {
                 reloadCounter += (1f + speedupScl) * delta() * peekAmmo().reloadMultiplier * baseReloadSpeed();
                 overheat = Mathf.approachDelta(overheat, overheatTime + 0.05f, efficiency * timeScale * ((speedupScl / maxSpeedupScl)) / (1f + (liquids.current() == null ? 0f : liquids.current().heatCapacity)));

@@ -186,7 +186,8 @@ public class FRDistribution {
             localizedName = "Fusion Stack Conveyor";
             description = "Combines kinetic energy cells and bio-alloy materials into a hyper-efficient batch conveyor. Moves items at extreme throughput.";
             details = "The ultimate expression of material science.";
-            health = 900; speed = 0.1f; itemCapacity = 15; outputRouter = true;
+            // was 0.1 / cap 15 = 45 items/s, slower than amalgamConveyor's 0.09 / cap 20 = 54 items/s
+            health = 900; speed = 0.125f; itemCapacity = 15; outputRouter = true;
             glowColor = Color.valueOf("b0d000");
             requirements(Category.distribution, ItemStack.with(FRItems.steelAlloy, 3, FRItems.energyCell, 3, FRItems.bioMatter, 3, FRItems.livingSteelHard, 3, FRItems.nanoFabric, 2));
         }};

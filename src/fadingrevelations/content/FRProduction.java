@@ -178,6 +178,7 @@ public class FRProduction {
             size = 3; attribute = Attribute.steam; minEfficiency = 0.0001f;
             powerProduction = 0.48f; displayEfficiency = false;
             hasLiquids = true; outputLiquid = new LiquidStack(Liquids.water, 0.015f);
+            liquidCapacity = 20f; group = BlockGroup.liquids; fogRadius = 3; // matches vanilla turbineCondenser
             generateEffect = Fx.turbinegenerate; effectChance = 0.05f;
             ambientSound = Sounds.loopHum; ambientSoundVolume = 0.08f;
             requirements(Category.power, with(Items.beryllium, 90, Items.graphite, 75));
@@ -609,6 +610,9 @@ public class FRProduction {
             description = "An improved version of the Electric Heater. Creates more heat.";
             size = 2; rotateDraw = false; researchCostMultiplier = 4;
             heatOutput = 5; regionRotated1 = 1;
+            // HeatProducer extends GenericCrafter, which sets hasItems = true. Vanilla electricHeater
+            // zeroes itemCapacity so it cannot hoard arbitrary items; without this it stores up to 10.
+            itemCapacity = 0;
             consumePower(2f);
             ambientSound = Sounds.loopExtract; ambientSoundVolume = 0.09f;
             requirements(Category.crafting, with(Items.beryllium, 70, Items.tungsten, 50, Items.oxide, 40));
@@ -628,7 +632,7 @@ public class FRProduction {
             localizedName = "Atmospheric Extractor";
             description = "Extracts and concentrates Nitrogen out of the atmosphere. Works more efficiently than an Atmospheric Concentrator.";
             size = 4; hasLiquids = true; researchCostMultiplier = 1.1f; liquidCapacity = 50;
-            consumePower(2.6f); heatRequirement = 8;
+            consumePower(2.6f); heatRequirement = 8; maxEfficiency = 1f;
             craftTime = 60;
             outputLiquid = new LiquidStack(Liquids.nitrogen, 0.1f);
             ambientSound = Sounds.loopExtract; ambientSoundVolume = 0.09f;
@@ -640,6 +644,9 @@ public class FRProduction {
             description = "Extracts large quantities of groundwater. Used in locations with no surface water available.";
             health = 320; result = Liquids.water; hasPower = true; attribute = Attribute.water;
             hasLiquids = true; size = 3; pumpAmount = 0.3f; liquidCapacity = 250;
+            // without this the pump works on any land: SolidPumpBuild only scales efficiency by
+            // attribute as a *bonus*, baseEfficiency defaults to 1
+            envRequired |= Env.groundWater;
             consumePower(3.5f);
             requirements(Category.production, with(Items.copper, 175, Items.lead, 140, Items.graphite, 150, Items.metaglass, 65));
         }};
@@ -677,7 +684,7 @@ public class FRProduction {
         cyanogenFuser = new HeatCrafter("cyanogen-fuser") {{
             localizedName = "Cyanogen Fuser";
             description = "Joins Arkycite and Graphite to make larger amounts of Cyanogen than a normal Cyanogen Synthesizer.";
-            size = 4; heatRequirement = 7; liquidCapacity = 100;
+            size = 4; heatRequirement = 7; maxEfficiency = 1f; liquidCapacity = 100;
             craftTime = 60;
             outputLiquid = new LiquidStack(Liquids.cyanogen, 0.075f);
             consumePower(2.5f); consumeItem(Items.graphite, 1); consumeLiquid(Liquids.arkycite, 0.656f);
@@ -699,7 +706,7 @@ public class FRProduction {
         phaseManufacturer = new HeatCrafter("phase-manufacturer") {{
             localizedName = "Phase Manufacturer";
             description = "A better phase synthesizer that works more efficiently";
-            size = 4; itemCapacity = 50; heatRequirement = 10; craftTime = 90; liquidCapacity = 50;
+            size = 4; itemCapacity = 50; heatRequirement = 10; maxEfficiency = 1f; craftTime = 90; liquidCapacity = 50;
             outputItem = new ItemStack(Items.phaseFabric, 2);
             consumePower(9f); consumeItems(with(Items.thorium, 2, Items.sand, 6));
             consumeLiquid(Liquids.ozone, 0.0334f);
@@ -749,7 +756,7 @@ public class FRProduction {
         surgeMelter = new HeatCrafter("surge-melter") {{
             localizedName = "Surge Melter";
             description = "A better version of the surge crucible that creates surge alloy more efficiently.";
-            size = 4; itemCapacity = 30; heatRequirement = 11; hasLiquids = true; hasPower = true; hasItems = true;
+            size = 4; itemCapacity = 30; heatRequirement = 11; maxEfficiency = 1f; hasLiquids = true; hasPower = true; hasItems = true;
             craftTime = 90; liquidCapacity = 600;
             outputItem = new ItemStack(Items.surgeAlloy, 1);
             consumePower(2.5f); consumeItem(Items.silicon, 3); consumeLiquid(Liquids.slag, 0.667f);
@@ -856,7 +863,7 @@ public class FRProduction {
             localizedName = "Carbide Basin";
             description = "A better Carbide Crucible that works more efficiently.";
             size = 4; itemCapacity = 30; hasPower = true; hasItems = true;
-            craftTime = 90; craftEffect = Fx.none; heatRequirement = 12;
+            craftTime = 90; craftEffect = Fx.none; heatRequirement = 12; maxEfficiency = 1f;
             outputItem = new ItemStack(Items.carbide, 1);
             consumePower(2.6f); consumeItems(with(Items.tungsten, 2, Items.graphite, 3));
             ambientSound = Sounds.loopSmelter; ambientSoundVolume = 0.11f;

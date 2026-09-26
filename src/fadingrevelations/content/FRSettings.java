@@ -1,14 +1,15 @@
 package fadingrevelations.content;
 
 import arc.Core;
-import arc.scene.ui.CheckBox;
-import arc.scene.ui.Slider;
+import arc.scene.event.Touchable;
+import arc.scene.ui.*;
 import arc.scene.ui.layout.Table;
 import arc.scene.ui.Tooltip;
 import mindustry.Vars;
 import mindustry.gen.Icon;
 import mindustry.graphics.Pal;
 import mindustry.ui.Styles;
+import mindustry.ui.dialogs.SettingsMenuDialog;
 
 /**
  * Mod settings, grouped into categories (New Horizon style):
@@ -120,5 +121,24 @@ public class FRSettings {
 
         t.label(() -> bundle(nameKey, nameFallback)).color(Pal.accent).padTop(8f).left().row();
         t.add(row).growX().padTop(3f).row();
+    }
+
+    /**
+     * "Show version on HUD" was declared, defaulted and toggled but never read by anything, so
+     * the option did nothing. This actually renders the mod version in the corner of the HUD.
+     */
+    public static void buildVersionOverlay(){
+        if (Vars.headless || Vars.ui == null || Vars.ui.hudGroup == null) return;
+
+        Table overlay = new Table();
+        overlay.touchable = Touchable.disabled;
+        overlay.fillParent = true;
+        overlay.visible(() -> showVersion);
+        Vars.ui.hudGroup.addChild(overlay);
+
+        overlay.table(t -> t.top().right().label(() -> {
+            mindustry.mod.Mods.LoadedMod mod = Vars.mods.locateMod("fading-revelations-remake");
+            return mod == null || mod.meta == null ? "?" : mod.meta.version;
+        }).color(Pal.accent).fontScale(0.6f).pad(4f)).grow();
     }
 }

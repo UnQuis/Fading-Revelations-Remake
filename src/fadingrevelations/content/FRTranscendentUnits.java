@@ -474,7 +474,6 @@ public class FRTranscendentUnits {
             rippleScale = 8; legSpeed = 0.35f; legSplashDamage = 120; legSplashRange = 60;
             allowLegStep = true; canDrown = false; shadowElevation = 0.2f;
             legContinuousMove = false; drownTimeMultiplier = 99999999999f;
-            drawShields = false;
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
             weapons.addAll(
                 new Weapon("heal-laser-mount") {{

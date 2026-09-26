@@ -377,7 +377,7 @@ public class FRMothershipUnits {
                             hitColor = Color.valueOf("d06b53"); backColor = Color.valueOf("d06b53");
                             trailColor = Color.valueOf("d06b53"); frontColor = Color.valueOf("ffffff");
                             trailWidth = 1.9f; trailLength = 4;
-                            homingPower = 0.2f;
+                            homingPower = 0.2f; homingRange = 25;
                             hitEffect = new WaveEffect() {{
                                 sizeTo = 4; strokeFrom = 4; lifetime = 10;
                                 colorFrom = Color.valueOf("d06b53"); colorTo = Color.valueOf("d06b53");
@@ -394,7 +394,7 @@ public class FRMothershipUnits {
                             hitColor = Color.valueOf("d06b53"); backColor = Color.valueOf("d06b53");
                             trailColor = Color.valueOf("d06b53"); frontColor = Color.valueOf("ffffff");
                             trailWidth = 1.9f; trailLength = 4;
-                            homingPower = 0.2f;
+                            homingPower = 0.2f; homingRange = 25;
                             hitEffect = new WaveEffect() {{
                                 sizeTo = 4; strokeFrom = 4; lifetime = 10;
                                 colorFrom = Color.valueOf("d06b53"); colorTo = Color.valueOf("d06b53");
@@ -425,6 +425,12 @@ public class FRMothershipUnits {
                     rotateSpeed = 0.9f; shootCone = 1; minWarmup = 0.94f;
                     shootWarmupSpeed = 0.03f;
                     shootSound = shootMissile;
+                    // TODO this shell is still a placeholder: damage 0 / speed 0 / no spawnUnit, so
+                    // the main cannon only plays an effect. Until it has a real bullet it must not
+                    // contribute to the unit range - BasicBulletType{speed=0} gives range() == 0,
+                    // which made UnitType.init() compute type.range = -4 and permanently broke
+                    // GroundAI/CommandAI hold-position logic (a UnitWaterMove with GroundAI).
+                    useAttackRange = false;
                     bullet = new BasicBulletType() {{
                         speed = 0; damage = 0;
                         shootEffect = shootBig; smokeEffect = shootSmokeMissile;
@@ -615,7 +621,6 @@ public class FRMothershipUnits {
             rippleScale = 6; legSpeed = 0.31f; legSplashDamage = 75; legSplashRange = 48;
             allowLegStep = true; canDrown = false; shadowElevation = 0.2f;
             legContinuousMove = false; drownTimeMultiplier = 99999999999f;
-            drawShields = false;
             immunities.addAll(StatusEffects.melting, StatusEffects.burning, FRStatus.sapped, StatusEffects.freezing, StatusEffects.wet);
             weapons.addAll(
                 new Weapon("heal-laser-mount") {{
