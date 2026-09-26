@@ -14,6 +14,7 @@ import arc.util.io.Writes;
 import mindustry.Vars;
 import mindustry.core.UI;
 import mindustry.gen.Building;
+import mindustry.graphics.Drawf;
 import mindustry.graphics.Pal;
 import mindustry.ui.Bar;
 import mindustry.ui.Fonts;
@@ -48,6 +49,7 @@ public class GridMonitor extends PowerNode {
     public GridMonitor(String name) {
         super(name);
         update = true; //PowerNode disables updates by default; sampling needs them
+        configurable = false; //disable PowerNode's link UI — tapping shows the power graph
         maxNodes = 2;
         laserRange = 9f;
         emitLight = true;
@@ -83,10 +85,26 @@ public class GridMonitor extends PowerNode {
 
         @Override
         public void tapped() {
-            super.tapped();
             if (!Vars.headless && Vars.ui != null) {
                 showGraph();
             }
+        }
+
+        @Override
+        public void drawSelect() {
+            super.drawSelect();
+
+            if (power == null || power.graph == null) return;
+
+            float offY = block.size * Vars.tilesize / 2f + 8f;
+
+            String prod = FRSettings.bundle("fr.monitor.produced", "Production") + ": "
+                + UI.formatAmount((long)(getLastProduced() * 60f)) + "/s";
+            String cons = FRSettings.bundle("fr.monitor.needed", "Consumption") + ": "
+                + UI.formatAmount((long)(getLastNeeded() * 60f)) + "/s";
+
+            Drawf.text(prod, x, y + offY, producedColor);
+            Drawf.text(cons, x, y + offY - 14f, neededColor);
         }
 
         public void showGraph() {
