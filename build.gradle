@@ -20,8 +20,8 @@ repositories {
 
 ext {
     //Single source of truth: gradle.properties. Falls back to the pinned build if unset.
-    mindustryVersion = project.findProperty("mindustryVersion") ?: "v160.5"
-    arcVersion = project.findProperty("arcVersion") ?: "v160.5"
+    mindustryVersion = project.findProperty("mindustryVersion") ?: "v160.7"
+    arcVersion = project.findProperty("arcVersion") ?: "v160.7"
 }
 
 configurations.all {
