@@ -3,8 +3,10 @@ package fadingrevelations.worlds.blocks.campaign;
 import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Fill;
 import arc.graphics.g2d.TextureRegion;
 import arc.math.Mathf;
+import arc.util.Strings;
 import arc.util.Time;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
@@ -15,10 +17,14 @@ import mindustry.gen.Building;
 import mindustry.graphics.Drawf;
 import mindustry.graphics.Pal;
 import mindustry.type.Item;
+import mindustry.type.ItemStack;
 import mindustry.ui.Bar;
 import mindustry.world.Block;
 import mindustry.world.Tile;
 import mindustry.world.meta.Env;
+import mindustry.world.meta.Stat;
+import mindustry.world.meta.StatCat;
+import mindustry.world.meta.StatValue;
 
 import fadingrevelations.content.FROrbitalRing;
 import fadingrevelations.content.FRPlanets;
@@ -38,6 +44,12 @@ public class OrbitalRingStation extends Block {
 
     public Effect contributeEffect = Fx.smeltsmoke;
     public Color beaconColor = Color.valueOf("6fb7ff");
+
+    /**
+     * Bundle key is {@code stat.fr-ring-project}; Stat.localized() looks the name up unprefixed,
+     * so unlike block/item names this key must NOT carry the mod prefix.
+     */
+    private static final Stat ringProjectStat = new Stat("fr-ring-project", StatCat.function);
 
     public OrbitalRingStation(String name) {
         super(name);
@@ -63,11 +75,51 @@ public class OrbitalRingStation extends Block {
     public void setBars() {
         super.setBars();
         addBar("fr-ring-progress", (OrbitalRingStationBuild build) -> new Bar(
-            () -> FRSettings.bundle("fr.ring.progress", "Ring") + " " + FROrbitalRing.stage + "/4: "
+            () -> FRSettings.bundle("fr.ring.progress", "Ring") + " " + FROrbitalRing.stage + "/" + FROrbitalRing.STAGES + ": "
                 + (int)(FROrbitalRing.stageProgressFraction() * 100f) + "%",
             () -> Pal.accent,
             () -> FROrbitalRing.stage >= FROrbitalRing.STAGES ? 1f : FROrbitalRing.stageProgressFraction()
         ));
+    }
+
+    @Override
+    public void setStats() {
+        super.setStats();
+
+        // The station refuses anything the current stage does not need, and it has no cost to
+        // guess wrong, so without this the player has to look the requirements up somewhere. The
+        // stage (and with it the item list) changes as the project is built, so the value is
+        // rendered live instead of being baked in here.
+        stats.add(ringProjectStat, (StatValue)table -> {
+            table.left().top();
+            table.table(inner -> {
+                inner.left().top();
+
+                int stage = FROrbitalRing.stage;
+                if(stage >= FROrbitalRing.STAGES){
+                    inner.add(FRSettings.bundle("fr.ring.complete", "The Orbital Ring is complete"))
+                        .padLeft(6f).color(Pal.accent).row();
+                }else{
+                    inner.add(FRSettings.bundle("fr.ring.stat.stage", "Stage") + " " + (stage + 1)
+                        + "/" + FROrbitalRing.STAGES + " [accent]"
+                        + (int)(FROrbitalRing.stageProgressFraction() * 100f) + "%[]")
+                        .padLeft(6f).padBottom(2f).row();
+
+                    for(ItemStack stack : FROrbitalRing.currentRequirements()){
+                        int left = FROrbitalRing.remaining(stack.item);
+                        inner.image(stack.item.uiIcon).size(16f).padLeft(6f).padRight(4f);
+                        inner.add(stack.item.localizedName + " ").padRight(2f);
+                        inner.add((stack.amount - left) + "/" + stack.amount)
+                            .color(left > 0 ? Color.lightGray : Pal.accent).row();
+                    }
+                }
+
+                long delivered = FROrbitalRing.totalDelivered();
+                inner.add("[lightgray]" + FRSettings.bundle("fr.ring.stat.total", "Materials delivered") + ":[] [lightgray]"
+                    + (delivered >= 1000 ? Strings.fixed(delivered / 1000f, 1) + "k" : String.valueOf(delivered)))
+                    .padLeft(6f).padTop(4f).row();
+            });
+        });
     }
 
     @Override
@@ -161,10 +213,41 @@ public class OrbitalRingStation extends Block {
                 Drawf.text(FRSettings.bundle("fr.ring.boost-damage", "Unit Damage") + ": " + pct(FROrbitalRing.damageBonus), x, baseY - 42f, Color.valueOf("84f491"));
                 Drawf.text(FRSettings.bundle("fr.ring.boost-overdrive", "Overdrive") + ": +" + (int)((FROrbitalRing.BOOST_MULTIPLIER - 1f) * 100f) + "% " + FRSettings.bundle("fr.ring.planet-wide", "(planet-wide)"), x, baseY - 56f, Color.valueOf("ffd37f"));
             } else {
+                // the station silently rejects anything the current stage does not need, so list
+                // exactly what it wants and how much is still outstanding
+                ItemStack[] req = FROrbitalRing.currentRequirements();
+                float baseY = y + offY;
+                Drawf.text(FRSettings.bundle("fr.ring.stat.stage", "Stage") + " " + (FROrbitalRing.stage + 1)
+                    + "/" + FROrbitalRing.STAGES + ": "
+                    + (int)(FROrbitalRing.stageProgressFraction() * 100f) + "%",
+                    x, baseY, Pal.accent);
+
+                if (req != null) {
+                    int line = 1;
+                    for (ItemStack stack : req) {
+                        int left = FROrbitalRing.remaining(stack.item);
+                        float f = stack.amount <= 0 ? 0f : (stack.amount - left) / (float)stack.amount;
+                        float ly = baseY - line * 14f;
+                        // item icon + name + "have / need", green once satisfied
+                        Draw.color(left > 0 ? Color.white : Color.valueOf("84f491"));
+                        Draw.rect(stack.item.uiIcon, x - 84f, ly, 10f, 10f);
+                        Draw.color(left > 0 ? Pal.accent : Color.valueOf("84f491"));
+                        Drawf.text(stack.item.localizedName + "  " + (stack.amount - left) + "/" + stack.amount,
+                            x - 74f, ly, left > 0 ? Pal.accent : Color.valueOf("84f491"));
+                        Draw.reset();
+                        // progress underline
+                        Draw.color(Pal.accent, 0.25f);
+                        Fill.crect(x - 84f, ly - 7f, 170f, 2f);
+                        Draw.color(Pal.accent);
+                        Fill.crect(x - 84f, ly - 7f, 170f * Mathf.clamp(f), 2f);
+                        Draw.reset();
+                        line++;
+                    }
+                }
+
                 // partial bonuses for completed stages
                 int s = FROrbitalRing.stage;
-                float baseY = y + offY;
-                int line = 0;
+                int line = req == null ? 1 : 1 + req.length;
                 if (s >= 1) Drawf.text(FRSettings.bundle("fr.ring.boost-mining", "Mining Speed") + ": " + pct(FROrbitalRing.miningBonus), x, baseY - line++ * 14f, Color.valueOf("84f491"));
                 if (s >= 2) Drawf.text(FRSettings.bundle("fr.ring.boost-build", "Build Speed") + ": " + pct(FROrbitalRing.buildBonus), x, baseY - line++ * 14f, Color.valueOf("84f491"));
                 if (s >= 3) Drawf.text(FRSettings.bundle("fr.ring.boost-health", "Unit & Block HP") + ": " + pct(FROrbitalRing.healthBonus), x, baseY - line++ * 14f, Color.valueOf("84f491"));

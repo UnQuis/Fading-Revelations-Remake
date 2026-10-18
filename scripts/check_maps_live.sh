@@ -51,6 +51,13 @@ if [ $# -gt 0 ]; then
     for a in "$@"; do maps+=("$(normalise "$a")"); done
 else
     for m in "$ROOT"/assets/maps/*.msav; do
+        # `*-original.msav` is the pre-rebuild backup kept so a map rebuild stays
+        # reversible. It is a real map, but it is not a campaign map, and its
+        # name tag (which is what the server keys on) is not derivable from its
+        # filename, so it is skipped here rather than reported as untested.
+        case "$(basename "$m")" in
+            *-original.msav) continue ;;
+        esac
         maps+=("$(normalise "$(basename "$m" .msav)")")
     done
 fi
@@ -63,7 +70,11 @@ fail=0
 for name in "${maps[@]}"; do
     # the server needs a moment to finish booting before it reads stdin, and blank
     # lines on stdin are consumed as (invalid) commands
-    { sleep 15; echo "host $name survival"; sleep 35; echo exit; } > "$STDIN"
+    # A generous boot wait, and a blank line between the commands: the server
+    # concatenates stdin it has not finished reading, and "host X survival" plus
+    # a following "exit" became "survivaexit" - which reported as a pass because
+    # the map was never actually loaded.
+    { sleep 25; echo ""; sleep 1; echo "host $name survival"; sleep 40; echo ""; sleep 1; echo exit; } > "$STDIN"
     out=$(cd "$SERVER_DIR" && MINDUSTRY_DATA_DIR="$SERVER_DIR" \
         timeout 240 java -Xmx2g -Dfile.encoding=UTF-8 -jar "$SERVER_JAR" < "$STDIN" 2>&1)
     out=$(printf '%s' "$out" | sed 's/\x1b\[[0-9;]*m//g')
@@ -71,6 +82,11 @@ for name in "${maps[@]}"; do
     if printf '%s' "$out" | grep -qE "ArrayIndexOutOfBounds|Exception in thread|error occurred loading|Failed to (load|read)|Caused by|content error|Error reading region"; then
         echo "FAIL  $name  (loader error)"
         printf '%s\n' "$out" | grep -E "ArrayIndexOutOfBounds|Exception|error occurred|Failed|Caused by|Error reading" | head -5 | sed 's/^/        /'
+        fail=1
+    elif printf '%s' "$out" | grep -qiE "No gamemode|Unknown command|hostmode|expected.*command"; then
+        # the server was not ready and the command was mangled: the map was never
+        # loaded, so this must not be allowed to look like a pass
+        echo "FAIL  $name  (server was not ready - the host command did not run)"
         fail=1
     elif printf '%s' "$out" | grep -qi "No map with name"; then
         # a missing map produces no loader error at all, so it must be treated as a

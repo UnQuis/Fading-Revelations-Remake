@@ -2,7 +2,10 @@ package fadingrevelations.content;
 
 import arc.Core;
 import arc.Events;
+import arc.input.KeyCode;
+import arc.math.Mathf;
 import arc.struct.ObjectIntMap;
+import arc.util.Time;
 import mindustry.Vars;
 import mindustry.content.Items;
 import mindustry.game.EventType;
@@ -32,6 +35,8 @@ public class FROrbitalRing {
 
     private static final String SETTING_KEY = "fr-orbital-ring";
     private static final ObjectIntMap<String> stageProgress = new ObjectIntMap<>();
+    /** Running total across all stages; stageProgress is wiped on every stage-up. */
+    private static long deliveredTotal = 0L;
 
     public static final ItemStack[][] stageRequirements = {
         {
@@ -63,6 +68,7 @@ public class FROrbitalRing {
         Events.on(EventType.WorldLoadEvent.class, event -> applyBonuses());
         //stage 4: the finished ring overclocks the whole planet (see updateOrbitalBoost)
         Events.run(EventType.Trigger.update, FROrbitalRing::updateOrbitalBoost);
+        Events.run(EventType.Trigger.update, FROrbitalRing::updateCutscene);
     }
 
     //region progress
@@ -75,6 +81,14 @@ public class FROrbitalRing {
     /** Whether the station should accept this item right now. */
     public static boolean accepts(Item item) {
         return remaining(item) > 0;
+    }
+
+    /**
+     * Total items accepted across all stages. stageProgress is cleared when a stage completes, so
+     * the running total is kept separately and persisted alongside it.
+     */
+    public static long totalDelivered() {
+        return deliveredTotal;
     }
 
     /** How much more of this item the current stage needs. */
@@ -124,12 +138,12 @@ public class FROrbitalRing {
             }
         }
 
-        if (accepted > 0) saveProgress(false);
+        if (accepted > 0) {
+            deliveredTotal += accepted;
+            saveProgress(false);
+        }
         return accepted;
     }
-
-    /** Identifies the most recently started camera cutscene so its timer only cancels its own. */
-    private static int cutsceneToken = 0;
 
     private static boolean stageComplete() {
         if (stage >= STAGES) return false;
@@ -148,26 +162,10 @@ public class FROrbitalRing {
             String stageName = FRSettings.bundle("fr.ring.stage." + stage, "Stage " + stage);
             String msg = FRSettings.bundle("fr.ring.stage-complete", "Orbital Ring stage complete") + ":\n" + stageName;
 
-            // cutscene: pan camera to the station and zoom in
+            // cutscene: hold the camera on the station for a few seconds
             if (wx != 0f || wy != 0f) {
-                var input = Vars.control.input;
-                input.logicCutscene = true;
-                input.logicCamPan.set(wx, wy);
-                input.logicCamSpeed = 3f;
-                input.logicCutsceneZoom = 0.6f; // zoom in a bit
-
-                Vars.ui.showInfoToast(msg, 6f);
-
-                // Time.run's argument is in SECONDS (Time.update does `delay -= Time.delta`), so
-                // 5f * 60f would have held the camera hostage for five minutes. It is also guarded
-                // by a token rather than by reading the global flag, so a second cutscene starting
-                // in the meantime is not cancelled by the first one's timer.
-                int token = ++cutsceneToken;
-                arc.util.Time.run(5f, () -> {
-                    if (cutsceneToken == token && Vars.control != null) {
-                        Vars.control.input.logicCutscene = false;
-                    }
-                });
+                startCutscene(wx, wy);
+                Vars.ui.showInfoToast(msg, cutsceneDuration);
             } else {
                 Vars.ui.showInfoToast(msg, 8f);
             }
@@ -175,6 +173,121 @@ public class FROrbitalRing {
         applyBonuses();
         saveProgress(true);
     }
+
+    //region cutscene
+
+    private static final float cutsceneDuration = 5f;
+    /**
+     * How much closer the cutscene sits than the player's own zoom.
+     *
+     * {@code Renderer.minZoom}/{@code maxZoom} (1.5..6) are the *cutscene* range,
+     * and vanilla's own comment calls maxZoom "zooming in" - so a cutscene can
+     * only move towards the camera, never away from it. Multiplying by 1.3 is a
+     * push in on the station.
+     */
+    private static final float cutsceneZoomIn = 1.3f;
+    private static final float cutsceneEaseIn = 0.22f;
+
+    private static float cutsceneLeft = 0f;
+    private static float cutsceneToX, cutsceneToY, cutsceneFromX, cutsceneFromY, cutsceneScale;
+
+    /**
+     * Starts the stage-completion cutscene.
+     *
+     * The obvious implementation - set {@code input.logicCutscene} once and let
+     * vanilla's camera handling do the rest - shows nothing, and that is what the
+     * first version did. Three separate reasons, all verified against v160.5:
+     *
+     * <ol>
+     * <li>{@code DesktopInput.update()} ends every frame with
+     *     {@code Core.camera.position.lerpDelta(playerOrUnit, smoothCamera ? 0.08 : 1.0)}.
+     *     Smooth camera is off by default on desktop, so that is a pull of 1.0 per
+     *     second straight back onto the player, undoing whatever the cutscene did.
+     * <li>The player is standing at the station they just fed, so panning the
+     *     camera <i>to the station</i> is not a pan at all. The push-in on the
+     *     station and the shake are what carry the beat.
+     * <li>{@code logicCutsceneZoom} is not a zoom level. {@code Renderer.update}
+     *     reads it as a 0..1 blend between {@code minZoom} (1.5) and {@code maxZoom}
+     *     (6) and lerps {@code camerascale} toward the result. The old code set
+     *     0.6, which is scale 4.2 - a hard zoom-in that snapped back when the
+     *     five seconds ran out. There is no {@code Camera.zoom} field in v160.5;
+     *     the scale lives on {@link mindustry.core.Renderer#camerascale}.
+     * </ol>
+     *
+     * So the camera position is written directly from
+     * {@link EventType.Trigger#update}, which fires after the input update, and
+     * the scale is requested through {@code logicCutsceneZoom} so the renderer's
+     * own easing moves it rather than fighting it. Any camera input from the
+     * player cancels the shot immediately.
+     */
+    private static void startCutscene(float wx, float wy){
+        if(Vars.headless || Vars.control == null || Core.camera == null
+            || Vars.state.isMenu() || Vars.renderer == null) return;
+
+        cutsceneToX = wx;
+        cutsceneToY = wy;
+        cutsceneFromX = Core.camera.position.x;
+        cutsceneFromY = Core.camera.position.y;
+        // `camerascale` is the live value; `targetscale` is recomputed every frame
+        // from the input flags and must not be used as "where we started".
+        cutsceneScale = Mathf.clamp(Vars.renderer.camerascale * cutsceneZoomIn,
+            Vars.renderer.minZoom, Vars.renderer.maxZoom);
+        cutsceneLeft = cutsceneDuration;
+        // A short shake, so the stage registering lands even when the player was
+        // already looking at the station and there is no pan to see.
+        Vars.renderer.shake(6f, 0.6f);
+    }
+
+    private static void updateCutscene(){
+        if(cutsceneLeft <= 0f || Core.camera == null || Vars.control == null) return;
+
+        if(Vars.state.isMenu()){
+            releaseCutscene();
+            return;
+        }
+
+        // any attempt to move the camera hands control straight back. arc.Input
+        // exposes mouse movement as deltaX()/deltaY(); v160.5 has no scroll
+        // accessor and no mouseDeltaX.
+        if(Core.input != null && (Core.input.deltaX() != 0 || Core.input.deltaY() != 0
+            || Core.input.keyDown(KeyCode.escape))){
+            releaseCutscene();
+            return;
+        }
+
+        cutsceneLeft -= Time.delta;
+        if(cutsceneLeft <= 0f){
+            releaseCutscene();
+            return;
+        }
+
+        // smoothstep in over the first fifth of the shot, then hold
+        float t = 1f - cutsceneLeft / cutsceneDuration;
+        float e = Mathf.clamp(t / cutsceneEaseIn);
+        float k = e * e * (3f - 2f * e);   // smoothstep, arc.Mathf has none
+
+        var input = Vars.control.input;
+        input.logicCutscene = true;
+        input.logicHideHud = true;
+        input.logicCamPan.set(cutsceneToX, cutsceneToY);
+        input.logicCamSpeed = 6f;
+        // blend factor between minZoom and maxZoom, not a scale
+        input.logicCutsceneZoom = Mathf.clamp(
+            (Mathf.lerp(Vars.renderer.camerascale, cutsceneScale, k) - Vars.renderer.minZoom)
+                / (Vars.renderer.maxZoom - Vars.renderer.minZoom), 0f, 1f);
+
+        Core.camera.position.set(Mathf.lerp(cutsceneFromX, cutsceneToX, k),
+            Mathf.lerp(cutsceneFromY, cutsceneToY, k));
+    }
+
+    private static void releaseCutscene(){
+        cutsceneLeft = 0f;
+        if(Vars.control == null) return;
+        Vars.control.input.logicCutscene = false;
+        Vars.control.input.logicHideHud = false;
+    }
+
+    //endregion
 
     //endregion
 
@@ -254,21 +367,22 @@ public class FROrbitalRing {
     private static void saveProgress(boolean force) {
         if (!force && arc.util.Time.time - lastSaveTick < 120f) return;
         lastSaveTick = arc.util.Time.time;
-        Core.settings.putJson(SETTING_KEY, StageData.class, new StageData(stage, stageProgress));
+        Core.settings.putJson(SETTING_KEY, StageData.class, new StageData(stage, stageProgress, deliveredTotal));
     }
 
     private static float lastSaveTick = -999f;
 
     private static void loadProgress() {
         try {
-            StageData data = Core.settings.getJson(SETTING_KEY, StageData.class, () -> new StageData(0, null));
+            StageData data = Core.settings.getJson(SETTING_KEY, StageData.class, () -> new StageData(0, null, 0L));
             stage = Math.max(0, Math.min(STAGES, data.stage));
             stageProgress.clear();
             if (data.progress != null) {
                 stageProgress.putAll(data.progress);
             }
+            deliveredTotal = data.delivered;
             if (stage > 0) {
-                arc.util.Log.info("FROrbitalRing: loaded stage @", stage);
+                arc.util.Log.info("FROrbitalRing: loaded stage @ ({} delivered)", stage, deliveredTotal);
             }
         } catch (Throwable t) {
             arc.util.Log.err("FROrbitalRing: error loading progress", t);
@@ -279,12 +393,15 @@ public class FROrbitalRing {
     private static class StageData {
         public int stage;
         public ObjectIntMap<String> progress;
+        /** absent in saves written before this field existed; treated as "unknown" */
+        public long delivered;
 
         public StageData() {}
 
-        public StageData(int stage, ObjectIntMap<String> progress) {
+        public StageData(int stage, ObjectIntMap<String> progress, long delivered) {
             this.stage = stage;
             this.progress = progress;
+            this.delivered = delivered;
         }
     }
 

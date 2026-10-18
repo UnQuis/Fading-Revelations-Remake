@@ -38,6 +38,12 @@ jobs:
       #name content which no longer exists.
       - name: Verify bundle keys
         run: python3 scripts/prefix_bundle_keys.py --check
+      #etnatic-isles is polished in place rather than generated, so the check
+      #rebuilds it from the pristine copy and compares byte for byte. It also
+      #asserts the two things only this map can break: every core survives, and
+      #no multiblock loses one of its tiles.
+      - name: Verify polished campaign maps
+        run: python3 scripts/polish_etnatic_isles.py --check
       #jitpack builds tags on demand, so the very first build after a Mindustry release
       #can take several minutes. Warm the cache up front instead of letting Gradle time out.
       - name: Wait for jitpack artifacts
