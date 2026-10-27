@@ -6,6 +6,7 @@ import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.pattern.*;
 import mindustry.type.*;
+import mindustry.type.weapons.*;
 import mindustry.gen.*;
 import mindustry.entities.abilities.*;
 
@@ -85,7 +86,10 @@ public class FRCoreUnits {
                 coreShrapnelWeapon(0, 29, 0),
                 coreShrapnelWeapon(29, -2, -90),
                 coreShrapnelWeapon(-29, -2, 90),
-                coreShrapnelWeapon(0, -29, -180)
+                coreShrapnelWeapon(0, -29, -180),
+                new BuildWeapon("build-weapon") {{
+                    x = 0; y = -2; rotate = true;
+                }}
             );
             abilities.addAll(
                 new EnergyFieldAbility(20f, 12f, 120f) {{ color = Color.valueOf("dcc6c6");
@@ -103,7 +107,7 @@ public class FRCoreUnits {
         epsilon = new UnitType("epsilon") {{
             constructor = UnitEntity::create; localizedName = "[yellow]Epsilon";
             description = "Defends the Element core from enemies. Rapidly builds a variety of structures, and is equipped with multiple healing beams.";
-            drag = 0.15f; speed = 4.25f; buildSpeed = 3; mineSpeed = 16;
+            drag = 0.15f; speed = 4.25f; buildSpeed = 3; drawBuildBeam = true; mineSpeed = 16;
             coreUnitDock = true; mineTier = 3; armor = 10; health = 310;
             flying = true; itemCapacity = 100; hitSize = 10;
             weapons.add(
@@ -122,13 +126,16 @@ public class FRCoreUnits {
                     }};
                 }}
             );
+            weapons.add(new BuildWeapon("build-weapon") {{
+                x = 0; y = -2; rotate = true;
+            }});
             abilities.add(new ForceFieldAbility(10f, 2f, 240f, 480f));
         }};
 
         delta = new UnitType("delta") {{
             constructor = UnitEntity::create; localizedName = "[yellow]Delta";
             description = "Defends the Atom core from enemies. Swiftly builds structures, and is equipped with healing beams.";
-            drag = 0.15f; speed = 4; buildSpeed = 2.5f; mineSpeed = 14; mineTier = 3;
+            drag = 0.15f; speed = 4; buildSpeed = 2.5f; drawBuildBeam = true; mineSpeed = 14; mineTier = 3;
             armor = 10; coreUnitDock = true; health = 260;
             flying = true; itemCapacity = 80; hitSize = 7;
             weapons.add(
@@ -146,6 +153,9 @@ public class FRCoreUnits {
                     }};
                 }}
             );
+            weapons.add(new BuildWeapon("build-weapon") {{
+                x = 0; y = -2; rotate = true;
+            }});
             abilities.add(new ForceFieldAbility(10f, 1f, 140f, 480f));
         }};
     }

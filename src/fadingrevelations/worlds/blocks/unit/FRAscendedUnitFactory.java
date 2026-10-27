@@ -33,6 +33,7 @@ import static mindustry.Vars.*;
 
 public class FRAscendedUnitFactory extends UnitFactory {
     public int areaSize = 14;
+    public Color beamColor = Color.valueOf("f8ad42");
     public Effect aboveEffect = new Effect(24, e -> {
         color(e.color);
         Fill.circle(e.x, e.y, e.rotation * e.fout());
@@ -79,6 +80,8 @@ public class FRAscendedUnitFactory extends UnitFactory {
 
     @Override
     public boolean canPlaceOn(Tile tile, Team team, int rotation){
+        if(!super.canPlaceOn(tile, team, rotation)) return false;
+
         Rect rect = getRect(Tmp.r1, tile.worldx() + offset, tile.worldy() + offset, rotation).grow(0.1f);
         return !indexer.getFlagged(team, BlockFlag.factory).contains(b -> b instanceof FRAscendedBuild && getRect(Tmp.r2, b.x, b.y, b.rotation).overlaps(rect));
     }
@@ -115,6 +118,10 @@ public class FRAscendedUnitFactory extends UnitFactory {
 
             moveOutPayload();
 
+            if(efficiency > 0.001f){
+                control.sound.loop(ambientSound, self(), ambientSoundVolume * speedScl * efficiency);
+            }
+
             if(currentPlan != -1 && payload == null){
                 UnitPlan plan = plans.get(currentPlan);
 
@@ -124,7 +131,7 @@ public class FRAscendedUnitFactory extends UnitFactory {
                 }
 
                 if(progress >= plan.time){
-                    progress %= 1f;
+                    progress -= plan.time;
 
                     Unit unit = plan.unit.create(team);
                     if(commandPos != null && unit.isCommandable()){
@@ -186,7 +193,6 @@ public class FRAscendedUnitFactory extends UnitFactory {
                         }
                         Draw.color(team.color);
                         Lines.arc(v.x, v.y, plan.unit.hitSize * 1.2f, 1 - progress / plan.time, rotation * 90);
-                        control.sound.loop(ambientSound, self(), ambientSoundVolume * speedScl * efficiency);
                         for(int i = 0; i < 2; i++){
                             float rot = rotation * 90 - 90 + 180 * i;
                             float ax = v.x + Angles.trnsx(rot, plan.unit.hitSize * 1.1f);
@@ -197,7 +203,7 @@ public class FRAscendedUnitFactory extends UnitFactory {
                                 // returned the missing-texture region, so 6 magenta boxes were drawn
                                 // per factory per frame. Lines.stroke draws a cheap muzzle flash.
                                 float off = tilesize / 2f + a * 2.8f;
-                                Lines.stroke(sin * 2f, Color.valueOf("f8ad42"));
+                                Lines.stroke(sin * 2f, beamColor);
                                 Lines.line(ax + Angles.trnsx(rot + 180, -4) * off, ay + Angles.trnsy(rot + 180, -4) * off,
                                     ax + Angles.trnsx(rot, 4) * off, ay + Angles.trnsy(rot, 4) * off);
                             }

@@ -45,6 +45,10 @@ public class FadingRevelationsMod extends Mod {
     public void init() {
         FROldContent.init();
         FRSettings.init();
+        // Must run before the systems below: it restores global progress and installs the
+        // world-load hook that mirrors it into rules.tags.
+        FRCampaignState.load();
+        Vars.net.registerPacket(FRCampaignPacket::new);
         FROrbitalRing.load();
         FRLore.load();
         if (FRSettings.mixTech) {
@@ -52,6 +56,9 @@ public class FadingRevelationsMod extends Mod {
         }
         FROverride.hardcore();
         FROverride.noCoreBurn();
+        // Sandbox maps default to Serpulo, so planet-restricted mod content would otherwise
+        // disappear from the build menu outside the campaign.
+        FROverride.sandboxContent();
         FRMusic.load();
         if (!Vars.headless && Vars.ui != null) {
             FRResearchDialog.init();

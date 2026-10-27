@@ -13,6 +13,7 @@ import mindustry.entities.Mover;
 import mindustry.entities.bullet.BulletType;
 import mindustry.gen.Building;
 import mindustry.graphics.Pal;
+import mindustry.type.Liquid;
 import mindustry.ui.Bar;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.meta.Stat;
@@ -79,23 +80,34 @@ public class SpinUpTurret extends PowerTurret {
         public float slowDownReload = 0f;
         public float overheat = 0f;
         public boolean requireCompleteCooling = false;
+        /** True while the turret is forced to cool down and must not acquire targets or fire. */
+        public transient boolean coolingDown = false;
 
         @Override
         public void updateTile() {
             updateCooldown();
-            if (overheat < overheatTime && !requireCompleteCooling) {
-                super.updateTile();
-            } else {
-                forceCoolDown();
+            coolingDown = overheat >= overheatTime || requireCompleteCooling;
+            if (coolingDown) {
+                target = null;
             }
+
+            // Keep vanilla warmup/recoil/rotation updates, but findTarget()/updateShooting() are
+            // disabled while coolingDown, so the turret cannot fire during the forced cooldown.
+            super.updateTile();
         }
 
         public void updateCooldown() {
+            if (requireCompleteCooling) {
+                // Forced cooling must not wait for slowDownReload, otherwise the turret can stay
+                // overheated forever when it overheated during a burst.
+                slowDownReload = 0f;
+            }
+
             if (slowDownReload > 0f) {
                 slowDownReload -= Time.delta;
             } else {
                 speedupScl = Mathf.lerpDelta(speedupScl, 0f, 0.05f);
-                if (!requireCompleteCooling) coolDown();
+                coolDown();
             }
 
             if (overheat > overheatTime * 0.3f) {
@@ -105,44 +117,40 @@ public class SpinUpTurret extends PowerTurret {
             }
         }
 
-        public void forceCoolDown() {
-            slowDownReload = 0f;
-            coolDown();
-
-            if (linearWarmup) {
-                shootWarmup = Mathf.approachDelta(shootWarmup, 0f, shootWarmupSpeed);
-            } else {
-                shootWarmup = Mathf.lerpDelta(shootWarmup, 0f, shootWarmupSpeed);
+        public void coolDown() {
+            if (overheat > 0f) {
+                overheat = Math.max(0f, overheat - overheatCoolAmount * (1f + coolantEfficiency()) * Time.delta);
             }
-
-            unit.tile(this);
-            unit.rotation(rotation);
-            unit.team(team);
-            curRecoil = Mathf.approachDelta(curRecoil, 0f, 1f / recoilTime);
-            recoilOffset.trns(rotation, -Mathf.pow(curRecoil, recoilPow) * recoil);
-
-            if (logicControlTime > 0) {
-                logicControlTime -= Time.delta;
-            }
-
             if (overheat <= 0f) {
                 overheat = 0f;
                 requireCompleteCooling = false;
             }
         }
 
-        public void coolDown() {
-            if (overheat > 0f) {
-                overheat -= overheatCoolAmount * (1f + coolantEfficiency()) * Time.delta;
+        public float coolantEfficiency() {
+            Liquid liquid = liquids.current();
+            return liquid != null && liquid.coolant ? liquid.heatCapacity : 0f;
+        }
+
+        protected void addHeat() {
+            float ratio = maxSpeedupScl <= 0f ? 1f : Mathf.clamp(speedupScl / maxSpeedupScl, 0.05f, 1f);
+            overheat = Mathf.approachDelta(overheat, overheatTime + 0.05f, efficiency * timeScale * ratio / (1f + coolantEfficiency()));
+            if (overheat >= overheatTime) {
+                requireCompleteCooling = true;
             }
         }
 
-        public float coolantEfficiency() {
-            return liquids.current() == null ? 0f : liquids.current().heatCapacity;
+        @Override
+        protected void findTarget() {
+            if (!coolingDown) {
+                super.findTarget();
+            }
         }
 
         @Override
         protected void updateShooting() {
+            if (coolingDown) return;
+
             // the vanilla gate is reloadCounter >= reload && !charging() && shootWarmup >= minWarmup.
             // Without !charging() a multi-shot pattern (ShootBarrel with shotDelay) starts a full
             // burst every `reload` ticks while the previous one is still queued - and without the
@@ -151,6 +159,7 @@ public class SpinUpTurret extends PowerTurret {
                 BulletType type = peekAmmo();
 
                 shoot(type);
+                addHeat();
 
                 // vanilla does `reloadCounter -= reload`; clamp so the residue cannot grow without
                 // bound once the shot queue, not reload, is what limits the burst rate (status()
@@ -158,8 +167,7 @@ public class SpinUpTurret extends PowerTurret {
                 reloadCounter = Mathf.clamp(reloadCounter - reload, 0f, reload);
             } else {
                 reloadCounter += (1f + speedupScl) * delta() * peekAmmo().reloadMultiplier * baseReloadSpeed();
-                overheat = Mathf.approachDelta(overheat, overheatTime + 0.05f, efficiency * timeScale * ((speedupScl / maxSpeedupScl)) / (1f + (liquids.current() == null ? 0f : liquids.current().heatCapacity)));
-                if (overheat > overheatTime) requireCompleteCooling = true;
+                addHeat();
             }
         }
 

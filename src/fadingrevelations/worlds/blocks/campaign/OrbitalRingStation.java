@@ -136,7 +136,7 @@ public class OrbitalRingStation extends Block {
     }
 
     private boolean placeableHere() {
-        if (!Vars.state.isCampaign()) return true;
+        if (!Vars.state.isCampaign()) return false;
         return Vars.state.rules.sector != null && Vars.state.rules.sector.planet == FRPlanets.cangirus;
     }
 
@@ -153,9 +153,17 @@ public class OrbitalRingStation extends Block {
 
             if (!active) return;
 
-            //push every stored item into the project
+            // The host owns progress; letting clients consume items locally would desync the
+            // station inventory until the next item sync.
+            if (Vars.net.client()) return;
+
+            ItemStack[] requirements = FROrbitalRing.currentRequirements();
+            if (requirements == null) return;
+
+            // Only check items this stage accepts instead of scanning every item in the game.
             boolean any = false;
-            for (Item item : Vars.content.items()) {
+            for (ItemStack stack : requirements) {
+                Item item = stack.item;
                 int count = items.get(item);
                 if (count <= 0 || !FROrbitalRing.accepts(item)) continue;
 
@@ -183,7 +191,9 @@ public class OrbitalRingStation extends Block {
         @Override
         public void draw() {
             super.draw();
-            Draw.rect(topRegion, x, y, Time.time * 1.2f * warmup);
+            if (topRegion != null && topRegion.found()) {
+                Draw.rect(topRegion, x, y, Time.time * 1.2f * warmup);
+            }
         }
 
         @Override

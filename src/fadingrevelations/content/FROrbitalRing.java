@@ -34,9 +34,9 @@ public class FROrbitalRing {
     public static int stage = 0;
 
     private static final String SETTING_KEY = "fr-orbital-ring";
-    private static final ObjectIntMap<String> stageProgress = new ObjectIntMap<>();
+    static final ObjectIntMap<String> stageProgress = new ObjectIntMap<>();
     /** Running total across all stages; stageProgress is wiped on every stage-up. */
-    private static long deliveredTotal = 0L;
+    static long deliveredTotal = 0L;
 
     public static final ItemStack[][] stageRequirements = {
         {
@@ -63,8 +63,6 @@ public class FROrbitalRing {
     };
 
     public static void load() {
-        loadProgress();
-
         Events.on(EventType.WorldLoadEvent.class, event -> applyBonuses());
         //stage 4: the finished ring overclocks the whole planet (see updateOrbitalBoost)
         Events.run(EventType.Trigger.update, FROrbitalRing::updateOrbitalBoost);
@@ -340,7 +338,7 @@ public class FROrbitalRing {
 
     //region persistence & bonuses
 
-    private static void applyBonuses() {
+    public static void applyBonuses() {
         if (!Vars.state.isCampaign()) return;
 
         var rules = Vars.state.rules;
@@ -352,27 +350,27 @@ public class FROrbitalRing {
         //bonuses already baked into its rules never stacks them on re-entry
         team.unitMineSpeedMultiplier = stage >= 1 ? miningBonus : 1f;
         team.buildSpeedMultiplier = stage >= 2 ? buildBonus : 1f;
-        if (stage >= 3) {
-            team.unitHealthMultiplier = healthBonus;
-            team.blockHealthMultiplier = healthBonus;
-        }
+        team.unitHealthMultiplier = stage >= 3 ? healthBonus : 1f;
+        team.blockHealthMultiplier = stage >= 3 ? healthBonus : 1f;
         team.unitDamageMultiplier = stage >= 4 ? damageBonus : 1f;
-        if (stage >= 4) {
-            //on top of the core-based cap (unitCapVariable campaign rules)
-            rules.unitCap = Math.max(rules.unitCap, 16);
+
+        int baseCap = rules.tags.getInt("fr.unitcap.base", -1);
+        if (baseCap < 0) {
+            baseCap = rules.unitCap;
+            // Old versions used max(unitCap, 16), so exactly 16 is probably the bonus,
+            // not the map's base cap. Migrate that case without stacking another +16.
+            if (stage >= STAGES && baseCap == 16) baseCap = 0;
+            rules.tags.put("fr.unitcap.base", String.valueOf(baseCap));
         }
+        rules.unitCap = baseCap + (stage >= STAGES ? 16 : 0);
     }
 
     /** Throttled save so conveyor-fed stations don't serialize every tick. */
     private static void saveProgress(boolean force) {
-        if (!force && arc.util.Time.time - lastSaveTick < 120f) return;
-        lastSaveTick = arc.util.Time.time;
-        Core.settings.putJson(SETTING_KEY, StageData.class, new StageData(stage, stageProgress, deliveredTotal));
+        FRCampaignState.save(force);
     }
 
-    private static float lastSaveTick = -999f;
-
-    private static void loadProgress() {
+    static void loadLegacyProgress() {
         try {
             StageData data = Core.settings.getJson(SETTING_KEY, StageData.class, () -> new StageData(0, null, 0L));
             stage = Math.max(0, Math.min(STAGES, data.stage));

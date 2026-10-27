@@ -80,7 +80,7 @@ public class FRT1Units {
                         splashDamage = 170; splashDamageRadius = 32;
                         hitEffect = new MultiEffect(instHit, bezierBurstGold, bezierRingGold);
                         despawnHit = true;
-                        pierce = true; buildingDamageMultiplier = 0.4f;
+                        buildingDamageMultiplier = 0.4f;
                         shootEffect = new MultiEffect(bezierArcGold, shootSmall);
                         smokeEffect = smokeBezierGold;
                     }};

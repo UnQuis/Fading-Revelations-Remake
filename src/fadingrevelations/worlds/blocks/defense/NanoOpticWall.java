@@ -20,7 +20,10 @@ public class NanoOpticWall extends Wall {
     }
 
     private boolean linkValid(Building root, Building build) {
-        return build instanceof NanoOpticWallBuild && Mathf.dstm(root.tileX(), root.tileY(), build.tileX(), build.tileY()) <= maxShareStep;
+        return build instanceof NanoOpticWallBuild
+            && !build.dead()
+            && build.team == root.team
+            && Mathf.dstm(root.tileX(), root.tileY(), build.tileX(), build.tileY()) <= maxShareStep;
     }
 
     // must extend Wall.WallBuild: flashHit / lightningChance / lightningDamage / lightningLength /
@@ -29,6 +32,7 @@ public class NanoOpticWall extends Wall {
     public class NanoOpticWallBuild extends WallBuild {
         private final Seq<Building> toDamage = new Seq<>();
         private final Queue<Building> queue = new Queue<>();
+        private transient boolean redirectingDamage;
 
         private void findLinkWalls() {
             toDamage.clear();
@@ -59,14 +63,24 @@ public class NanoOpticWall extends Wall {
 
         @Override
         public float handleDamage(float amount) {
+            // Damage redirected from another wall in the link must not be shared again, or every
+            // linked wall would recursively redistribute it and take far less damage than intended.
+            if (redirectingDamage) return amount;
+
             findLinkWalls();
+            if (toDamage.size <= 1) return amount;
+
             float shareDamage = (amount / toDamage.size) * (1 - damageReduction);
             for (Building b : toDamage) {
-                if (b == self()) continue;
-                b.health -= shareDamage;
-                b.healthChanged();
-                if (b.health <= 0 && !b.dead()) {
-                    b.kill();
+                if (b == self() || b.dead()) continue;
+
+                NanoOpticWallBuild wall = (NanoOpticWallBuild) b;
+                wall.redirectingDamage = true;
+                try {
+                    // Go through Building.damage so armor, events and destruction are handled normally.
+                    wall.damage(shareDamage);
+                } finally {
+                    wall.redirectingDamage = false;
                 }
             }
             return shareDamage;

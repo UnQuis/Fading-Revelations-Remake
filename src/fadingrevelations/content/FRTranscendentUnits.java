@@ -541,7 +541,7 @@ public class FRTranscendentUnits {
             constructor = UnitWaterMove::create; localizedName = "Nivosa";
             health = 52000; armor = 38; speed = 0.85f; hitSize = 68;
             drag = 0.15f; accel = 0.28f; rotateSpeed = 1.8f;
-            faceTarget = false; buildSpeed = 4.5f;
+            faceTarget = false; buildSpeed = 4.5f; drawBuildBeam = true;
             trailLength = 100; trailScl = 6; waveTrailX = 32; waveTrailY = -44;
             weapons.addAll(
                 new PointDefenseWeapon("point-defense-mount") {{
@@ -575,6 +575,9 @@ public class FRTranscendentUnits {
                         healPercent = 2f; collidesTeam = true;
                         colors = new Color[]{Color.valueOf("20b2aa"), Color.valueOf("66ffcc"), Color.valueOf("ffffff")};
                     }};
+                }},
+                new BuildWeapon("build-weapon") {{
+                    x = 0; y = -2; rotate = true;
                 }},
                 new Weapon("plasma-laser-mount") {{
                     x = 14; y = -44; mirror = true;

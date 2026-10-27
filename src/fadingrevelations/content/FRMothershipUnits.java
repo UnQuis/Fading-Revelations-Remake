@@ -425,16 +425,18 @@ public class FRMothershipUnits {
                     rotateSpeed = 0.9f; shootCone = 1; minWarmup = 0.94f;
                     shootWarmupSpeed = 0.03f;
                     shootSound = shootMissile;
-                    // TODO this shell is still a placeholder: damage 0 / speed 0 / no spawnUnit, so
-                    // the main cannon only plays an effect. Until it has a real bullet it must not
-                    // contribute to the unit range - BasicBulletType{speed=0} gives range() == 0,
-                    // which made UnitType.init() compute type.range = -4 and permanently broke
-                    // GroundAI/CommandAI hold-position logic (a UnitWaterMove with GroundAI).
-                    useAttackRange = false;
-                    bullet = new BasicBulletType() {{
-                        speed = 0; damage = 0;
+                    bullet = new ArtilleryBulletType(3.5f, 600f) {{
+                        lifetime = 160; width = 18; height = 24;
+                        splashDamage = 500f; splashDamageRadius = 120f;
+                        collidesGround = true; collidesAir = false; collidesTiles = true;
+                        knockback = 2f; hitShake = 8f;
+                        sprite = "shell";
+                        frontColor = Color.valueOf("f8ae4b"); backColor = Color.valueOf("e9901a");
+                        trailColor = Color.valueOf("f8ae4b"); trailWidth = 3f; trailLength = 18; trailChance = -1;
+                        status = StatusEffects.burning; statusDuration = 300f;
                         shootEffect = shootBig; smokeEffect = shootSmokeMissile;
-                        spawnUnit = null;
+                        hitEffect = new MultiEffect(blastExplosion, hitBezierOrange, bezierRingOrange);
+                        despawnEffect = new MultiEffect(bezierBurstOrange, bezierRingOrange);
                     }};
                 }},
                 new Weapon("japonica-lancer") {{
@@ -688,7 +690,7 @@ public class FRMothershipUnits {
             constructor = UnitWaterMove::create; localizedName = "Altaic";
             health = 21000; armor = 16; speed = 0.75f; hitSize = 61;
             drag = 0.17f; accel = 0.25f; rotateSpeed = 1.6f;
-            faceTarget = false; buildSpeed = 3.8f;
+            faceTarget = false; buildSpeed = 3.8f; drawBuildBeam = true;
             trailLength = 85; trailScl = 5; waveTrailX = 28; waveTrailY = -39;
             weapons.addAll(
                 new PointDefenseWeapon("point-defense-mount") {{
@@ -722,6 +724,9 @@ public class FRMothershipUnits {
                         healPercent = 0.5f; collidesTeam = true;
                         colors = new Color[]{Color.valueOf("62ae7f"), Color.valueOf("84f491"), Color.valueOf("ffffff")};
                     }};
+                }},
+                new BuildWeapon("build-weapon") {{
+                    x = 0; y = -2; rotate = true;
                 }},
                 new Weapon("plasma-laser-mount") {{
                     x = 12; y = -38; mirror = true;

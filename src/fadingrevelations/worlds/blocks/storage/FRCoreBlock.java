@@ -21,6 +21,8 @@ public class FRCoreBlock extends CoreBlock {
     public float attackRange = 400f;
     public float turretReload = 20f;
     public BulletType bulletType;
+    public TextureRegion turretRegion;
+    public Color beamColor = Color.valueOf("f8ad42");
 
     public FRCoreBlock(String name) {
         super(name);
@@ -47,6 +49,12 @@ public class FRCoreBlock extends CoreBlock {
         }};
     }
 
+    @Override
+    public void load() {
+        super.load();
+        turretRegion = Core.atlas.find(name + "-turret");
+    }
+
     public class FRCoreBuild extends CoreBuild {
         public float turretRotation;
         public float reloadTimer;
@@ -63,7 +71,6 @@ public class FRCoreBlock extends CoreBlock {
             // Uses ConstructBuild.construct(), which pays items from the core
             // progressively and finishes the block properly once complete.
             arc.struct.Queue<mindustry.game.Teams.BlockPlan> plans = team.data().plans;
-            CoreBuild core = team.core();
             for (int i = 0; i < plans.size; i++) {
                 mindustry.game.Teams.BlockPlan plan = plans.get(i);
                 if (plan == null || plan.removed) continue;
@@ -74,12 +81,13 @@ public class FRCoreBlock extends CoreBlock {
                 Building building = world.build(plan.x, plan.y);
                 if (building instanceof ConstructBuild && ((ConstructBuild) building).team == team) {
                     ConstructBuild cons = (ConstructBuild) building;
-                    if (core != null && cons.buildCost > 0f) {
-                        cons.construct(useBuildHelper(), core, edelta() * buildSpeedMultiplier / cons.buildCost, plan.config);
+                    if (cons.buildCost > 0f) {
+                        // Pay from this core, not necessarily the team's primary core.
+                        cons.construct(useBuildHelper(), this, edelta() * buildSpeedMultiplier / cons.buildCost, plan.config);
                     }
 
                     if (Mathf.chance(0.05)) {
-                        Fx.pointBeam.at(x, y, angleTo(cons.x, cons.y), Color.valueOf("f8ad42"));
+                        Fx.pointBeam.at(x, y, angleTo(cons.x, cons.y), beamColor);
                     }
 
                     if (cons.progress >= 1f || !(world.build(plan.x, plan.y) instanceof ConstructBuild)) {
@@ -123,7 +131,6 @@ public class FRCoreBlock extends CoreBlock {
         public void draw() {
             super.draw();
 
-            TextureRegion turretRegion = Core.atlas.find(name + "-turret");
             if (turretRegion != null && turretRegion.found()) {
                 Draw.z(Layer.turret);
                 Draw.rect(turretRegion, x, y, turretRotation - 90);

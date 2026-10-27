@@ -123,7 +123,7 @@ public class FRFullTechTree {
                                 node(mineLauncher, () -> {
                                     node(mortar);
                                     node(missileBattery, () -> {
-                                        node(interitus);
+                                        node(interitus, () -> node(caats));
                                         node(missileSilo);
                                     });
                                 });

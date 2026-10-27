@@ -341,12 +341,14 @@ public class FRTurrets {
 
         caats = new ItemTurret("caats") {{
             localizedName = "CAATS";
-            requirements(Category.turret, with(graphite, 1));
+            requirements(Category.turret, with(
+                Items.copper, 2500, Items.lead, 2000, Items.graphite, 1200, Items.silicon, 1200,
+                Items.thorium, 800, Items.phaseFabric, 400, FRItems.steelAlloy, 300, FRItems.livingSteel, 150
+            ));
             size = 5; health = 11375; reload = 90f; range = 480f;
             maxAmmo = 1000;
             minWarmup = 0.99f; shootWarmupSpeed = 0.05f; warmupMaintainTime = 600f;
             targetGround = false;
-            buildVisibility = BuildVisibility.editorOnly;
             consumePower(10f);
             shoot = new ShootBarrel() {{
                 barrels = new float[9];

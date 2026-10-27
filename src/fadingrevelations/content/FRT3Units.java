@@ -180,7 +180,7 @@ public class FRT3Units {
                 new HoverPart() {{ x = 9; y = -22; mirror = true; radius = 7; phase = 175; color = Color.valueOf("ffd59e"); stroke = 3; layerOffset = -0.001f; rotation = 90; }}
             );
             weapons.addAll(
-                new Weapon("dark-large-bullet-mount") {{
+                new Weapon("dark-large-laser-mount") {{
                     x = 14; y = -14; mirror = true; rotate = true;
                     reload = 40; alternate = true; shake = 3;
                     shootSound = shootLaser;
@@ -194,7 +194,7 @@ public class FRT3Units {
                         hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
-                new Weapon("dark-large-bullet-mount") {{
+                new Weapon("dark-large-laser-mount") {{
                     x = 0; y = 11; mirror = false; rotate = true;
                     reload = 50; shake = 3;
                     shootSound = shootLaser;
@@ -208,7 +208,7 @@ public class FRT3Units {
                         hitEffect = new MultiEffect(hitBezierOrange, bezierRingOrange);
                     }};
                 }},
-                new Weapon("dark-large-laser-mount") {{
+                new Weapon("dark-large-bullet-mount") {{
                     x = 0; y = -15; mirror = false; rotate = false;
                     reload = 320; shake = 5;
                     shootSound = shootArtillery;

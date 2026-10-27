@@ -4,87 +4,126 @@ import arc.Core;
 import arc.Events;
 import arc.util.Log;
 import mindustry.Vars;
-import mindustry.game.EventType.ResearchEvent;
 import mindustry.ctype.Content;
 import mindustry.ctype.ContentType;
 import mindustry.ctype.UnlockableContent;
+import mindustry.game.EventType.ResearchEvent;
+import mindustry.net.NetConnection;
 import mindustry.type.Planet;
 
 public class FRTechTree {
-    private static final String SETTING_KEY = "fr-global-research";
+    private static final String LEGACY_SETTING_KEY = "fr-global-research";
     private static final Planet[] planets = {FRPlanets.cerbero, FRPlanets.hathor, FRPlanets.cangirus};
-    private static final java.util.Set<String> researched = new java.util.HashSet<>();
 
     public static void load() {
-        loadGlobalProgress();
-
         Events.on(ResearchEvent.class, event -> {
-            if (event.content == null) return;
-            String name = event.content.name;
-            
-            if (researched.add(name)) {
-                saveGlobalProgress();
+            if (event.content == null || !isResearchable(event.content)) return;
+            UnlockableContent content = event.content;
+
+            if (Vars.net.client()) {
+                // Research happens in the client's dialog. Tell the host, otherwise the
+                // researched content is lost on the next rules sync. Add it locally as well so
+                // the dialog updates immediately; the host's next setRules is authoritative.
+                Vars.net.send(new FRCampaignPacket(content), true);
+                content.unlock();
+                if (Vars.state.isCampaign() && Vars.state.rules != null
+                    && Vars.state.rules.researched != null) {
+                    Vars.state.rules.researched.add(content);
+                }
+                return;
             }
 
-            unlockOnAllPlanets(event.content);
-            // Arc's Log uses Strings.format(), whose placeholder is {} - not @.
-            Log.info("FRTechTree: Unlocked [{}] on all planets", name);
+            research(content);
         });
     }
 
-    private static void unlockOnAllPlanets(UnlockableContent content) {
-        if (content == null) return;
+    /** Only this mod's tech-tree content may be recorded by the global research tracker. */
+    static boolean isResearchable(UnlockableContent content) {
+        if (content == null || content.techNode == null || content.minfo == null || content.minfo.mod == null) {
+            return false;
+        }
+        return content.minfo.mod == Vars.mods.getMod(fadingrevelations.FadingRevelationsMod.class);
+    }
+
+    static void research(UnlockableContent content) {
+        if (!isResearchable(content)) return;
+
+        String id = id(content);
+        boolean added = FRCampaignState.research.add(id);
 
         content.unlock();
+        if (!Vars.net.client() && Vars.state.isCampaign() && Vars.state.rules != null
+            && Vars.state.rules.researched != null) {
+            Vars.state.rules.researched.add(content);
+        }
 
-        // ResearchEvent is fired client-side from the research dialog. Mutating rules.researched here
-        // only changes the local copy: the server never learns about it and the next sync overwrites
-        // it, so in multiplayer the content would look researched locally but be rejected by the host.
-        // ResearchEvent never fires on a dedicated server, so global unlock has to be client-local.
-        if (Vars.state.isCampaign() && !Vars.net.client()) {
-            try {
-                mindustry.game.Rules rules = Vars.state.rules;
-                if (rules != null && rules.researched != null && !rules.researched.contains(content)) {
-                    rules.researched.add(content);
-                }
-            } catch (Throwable t) {
-                Log.err("FRTechTree: Failed to add to researched", t);
+        if (added) {
+            FRCampaignState.save(true);
+        }
+        Log.info("FRTechTree: Unlocked [{}] globally", content.name);
+    }
+
+    static void researchFromNetwork(UnlockableContent content, NetConnection connection) {
+        // The host validates the ID; a client cannot unlock arbitrary content.
+        research(content);
+    }
+
+    /** Adds every globally researched entry to the current sector's rules. */
+    public static void applyResearchToRules() {
+        if (Vars.net.client() || Vars.state == null || !Vars.state.isCampaign()
+            || Vars.state.rules == null || Vars.state.rules.researched == null) {
+            return;
+        }
+
+        for (String id : FRCampaignState.research) {
+            Content content = findContent(id);
+            if (content instanceof UnlockableContent unlockable && isResearchable(unlockable)) {
+                Vars.state.rules.researched.add(unlockable);
+                unlockable.unlock();
             }
         }
     }
 
-    private static void saveGlobalProgress() {
-        String[] arr = researched.toArray(new String[0]);
-        Core.settings.putJson(SETTING_KEY, arr);
+    static String id(UnlockableContent content) {
+        return content.getContentType().name() + ":" + content.name;
     }
 
-    private static void loadGlobalProgress() {
-        try {
-            String[] arr = Core.settings.getJson(SETTING_KEY, String[].class, () -> new String[0]);
-            for (String name : arr) {
-                researched.add(name);
-            }
+    /** Resolves a ContentType:name ID without relying on globally unique content names. */
+    public static Content findContent(String id) {
+        if (id == null) return null;
 
-            for (String name : researched) {
-                Content content = findContent(name);
-                if (content instanceof UnlockableContent) {
-                    UnlockableContent unlockable = (UnlockableContent) content;
-                    unlockOnAllPlanets(unlockable);
+        int split = id.indexOf(':');
+        if (split <= 0 || split + 1 >= id.length()) return null;
+
+        try {
+            ContentType type = ContentType.valueOf(id.substring(0, split));
+            return Vars.content.getByName(type, id.substring(split + 1));
+        } catch (IllegalArgumentException ignored) {
+            return null;
+        }
+    }
+
+    static void loadLegacyProgress() {
+        try {
+            String[] names = Core.settings.getJson(LEGACY_SETTING_KEY, String[].class, () -> new String[0]);
+            for (String name : names) {
+                Content content = findLegacyContent(name);
+                if (content instanceof UnlockableContent unlockable && isResearchable(unlockable)) {
+                    FRCampaignState.research.add(id(unlockable));
                 }
             }
-
-            if (!researched.isEmpty()) {
-                Log.info("FRTechTree: Loaded {} researched items", researched.size());
+            if (!FRCampaignState.research.isEmpty()) {
+                Log.info("FRTechTree: migrated {} researched items", FRCampaignState.research.size);
             }
         } catch (Throwable t) {
-            Log.err("FRTechTree: Error loading progress", t);
+            Log.err("FRTechTree: error migrating progress", t);
         }
     }
 
-    private static Content findContent(String name) {
+    private static Content findLegacyContent(String name) {
         for (ContentType type : ContentType.all) {
-            Content c = Vars.content.getByName(type, name);
-            if (c != null) return c;
+            Content content = Vars.content.getByName(type, name);
+            if (content != null) return content;
         }
         return null;
     }

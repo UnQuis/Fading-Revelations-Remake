@@ -19,6 +19,7 @@ import mindustry.graphics.Layer;
 import mindustry.graphics.Pal;
 import mindustry.Vars;
 import mindustry.world.Block;
+import mindustry.world.Tile;
 import mindustry.world.meta.Stat;
 import mindustry.world.meta.StatUnit;
 
@@ -114,33 +115,47 @@ public class JumpGate extends Block {
                 Building dst = target();
                 if (dst == null) return;
 
-                Unit[] found = {null};
-                Units.nearby(team, x, y, radius, unit -> {
-                    if (found[0] != null) return;
-                    if (unit.type == null || unit.type.naval) return; //naval units stay in the water
-                    if (unit.hasEffect(FRStatus.jumpSickness)) return;
-                    found[0] = unit;
-                });
+                Unit unit = Units.closest(team, x, y, radius, u ->
+                    u.type != null && !u.type.naval && !u.hasEffect(FRStatus.jumpSickness)
+                );
+                if (unit == null) return;
 
-                Unit unit = found[0];
-                if (unit != null) {
+                float dstX = dst.x;
+                float dstY = dst.y;
+                boolean validArrival = false;
+
+                // Find a free tile around the destination gate instead of blindly dropping the unit
+                // into a wall or deep water. The gate itself is solid, so it is rejected too.
+                for (int i = 0; i < 10; i++) {
                     float ang = Mathf.random(360f);
-                    float dstX = dst.x + Mathf.cosDeg(ang) * arrivalRadius * Mathf.random();
-                    float dstY = dst.y + Mathf.sinDeg(ang) * arrivalRadius * Mathf.random();
+                    float dist = Mathf.random(arrivalRadius);
+                    float tx = dst.x + Mathf.cosDeg(ang) * dist;
+                    float ty = dst.y + Mathf.sinDeg(ang) * dist;
+                    Tile tile = Vars.world.tileWorld(tx, ty);
 
-                    departEffect.at(unit.x, unit.y, 0f, portalColor);
-                    arriveEffect.at(dstX, dstY, 0f, portalColor);
-                    Sounds.coreLaunch.at(unit.x, unit.y, 2f, 0.3f);
-                    Sounds.padLaunch.at(dstX, dstY, 1.6f, 0.3f);
+                    if (tile == null || tile.solid()) continue;
+                    if (!unit.type.flying && (tile.floor().isLiquid || tile.floor().isDeep())) continue;
 
-                    // flash both gates
-                    flash = 1f;
-                    if (dst instanceof JumpGateBuild jg) jg.flash = 1f;
-
-                    unit.set(dstX, dstY);
-                    unit.snapInterpolation();
-                    unit.apply(FRStatus.jumpSickness, 150f);
+                    dstX = tx;
+                    dstY = ty;
+                    validArrival = true;
+                    break;
                 }
+
+                if (!validArrival) return;
+
+                departEffect.at(unit.x, unit.y, 0f, portalColor);
+                arriveEffect.at(dstX, dstY, 0f, portalColor);
+                Sounds.coreLaunch.at(unit.x, unit.y, 2f, 0.3f);
+                Sounds.padLaunch.at(dstX, dstY, 1.6f, 0.3f);
+
+                // flash both gates
+                flash = 1f;
+                if (dst instanceof JumpGateBuild jg) jg.flash = 1f;
+
+                unit.set(dstX, dstY);
+                unit.snapInterpolation();
+                unit.apply(FRStatus.jumpSickness, 150f);
             }
         }
 
@@ -178,7 +193,9 @@ public class JumpGate extends Block {
             }
 
             Draw.reset();
-            Draw.rect(topRegion, x, y, spin * 0.9f);
+            if (topRegion != null && topRegion.found()) {
+                Draw.rect(topRegion, x, y, spin * 0.9f);
+            }
         }
 
         @Override

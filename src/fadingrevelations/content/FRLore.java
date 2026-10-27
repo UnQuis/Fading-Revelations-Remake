@@ -8,6 +8,8 @@ import arc.util.Log;
 import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.game.EventType;
+import mindustry.game.Team;
+import mindustry.gen.Call;
 import mindustry.world.Tile;
 
 /**
@@ -75,10 +77,8 @@ public class FRLore {
     };
 
     private static final String SETTING_KEY = "fr-lore";
-    private static final ObjectSet<String> discovered = new ObjectSet<>();
 
     public static void load() {
-        loadProgress();
         Events.on(EventType.WorldLoadEvent.class, event -> placeTerminal());
     }
 
@@ -87,7 +87,7 @@ public class FRLore {
     /** @return the first undiscovered entry of the chain, in order. */
     public static LoreEntry nextEntry(String chain) {
         for (LoreEntry entry : entries) {
-            if (entry.chain.equals(chain) && !discovered.contains(entry.id)) return entry;
+            if (entry.chain.equals(chain) && !FRCampaignState.lore.contains(entry.id)) return entry;
         }
         return null;
     }
@@ -99,20 +99,29 @@ public class FRLore {
 
     /** Marks an entry as read. @return true if it was new. */
     public static boolean discover(LoreEntry entry) {
-        if (entry == null || !discovered.add(entry.id)) return false;
-        saveProgress();
+        if (entry == null) return false;
+
+        if (Vars.net.client()) {
+            // The server owns campaign progress; ask it to record the entry.
+            Vars.net.send(new FRCampaignPacket(FRCampaignPacket.LORE, entry.id), true);
+        }
+
+        if (!FRCampaignState.lore.add(entry.id)) return false;
+        // A lore discovery is a one-off event, so persist it immediately instead of waiting for
+        // the throttled progress save.
+        FRCampaignState.save(true);
         return true;
     }
 
     public static boolean isDiscovered(LoreEntry entry) {
-        return discovered.contains(entry.id);
+        return entry != null && FRCampaignState.lore.contains(entry.id);
     }
 
     /** Discovered count of a chain (finale only counts when unlocked). */
     public static int chainProgress(String chain) {
         int n = 0;
         for (LoreEntry entry : entries) {
-            if (entry.chain.equals(chain) && discovered.contains(entry.id)) n++;
+            if (entry.chain.equals(chain) && FRCampaignState.lore.contains(entry.id)) n++;
         }
         return n;
     }
@@ -134,6 +143,10 @@ public class FRLore {
      * mod's planets, if there is none yet (saved sectors already carry it).
      */
     private static void placeTerminal() {
+        // World changes must be made by the host, otherwise every client would place its own
+        // terminal and the world would desync.
+        if (Vars.net.client()) return;
+
         var state = Vars.state;
         if (!state.isCampaign() || state.rules.sector == null) return;
 
@@ -143,9 +156,15 @@ public class FRLore {
         var block = FREffectBlocks.precursorTerminal;
         if (block == null) return;
 
+        // Saved sectors already carry the terminal; the tag avoids scanning every tile again.
+        if (state.rules.tags.getBool("fr.lore.terminal")) return;
+
         //already placed in this world?
         for (Tile tile : Vars.world.tiles) {
-            if (tile.block() == block) return;
+            if (tile.block() == block) {
+                state.rules.tags.put("fr.lore.terminal", "true");
+                return;
+            }
         }
 
         Tile at = findSpot();
@@ -154,7 +173,10 @@ public class FRLore {
             return;
         }
 
-        at.setBlock(block, state.rules.defaultTeam);
+        // Call.setTile updates the host and sends the placement to every client. A plain
+        // setBlock() would leave the terminal invisible for connected players.
+        Call.setTile(at, block, state.rules.defaultTeam, 0);
+        state.rules.tags.put("fr.lore.terminal", "true");
     }
 
     /** Finds a free 2x2 area 12..30 tiles from the map center (near the player's landing site). */
@@ -195,7 +217,9 @@ public class FRLore {
         for (int dx = 0; dx < 2; dx++) {
             for (int dy = 0; dy < 2; dy++) {
                 Tile tile = world.tile(x + dx, y + dy);
-                if (tile == null || tile.block() != Blocks.air || tile.solid() || tile.floor().isDeep()) return false;
+                if (tile == null || tile.block() != Blocks.air || tile.solid()) return false;
+                if (tile.floor().isDeep() || tile.floor().isLiquid || tile.floor().shallow) return false;
+                if (tile.team() != Team.derelict && tile.team() != Vars.state.rules.defaultTeam) return false;
             }
         }
         return true;
@@ -205,22 +229,38 @@ public class FRLore {
 
     //region persistence
 
-    private static void saveProgress() {
-        Core.settings.putJson(SETTING_KEY, String.class, discovered);
-    }
-
-    private static void loadProgress() {
+    static void loadLegacyProgress() {
         try {
             ObjectSet<String> data = Core.settings.getJson(SETTING_KEY, ObjectSet.class, String.class, ObjectSet::new);
-            discovered.clear();
-            discovered.addAll(data);
-            if (!discovered.isEmpty()) {
-                Log.info("FRLore: @ entries recovered", discovered.size);
+            FRCampaignState.lore.clear();
+            FRCampaignState.lore.addAll(data);
+            if (!FRCampaignState.lore.isEmpty()) {
+                Log.info("FRLore: @ entries recovered", FRCampaignState.lore.size);
             }
         } catch (Throwable t) {
             Log.err("FRLore: error loading progress", t);
-            discovered.clear();
+            FRCampaignState.lore.clear();
         }
+    }
+
+    public static LoreEntry findEntry(String id) {
+        if (id == null) return null;
+        for (LoreEntry entry : entries) {
+            if (entry.id.equals(id)) return entry;
+        }
+        return null;
+    }
+
+    static void discoverFromNetwork(String id, mindustry.net.NetConnection connection) {
+        LoreEntry entry = findEntry(id);
+        if (entry == null) return;
+
+        // Enforce the same order the terminal UI enforces: only the next entry of a chain,
+        // and the finale only once all three planet chains are complete.
+        if (entry.chain.equals(FINALE) && !allChainsComplete()) return;
+        if (entry != nextEntry(entry.chain)) return;
+
+        discover(entry);
     }
 
     //endregion

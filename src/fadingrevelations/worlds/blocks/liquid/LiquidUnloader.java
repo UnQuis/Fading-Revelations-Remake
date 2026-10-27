@@ -16,6 +16,7 @@ import static mindustry.Vars.*;
 
 public class LiquidUnloader extends Block {
     public String center;
+    public TextureRegion centerRegion;
     public float speed = 4f;
 
     public LiquidUnloader(String name){
@@ -42,6 +43,7 @@ public class LiquidUnloader extends Block {
     public void load() {
         super.load();
         center = name + "-center";
+        centerRegion = Core.atlas.find(center);
     }
 
     @Override
@@ -59,7 +61,7 @@ public class LiquidUnloader extends Block {
         @Override
         public void updateTile() {
             if(lastSort != sortLiquid){
-                liquids.clear();
+                // Do not void the tank when the filter changes; the old liquid can still be dumped.
                 lastSort = sortLiquid;
             }
             for(int i = 0; i < proximity.size; i++){
@@ -68,10 +70,13 @@ public class LiquidUnloader extends Block {
 
                 if(other.interactable(team) && other.block.hasLiquids && !(other instanceof LiquidBuild && other.block.size == 1) && sortLiquid != null && other.liquids.get(sortLiquid) > 0){
                     dumpingTo = other;
-                    if(liquids.get(sortLiquid) < block.liquidCapacity){
-                        float amount = Math.min(speed, other.liquids.get(sortLiquid));
-                        liquids.add(sortLiquid, amount);
-                        other.liquids.remove(sortLiquid, amount);
+                    float free = block.liquidCapacity - liquids.get(sortLiquid);
+                    if(free > 0f){
+                        float amount = Math.min(Math.min(speed, other.liquids.get(sortLiquid)), free);
+                        if(amount > 0f){
+                            liquids.add(sortLiquid, amount);
+                            other.liquids.remove(sortLiquid, amount);
+                        }
                     }
                 }
             }
@@ -79,7 +84,10 @@ public class LiquidUnloader extends Block {
                 offset ++;
                 offset %= proximity.size;
             }
-            this.dumpLiquid(liquids.current());
+            Liquid current = liquids.current();
+            if(current != null){
+                this.dumpLiquid(current);
+            }
         }
 
         @Override
@@ -91,7 +99,9 @@ public class LiquidUnloader extends Block {
         public void draw() {
             super.draw();
             Draw.color(sortLiquid == null ? Color.clear : sortLiquid.color);
-            Draw.rect(Core.atlas.find(center), x, y);
+            if(centerRegion.found()){
+                Draw.rect(centerRegion, x, y);
+            }
             Draw.color();
         }
 

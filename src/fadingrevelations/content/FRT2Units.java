@@ -148,7 +148,7 @@ public class FRT2Units {
                         despawnEffect = bezierRingOrange;
                     }};
                 }},
-                new Weapon("dark-missiles-mount") {{
+                new Weapon("dark-large-laser-mount") {{
                     x = 0; y = 0; mirror = false; rotate = false;
                     reload = 120; inaccuracy = 4; shootSound = Sounds.shootLaser;
                     bullet = new LaserBulletType() {{
@@ -187,17 +187,8 @@ public class FRT2Units {
                 }}
             );
             weapons.addAll(
-                new Weapon("building-weapon") {{
-                    x = 0; y = -8; reload = 30; rotate = true;
-                    noAttack = true; mirror = false; shootSound = Sounds.shootLaser;
-                    bullet = new LaserBulletType() {{
-                        damage = 5; healPercent = 12; length = 140;
-                        colors = new Color[]{Color.valueOf("84f491"), Color.white, Color.valueOf("62ae7f")};
-                        collidesTeam = true; collidesTiles = true; collidesAir = true;
-                        shootEffect = bezierArcGreen;
-                        smokeEffect = smokeBezierGreen;
-                        hitEffect = hitBezierGreen;
-                    }};
+                new BuildWeapon("build-weapon") {{
+                    x = 0; y = -8; reload = 30; rotate = true; mirror = false;
                 }},
                 new Weapon() {{
                     x = 0; y = 5; reload = 5; rotate = false;
