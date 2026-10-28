@@ -7,7 +7,10 @@ verbatim; the meta and map regions are rebuilt).
 
 Run: python3 scripts/gen_silent_ruins.py
 """
-import json, random, struct, zlib, io, os
+import json, random, struct, zlib, io, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import msav
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 DONOR = os.path.join(ROOT, 'assets/maps/exordium.msav')
@@ -21,6 +24,8 @@ STONE, BASALT, DARKSAND = 31, 34, 38
 AIR = 0
 STONE_WALL, BOULDER = 76, 107
 ORE_COPPER, ORE_LEAD, ORE_TITANIUM = 141, 142, 145
+CORE_SHARD = 309
+SPAWN = 1
 
 def rutf(b, p):
     ln = struct.unpack('>H', b[p:p+2])[0]; p += 2
@@ -141,39 +146,47 @@ for _ in range(90):
     if blocks[y][x] == AIR and overlays[y][x] == 0:
         blocks[y][x] = BOULDER
 
+# The map needs a player core or Mindustry refuses to host it ("All maps must
+# have a core"). Clear the ruined structure at the landing point and place a
+# 3x3 core-shard there, copying the donor's core payload so the base starts
+# with the same item/health state as the other campaign maps.
+core_x, core_y = 75, 96
+for y in range(core_y - 3, core_y + 4):
+    for x in range(core_x - 3, core_x + 4):
+        blocks[y][x] = AIR
+        overlays[y][x] = 0
+
+donor_map = msav.read_map_region(reg['map'])
+donor_names = msav.parse_content(reg['content'])[0][1]
+core_payload = next(p for _k, bid, centre, p in donor_map.records
+                    if centre and donor_names[bid] == 'core-shard')
+
+buildings = {}
+for oy in (-1, 0, 1):
+    for ox in (-1, 0, 1):
+        x, y = core_x + ox, core_y + oy
+        centre = ox == 0 and oy == 0
+        buildings[y * W + x] = (CORE_SHARD, centre, core_payload if centre else b'')
+        blocks[y][x] = CORE_SHARD
+
+# A single enemy spawn keeps the sector's wave timer functional; Hathor has no
+# enemy bases, so this is only a technical marker on the far side of the map.
+spawn_x, spawn_y = 20, 20
+blocks[spawn_y][spawn_x] = AIR
+overlays[spawn_y][spawn_x] = SPAWN
+
 # ------------------------------------------------------------- write regions
 def wutf_pad(s):
     b = s.encode('utf-8')
     return struct.pack('>H', len(b)) + b
 
-# map region: floors RLE then blocks RLE
-bio = io.BytesIO()
-bio.write(struct.pack('>HH', W, H))
-i = 0
-n = W * H
-flat_f, flat_o = [], []
+# map region: floors/overlays RLE, then block RLE with the core building records
+flat_f, flat_o, flat_b = [], [], []
 for y in range(H):
     flat_f += floors[y]
     flat_o += overlays[y]
-while i < n:
-    cons = 0
-    while i + cons + 1 < n and cons < 255 and flat_f[i + cons + 1] == flat_f[i] and flat_o[i + cons + 1] == flat_o[i]:
-        cons += 1
-    bio.write(struct.pack('>hhB', flat_f[i], flat_o[i], cons))
-    i += cons + 1
-
-flat_b = []
-for y in range(H):
     flat_b += blocks[y]
-i = 0
-while i < n:
-    cons = 0
-    while i + cons + 1 < n and cons < 255 and flat_b[i + cons + 1] == flat_b[i]:
-        cons += 1
-    bio.write(struct.pack('>hB', flat_b[i], 0))  # block id + packed(no build, no data)
-    bio.write(struct.pack('>B', cons))
-    i += cons + 1
-map_region = bio.getvalue()
+map_region = msav.write_map_region(W, H, flat_f, flat_o, flat_b, buildings)
 
 # meta region: tags copied from donor, with replacements
 # arc's JsonIO writes minimal JSON (unquoted keys).
@@ -236,19 +249,12 @@ for _ in range(cnt):
     t2[k] = v
 assert int(t2['width']) == W and int(t2['height']) == H
 
-# walk the map region, count tiles
-mm = reg2['map']
-w2, h2 = struct.unpack('>HH', mm[:4])
-pos, tiles = 4, 0
-while tiles < w2 * h2:
-    f, o, cons = struct.unpack('>hhB', mm[pos:pos+5]); pos += 5
-    tiles += cons + 1
-assert tiles == w2 * h2, tiles
-pos2, bcount = pos, 0
-while bcount < w2 * h2:
-    b, packed = struct.unpack('>hB', mm[pos2:pos2+3]); pos2 += 3
-    assert packed == 0
-    cons = mm[pos2]; pos2 += 1
-    bcount += cons + 1
-assert bcount == w2 * h2, bcount
-print('self-check OK: %dx%d, tiles=%d, blocks=%d, consumed %d/%d' % (w2, h2, tiles, bcount, pos2, len(mm)))
+# walk the map region and verify the core/spawn are actually present
+mm = msav.read_map_region(reg2['map'])
+assert mm.width == W and mm.height == H
+cores = [(k, bid, centre, p) for k, bid, centre, p in mm.records
+         if centre and donor_names[bid] == 'core-shard']
+assert len(cores) == 1, cores
+assert any(o == SPAWN for o in mm.overlays), 'no spawn marker'
+print('self-check OK: %dx%d, %d building records, core at %s, spawn marker present'
+      % (mm.width, mm.height, len(mm.records), mm.xy(cores[0][0])))

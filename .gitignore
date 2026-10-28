@@ -18,6 +18,7 @@ AGENTS.md
 FROriginal/
 run/
 .opencode/
+.git/
 
 #python bytecode from the map/bundle scripts
 __pycache__/

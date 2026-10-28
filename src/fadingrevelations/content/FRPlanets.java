@@ -76,7 +76,7 @@ public class FRPlanets {
             visible = true;
             accessible = true;
             
-            meshLoader = () -> new HexMesh(this, 4);
+            meshLoader = () -> new HexMesh(this, 5);
             generator = new HathorGenerator() {{ seed = 69420; }};
             
             orbitSpacing = 12;

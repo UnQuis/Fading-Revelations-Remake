@@ -71,7 +71,7 @@ public class FROrbitalRingMesh implements GenericMesh {
     public Color glowColor = Color.valueOf("c99bff");
 
     protected Mesh[] arcs;
-    protected Mesh blueprint, glow;
+    protected Mesh blueprint, glow, innerGlow;
     protected boolean built = false;
 
     public FROrbitalRingMesh(Planet planet) {
@@ -89,8 +89,9 @@ public class FROrbitalRingMesh implements GenericMesh {
             for (int i = 0; i < 4; i++) {
                 arcs[i] = buildArc(i);
             }
-            blueprint = buildBand(0f, 360f, midRadius() - 0.012f, midRadius() + 0.012f, c(blueprintColor, 0.16f), 64);
-            glow = buildBand(0f, 360f, outerRadius, outerRadius + 0.06f, c(glowColor, 0.35f), 64);
+            blueprint = buildBand(0f, 360f, midRadius() - 0.012f, midRadius() + 0.012f, c(blueprintColor, 0.16f), 96);
+            glow = buildBand(0f, 360f, outerRadius, outerRadius + 0.08f, c(glowColor, 0.3f), 96);
+            innerGlow = buildBand(0f, 360f, innerRadius - 0.07f, innerRadius, c(glowColor, 0.22f), 96);
         } catch (Throwable t) {
             arc.util.Log.err("Fading Revelations: failed to build the orbital ring mesh, ring disabled", t);
             dispose();
@@ -139,6 +140,7 @@ public class FROrbitalRingMesh implements GenericMesh {
         }
         if (stage >= 4) {
             glow.render(shader, Gl.triangles);
+            innerGlow.render(shader, Gl.triangles);
         }
         Gl.disable(Gl.blend);
         Gl.enable(Gl.cullFace);
@@ -149,6 +151,7 @@ public class FROrbitalRingMesh implements GenericMesh {
         if (arcs != null) for (Mesh m : arcs) if (m != null) m.dispose();
         if (blueprint != null) blueprint.dispose();
         if (glow != null) glow.dispose();
+        if (innerGlow != null) innerGlow.dispose();
     }
 
     /**
@@ -158,10 +161,10 @@ public class FROrbitalRingMesh implements GenericMesh {
      */
     private Mesh buildArc(int index) {
         float a0 = index * 90f, a1 = a0 + 90f;
-        int segments = 18;
+        int segments = 48;
 
-        // 4 tubes x 4 faces x 2 triangles x 3 vertices
-        Mesh mesh = newMesh(segments * 4 * 4 * 6);
+        // 4 tubes x 4 faces x 2 triangles x 3 vertices, plus running lights
+        Mesh mesh = newMesh(segments * 4 * 4 * 6 + (segments / 6 + 1) * 6);
 
         float h = height;
         float spineIn = innerRadius + rail + 0.03f, spineOut = outerRadius - rail - 0.06f;
@@ -186,6 +189,12 @@ public class FROrbitalRingMesh implements GenericMesh {
             tube(mesh, ta, tb, outerRadius - rail, outerRadius, -h * 0.5f, h * 0.5f, trim, 0.92f);
         }
 
+        Color light = (last ? glowColor : accentColor).cpy().a(0.9f);
+        for (int i = 0; i < segments; i += 6) {
+            float angle = Mathf.lerp(a0, a1, (i + 0.5f) / segments);
+            light(mesh, angle, midRadius(), h + spine + 0.004f, 0.012f, light);
+        }
+
         finish(mesh);
         return mesh;
     }
@@ -200,6 +209,26 @@ public class FROrbitalRingMesh implements GenericMesh {
         }
         finish(mesh);
         return mesh;
+    }
+
+    private static void light(Mesh mesh, float angle, float radius, float y, float size, Color color) {
+        float rad = angle * Mathf.degRad;
+        float cx = Mathf.cos(rad), cz = Mathf.sin(rad);
+        float x = cx * radius, z = cz * radius;
+        float tx = -cz * size, tz = cx * size;
+        float rx = cx * size, rz = cz * size;
+
+        putRaw(mesh, x - tx - rx, y, z - tz - rz, color);
+        putRaw(mesh, x + tx - rx, y, z + tz - rz, color);
+        putRaw(mesh, x + tx + rx, y, z + tz + rz, color);
+
+        putRaw(mesh, x - tx - rx, y, z - tz - rz, color);
+        putRaw(mesh, x + tx + rx, y, z + tz + rz, color);
+        putRaw(mesh, x - tx + rx, y, z - tz + rz, color);
+    }
+
+    private static void putRaw(Mesh mesh, float x, float y, float z, Color color) {
+        mesh.getVerticesBuffer().put(x).put(y).put(z).put(color.toFloatBits());
     }
 
     private static Mesh newMesh(int vertices) {
